@@ -2,7 +2,7 @@ package gr.projAboutCovid.leo.proj;
 import java.util.Scanner;
 public class Human {
 	//οι ανθρωποι ειναι σε αλφαβητικοι σειρα
-	private /* list of human*/ static Human allHuman;
+	private ArrayList<Human> allHuman;
 	private String id;
 	public Human() {
 		Scanner sc = new Scanner(System.in);
