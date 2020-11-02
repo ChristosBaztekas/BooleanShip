@@ -1,5 +1,5 @@
 package gr.projAboutCovid.leo.proj;
 
-public class Universities {
+public class Universities extends Organisations {
 
 }
