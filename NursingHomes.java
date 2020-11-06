@@ -1,5 +1,8 @@
 package gr.projAboutCovid.leo.proj;
+
 import java.util.Scanner;
+import java.util.ArrayList;
+
 public class NursingHomes extends Organisations {
     String status_descr;
     ArrayList<Human> employs;
@@ -30,5 +33,9 @@ public class NursingHomes extends Organisations {
     }
     private void monitoring() {
         
+    }
+    @Override
+    private void insertHumanToOrganisation(Human human) {
+        //
     }
 }
