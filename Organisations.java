@@ -1,6 +1,6 @@
 package gr.projAboutCovid.leo.proj;
 
-public abstact class Organisations {
+public abstract class Organisations {
     private String name;
     private String area;
     private int id;
@@ -28,8 +28,8 @@ public abstact class Organisations {
  }
  // can allhuman or one human 
   // απο εδω και κατω βλεπουμε
- public abstact void people(Human human);
+ public abstract void people(Human human);
   
- public abstarct /*vlepoyme*/ void  managementCases();
+ public abstract /*vlepoyme*/ void  managementCases();
  
- public abstract 
+}
