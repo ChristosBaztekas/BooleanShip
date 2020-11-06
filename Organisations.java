@@ -3,7 +3,7 @@ package gr.projAboutCovid.leo.proj;
 public abstact class Organisations {
     private String name;
     private String area;
-    private int id;
+    private final int id;
     private static int count = 0;
     public Organisations(String name, String area, int numbersOfPeople) {
        this.name = name;
