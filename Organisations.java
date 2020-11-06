@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public abstract class Organisations {
 	private String name, area;
-	private int id;
+	private final int id;
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
@@ -41,7 +41,7 @@ public abstract class Organisations {
 		for (int i = 0; i < methodCall.getAllHuman().size(); i++) {
 			System.out.println(methodCall.toString());
 		} // Ευελπιστώ να εκτυπώνει όλους τους ανθρώπους αν και θα φανεί στην πράξη
-	}
+	}// χρήστος:Γτ να μην μπει στην Human εφόσον θέλουμε ολους?
 
 	public void notifyContacts(Human anyH) {
 		System.out.println(anyH + "was found with covid...Please write down his contacts!");
@@ -53,7 +53,7 @@ public abstract class Organisations {
 			case "Y":
 				ArrayList<String> contactsNames = new ArrayList();
 				for (;;) {
-					int i = 0;
+					int i = 0;//χρηστος:ισως η αρχικοποιηση να γινει εξω
 
 					System.out.println("If " + anyH + " has no contacts type E for Exit else type C. ");
 					String startInsert = sc.next();
@@ -80,7 +80,7 @@ public abstract class Organisations {
 						System.out.println("Not an available option!Try again!");
 						break;
 					}
-
+					sc.nextLine(); // άδειασμα του buffer
 				}
 
 			case "N":
@@ -102,4 +102,7 @@ public abstract class Organisations {
 	public abstract void managementCases(Human anyH);// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα <<παιδιά κλάσεις>>
 														// και θα υλοποιεί τα διάφορα πρωτόκολλα των οργανισμών
 
+	public void declareCase(Human human) {
+		
+	}
 }
