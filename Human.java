@@ -10,17 +10,20 @@ import java.util.Scanner;
 public class Human {
 	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
 	private ArrayList<Human> allHuman;
-	private String name, surname, afm;
-	private int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
+	private String name, surname, afm, belongsOrganisation;
+	private int orgId;
+	private static int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
-	public Human(String name, String surname, String afm) {
+	public Human(String name, String surname, String afm, String belongsOrganisation, int orgId) {
 		count++;
 		this.id = count;
 		this.name = name;
 		this.surname = surname;
 		this.afm = afm;
+		this.belongsOrganisation = belongsOrganisation;
+		this.orgId = orgId;
 	}
 
 	public void instertHuman(Human anyHuman) {
@@ -41,7 +44,7 @@ public class Human {
 		return allHuman;
 	}
 
-	public void setAllHuman(ArrayList<Human> allHuman) {
+	public void setAllHuman(ArrayList<Human> allHuman) {//μονο στην αρχη ισως ,αλλα καλυτερα να γινει διαγραφη
 		this.allHuman = allHuman;
 	}
 
@@ -56,5 +59,7 @@ public class Human {
 	public String getAfm() {
 		return afm;
 	}
+
+	public lookContact
 
 }
