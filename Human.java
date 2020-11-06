@@ -1,51 +1,60 @@
 package gr.projAboutCovid.leo.proj;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+
 public class Human {
-	//οι ανθρωποι ειναι σε αλφαβητικοι σειρα
+	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
 	private ArrayList<Human> allHuman;
-	private String id;
-	public Human() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Give id: ");
-		String id = sc.nextLine();
-		if(findIndex(id) == -1) {
-			apothikeysi(
-		}
+	private String name, surname, afm;
+	private int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
+	private static int count = 0;
+	static Scanner sc = new Scanner(System.in);
+
+	public Human(String name, String surname, String afm) {
+		count++;
+		this.id = count;
+		this.name = name;
+		this.surname = surname;
+		this.afm = afm;
 	}
-	public static ArrayList<Human> inputHuman() {
-		//input peopple of an organazation
-		human = /*list of human*/
-		for(;;) {
-			System.out.println("Another input?yes or no")
-			Scanner sc = new Scanner(System.in);
-			ans = sc.nextLine();
-			if (ans == 'Yes' || ans =='yes') {
-				human[1] = new Human();
-			}
-		}
+
+	public void instertHuman(Human anyHuman) {
+		System.out.println(
+				"Παρακαλώ προσθέστε το άτομο στην βάση δεδομένων για την συμβολή στην διαχείριση κρουσμάτων. ");
+		allHuman.add(anyHuman);
+		Collections.sort(allHuman, Collator.getInstance());//τοποθετεί τα αντικείμενα σε αλφαβητική σειρά κάθε φορά που προστίθετε ένα νέο
+
+	}// ουσιαστικά θα καλείται η μέθοδος αυτόματα με την δημιουργία ενός νέου ατόμου
+		// σε πιθανόν κάποια unlimited loop της main
+
+	@Override
+	public String toString() {
+		return "Το άτομο [" + ", Όνομα = " + name + ", Επίθετο = " + surname + ", ΑΦΜ = " + afm + "]";
 	}
-	// returns -1 if already exists
-	private static int findIndex(String id){
-		//diadiki anazitisi stin static list allHuman
-			int left = 1;
-			int right = allHuman.size();
-			int middle;
-			boolean flag= false;
-		while(flag && left <= right) {
-			middle = (left + right)/2;
-			if (allHuman.get(middle).getId() == id) {
-				return middle;
-			} else if (allHuman.get(middle).getId() < id) {
-				left = middle + 1;
-			} else {
-				right = middle -1;
-			}
-		}
-		return -1;
+
+	public ArrayList<Human> getAllHuman() {
+		return allHuman;
 	}
-	// maybe change public access
-	public int getId() {
-			return id;
-		}
-	private static void apothikeysi
+
+	public void setAllHuman(ArrayList<Human> allHuman) {
+		this.allHuman = allHuman;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getAfm() {
+		return afm;
+	}
+
 }
