@@ -12,7 +12,7 @@ public class Human {
 	private ArrayList<Human> allHuman;
 	private String name, surname, afm, belongsOrganisation;
 	private int orgId;
-	private static int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
+	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 

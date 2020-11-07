@@ -93,7 +93,7 @@ public abstract class Organisations {
 
 		}
 	}// Η τυποποιημένη ειδοποίηση επαφών
-
+ 
 	public abstract void insertHumanToOrganisation(Human human);// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα
 																// <<παιδιά κλάσεις>>χρησιμοποιώντας την θα εισάγουμε
 																// ανθρώπους στην
