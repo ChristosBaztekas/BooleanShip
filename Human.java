@@ -10,31 +10,31 @@ import java.util.Scanner;
 public class Human {
 	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
 	private ArrayList<Human> allHuman;
-	private String name, surname, afm, belongsOrganisation;
-	private int orgId;
-	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
-	private static enum Status= {Normal, Suspect, Presumptive, Confirmed}//σε τι κατασταση μπορεί να
-																		// βρίσκεται η κατάσταση του αντικειμένου
-	private Status status = Status.Normal;//αρχικοποιηση ολων των ανθρωπων σε φυσιολογικη κατασταση
+	private String name, surname, afm, gender;// θεωρώ πως θα έπρεπε να προστεθεί το φύλο ώστε να παραθέτουμε ένα ενιάιο
+												// αρχείο δημογραφικών στοιχείων
+	private int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
-	public Human(String name, String surname, String afm, String belongsOrganisation, int orgId) {
+	public Human(String name, String surname, String afm, String gender) {
 		count++;
 		this.id = count;
 		this.name = name;
 		this.surname = surname;
 		this.afm = afm;
-		this.belongsOrganisation = belongsOrganisation;
-		this.orgId = orgId;
+		this.gender = gender;
+	}
+
+	public Human() {
+
 	}
 
 	public void instertHuman(Human anyHuman) {
 		System.out.println(
 				"Παρακαλώ προσθέστε το άτομο στην βάση δεδομένων για την συμβολή στην διαχείριση κρουσμάτων. ");
 		allHuman.add(anyHuman);
-		Collections.sort(allHuman, Collator.getInstance());//τοποθετεί τα αντικείμενα σε αλφαβητική σειρά
-															// κάθε φορά που προστίθετε ένα νέο
+		Collections.sort(allHuman, Collator.getInstance());// τοποθετεί τα αντικείμενα σε αλφαβητική σειρά κάθε φορά που
+															// προστίθετε ένα νέο
 
 	}// ουσιαστικά θα καλείται η μέθοδος αυτόματα με την δημιουργία ενός νέου ατόμου
 		// σε πιθανόν κάποια unlimited loop της main
@@ -48,7 +48,7 @@ public class Human {
 		return allHuman;
 	}
 
-	public void setAllHuman(ArrayList<Human> allHuman) {//μονο στην αρχη ισως ,αλλα καλυτερα να γινει διαγραφη
+	public void setAllHuman(ArrayList<Human> allHuman) {
 		this.allHuman = allHuman;
 	}
 
@@ -64,8 +64,12 @@ public class Human {
 		return afm;
 	}
 
-	public void changeStatus(String st) {
-		
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }
