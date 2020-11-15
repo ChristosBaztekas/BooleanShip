@@ -4,9 +4,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class NursingHomes extends Organisations {
-    String status_descr;
-    ArrayList<Human> employs;
-    Arraylist<Human> carenPeople;
+    private String status_descr;
+    private ArrayList<Human> employs;
+    private Arraylist<Human> carenPeople;
+    static Scanner scanner = new Scanner(System.out);
     boolean status; //true means enclosed and false free access
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);
@@ -16,7 +17,6 @@ public class NursingHomes extends Organisations {
         fillingCarenPeople();//yet to do
     }
     private void fillingEmploys() {
-        Scanner scanner = new Scanner(System.in);
         String ans;
         int num;
         if(employs != null) {
@@ -33,6 +33,20 @@ public class NursingHomes extends Organisations {
     }
     private void monitoring() {
         
+    }
+    private void declareCase(){
+        System.out.println("Is the case Employ(s), caren person(s) or both");
+        System.out.println("Enter       E,          C,                B")
+        String input = scanner.nextLine();
+        if(input = 'E'){
+
+        } else if (input = 'C'){
+
+        } else if (input = "B"){
+
+        } else {
+
+        }
     }
     @Override
     private void insertHumanToOrganisation(Human human) {
