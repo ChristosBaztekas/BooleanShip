@@ -102,7 +102,5 @@ public abstract class Organisations {
 	public abstract void managementCases(Human anyH);// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα <<παιδιά κλάσεις>>
 														// και θα υλοποιεί τα διάφορα πρωτόκολλα των οργανισμών
 
-	public void declareCase(Human human) {
-		
-	}
+	public abstract void declareCase();
 }
