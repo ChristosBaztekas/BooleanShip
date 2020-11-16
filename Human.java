@@ -10,18 +10,19 @@ import java.util.Scanner;
 public class Human {
 	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
 	private ArrayList<Human> allHuman;
-	private String name, surname, afm, belongsOrganisation;
+	private String name, surname, afm, belongsOrganisation,gender;
 	private int orgId;
 	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
-	private static enum Status= {Normal, Suspect, Presumptive, Confirmed}//σε τι κατασταση μπορεί να
+	private enum Status= {Normal, Suspect, Presumptive, Confirmed};//σε τι κατασταση μπορεί να
 																		// βρίσκεται η κατάσταση του αντικειμένου
 	private Status status = Status.Normal;//αρχικοποιηση ολων των ανθρωπων σε φυσιολογικη κατασταση
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
-	public Human(String name, String surname, String afm, String belongsOrganisation, int orgId) {
+	public Human(String name, String surname, String afm, String belongsOrganisation, String gender,int orgId) {
 		count++;
 		this.id = count;
+		this.gender = gender;
 		this.name = name;
 		this.surname = surname;
 		this.afm = afm;
@@ -66,6 +67,30 @@ public class Human {
 
 	public void changeStatus(String st) {
 		
+	}
+
+	public String getBelongsOrganisation() {
+		return belongsOrganisation;
+	}
+
+	public void setBelongsOrganisation(String belongsOrganisation) {
+		this.belongsOrganisation = belongsOrganisation;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 }
