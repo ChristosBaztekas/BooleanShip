@@ -13,9 +13,9 @@ public class Human {
 	private String name, surname, afm, belongsOrganisation,gender;
 	private int orgId;
 	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
-	private enum Status= {Normal, Suspect, Presumptive, Confirmed};//σε τι κατασταση μπορεί να
+	private static enum Status= {NORMAL, SUSPECT, PRESUMPTIVE, CONFIRMED};//σε τι κατασταση μπορεί να
 																		// βρίσκεται η κατάσταση του αντικειμένου
-	private Status status = Status.Normal;//αρχικοποιηση ολων των ανθρωπων σε φυσιολογικη κατασταση
+	private Status status = Status.NORMAL;//αρχικοποιηση ολων των ανθρωπων σε φυσιολογικη κατασταση
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
@@ -93,4 +93,55 @@ public class Human {
 		this.surname = surname;
 	}
 
+	public void beCase() {
+		status = Status.CONFIRMED;
+	}
+	public testResult() {
+		for(;;){
+			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
+			int afmGiven = sc.nextInt();
+			if (afmGiven == -1) {
+				break;
+			}
+			int position = search(afmGiven);
+			if (position == -1) {
+				System.out.printf("Does not exist this %d afm", afmGiven);
+				continue;
+			}
+			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %d ;", allHuman[position].getName(), allHuman[position].getAFM());
+			String confirmed = sc.nextLine();
+			if (confirmed == "Yes" || "yes" || "y" || "Y") {
+				for(;;) {
+					System.out.println("Give 0 for negative, 1 for positive for the result of the test: ");
+					int result = sc.nextInt();
+					if (result == 0) {
+						allHuman[position].status = Status.NORMAL;
+					} else if (result == 1) {
+						allHuman[position].status = Status.CONFIRMED;
+						//συνεχιζεται η διαδικασια με ιχνηλατιση
+					} else {
+						System.out.println("Not valid option");
+					}
+				}
+			}
+		}
+	}
+	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
+	private int search(int idGiven) {
+		int low = 0;
+		int high = allHuman.size();
+		int mid;
+		while (low <=high) {
+			mid = (low + high) / 2;
+			if (idGiven < allHuman[mid].getAfm) {
+				high = mid -1;
+			} else if (idGiven > allHuman[mid].getAfm()) {
+				low = mid +1;
+			} else {
+				return mid;
+			}
+		}
+		return -1;
+	}
+//end of te class.
 }
