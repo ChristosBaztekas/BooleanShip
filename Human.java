@@ -96,7 +96,7 @@ public class Human {
 	public void beCase() {
 		status = Status.CONFIRMED;
 	}
-	public testResult() {
+	public static void testResult() {
 		for(;;){
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
 			int afmGiven = sc.nextInt();
