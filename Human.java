@@ -116,9 +116,11 @@ public class Human {
 					int result = sc.nextInt();
 					if (result == 0) {
 						allHuman[position].status = Status.NORMAL;
+						break;
 					} else if (result == 1) {
 						allHuman[position].status = Status.CONFIRMED;
 						//συνεχιζεται η διαδικασια με ιχνηλατιση
+						break;
 					} else {
 						System.out.println("Not valid option");
 					}
