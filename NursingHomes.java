@@ -1,5 +1,5 @@
 package gr.projAboutCovid.leo.proj;
-
+make
 import java.util.Scanner;
 import java.util.ArrayList;
 
