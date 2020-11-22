@@ -2,10 +2,12 @@ package gr.projAboutCovid.leo.proj;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-
+//αν μπορούμε να γράφουμε σχόλια για είναι ο κώδικας ποιό ευανάγνωστος
+//έχω διορθώσει κάποια συντακτικά λάθη κυρίως 
+//προτίνω να ελένχουμε τον κώδικα με κάποιο IDE ή τουλάχιστον TextPad
 public class NursingHomes extends Organisations {
     private String status_descr;
-    private ArrayList<Human> employs;
+    private ArrayList<Human> employees;
     private Arraylist<Human> carenPeople;
     static Scanner scanner = new Scanner(System.out);
     boolean status; //true means enclosed and false free access
@@ -13,20 +15,20 @@ public class NursingHomes extends Organisations {
         super(name, area, numberOfPeople);
         status = enclosed;
         status_descr = (enclosed ? "Enclosed" : "Free Access");
-        fillingEmploys();
+        fillingEmployees();
         fillingCarenPeople();//yet to do
     }
-    private void fillingEmploys() {
+    private void fillingEmployees() {
         String ans;
         int num;
-        if(employs != null) {
-            System.out.printf("There are %d Employ(s), would you like to add new?/nPress yes or no", employs.size());
+        if(employees != null) {
+            System.out.printf("There are %d Employee(s), would you like to add new?/nPress yes or no", employees.size());
             ans = scanner.nextLine();
             if (ans == "yes") {
-                System.out,println("How many? ");
+                System.out.println("How many? ");
                 num = scanner.nextInt();
                 for (int i=0 ; i < num ; i++) {
-                    employs.add()
+                    employees.add();
                 }
             }
         }
@@ -35,7 +37,7 @@ public class NursingHomes extends Organisations {
         
     }
     private void declareCase(){
-        System.out.println("Is the case Employ(s), caren person(s) or both");
+        System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B")
         String input = scanner.nextLine();
         if(input = 'E'){
