@@ -92,5 +92,57 @@ public class Human {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
+	public void beCase() {
+		status = Status.CONFIRMED;
+	}
+	public static void testResult() {
+		for(;;){
+			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
+			int afmGiven = sc.nextInt();
+			if (afmGiven == -1) {
+				break;
+			}
+			int position = search(afmGiven);
+			if (position == -1) {
+				System.out.printf("Does not exist this %d afm", afmGiven);
+				continue;
+			}
+			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %d ;", allHuman[position].getName(), allHuman[position].getAFM());
+			String confirmed = sc.nextLine();
+			if (confirmed == "Yes" || "yes" || "y" || "Y") {
+				for(;;) {
+					System.out.println("Give 0 for negative, 1 for positive for the result of the test: ");
+					int result = sc.nextInt();
+					if (result == 0) {
+						allHuman[position].status = Status.NORMAL;
+						break;
+					} else if (result == 1) {
+						allHuman[position].status = Status.CONFIRMED;
+						//συνεχιζεται η διαδικασια με ιχνηλατιση
+						break;
+					} else {
+						System.out.println("Not valid option");
+					}
+				}
+			}
+		}
+	}
+	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
+	private int search(int idGiven) {
+		int low = 0;
+		int high = allHuman.size();
+		int mid;
+		while (low <=high) {
+			mid = (low + high) / 2;
+			if (idGiven < allHuman[mid].getAfm) {
+				high = mid -1;
+			} else if (idGiven > allHuman[mid].getAfm()) {
+				low = mid +1;
+			} else {
+				return mid;
+			}
+		}
+		return -1;
+	}
+//end of te class.
 }
