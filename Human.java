@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 public class Human {
 	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
-	private ArrayList<Human> allHuman;
+	private static ArrayList<Human> allHuman;// πρέπει να είναι static για να την κλείς απευθείας στην μέθοδο που
+												// δημιούργησες
 	private String name, surname, afm, belongsOrganisation, gender;
 	private int orgId;
 	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
@@ -20,6 +21,7 @@ public class Human {
 	static Scanner sc = new Scanner(System.in);
 
 	public Human(String name, String surname, String afm, String belongsOrganisation, String gender, int orgId) {
+
 		count++;
 		this.id = count;
 		this.gender = gender;
@@ -28,6 +30,10 @@ public class Human {
 		this.afm = afm;
 		this.belongsOrganisation = belongsOrganisation;
 		this.orgId = orgId;
+	}
+
+	public Human() {
+		this.id = count;
 	}
 
 	public void instertHuman(Human anyHuman) {
@@ -55,6 +61,10 @@ public class Human {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getId() {// για να μπορούμε να λαμβάνουμε τα id
+		return id;
 	}
 
 	public String getSurname() {
@@ -92,11 +102,13 @@ public class Human {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+
 	public void beCase() {
-		status = Status.CONFIRMED;
+		status = Status.CONFIRMED;// δημιούργησα το status confirmed στην enum
 	}
+
 	public static void testResult() {
-		for(;;){
+		for (;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
 			int afmGiven = sc.nextInt();
 			if (afmGiven == -1) {
@@ -107,10 +119,15 @@ public class Human {
 				System.out.printf("Does not exist this %d afm", afmGiven);
 				continue;
 			}
-			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %d ;", allHuman[position].getName(), allHuman[position].getAFM());
+			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %d ;", allHuman[position].getName(),
+					allHuman[position].getAFM());
 			String confirmed = sc.nextLine();
-			if (confirmed == "Yes" || "yes" || "y" || "Y") {
-				for(;;) {
+			if (confirmed.equals("Yes") || confirmed.equals("yes") || confirmed.equals("Y") || confirmed.equals("y")) {// διόρθωσα
+																														// τον
+																														// χειρισμό
+																														// του
+																														// string(equals)
+				for (;;) {
 					System.out.println("Give 0 for negative, 1 for positive for the result of the test: ");
 					int result = sc.nextInt();
 					if (result == 0) {
@@ -118,7 +135,7 @@ public class Human {
 						break;
 					} else if (result == 1) {
 						allHuman[position].status = Status.CONFIRMED;
-						//συνεχιζεται η διαδικασια με ιχνηλατιση
+						// συνεχιζεται η διαδικασια με ιχνηλατιση
 						break;
 					} else {
 						System.out.println("Not valid option");
@@ -127,17 +144,18 @@ public class Human {
 			}
 		}
 	}
+
 	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
 	private int search(int idGiven) {
 		int low = 0;
 		int high = allHuman.size();
 		int mid;
-		while (low <=high) {
+		while (low <= high) {
 			mid = (low + high) / 2;
 			if (idGiven < allHuman[mid].getAfm) {
-				high = mid -1;
+				high = mid - 1;
 			} else if (idGiven > allHuman[mid].getAfm()) {
-				low = mid +1;
+				low = mid + 1;
 			} else {
 				return mid;
 			}
