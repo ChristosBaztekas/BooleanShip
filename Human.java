@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Human {
 	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
-	private ArrayList<Human> allHuman;
+	private static ArrayList<Human> allHuman;
 	private String name, surname, afm, belongsOrganisation, gender;
 	private int orgId;
 	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
@@ -28,6 +28,8 @@ public class Human {
 		this.afm = afm;
 		this.belongsOrganisation = belongsOrganisation;
 		this.orgId = orgId;
+		allHuman.add(this);
+		Collections.sort(allHuman, Collator.getInstance());
 	}
 
 	public void instertHuman(Human anyHuman) {
@@ -98,16 +100,16 @@ public class Human {
 	public static void testResult() {
 		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
-			int afmGiven = sc.nextInt();
-			if (afmGiven == -1) {
+			String afmGiven = sc.nextInt();
+			if (afmGiven.equal("-1") {
 				break;
 			}
 			int position = search(afmGiven);
 			if (position == -1) {
-				System.out.printf("Does not exist this %d afm", afmGiven);
+				System.out.printf("Does not exist this %s afm", afmGiven);
 				continue;
 			}
-			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %d ;", allHuman[position].getName(), allHuman[position].getAFM());
+			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %s ;", allHuman[position].getName(), allHuman[position].getAFM());
 			String confirmed = sc.nextLine();
 			if (confirmed.equals("Yes") || confirmed.equals("yes") || confirmed.equals("y") || confirmed.equals("Y")) {
 				for(;;) {
@@ -141,7 +143,8 @@ public class Human {
 	}
 	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
 	// αν δεν υπάρχει επιστρέφει -1
-	private int search(int idGiven) {
+	private int search(String idGiven) {//!!!!!!!!!!!!!!!!!!!!!!!
+		//                          να αλλαξει αφου ΑΦΜ ειναι String!!
 		int low = 0;
 		int high = allHuman.size();
 		int mid;
@@ -162,14 +165,14 @@ public class Human {
 	public Human createHuman(String class_name, int orgId1) {
 		for(;;) {
 			System.out.println("Give the AFM of the Person, 0 for exit");
-			int ans_afm = sc.nextInt();
-			if (ans_afm == 0) {
+			String ans_afm = sc.nextInt();
+			if (ans_afm.equals("0") {
 				break;
 			}
 			int pos = search(afm);
 			if (pos == -1) {
 				String name ,surname, gender;
-				System.out.printf("Δεν υπάρχει άνθρωπος με ΑΦΜ:%d στην βάση, δημιουργεία ανθρώπου");
+				System.out.printf("Δεν υπάρχει άνθρωπος με ΑΦΜ:%s στην βάση, δημιουργεία ανθρώπου");
 				for(;;){
 					System.out.println("Give the name: ");
 					name = sc.nextLine();
