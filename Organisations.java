@@ -5,13 +5,14 @@ import java.util.Scanner;
 
 public abstract class Organisations {
 	private String name, area;
-	private final int id;
+	private final int id, total_num_of_people;
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
 	public Organisations(String name, String area, int numbersOfPeople) {
 		this.name = name;
 		this.area = area;
+		this.total_num_of_people = numbersOfPeople
 		count++;
 		this.id = count;
 	}
