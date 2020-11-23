@@ -96,7 +96,7 @@ public class Human {
 		status = Status.CONFIRMED;
 	}
 	public static void testResult() {
-		for(;;){
+		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
 			int afmGiven = sc.nextInt();
 			if (afmGiven == -1) {
@@ -109,7 +109,7 @@ public class Human {
 			}
 			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %d ;", allHuman[position].getName(), allHuman[position].getAFM());
 			String confirmed = sc.nextLine();
-			if (confirmed == "Yes" || "yes" || "y" || "Y") {
+			if (confirmed.equals("Yes") || confirmed.equals("yes") || confirmed.equals("y") || confirmed.equals("Y")) {
 				for(;;) {
 					System.out.println("Give 0 for negative, 1 for positive for the result of the test: ");
 					int result = sc.nextInt();
@@ -119,6 +119,18 @@ public class Human {
 					} else if (result == 1) {
 						allHuman[position].status = Status.CONFIRMED;
 						//συνεχιζεται η διαδικασια με ιχνηλατιση
+						if (allHuman[position].belongsOrganisation = null) {//θα στελνονται στις αλλες κλασεις και απο κει
+																			//θα αλλαζει πεδια και θα γινονται αναλογες πραξεις
+																			// ισως την manageCase() της organisations και αλλες
+						} else if (allHuman[position].belongsOrganisation.equals(NursingHomes)) {
+
+						} else if (allHuman[position].belongsOrganisation.equals(Labors)) {
+
+						} else if (allHuman[position].belongsOrganisation.equals(Schools)) {
+
+						} else if (allHuman[position].belongsOrganisation.equals(Universities)) {
+
+						}
 						break;
 					} else {
 						System.out.println("Not valid option");
@@ -128,6 +140,7 @@ public class Human {
 		}
 	}
 	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
+	// αν δεν υπαρχει επιστρεφει -1
 	private int search(int idGiven) {
 		int low = 0;
 		int high = allHuman.size();
@@ -143,6 +156,52 @@ public class Human {
 			}
 		}
 		return -1;
+	}
+	//δημιουργει ανθρωπο τον οποιο επιστρεφει, αφου ελενχει αν υπαρχει
+	//σαν ορισμα την κλαση και ενα id της κλασης
+	public Human createHuman(String class_name, int orgId1) {
+		for(;;) {
+			System.out.println("Give the AFM of the Person, 0 for exit");
+			int ans_afm = sc.nextInt();
+			if (ans_afm == 0) {
+				break;
+			}
+			int pos = search(afm);
+			if (pos == -1) {
+				String name ,surname, gender;
+				System.out.printf("Δεν υπάρχει άνθρωπος με ΑΦΜ:%d στην βάση, δημιουργεία ανθρώπου");
+				for(;;){
+					System.out.println("Give the name: ");
+					name = sc.nextLine();
+					System.out.println("Give the surname: ");
+					surname = sc.nextLine();
+					System.out.println("Give the gender: ");
+					gender = sc.nextLine();
+					System.out.printf("Είναι αυτά τα σωστά στοιχεία %s %s %s;,0 για οχι\n", name, surname, gender);
+					int ans = sc.nextInt()
+					if(ans == 0) {
+						System.out.println("Επαναλαμβάνεται η διαδικασία για την δημιουργεία ανθρώπου");
+					} else {
+						break;
+					}
+				}
+				Human one = new Human(name, surname, ans_afm, class_name, gender, orgId1);
+				return one;
+
+
+			} else {
+				System.out.println("Το άτομο βρέθηκε στην βάση");
+				System.out.printf("Συνεχίζουμε την διαδικασία με τον άνθρωπο:%s;/n 0 για έξοδο: ", allHuman[pos].toString());
+				int ans = sc.nextInt();
+				if (ans != 0) {
+					return allHuman[pos];
+				} else {
+					System.out.println("Η διαδικασία για το συγκεκριμένο άτομο σταμάτησε, ξαναρχίζει για την επόμενη εισαγωγή");
+				}
+
+			}
+
+		}
 	}
 //end of te class.
 }
