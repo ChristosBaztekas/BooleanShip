@@ -12,12 +12,15 @@ public class NursingHomes extends Organisations {//απλά έκανα implement
     private String status_descr;
     private ArrayList<Human> employees;
     private ArrayList<Human> carenPeople;//υπήρχε συνταχτικό λάθος
-   static Scanner scanner = new Scanner(System.in);//System.out??
+    static Scanner scanner = new Scanner(System.in);
     boolean status; //true means enclosed and false free access
+    private static int count = 0;
+    private final int id;
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);
         status = enclosed;
         status_descr = (enclosed ? "Enclosed" : "Free Access");
+        id = count ++;
         fillingEmployees();
         fillingCarenPeople();//yet to do
     }
@@ -27,13 +30,19 @@ public class NursingHomes extends Organisations {//απλά έκανα implement
         if(employees != null) {
             System.out.printf("There are %d Employee(s), would you like to add new?/nPress yes or no", employees.size());
             ans = scanner.nextLine();
-            if (ans.equals("yes")) {//στην java για να χειρίζεσαι Strings δεν λειτουργεί το == αλλά το equals 
+            if (ans.equals("yes")) {
                 System.out.println("How many? ");
                 num = scanner.nextInt();
                 for (int i=0 ; i < num ; i++) {
+                    System.out.printf(Adding the %d employ, i+1);
+                    Human one = createHuman(this.getClass().getName(), this.id);
+                    if(one == null)
                     employees.add();
                 }
             }
+        } else {
+            System.out.println("There are no employes filled, Please start with giving them");
+
         }
     }
     private void monitoring() {
@@ -64,7 +73,7 @@ public class NursingHomes extends Organisations {//απλά έκανα implement
 	}
 	@Override
 	public void managementCases(Human anyH) {
-		// TODO Auto-generated method stub
+
 		
 	}
 	@Override
