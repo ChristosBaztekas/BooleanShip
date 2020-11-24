@@ -5,10 +5,11 @@ import java.util.Scanner;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import java.util.ArrayList;
+
 //αν μπορούμε να γράφουμε σχόλια για είναι ο κώδικας ποιό ευανάγνωστος
 //έχω διορθώσει κάποια συντακτικά λάθη κυρίως 
 //προτίνω να ελένχουμε τον κώδικα με κάποιο IDE ή τουλάχιστον TextPad
-public class NursingHomes extends Organisations {//απλά έκανα implement τις abstract γιατί αλλιώς δίνει error
+public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
     private String status_descr;
     private ArrayList<Human> employees;
     private ArrayList<Human> carenPeople;//υπήρχε συνταχτικό λάθος
@@ -90,7 +91,7 @@ public class NursingHomes extends Organisations {//απλά έκανα implement
     public void monitoring(int orgNum) {
         
     }
-    private void declareCase(){
+    public void declareCase(){
         System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B");
         String input = scanner.nextLine();
@@ -107,23 +108,17 @@ public class NursingHomes extends Organisations {//απλά έκανα implement
     private void fillingCarenPeople() {
         
     }
-    @Override
-    private void insertHumanToOrganisation(Human human) {
-        //
-    }
-	@Override
-	public void insertHumanToOrganisation(Human human) {
-		// TODO Auto-generated method stub
-		
-	}
+   
+	
 	@Override
 	public void managementCases(Human anyH) {
 
 		
 	}
 	@Override
-	public void declareCase() {
+	public void insertHumanToOrganisation(Human human) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
