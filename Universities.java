@@ -1,6 +1,6 @@
 package gr.projAboutCovid.leo.proj;
 
-public class Universities extends Organisations{
+public class Universities extends Organisations implements caseManagmentAndHumanAddition{
 
 	public Universities(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
