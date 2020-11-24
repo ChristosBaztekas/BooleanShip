@@ -5,14 +5,13 @@ import java.util.Scanner;
 
 public abstract class Organisations {
 	private String name, area;
-	private final int id, total_num_of_people;
+	private final int id;
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
 	public Organisations(String name, String area, int numbersOfPeople) {
 		this.name = name;
 		this.area = area;
-		this.total_num_of_people = numbersOfPeople
 		count++;
 		this.id = count;
 	}
@@ -54,7 +53,7 @@ public abstract class Organisations {
 			case "Y":
 				ArrayList<String> contactsNames = new ArrayList();
 				for (;;) {
-					int i = 0;//χρηστος:ισως η αρχικοποιηση να γινει εξω
+					int i = 0;// χρηστος:ισως η αρχικοποιηση να γινει εξω
 
 					System.out.println("If " + anyH + " has no contacts type E for Exit else type C. ");
 					String startInsert = sc.next();
@@ -94,14 +93,5 @@ public abstract class Organisations {
 
 		}
 	}// Η τυποποιημένη ειδοποίηση επαφών
- 
-	public abstract void insertHumanToOrganisation(Human human);// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα
-																// <<παιδιά κλάσεις>>χρησιμοποιώντας την θα εισάγουμε
-																// ανθρώπους στην
-																// λίστα της κλάσης αλλά και στην allHuman της Human
 
-	public abstract void managementCases(Human anyH);// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα <<παιδιά κλάσεις>>
-														// και θα υλοποιεί τα διάφορα πρωτόκολλα των οργανισμών
-
-	public abstract void declareCase();
 }
