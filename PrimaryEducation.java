@@ -1,7 +1,7 @@
 
 package projectCovid19.nikoluckies;
 
-public class PrimaryEducation extends Schools implements caseManagmentAndHumanAddition {
+public class PrimaryEducation extends Schools{
 
 	public PrimaryEducation(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
