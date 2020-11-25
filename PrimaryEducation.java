@@ -1,12 +1,6 @@
-/**
- * 
- */
+
 package projectCovid19.nikoluckies;
 
-/**
- * @author Nikoluckies
- *
- */
 public class PrimaryEducation extends Schools implements caseManagmentAndHumanAddition {
 
 	public PrimaryEducation(String name, String area, int numbersOfPeople) {
