@@ -3,7 +3,7 @@ package gr.projAboutCovid.leo.proj;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Organisations {
+public class Organisations {
 	private String name, area;
 	private final int id;
 	private static int count = 0;
