@@ -110,14 +110,13 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     }
    
 	
-	@Override
+	
 	public void managementCases(Human anyH) {
 
 		
 	}
-	@Override
+	
 	public void insertHumanToOrganisation(Human human) {
-		// TODO Auto-generated method stub
 		
 	}
 	
