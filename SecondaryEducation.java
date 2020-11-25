@@ -1,6 +1,6 @@
 package projectCovid19.nikoluckies;
 
-public class SecondaryEducation extends Schools implements caseManagmentAndHumanAddition {
+public class SecondaryEducation extends Schools {
 
 	
 	public SecondaryEducation(String name, String area, int numbersOfPeople) {
