@@ -14,7 +14,7 @@ public class PrimaryEducation extends Schools {
 	
 	public PrimaryEducation(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
-		count ++;
+		id = count ++;
 	}
 	
 	@Override
