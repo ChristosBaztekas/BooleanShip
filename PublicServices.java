@@ -12,7 +12,7 @@ public class PublicServices extends Labors {
 
 	public PublicServices(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
-		count ++;
+		id = count ++;
 		
 	}
 	@Override
