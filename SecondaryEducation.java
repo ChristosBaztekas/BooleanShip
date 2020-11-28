@@ -13,7 +13,7 @@ public class SecondaryEducation extends Schools {
 	
 	public SecondaryEducation(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
-		count ++;
+		id = count ++;
 	}
 
 	@Override
