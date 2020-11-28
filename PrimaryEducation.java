@@ -9,7 +9,7 @@ public class PrimaryEducation extends Schools {
 	private ArrayList<Human> students;
 	private ArrayList<Human> teachers;
 	static Scanner scanner = new Scanner(System.in);
-	private static ArrayList<PrimaryEducation> = new ArrayList<PrimaryEducation>();
+	private static ArrayList<PrimaryEducation> a = new ArrayList<PrimaryEducation>();
 	
 	
 	public PrimaryEducation(String name, String area, int numbersOfPeople) {
