@@ -12,7 +12,7 @@ public class Businesses extends Labors {
 
 	public Businesses(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
-		count ++;
+		id = count ++;
 		
 	}
 
