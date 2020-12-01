@@ -17,49 +17,49 @@ public class Main {
 	public void displayGMenu() {
 		Organisations callMethods = new Organisations();
 		for (;;) {
-			System.out.println("Μενού αρμόδιου για την επιτήρηση χρήστη."
-					+ "/n Πατήστε 1 για να δείτε όλους του καταγεγραμμένους οργανισμούς."
-					+ "/n Πατήστε 2 για να δείτε επίκαιρα στατιστικά στοιχεία σχετικά με την πανδημία."
-					+ "/n Πατήστε 3 για να δείτε όλες τις καταγεγραμμένες επαφές των κρουσμάτων."
-					+ "/n Πατήστε 4 για να δείτε τα κρούσματα ανά περιοχές." + "/n Πατήστε 5 για έξοδο");
+			System.out.println("User Surveillance Menu."
+					+ "/n Press 1 to see all registered organizations."
+					+ "/n Press 2 to see the latest statistics on the pandemic."
+					+ "/n Press 3 to see all recorded case contacts."
+					+ "/n Press 4 to see cases by regions." + "/n Press 5 to exit");
 
 			while (!s.hasNextInt()) {
 				String input = s.next();
-				System.out.println(" Η εισαγωγή σας(" + input
-						+ ")δεν είναι αριθμός.Παρακαλώ επιλέξτε έναν αριθμό μεταξύ 1 και 7.\n");
+				System.out.println(" Your import(" + input
+						+ ")it's not number.Please choose a number between 1 and 7.\n");
 			}
 
 			int choice = s.nextInt();
 
 			while (choice > 5 || choice < 1) {
 				try {
-					System.out.println("Λανθασμένος αριθμός!Τοποθετήστε έναν αριθμό από το 1 μέχρι το 7");
+					System.out.println("Wrong number!Place a number between 1 and 7");
 
 					choice = s.nextInt();
 				} catch (InputMismatchException ime) {
-					// System.out.println("H εισαγωγή σας δεν είναι αριθμός!Παρακαλώ επιλέξτε έναν
-					// αριθμό μεταξύ 1 και 6.\n");
+					// System.out.println("Your import is not a number!Please choose a number
+					// betwenn 1 and 6.\n");
 					s.next();
 					continue;
 
 				} catch (Exception e) {
-					System.err.println("Κάτι αναπάντεχο συναίβει.Το πρόγραμμα θα τερματίσει.");
+					System.err.println("Something unexpected has happened.The program will end.");
 				}
 			}
 			switch (choice) {
 			case 1:
 				callMethods.printAllHumans();
 				break;
-			case 2:// στην πορεία θα προστεθεί μια api ώστε να μπορεί να παρέχεται η επιλογή
+			case 2:// an api will be added along the way so that the option can be provided
 				break;
 			case 3:
 				for (int i = 0; i < callMethods.contactsNames.size(); i++) {
 					System.out.println(callMethods.contactsNames.toString());
 				}
-			case 4://όταν εισάγουμε την api θα προσθέσουμε την επιλογή
+			case 4://when we import the api we will add the option
 				break;
 			case 5:
-				System.out.println("Επιλέξατε έξοδο.Μείνετε ασφαλείς.");
+				System.out.println("You chose exit.Stay safe.");
 				System.exit(0);
 			}
 
@@ -69,12 +69,12 @@ public class Main {
 
 	public void gMenu() {
 		System.out.println(
-				"Διαλέξατε το μενού του αρμόδιου για την επιτήρηση χρήστη./n Για να προχωρήσετε εισάγεται κωδικό. "
-						+ "/n Για έξοδο ή σε περίπτωση λανθασμένης επιλογής πατήστε οποιοδήποτε άλλο πλήκτρο.  ");
+				"You have chosen the menu of the user responsible for surveillance./n To proceed, enter a code. "
+						+ "/n To exit or in case of incorrect selection press any other key.  ");
 		try {
 			String UsersPassword = s.next();
 			if (UsersPassword.equals(EodyPassword)) {
-				System.out.println("Ορθός κωδικός.Παρακάτω είναι οι επιλογές του αρμόδιου για την επιτήρηση χρήστη:");
+				System.out.println("Correct code.Below are the options of the user responsible for surveillance:");
 				inOrderToCallMethods.displayGMenu();
 
 			} else {
@@ -82,14 +82,14 @@ public class Main {
 					if (chance == 0) {
 						chance = 1;
 						System.out.println(
-								"Δεν σας επιτρέπετε η πρόσβαση.Σε περίπτωση λάθους εισάγεται t για να ξαναπροσπαθήσετε αλλιώς οποιοδήποτε άλλο πλήκτρο για έξοδο .");
+								"You are denied access.In case of error insert t to try again otherwise any other key to exit .");
 
 						String secondC = s.next();
 						if (secondC.equals("t")) {
 							inOrderToCallMethods.gMenu();
 						} else {
 							System.out.println(
-									"Το πρόγραμμα θα τερματιστεί αφού δεν έχετε τα κατάλληλα τεκμήρια.Καλή συνέχεια.");
+									"The program will be terminated if you do not have the appropriate documents.Thank you.");
 							System.exit(0);
 						}
 					} else {
@@ -186,16 +186,16 @@ public class Main {
 			case "6":
 			case "E":
 			default:
-				System.out.println("Επιλέξατε έξοδο.Καλή συνέχεια.Μείνετε ασφαλείς!");
-				System.out.println("Παρακάτω η ενημερωτική ιστοσελίδα.");
+				System.out.println("You chose exit.Thank you.Stay safe!");
+				System.out.println("Below is the information website.");
 				Desktop d = Desktop.getDesktop();
-				d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));// εδώ θα οδηγεί τον χρήστη σε
-																					// ενημερωτική ιστοσελίδα απλά δεν
-																					// δουλέυει ο compiler μου σήμερα
-																					// οπότε δεν μπορώ να επιβεβαιώσω
-																					// πως δεν υπάρχει λογικό σφάλμα που
-																					// θα αποτρέψει τον χρήστη από το να
-																					// οδηγηθεί εδώ.
+				d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));// here will lead the user to
+																					// an informational website but
+																					// the com[iler does not cooperate today
+																					// so I can't confirm
+																					// that there is no logical error
+																					// that will prevent the user from
+																					// getting here.
 				System.exit(0);
 
 			}
