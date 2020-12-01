@@ -110,9 +110,29 @@ public class Main {
 
 	}
 
-	public void sMenu() {
-
-	}
+	public void sMenu() throws IOException, URISyntaxException {
+		System.out.println("Welcome to the school user menu.");
+		System.out.println(
+				"Type 1:if you are a new user./n Type 2:if you are already registered. /n Type 3:if you want to exit.");
+		int answer = s.nextInt();
+		switch (answer) {
+		case 1:
+			callMethods.insertAnewOrganisation();
+			break;
+		case 2:
+			System.out.println("Please enter your username in order to find your account.");
+			// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
+			// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
+			// θέλει να δηλώσει κρούσμα κλπ
+			break;
+		case 3:
+			System.out.println(
+					"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
+			Desktop d = Desktop.getDesktop();
+			d.browse(new URI(
+					"https://eody.gov.gr/wp-content/uploads/2020/09/%CE%91%CE%9D%CE%A4%CE%99%CE%9C%CE%95%CE%A4%CE%A9%CE%A0%CE%99%CE%A3%CE%97-COVID-%CE%A3%CE%A4%CE%9F-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%9F-%CE%A0%CE%A1%CE%A9%CE%A4%CE%9F%CE%9A%CE%9F%CE%9B%CE%9B%CE%9F-%CE%91%CE%9D%CE%91%CE%A3%CE%A4%CE%9F%CE%9B%CE%97%CE%A3-%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%CE%A3-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%A9%CE%9D_18-09-20.pdf"));
+			System.exit(0);
+		}
 
 	public void uMenu() {
 
