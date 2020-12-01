@@ -8,12 +8,17 @@ public class Organisations {
 	private final int id;
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
+	ArrayList<String> contactsNames = null;
 
 	public Organisations(String name, String area, int numbersOfPeople) {
+		
 		this.name = name;
 		this.area = area;
 		count++;
 		this.id = count;
+	}
+	public Organisations() {
+	  id = count;
 	}
 
 	public int getId() {
@@ -51,7 +56,6 @@ public class Organisations {
 			String answer = sc.next();
 			switch (answer) {
 			case "Y":
-				ArrayList<String> contactsNames = new ArrayList();
 				for (;;) {
 					int i = 0;// χρηστος:ισως η αρχικοποιηση να γινει εξω
 
@@ -92,6 +96,11 @@ public class Organisations {
 			}
 
 		}
+		
 	}// Η τυποποιημένη ειδοποίηση επαφών
-
+	@Override
+	public String toString() {
+		return "Τα άτομα που ήρθαν σε επαφή με φορέα του covid είναι : [contactsNames=" + contactsNames + "]";
+	}
+  
 }
