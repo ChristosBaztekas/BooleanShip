@@ -11,7 +11,7 @@ import java.awt.Desktop;
 public class Main {
 	static Main inOrderToCallMethods = new Main();
 	static Scanner s = new Scanner(System.in);
-	private final String EodyPassword = "78892GG";// το password του εοδυ για την πλατφόρμα
+	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fοr the platform
 	static int chance = 0;
 
 	public void displayGMenu() {
@@ -62,7 +62,7 @@ public class Main {
 				System.out.println("Επιλέξατε έξοδο.Μείνετε ασφαλείς.");
 				System.exit(0);
 			}
-			
+
 		}
 
 	}
@@ -96,12 +96,12 @@ public class Main {
 						System.exit(0);
 					}
 				} catch (Exception e) {
-					System.err.println("Συναίβει κάποιο απρόοπτο λάθος.Τερματισμός προγράμματος.");
+					System.err.println("There's an unexpected mistake.End of program.");
 				}
 
 			}
 		} catch (Exception e) {
-			System.err.println("Συναίβει κάποιο απρόοπτο λάθος.Τερματισμός προγράμματος.");
+			System.err.println("There's an unexpected mistake.End of program.");
 		}
 
 	}
@@ -128,21 +128,21 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		System.out.println("Καλωσήρθατε στην εφαρμογή ανίχνευσης κρουσμάτων και εντοπισμού επαφών!");
+		System.out.println("Welcome to the app of case detection and contact detection!");
 		System.out.println(
-				"H εφαρμογή είναι σχεδιασμένη για να διευκολύνει όλους τους οργανισμούς αναφορικά με την διαχείριση της πανδημίας.");
+				"The application is designed to make it easier for all organisations to manage the pandemic.");
 		System.out.println(
-				"Η πρόσβαση και η ανάλυση δεδομένων θα γίνει μόνο για παροχή στατιστικών δεδομένων και για σκοπούς περιορισμού της εξάπλωσης.");
+				"Data access and analysis will only be for the provision of statistical data and for the purpose of limiting the spread of.");
 
 		for (;;) {
 			System.out
-					.println("Για να οδηγηθείτε στο κατάλληλο για εσάς μενου πληκτρολογείστε τι είδους χρήστης είστε:/n"
-							+ "Πληκτρολογείστε 1 ή G εάν είστε ο αρμόδιος για την επιτήρηση χρήστης. "
-							+ "/n-Πληκτρολογείστε 2 ή L εάν είστε εταιρικός χρήστης(π.χ. επιχείρηση ή δημόσιος οργανισμός. "
-							+ "/n Πληκτρολογείστε 3 ή S εάν είστε εκπαιδευτικό ίδρυμα. "
-							+ "/n Πληκτρολογείστε 4 ή U εάν είστε πανεπιστημιακό ίδρυμα. "
-							+ "/n Πληκτρολογείστε 5 ή N εάν είστε γηροκομείο. "
-							+ "/n Πληκτρολογείστε 6 ή E εάν επιθυμείτε έξοδο. ");
+					.println("To get to the menu that's right for you, type in what kind of user you are:/n"
+							+ "type 1 or G if you are the user responsible for surveillance. "
+							+ "/n-type 2 or L if you are corporate user (e.g. business or public organisation). "
+							+ "/n type 3 or S if you belong to educational institution. "
+							+ "/n type 4 or U if you belong to university. "
+							+ "/n type 5 or N if you belong to nursing home. "
+							+ "/n type 6 or E if you wish exit. ");
 			String usersInput = null;
 
 			try {
@@ -152,12 +152,12 @@ public class Main {
 						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
 						&& !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
 					System.out
-							.println("Η εισαγωγή σας (" + usersInput + ") είναι λανθασμένη.Παρακαλώ προσπαθήστε ξανά.");
+							.println("Your input (" + usersInput + ") is invalid.Please try again.");
 					usersInput = s.next();
 				}
 
 			} catch (Exception e) {
-				System.out.println("Η εισαγωγή σας δεν ήταν έγκυρη.Ξαναπροσπαθήστε:");
+				System.out.println("Your import was invalid.Try again:");
 				s.next();
 				continue;
 			}
