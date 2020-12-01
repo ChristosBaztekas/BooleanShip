@@ -1,5 +1,6 @@
 package gr.projAboutCovid.leo.proj;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.net.URI;
 
@@ -13,14 +14,68 @@ public class Main {
 	private final String EodyPassword = "78892GG";// το password του εοδυ για την πλατφόρμα
 	static int chance = 0;
 
+	public void displayGMenu() {
+		Organisations callMethods = new Organisations();
+		for (;;) {
+			System.out.println("Μενού αρμόδιου για την επιτήρηση χρήστη."
+					+ "/n Πατήστε 1 για να δείτε όλους του καταγεγραμμένους οργανισμούς."
+					+ "/n Πατήστε 2 για να δείτε επίκαιρα στατιστικά στοιχεία σχετικά με την πανδημία."
+					+ "/n Πατήστε 3 για να δείτε όλες τις καταγεγραμμένες επαφές των κρουσμάτων."
+					+ "/n Πατήστε 4 για να δείτε τα κρούσματα ανά περιοχές." + "/n Πατήστε 5 για έξοδο");
+
+			while (!s.hasNextInt()) {
+				String input = s.next();
+				System.out.println(" Η εισαγωγή σας(" + input
+						+ ")δεν είναι αριθμός.Παρακαλώ επιλέξτε έναν αριθμό μεταξύ 1 και 7.\n");
+			}
+
+			int choice = s.nextInt();
+
+			while (choice > 5 || choice < 1) {
+				try {
+					System.out.println("Λανθασμένος αριθμός!Τοποθετήστε έναν αριθμό από το 1 μέχρι το 7");
+
+					choice = s.nextInt();
+				} catch (InputMismatchException ime) {
+					// System.out.println("H εισαγωγή σας δεν είναι αριθμός!Παρακαλώ επιλέξτε έναν
+					// αριθμό μεταξύ 1 και 6.\n");
+					s.next();
+					continue;
+
+				} catch (Exception e) {
+					System.err.println("Κάτι αναπάντεχο συναίβει.Το πρόγραμμα θα τερματίσει.");
+				}
+			}
+			switch (choice) {
+			case 1:
+				callMethods.printAllHumans();
+				break;
+			case 2:// στην πορεία θα προστεθεί μια api ώστε να μπορεί να παρέχεται η επιλογή
+				break;
+			case 3:
+				for (int i = 0; i < callMethods.contactsNames.size(); i++) {
+					System.out.println(callMethods.contactsNames.toString());
+				}
+			case 4://όταν εισάγουμε την api θα προσθέσουμε την επιλογή
+				break;
+			case 5:
+				System.out.println("Επιλέξατε έξοδο.Μείνετε ασφαλείς.");
+				System.exit(0);
+			}
+			
+		}
+
+	}
+
 	public void gMenu() {
 		System.out.println(
 				"Διαλέξατε το μενού του αρμόδιου για την επιτήρηση χρήστη./n Για να προχωρήσετε εισάγεται κωδικό. "
-						+ "/n Για έξοδο ή σε περίπτωση λανθασμένης επιλογής πατήστε οποιοδήποτε άλλο πλήκτρο και το πρόγραμμα θα τερματίσει.  ");
+						+ "/n Για έξοδο ή σε περίπτωση λανθασμένης επιλογής πατήστε οποιοδήποτε άλλο πλήκτρο.  ");
 		try {
 			String UsersPassword = s.next();
 			if (UsersPassword.equals(EodyPassword)) {
 				System.out.println("Ορθός κωδικός.Παρακάτω είναι οι επιλογές του αρμόδιου για την επιτήρηση χρήστη:");
+				inOrderToCallMethods.displayGMenu();
 
 			} else {
 				try {
@@ -76,7 +131,8 @@ public class Main {
 		System.out.println("Καλωσήρθατε στην εφαρμογή ανίχνευσης κρουσμάτων και εντοπισμού επαφών!");
 		System.out.println(
 				"H εφαρμογή είναι σχεδιασμένη για να διευκολύνει όλους τους οργανισμούς αναφορικά με την διαχείριση της πανδημίας.");
-		System.out.println("Η πρόσβαση και η ανάλυση δεδομένων θα γίνει μόνο για παροχή στατιστικών δεδομένων.");
+		System.out.println(
+				"Η πρόσβαση και η ανάλυση δεδομένων θα γίνει μόνο για παροχή στατιστικών δεδομένων και για σκοπούς περιορισμού της εξάπλωσης.");
 
 		for (;;) {
 			System.out
