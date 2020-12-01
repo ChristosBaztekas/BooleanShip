@@ -9,7 +9,7 @@ public class Organisations {
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 	ArrayList<String> contactsNames = null;
-
+    static ArrayList<Organisations> allOrgs;
 	public Organisations(String name, String area, int numbersOfPeople) {
 		
 		this.name = name;
@@ -39,6 +39,15 @@ public class Organisations {
 
 	public void setArea(String name) {
 		this.name = area;
+	}
+	public void insertAnewOrganisation() {
+	System.out.println("What is the name of your Organisation?/n Write the name without spaces!");
+	String name = sc.next();
+	System.out.println("In which area is your organisation located?/n Write the name without spaces!");
+	String area = sc.next();
+	System.out.println("How many people does your organisation hava?");
+	int people = sc.nextInt();
+	allOrgs.add(new Organisations(name,area,people));
 	}
 
 	public void printAllHumans() {
