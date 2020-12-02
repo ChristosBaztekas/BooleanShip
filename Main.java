@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Main {
 	static Organisations callMethods = new Organisations();
 	static Main inOrderToCallMethods = new Main();
-	static Scanner s = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fΞΏr the platform
 	static int chance = 0;
 
@@ -27,22 +27,22 @@ public class Main {
 					+ "\n Press 4 to see cases by regions." + "\n Press 5 to exit");
 
 			while (!s.hasNextInt()) {
-				String input = s.next();
+				String input = sc.next();
 				System.out.println(" Your import(" + input
 						+ ")it's not number.Please choose a number between 1 and 7.\n");
 			}
 
-			int choice = s.nextInt();
+			int choice = sc.nextInt();
 
 			while (choice > 5 || choice < 1) {
 				try {
 					System.out.println("Wrong number!Place a number between 1 and 7");
 
-					choice = s.nextInt();
+					choice = sc.nextInt();
 				} catch (InputMismatchException ime) {
 					// System.out.println("Your import is not a number!Please choose a number
 					// betwenn 1 and 6.\n");
-					s.next();
+					sc.next();
 					continue;
 
 				} catch (Exception e) {
@@ -75,7 +75,7 @@ public class Main {
 				"You have chosen the menu of the user responsible for surveillance.\n To proceed, enter a code. "
 						+ "\n To exit or in case of incorrect selection press any other key.  ");
 		try {
-			String UsersPassword = s.next();
+			String UsersPassword = sc.next();
 			if (UsersPassword.equals(EodyPassword)) {
 				System.out.println("Correct code.Below are the options of the user responsible for surveillance:");
 				inOrderToCallMethods.displayGMenu();
@@ -87,7 +87,7 @@ public class Main {
 						System.out.println(
 								"You are denied access.In case of error insert t to try again otherwise any other key to exit .");
 
-						String secondC = s.next();
+						String secondC = sc.next();
 						if (secondC.equals("t")) {
 							inOrderToCallMethods.gMenu();
 						} else {
@@ -118,7 +118,7 @@ public class Main {
 		System.out.println("Welcome to the school user menu.");
 		System.out.println(
 				"Type 1:if you are a new user.\n Type 2:if you are already registered. \n Type 3:if you want to exit.");
-		int answer = s.nextInt();
+		int answer = sc.nextInt();
 		switch (answer) {
 		case 1:
 			callMethods.insertAnewOrganisation();
@@ -171,19 +171,19 @@ public class Main {
 			String usersInput = null;
 
 			try {
-				usersInput = s.next();
+				usersInput = sc.next();
 				while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
 						&& !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
 						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
 						&& !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
 					System.out
 							.println("Your input (" + usersInput + ") is invalid.Please try again.");
-					usersInput = s.next();
+					usersInput = sc.next();
 				}
 
 			} catch (Exception e) {
 				System.out.println("Your import was invalid.Try again:");
-				s.next();
+				sc.next();
 				continue;
 			}
 
