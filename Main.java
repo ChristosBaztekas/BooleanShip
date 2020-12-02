@@ -3,25 +3,28 @@ package gr.projAboutCovid.leo.proj;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 //import javax.swing.JFrame;
 
 import java.awt.Desktop;
+import java.io.IOException;
 
 public class Main {
+	static Organisations callMethods = new Organisations();
 	static Main inOrderToCallMethods = new Main();
 	static Scanner s = new Scanner(System.in);
-	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fοr the platform
+	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fΞΏr the platform
 	static int chance = 0;
 
 	public void displayGMenu() {
 		Organisations callMethods = new Organisations();
 		for (;;) {
 			System.out.println("User Surveillance Menu."
-					+ "/n Press 1 to see all registered organizations."
-					+ "/n Press 2 to see the latest statistics on the pandemic."
-					+ "/n Press 3 to see all recorded case contacts."
-					+ "/n Press 4 to see cases by regions." + "/n Press 5 to exit");
+					+ "\n Press 1 to see all registered organizations."
+					+ "\n Press 2 to see the latest statistics on the pandemic."
+					+ "\n Press 3 to see all recorded case contacts."
+					+ "\n Press 4 to see cases by regions." + "\n Press 5 to exit");
 
 			while (!s.hasNextInt()) {
 				String input = s.next();
@@ -69,8 +72,8 @@ public class Main {
 
 	public void gMenu() {
 		System.out.println(
-				"You have chosen the menu of the user responsible for surveillance./n To proceed, enter a code. "
-						+ "/n To exit or in case of incorrect selection press any other key.  ");
+				"You have chosen the menu of the user responsible for surveillance.\n To proceed, enter a code. "
+						+ "\n To exit or in case of incorrect selection press any other key.  ");
 		try {
 			String UsersPassword = s.next();
 			if (UsersPassword.equals(EodyPassword)) {
@@ -93,6 +96,7 @@ public class Main {
 							System.exit(0);
 						}
 					} else {
+					    System.out.println("You dont hava access priviledges for this menu.Stay safe.");
 						System.exit(0);
 					}
 				} catch (Exception e) {
@@ -113,7 +117,7 @@ public class Main {
 	public void sMenu() throws IOException, URISyntaxException {
 		System.out.println("Welcome to the school user menu.");
 		System.out.println(
-				"Type 1:if you are a new user./n Type 2:if you are already registered. /n Type 3:if you want to exit.");
+				"Type 1:if you are a new user.\n Type 2:if you are already registered. \n Type 3:if you want to exit.");
 		int answer = s.nextInt();
 		switch (answer) {
 		case 1:
@@ -121,9 +125,9 @@ public class Main {
 			break;
 		case 2:
 			System.out.println("Please enter your username in order to find your account.");
-			// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-			// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-			// θέλει να δηλώσει κρούσμα κλπ
+			// ΞµΞ΄Ο� Ο€Ο�Ξ­Ο€ΞµΞΉ Ξ½Ξ± Ξ΄Ξ·ΞΌΞΉΞΏΟ…Ο�Ξ³Ξ·ΞΈΞµΞ― ΞΌΞΉΞ± ΞΌΞ­ΞΈΞΏΞ΄ΞΏΟ‚ Ο€ΞΏΟ… ΞΈΞ± ΞµΞ»Ξ­Ξ³Ο‡ΞµΞΉ ΞµΞ¬Ξ½ Ο„ΞΏ Ο�Ξ½ΞΏΞΌΞ± Ο€ΞΏΟ…
+			// ΞµΞΉΟƒΞ¬Ξ³ΞµΞΉ Ο…Ο€Ξ¬Ο�Ο‡ΞµΞΉ Ξ®Ξ΄Ξ· ΞΊΞ±ΞΉ ΞΈΞ± Ο„ΞΏΞ½ Ξ²Ξ³Ξ¬Ξ¶ΞµΞΉ Ο‰Ο‚ Ο…Ο€Ξ¬Ο�Ο‡Ο‰Ξ½ Ο‡Ο�Ξ®ΟƒΟ„Ξ· ΟƒΞµ Ο€ΞµΟ�Ξ―Ο€Ο„Ο‰ΟƒΞ· Ο€ΞΏΟ…
+			// ΞΈΞ­Ξ»ΞµΞΉ Ξ½Ξ± Ξ΄Ξ·Ξ»Ο�ΟƒΞµΞΉ ΞΊΟ�ΞΏΟ�ΟƒΞΌΞ± ΞΊΞ»Ο€
 			break;
 		case 3:
 			System.out.println(
@@ -133,6 +137,7 @@ public class Main {
 					"https://eody.gov.gr/wp-content/uploads/2020/09/%CE%91%CE%9D%CE%A4%CE%99%CE%9C%CE%95%CE%A4%CE%A9%CE%A0%CE%99%CE%A3%CE%97-COVID-%CE%A3%CE%A4%CE%9F-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%9F-%CE%A0%CE%A1%CE%A9%CE%A4%CE%9F%CE%9A%CE%9F%CE%9B%CE%9B%CE%9F-%CE%91%CE%9D%CE%91%CE%A3%CE%A4%CE%9F%CE%9B%CE%97%CE%A3-%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%CE%A3-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%A9%CE%9D_18-09-20.pdf"));
 			System.exit(0);
 		}
+	}
 
 	public void uMenu() {
 
@@ -156,13 +161,13 @@ public class Main {
 
 		for (;;) {
 			System.out
-					.println("To get to the menu that's right for you, type in what kind of user you are:/n"
-							+ "type 1 or G if you are the user responsible for surveillance. "
-							+ "/n-type 2 or L if you are corporate user (e.g. business or public organisation). "
-							+ "/n type 3 or S if you belong to educational institution. "
-							+ "/n type 4 or U if you belong to university. "
-							+ "/n type 5 or N if you belong to nursing home. "
-							+ "/n type 6 or E if you wish exit. ");
+					.println("To get to the menu that's right for you, type in what kind of user you are:"
+							+ "\n-Type 1 or G if you are the user responsible for surveillance. "
+							+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
+							+ "\n-Type 3 or S if you belong to educational institution. "
+							+ "\n-Type 4 or U if you belong to university. "
+							+ "\n-Type 5 or N if you belong to nursing home. "
+							+ "\n-Type 6 or E if you wish exit. ");
 			String usersInput = null;
 
 			try {
