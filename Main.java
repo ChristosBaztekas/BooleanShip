@@ -17,7 +17,7 @@ public class Main {
 													// platform
 	static int chance = 0;
 
-	public void displayGMenu() {
+	public static void displayGMenu() {
 		Organisations callMethods = new Organisations();
 		for (;;) {
 			System.out.println("User Surveillance Menu." + "\n Press 1 to see all registered organizations."
@@ -69,7 +69,7 @@ public class Main {
 
 	}
 
-	public void gMenu() {
+	public static void gMenu() {
 		System.out.println(
 				"You have chosen the menu of the user responsible for surveillance.\n To proceed, enter a code. "
 						+ "\n To exit or in case of incorrect selection press any other key.  ");
@@ -109,11 +109,11 @@ public class Main {
 
 	}
 
-	public void lMenu() {
+	public void static lMenu() {
 
 	}
 
-	public void sMenu() throws IOException, URISyntaxException {
+	public void static sMenu() throws IOException, URISyntaxException {
 		System.out.println("Welcome to the school user menu.");
 		System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
 				+ "\n Type 3:if you want to exit.");
@@ -153,7 +153,7 @@ public class Main {
 		}
 	}
 
-	public void uMenu() throws IOException, URISyntaxException {
+	public static void uMenu() throws IOException, URISyntaxException {
 		System.out.println("Welcome to the university user menu.");
 		System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
 				+ "\n Type 3:if you want to exit.");
@@ -193,11 +193,11 @@ public class Main {
 
 	}
 
-	public void nMenu() {
+	public static void nMenu() {
 
 	}
 
-	public void eMenu() throws Exception, URISyntaxException {
+	public static void eMenu() throws Exception, URISyntaxException {
 		System.out.println("You chose exit.Thank you.Stay safe!");
 		System.out.println("Below is the information website.");
 		Desktop d = Desktop.getDesktop();
@@ -214,7 +214,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-<<<<<<< HEAD
+
 		System.out.println("Welcome to the app of case detection and contact detection!"
 				+"\nThe application is designed to make it easier for all organisations to manage the pandemic."
 				+"\nData access and analysis will only be for the provision of statistical "
@@ -229,7 +229,7 @@ public class Main {
 							+ "\n-Type 4 or U if you belong to university. "
 							+ "\n-Type 5 or N if you belong to nursing home. "
 							+ "\n-Type 6 or E if you wish exit. ");
-=======
+
 		System.out.println("Welcome to the app of case detection and contact detection!");
 		System.out
 				.println("The application is designed to make it easier for all organisations to manage the pandemic.");
@@ -243,7 +243,7 @@ public class Main {
 					+ "\n-Type 3 or S if you belong to educational institution. "
 					+ "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
 					+ "\n-Type 6 or E if you wish exit. ");
->>>>>>> 9f788b720bd48c7ef141ac5d6ff9fd1ea6d18437
+
 			String usersInput = null;
 
 			try {
@@ -251,14 +251,11 @@ public class Main {
 				while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
 						&& !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
 						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
-						&& !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
-<<<<<<< HEAD
+
 					System.out
 							.println("Your input (" + usersInput + ") is invalid.Please try again.");
 					sc.nextLine();
-=======
 					System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
->>>>>>> 9f788b720bd48c7ef141ac5d6ff9fd1ea6d18437
 					usersInput = sc.next();
 				}
 
@@ -293,7 +290,7 @@ public class Main {
 			case "6":
 			case "E":
 			default:
-				inOrderToCallMethods.eMenu();
+				eMenu();
 
 			}
 		}
