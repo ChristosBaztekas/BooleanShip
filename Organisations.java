@@ -18,7 +18,7 @@ public class Organisations {
 		this.id = count;
 	}
 	public Organisations() {
-	  id = count;
+	  id = count++;
 	}
 
 	public int getId() {
