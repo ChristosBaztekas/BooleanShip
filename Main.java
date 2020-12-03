@@ -19,16 +19,15 @@ public class Main {
 	public void displayGMenu() {
 		Organisations callMethods = new Organisations();
 		for (;;) {
-			System.out.println("User Surveillance Menu."
-					+ "\n Press 1 to see all registered organizations."
+			System.out.println("User Surveillance Menu." + "\n Press 1 to see all registered organizations."
 					+ "\n Press 2 to see the latest statistics on the pandemic."
-					+ "\n Press 3 to see all recorded case contacts."
-					+ "\n Press 4 to see cases by regions." + "\n Press 5 to exit");
+					+ "\n Press 3 to see all recorded case contacts." + "\n Press 4 to see cases by regions."
+					+ "\n Press 5 to exit");
 
-			while (!s.hasNextInt()) {
+			while (!sc.hasNextInt()) {
 				String input = sc.next();
-				System.out.println(" Your import(" + input
-						+ ")it's not number.Please choose a number between 1 and 7.\n");
+				System.out.println(
+						" Your import(" + input + ")it's not number.Please choose a number between 1 and 7.\n");
 			}
 
 			int choice = sc.nextInt();
@@ -58,7 +57,7 @@ public class Main {
 				for (int i = 0; i < callMethods.contactsNames.size(); i++) {
 					System.out.println(callMethods.contactsNames.toString());
 				}
-			case 4://when we import the api we will add the option
+			case 4:// when we import the api we will add the option
 				break;
 			case 5:
 				System.out.println("You chose exit.Stay safe.");
@@ -95,7 +94,7 @@ public class Main {
 							System.exit(0);
 						}
 					} else {
-					    System.out.println("You dont hava access priviledges for this menu.Stay safe.");
+						System.out.println("You dont hava access priviledges for this menu.Stay safe.");
 						System.exit(0);
 					}
 				} catch (Exception e) {
@@ -115,18 +114,33 @@ public class Main {
 
 	public void sMenu() throws IOException, URISyntaxException {
 		System.out.println("Welcome to the school user menu.");
-		System.out.println(
-				"Type 1:if you are a new user.\n Type 2:if you are already registered. \n Type 3:if you want to exit.");
+		System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
+				+ "\n Type 3:if you want to exit.");
 		int answer = sc.nextInt();
+		while (answer > 3 || answer < 1) {
+			try {
+				System.out.println("Wrong number!Place a number between 1 and 7");
+
+				answer = sc.nextInt();
+			} catch (InputMismatchException ime) {
+				// System.out.println("Your import is not a number!Please choose a number
+				// betwenn 1 and 6.\n");
+				sc.next();
+				continue;
+
+			} catch (Exception e) {
+				System.err.println("Something unexpected has happened.The program will end.");
+			}
+		}
 		switch (answer) {
 		case 1:
 			callMethods.insertAnewOrganisation();
 			break;
 		case 2:
 			System.out.println("Please enter your username in order to find your account.");
-			// ΞµΞ΄Ο� Ο€Ο�Ξ­Ο€ΞµΞΉ Ξ½Ξ± Ξ΄Ξ·ΞΌΞΉΞΏΟ…Ο�Ξ³Ξ·ΞΈΞµΞ― ΞΌΞΉΞ± ΞΌΞ­ΞΈΞΏΞ΄ΞΏΟ‚ Ο€ΞΏΟ… ΞΈΞ± ΞµΞ»Ξ­Ξ³Ο‡ΞµΞΉ ΞµΞ¬Ξ½ Ο„ΞΏ Ο�Ξ½ΞΏΞΌΞ± Ο€ΞΏΟ…
-			// ΞµΞΉΟƒΞ¬Ξ³ΞµΞΉ Ο…Ο€Ξ¬Ο�Ο‡ΞµΞΉ Ξ®Ξ΄Ξ· ΞΊΞ±ΞΉ ΞΈΞ± Ο„ΞΏΞ½ Ξ²Ξ³Ξ¬Ξ¶ΞµΞΉ Ο‰Ο‚ Ο…Ο€Ξ¬Ο�Ο‡Ο‰Ξ½ Ο‡Ο�Ξ®ΟƒΟ„Ξ· ΟƒΞµ Ο€ΞµΟ�Ξ―Ο€Ο„Ο‰ΟƒΞ· Ο€ΞΏΟ…
-			// ΞΈΞ­Ξ»ΞµΞΉ Ξ½Ξ± Ξ΄Ξ·Ξ»Ο�ΟƒΞµΞΉ ΞΊΟ�ΞΏΟ�ΟƒΞΌΞ± ΞΊΞ»Ο€
+			// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
+			// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
+			// θέλει να δηλώσει κρούσμα κλπ
 			break;
 		case 3:
 			System.out.println(
@@ -138,7 +152,43 @@ public class Main {
 		}
 	}
 
-	public void uMenu() {
+	public void uMenu() throws IOException, URISyntaxException {
+		System.out.println("Welcome to the university user menu.");
+		System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
+				+ "\n Type 3:if you want to exit.");
+		int answer = sc.nextInt();
+		while (answer > 3 || answer < 1) {
+			try {
+				System.out.println("Wrong number!Place a number between 1 and 7");
+
+				answer = sc.nextInt();
+			} catch (InputMismatchException ime) {
+				// System.out.println("Your import is not a number!Please choose a number
+				// betwenn 1 and 6.\n");
+				sc.next();
+				continue;
+
+			} catch (Exception e) {
+				System.err.println("Something unexpected has happened.The program will end.");
+			}
+		}
+		switch (answer) {
+		case 1:
+			callMethods.insertAnewOrganisation();
+			break;
+		case 2:
+			System.out.println("Please enter your username in order to find your account.");
+			// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
+			// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
+			// θέλει να δηλώσει κρούσμα κλπ
+			break;
+		case 3:
+			System.out.println(
+					"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
+			Desktop d = Desktop.getDesktop();
+			d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));
+			System.exit(0);
+		}
 
 	}
 
@@ -146,12 +196,24 @@ public class Main {
 
 	}
 
-	public void eMenu() {
-
+	public void eMenu() throws Exception, URISyntaxException {
+		System.out.println("You chose exit.Thank you.Stay safe!");
+		System.out.println("Below is the information website.");
+		Desktop d = Desktop.getDesktop();
+		d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));// here will lead the user to
+																			// an informational website but
+																			// the com[iler does not cooperate
+																			// today
+																			// so I can't confirm
+																			// that there is no logical error
+																			// that will prevent the user from
+																			// getting here.
+		System.exit(0);
 	}
 
 	public static void main(String[] args) throws Exception {
 
+<<<<<<< HEAD
 		System.out.println("Welcome to the app of case detection and contact detection!"
 				+"\nThe application is designed to make it easier for all organisations to manage the pandemic."
 				+"\nData access and analysis will only be for the provision of statistical "
@@ -166,6 +228,21 @@ public class Main {
 							+ "\n-Type 4 or U if you belong to university. "
 							+ "\n-Type 5 or N if you belong to nursing home. "
 							+ "\n-Type 6 or E if you wish exit. ");
+=======
+		System.out.println("Welcome to the app of case detection and contact detection!");
+		System.out
+				.println("The application is designed to make it easier for all organisations to manage the pandemic.");
+		System.out.println(
+				"Data access and analysis will only be for the provision of statistical data and for the purpose of limiting the spread of.");
+
+		for (;;) {
+			System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
+					+ "\n-Type 1 or G if you are the user responsible for surveillance. "
+					+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
+					+ "\n-Type 3 or S if you belong to educational institution. "
+					+ "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
+					+ "\n-Type 6 or E if you wish exit. ");
+>>>>>>> 9f788b720bd48c7ef141ac5d6ff9fd1ea6d18437
 			String usersInput = null;
 
 			try {
@@ -174,9 +251,13 @@ public class Main {
 						&& !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
 						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
 						&& !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
+<<<<<<< HEAD
 					System.out
 							.println("Your input (" + usersInput + ") is invalid.Please try again.");
 					sc.nextLine();
+=======
+					System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
+>>>>>>> 9f788b720bd48c7ef141ac5d6ff9fd1ea6d18437
 					usersInput = sc.next();
 				}
 
@@ -211,17 +292,7 @@ public class Main {
 			case "6":
 			case "E":
 			default:
-				System.out.println("You chose exit.Thank you.Stay safe!");
-				System.out.println("Below is the information website.");
-				Desktop d = Desktop.getDesktop();
-				d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));// here will lead the user to
-																					// an informational website but
-																					// the com[iler does not cooperate today
-																					// so I can't confirm
-																					// that there is no logical error
-																					// that will prevent the user from
-																					// getting here.
-				System.exit(0);
+				inOrderToCallMethods.eMenu();
 
 			}
 		}
