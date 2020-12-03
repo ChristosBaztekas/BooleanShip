@@ -26,7 +26,7 @@ public class Main {
 					+ "\n Press 5 to exit");
 
 			while (!sc.hasNextInt()) {
-				String input = sc.next();
+				String input = sc.nextLine();
 				System.out.println(
 						" Your import(" + input + ")it's not number.Please choose a number between 1 and 7.\n");
 			}
@@ -41,11 +41,12 @@ public class Main {
 				} catch (InputMismatchException ime) {
 					// System.out.println("Your import is not a number!Please choose a number
 					// betwenn 1 and 6.\n");
-					sc.next();
+					sc.nextLine();
 					continue;
 
 				} catch (Exception e) {
 					System.err.println("Something unexpected has happened.The program will end.");
+					//System.exit(1)
 				}
 			}
 			switch (choice) {
@@ -85,10 +86,10 @@ public class Main {
 						chance = 1;
 						System.out.println(
 								"You are denied access.In case of error insert t to try again otherwise any other key to exit .");
-
+						sc.nextLine();
 						String secondC = sc.next();
-						if (secondC.equals("t")) {
-							gMenu();
+						if (secondC.equals(EodyPassword)) {
+							displayGMenu();
 						} else {
 							System.out.println(
 									"The program will be terminated if you do not have the appropriate documents.Thank you.");
@@ -126,11 +127,12 @@ public class Main {
 			} catch (InputMismatchException ime) {
 				// System.out.println("Your import is not a number!Please choose a number
 				// betwenn 1 and 6.\n");
-				sc.next();
+				sc.nextLine();
 				continue;
 
 			} catch (Exception e) {
 				System.err.println("Something unexpected has happened.The program will end.");
+				//System.exit(1);
 			}
 		}
 		switch (answer) {
@@ -160,17 +162,18 @@ public class Main {
 		int answer = sc.nextInt();
 		while (answer > 3 || answer < 1) {
 			try {
-				System.out.println("Wrong number!Place a number between 1 and 7");
+				System.out.println("Wrong number!Place a number between 1 and 3");
 
 				answer = sc.nextInt();
 			} catch (InputMismatchException ime) {
 				// System.out.println("Your import is not a number!Please choose a number
 				// betwenn 1 and 6.\n");
-				sc.next();
+				sc.nextLine();
 				continue;
 
 			} catch (Exception e) {
 				System.err.println("Something unexpected has happened.The program will end.");
+				//System.exit(1);
 			}
 		}
 		switch (answer) {
@@ -226,23 +229,8 @@ public class Main {
 							+ "\n-Type 1 or G if you are the user responsible for surveillance. "//think about not even tell them the option
 							+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
 							+ "\n-Type 3 or S if you belong to educational institution. "
-							+ "\n-Type 4 or U if you belong to university. "
-							+ "\n-Type 5 or N if you belong to nursing home. "
+							+ "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
 							+ "\n-Type 6 or E if you wish exit. ");
-
-		System.out.println("Welcome to the app of case detection and contact detection!");
-		System.out
-				.println("The application is designed to make it easier for all organisations to manage the pandemic.");
-		System.out.println(
-				"Data access and analysis will only be for the provision of statistical data and for the purpose of limiting the spread of.");
-
-		for (;;) {
-			System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
-					+ "\n-Type 1 or G if you are the user responsible for surveillance. "
-					+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
-					+ "\n-Type 3 or S if you belong to educational institution. "
-					+ "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
-					+ "\n-Type 6 or E if you wish exit. ");
 
 			String usersInput = null;
 
@@ -250,13 +238,11 @@ public class Main {
 				usersInput = sc.next();
 				while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
 						&& !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
-						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
+						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S"))
 
 					System.out
 							.println("Your input (" + usersInput + ") is invalid.Please try again.");
 					sc.nextLine();
-					System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
-					usersInput = sc.next();
 				}
 
 			} catch (Exception e) {
