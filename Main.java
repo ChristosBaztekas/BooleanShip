@@ -109,11 +109,11 @@ public class Main {
 
 	}
 
-	public void static lMenu() {
+	public static void lMenu() {
 
 	}
 
-	public void static sMenu() throws IOException, URISyntaxException {
+	public static void sMenu() throws IOException, URISyntaxException {
 		System.out.println("Welcome to the school user menu.");
 		System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
 				+ "\n Type 3:if you want to exit.");
