@@ -19,19 +19,42 @@ public class Human {
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
-	public Human(String name, String surname, String afm, String belongsOrganisation, String gender, int orgId) {
+	public Human(String name, String surname, String afm, String belongsOrganisation, String gender, int orgId)
+			throws IllegalAccessException {
 		count++;
 		this.id = count;
 		this.gender = gender;
 		this.name = name;
 		this.surname = surname;
-		this.afm = afm;
+		if (!isValidAfm(afm))
+			throw new IllegalAccessException("Your input<" + afm + ">not valid afm");
+		this.afm = afm;// when we will ask the afm from the user the code will be:
+		/*
+		 * String ssn = getSsnFromUser(); while(!YourClass.isValidSSN(ssn)) {
+		 * showErrorMessage("Not a valid ssn: " + ssn); ssn = getSsnFromUser(); }
+		 */
 		this.belongsOrganisation = belongsOrganisation;
 		this.orgId = orgId;
 		allHuman.add(this);
 		Collections.sort(allHuman, Collator.getInstance());
 	}
 
+	public static boolean isValidAfm(String afm) {
+		int len = afm.length();
+		if (len != 9) {
+			return false;
+		} else {
+
+			for (int i = 0; i < 9; i++) {
+				if (afm.charAt(i) >= '0' && afm.charAt(i) <= '9') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+		return false;
+	}
 	public void instertHuman(Human anyHuman) {
 		System.out.println(
 				"Παρακαλώ προσθέστε το άτομο στην βάση δεδομένων για την συμβολή στην διαχείριση κρουσμάτων. ");
