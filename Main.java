@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class Main {
 	static Organisations callMethods = new Organisations();
-	static Main inOrderToCallMethods = new Main();
 	static Scanner sc = new Scanner(System.in);
 	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fΞΏr the platform
 	static int chance = 0;
@@ -78,7 +77,7 @@ public class Main {
 			String UsersPassword = sc.next();
 			if (UsersPassword.equals(EodyPassword)) {
 				System.out.println("Correct code.Below are the options of the user responsible for surveillance:");
-				inOrderToCallMethods.displayGMenu();
+				displayGMenu();
 
 			} else {
 				try {
@@ -89,7 +88,7 @@ public class Main {
 
 						String secondC = sc.next();
 						if (secondC.equals("t")) {
-							inOrderToCallMethods.gMenu();
+							gMenu();
 						} else {
 							System.out.println(
 									"The program will be terminated if you do not have the appropriate documents.Thank you.");
@@ -153,16 +152,15 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		System.out.println("Welcome to the app of case detection and contact detection!");
-		System.out.println(
-				"The application is designed to make it easier for all organisations to manage the pandemic.");
-		System.out.println(
-				"Data access and analysis will only be for the provision of statistical data and for the purpose of limiting the spread of.");
+		System.out.println("Welcome to the app of case detection and contact detection!"
+				+"\nThe application is designed to make it easier for all organisations to manage the pandemic."
+				+"\nData access and analysis will only be for the provision of statistical "
+				+"data and for the purpose of limiting the spread of.");
 
 		for (;;) {
 			System.out
 					.println("To get to the menu that's right for you, type in what kind of user you are:"
-							+ "\n-Type 1 or G if you are the user responsible for surveillance. "
+							+ "\n-Type 1 or G if you are the user responsible for surveillance. "//think about not even tell them the option
 							+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
 							+ "\n-Type 3 or S if you belong to educational institution. "
 							+ "\n-Type 4 or U if you belong to university. "
@@ -178,35 +176,37 @@ public class Main {
 						&& !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
 					System.out
 							.println("Your input (" + usersInput + ") is invalid.Please try again.");
+					sc.nextLine();
 					usersInput = sc.next();
 				}
 
 			} catch (Exception e) {
 				System.out.println("Your import was invalid.Try again:");
-				sc.next();
 				continue;
+			} finally {
+				sc.nextLine();
 			}
 
 			switch (usersInput) {
 			case "1":
 			case "G":
-				inOrderToCallMethods.gMenu();
+				gMenu();
 				break;
 			case "2":
 			case "L":
-				inOrderToCallMethods.lMenu();
+				lMenu();
 				break;
 			case "3":
 			case "S":
-				inOrderToCallMethods.sMenu();
+				sMenu();
 				break;
 			case "4":
 			case "U":
-				inOrderToCallMethods.uMenu();
+				uMenu();
 				break;
 			case "5":
 			case "N":
-				inOrderToCallMethods.nMenu();
+				nMenu();
 				break;
 			case "6":
 			case "E":
