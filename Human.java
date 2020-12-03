@@ -229,6 +229,4 @@ public class Human {
 
 		}
 	}
-	public static void printAllHumans() {}
-//end of te class.
 }
