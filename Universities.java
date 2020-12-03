@@ -24,5 +24,21 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		
 		
 	}
-
+	public static void createUni() {
+		//creates a new university
+		//Universities u = new Universities()
+	}
+	public static int check() {
+		//ask for the code , ask if wants to quit too
+		//checks if the code exists and returns it, otherwise returns -1
+		return 0;
+	}
+	public static void printDetails(int code) {
+		//this method is used in displayUMenu
+		//prints all details of the specific Uni(FE name,region)
+		//with the code that takes,the code is similar the the check method ahead
+	}
+	public static void callDeclareCase(int code) {
+		//for example allUni.get(code).declareCase();
+	}
 }
