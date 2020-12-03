@@ -13,7 +13,8 @@ import java.io.IOException;
 public class Main {
 	static Organisations callMethods = new Organisations();
 	static Scanner sc = new Scanner(System.in);
-	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fΞΏr the platform
+	private final String EodyPassword = "78892GG";// the password of National organization of Public Health fΞΏr the
+													// platform
 	static int chance = 0;
 
 	public void displayGMenu() {
