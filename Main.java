@@ -215,7 +215,7 @@ public class Main {
 		System.exit(0);
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 
 
 		System.out.println("Welcome to the app of case detection and contact detection!"
