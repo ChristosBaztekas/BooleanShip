@@ -143,7 +143,7 @@ public class Human {
 	}
 	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
 	// αν δεν υπάρχει επιστρέφει -1
-	private int search(String idGiven) {//!!!!!!!!!!!!!!!!!!!!!!!
+	private static int search(String idGiven) {//!!!!!!!!!!!!!!!!!!!!!!!
 		//                          να αλλαξει αφου ΑΦΜ ειναι String!!
 		int low = 0;
 		int high = allHuman.size();
