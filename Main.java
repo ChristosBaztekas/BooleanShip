@@ -12,14 +12,11 @@ import java.io.IOException;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-<<<<<<< Updated upstream
 	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for
 															// the
 															// platform, WHY FINAL?
-=======
 	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for the
 	// platform, WHY FINAL?
->>>>>>> Stashed changes
 	static int chance = 0;
 
 	private static void displayGMenu() {
@@ -46,7 +43,6 @@ public class Main {
 				}
 			}
 			switch (choice) {
-<<<<<<< Updated upstream
 			case 1:
 				Human.printAllHumans();
 				break;
