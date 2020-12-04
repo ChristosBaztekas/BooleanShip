@@ -47,13 +47,13 @@ public class Human {
 
 			for (int i = 0; i < 9; i++) {
 				if (afm.charAt(i) >= '0' && afm.charAt(i) <= '9') {
-					return true;
+				    continue;
 				} else {
 					return false;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	public void instertHuman(Human anyHuman) {
 		System.out.println(
