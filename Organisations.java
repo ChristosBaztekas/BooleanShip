@@ -40,7 +40,7 @@ public class Organisations {
 	public void setArea(String name) {
 		this.name = area;
 	}
-	public void insertAnewOrganisation() {
+	public void insertAnewOrganisation() {//maybe is out
 	System.out.println("What is the name of your Organisation?/n Write the name without spaces!");
 	String name = sc.next();
 	System.out.println("In which area is your organisation located?/n Write the name without spaces!");
@@ -50,14 +50,7 @@ public class Organisations {
 	allOrgs.add(new Organisations(name,area,people));
 	}
 
-	public void printAllHumans() {
-		Human methodCall = new Human();
-		for (int i = 0; i < methodCall.getAllHuman().size(); i++) {
-			System.out.println(methodCall.toString());
-		} // Ευελπιστώ να εκτυπώνει όλους τους ανθρώπους αν και θα φανεί στην πράξη
-	}// χρήστος:Γτ να μην μπει στην Human εφόσον θέλουμε ολους?
-
-	public void notifyContacts(Human anyH) {
+	public void notifyContacts(Human anyH) {//maybe changes to be done
 		System.out.println(anyH + "was found with covid...Please write down his contacts!");
 		for (;;) {
 			System.out.println("Do you have available contacts of " + anyH);
@@ -65,9 +58,8 @@ public class Organisations {
 			String answer = sc.next();
 			switch (answer) {
 			case "Y":
+				int i = 0;
 				for (;;) {
-					int i = 0;// χρηστος:ισως η αρχικοποιηση να γινει εξω
-
 					System.out.println("If " + anyH + " has no contacts type E for Exit else type C. ");
 					String startInsert = sc.next();
 					switch (startInsert) {
@@ -93,7 +85,7 @@ public class Organisations {
 						System.out.println("Not an available option!Try again!");
 						break;
 					}
-					sc.nextLine(); // άδειασμα του buffer
+					sc.nextLine(); //empty buffer
 				}
 
 			case "N":
@@ -106,10 +98,10 @@ public class Organisations {
 
 		}
 		
-	}// Η τυποποιημένη ειδοποίηση επαφών
+	}// typical information of the contacts
 	@Override
 	public String toString() {
-		return "Τα άτομα που ήρθαν σε επαφή με φορέα του covid είναι : [contactsNames=" + contactsNames + "]";
+		return "People that came to contact with a positive covid-19 person are: [contactsNames=" + contactsNames + "]";
 	}
   
 }
