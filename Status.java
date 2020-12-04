@@ -1,5 +1,5 @@
 package gr.projAboutCovid.leo.proj;
 
 public enum Status {
-	NORMAL, SUSPECT,PRESUMPITIVE, CONFIRM, CONFIRMED
+	NORMAL, SUSPECT,PRESUMPITIVE,CONFIRMED
 }
