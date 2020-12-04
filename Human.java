@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Human {
-	// οι ανθρωποι ειναι σε αλφαβητικοι σειρα
-	private static ArrayList<Human> allHuman;
+	private static ArrayList<Human> allHuman = new ArrayList<Human>();
 	private String name, surname, afm, belongsOrganisation, gender;
 	private int orgId;
-	private final int id; // για την προσωπική μας καταμέτρηση και γρηγορότερη κλήση αντικειμένων
-	// σε τι κατασταση μπορεί να
-	// βρίσκεται η κατάσταση του αντικειμένου
-	private Status status = Status.NORMAL;// αρχικοποιηση ολων των ανθρωπων σε φυσιολογικη κατασταση
+	private final int id; // for our personal counting and faster dialing of items in what condition can
+						//the state of the object is found
+	private Status status = Status.NORMAL;// initialization of all people in a normal state
 	private static int count = 0;
 	static Scanner sc = new Scanner(System.in);
 
@@ -164,10 +162,11 @@ public class Human {
 			}
 		}
 	}
-	// βρισκει αν υπαρχει ο ανθρωπος στην allHuman
-	// αν δεν υπάρχει επιστρέφει -1
-	private static int search(String idGiven) {//!!!!!!!!!!!!!!!!!!!!!!!
-		//                          να αλλαξει αφου ΑΦΜ ειναι String!!
+	// finds if the human exists in allHuman
+	// if yes, returns its position, otherwise -1
+	//be sure of giving a number
+	private static int search(String idGiven) {
+		int ssn = Integer.parseInt(idGiven)
 		int low = 0;
 		int high = allHuman.size();
 		int mid;
@@ -183,14 +182,21 @@ public class Human {
 		}
 		return -1;
 	}
-	//δημιουργει ανθρωπο τον οποιο επιστρεφει, αφου ελενχει αν υπαρχει
-	//σαν ορισμα την κλαση και ενα id της κλασης
-	public Human createHuman(String class_name, int orgId1) {
+	//create human that returns, if does not exist
+	//argument class name and id class
+	//if person exists return the person
+	public static Human createHuman(String class_name, int orgId1) {
+		//class name=object.getClass().getName() or write your class F.E. Schools
+		//orgId1 is a indifier of the object that belongs F.E. 31 for thirty first school
 		for(;;) {
 			System.out.println("Give the AFM of the Person, 0 for exit");
-			String ans_afm = sc.nextInt();
+			String ans_afm = sc.nextLine();
 			if (ans_afm.equals("0") {
 				break;
+			}
+			if (!isValidAfm(ans_afm)) {
+				System.out.printf("The %s is not right afm try again", ans_afm);
+				continue;
 			}
 			int pos = search(afm);
 			if (pos == -1) {
