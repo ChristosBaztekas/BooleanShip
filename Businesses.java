@@ -2,7 +2,7 @@ package projectCovid19.nikoluckies;
 
 import java.util.Scanner;
 
-
+//better to make Companies Class for Businesses
 public class Businesses extends Labors {
 	private final int id;
 	private static int count = 0;
