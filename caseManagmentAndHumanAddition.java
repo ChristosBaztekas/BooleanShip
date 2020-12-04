@@ -1,15 +1,9 @@
 package gr.projAboutCovid.leo.proj;
 
 public interface caseManagmentAndHumanAddition {
-	public void insertHumanToOrganisation(Human human);// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα
-	// <<παιδιά κλάσεις>>χρησιμοποιώντας την θα εισάγουμε
-	// ανθρώπους στην
-	// λίστα της κλάσης αλλά και στην allHuman της Human
-
-	public static void managementCases() {};
-	public static void createOrg() {};
-
-	public static void declareCase() {};// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα <<παιδιά κλάσεις>>
-	// και θα υλοποιεί τα διάφορα πρωτόκολλα των οργανισμών
-	public static void printDetails() {};
+	public void managementCases() {};//is called by inside the class with cooperation of declareCase for the protocol
+	public static void createOrg() {};//creates a new whole object of your class
+	public static void declareCase(int number) {};// implements the protocol of each class !in a object!
+	public static void printDetails(int number) {};//prints the details of the object (int number)
+													// in your class that you want
 }
