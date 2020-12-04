@@ -6,8 +6,10 @@ public interface caseManagmentAndHumanAddition {
 	// ανθρώπους στην
 	// λίστα της κλάσης αλλά και στην allHuman της Human
 
-	public void managementCases(Human anyH);
+	public static void managementCases() {};
+	public static void createOrg() {};
 
-	public void declareCase();// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα <<παιδιά κλάσεις>>
+	public static void declareCase() {};// αυτή η μέθοδος πρέπει να υλοποιηθεί σε ολα τα <<παιδιά κλάσεις>>
 	// και θα υλοποιεί τα διάφορα πρωτόκολλα των οργανισμών
+	public static void printDetails() {};
 }
