@@ -16,20 +16,20 @@ public class PublicServices extends Labors {
 		
 	}
 	@Override
-	public void insertHumanToOrganisation(Human human) {
-		
-		
+	public void managementCases() {
+		//look caseManagmentAndHumanAddition
+	}
+	@Override
+	public static void createOrg() {
+		//look caseManagmentAndHumanAddition
+	}
+	@Override
+	public static void declareCase(int number) {
+		//look caseManagmentAndHumanAddition
+	}
+	@Override
+	public static void printDetails(int number) {
+		//look caseManagmentAndHumanAddition
 	}
 
-	@Override
-	public void managementCases(Human anyH) {
-		
-		
-	}
-
-	@Override
-	public void declareCase() {
-		
-		
-	}
 }
