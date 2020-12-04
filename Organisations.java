@@ -7,18 +7,21 @@ public class Organisations {
 	private String name, area;
 	private final int id;
 	private static int count = 0;
+	ArrayList<String> contactsNames;//extra info for people
+															//that we dont have right now
 	static Scanner sc = new Scanner(System.in);
-	ArrayList<String> contactsNames = null;
-    static ArrayList<Organisations> allOrgs;
+    static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
 	public Organisations(String name, String area, int numbersOfPeople) {
 		
 		this.name = name;
 		this.area = area;
 		count++;
 		this.id = count;
+		allOrgs.add(this);
 	}
 	public Organisations() {
-	  id = count++;
+		insertAnewOrganisation();
+		//do not count++, the ahead method calls the other constructor
 	}
 
 	public int getId() {
@@ -40,14 +43,21 @@ public class Organisations {
 	public void setArea(String name) {
 		this.name = area;
 	}
-	public void insertAnewOrganisation() {//maybe is out
-	System.out.println("What is the name of your Organisation?/n Write the name without spaces!");
-	String name = sc.next();
-	System.out.println("In which area is your organisation located?/n Write the name without spaces!");
-	String area = sc.next();
-	System.out.println("How many people does your organisation hava?");
-	int people = sc.nextInt();
-	allOrgs.add(new Organisations(name,area,people));
+	public static void insertAnewOrganisation() {
+		while (true) {
+			System.out.println("What is the name of your Organisation?/n Write the name without spaces!");
+			String name = sc.next();
+			System.out.println("In which area is your organisation located?/n Write the name without spaces!");
+			String area = sc.next();
+			System.out.println("How many people does your organisation hava?");
+			sc.nextLine();
+			int people = sc.nextInt();
+			System.out.printf("Name Organisation: %s, Area: %s, Total People: %d. Is that correct? 1 for yes", name, area, people);
+			if (sc.nextLine().equals("1")) {
+				break;
+			}
+		}
+	new Organisations(name, area, people);
 	}
 
 	public void notifyContacts(Human anyH) {//maybe changes to be done
@@ -60,7 +70,7 @@ public class Organisations {
 			case "Y":
 				int i = 0;
 				for (;;) {
-					System.out.println("If " + anyH + " has no contacts type E for Exit else type C. ");
+					System.out.printf("If %s has no other contacts type E for Exit else type C. ", anyH);
 					String startInsert = sc.next();
 					switch (startInsert) {
 					case "C":
