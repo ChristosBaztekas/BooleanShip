@@ -12,8 +12,9 @@ import java.io.IOException;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for the
-													// platform, WHY FINAL?
+	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for
+															// the
+															// platform, WHY FINAL?
 	static int chance = 0;
 
 	private static void displayGMenu() {
@@ -32,7 +33,7 @@ public class Main {
 					continue;
 				} else {
 					choice = sc.nextInt();
-					if (choice > 5 || choice < 1) {
+					if (choice >= 5 || choice <= 1) {
 						System.out.println("Wrong number!Place a number between 1 and 5");
 						continue;
 					}
@@ -46,10 +47,10 @@ public class Main {
 			case 2:// an api will be added along the way so that the option can be provided
 				break;
 			case 3:
-				//i dont know if its posible now,we have to keep every case to a static member
-				//for (int i = 0; i < callMethods.contactsNames.size(); i++) {
-					//System.out.println(callMethods.contactsNames.toString());
-				//}
+				// i dont know if its posible now,we have to keep every case to a static member
+				// for (int i = 0; i < callMethods.contactsNames.size(); i++) {
+				// System.out.println(callMethods.contactsNames.toString());
+				// }
 			case 4:// when we import the api we will add the option
 				break;
 			case 5:
@@ -123,41 +124,40 @@ public class Main {
 				}
 			}
 			switch (answer) {
-				case 1:
-					NursingHome.createNursHome();
-					System.out.println("The Nursing Home has been created, now enter as registered");
-					System.out.println("Would you like to connect?, enter 1 for yes");
-					String ans = sc.nextLine();
-					if (ans.equals("1")) {
-						System.out.println("Going to registered menu...");
-					} else {
-						break;
-					}
-				case 2:
-					System.out.println("Please enter your username in order to find your account.");
-					int out = NursingHome.check();
-					if (out == -1) {
-						System.exit(0);
-					} else {
-						displayNMenu(out);
-					}
-					// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-					// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-					// θέλει να δηλώσει κρούσμα κλπ
+			case 1:
+				NursingHome.createOrg();// implementation of createOrg to NursingHomes in order to create the user
+				System.out.println("The Nursing Home has been created, now enter as registered");
+				System.out.println("Would you like to connect?, enter 1 for yes");
+				String ans = sc.nextLine();
+				if (ans.equals("1")) {
+					System.out.println("Going to registered menu...");
+				} else {
 					break;
-				case 3:
-					System.out.println(
-							"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
-					Desktop d = Desktop.getDesktop();
-					d.browse(new URI(
-							"https://eody.gov.gr/wp-content/uploads/2020/09/%CE%91%CE%9D%CE%A4%CE%99%CE%9C%CE%95%CE%A4%CE%A9%CE%A0%CE%99%CE%A3%CE%97-COVID-%CE%A3%CE%A4%CE%9F-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%9F-%CE%A0%CE%A1%CE%A9%CE%A4%CE%9F%CE%9A%CE%9F%CE%9B%CE%9B%CE%9F-%CE%91%CE%9D%CE%91%CE%A3%CE%A4%CE%9F%CE%9B%CE%97%CE%A3-%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%CE%A3-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%A9%CE%9D_18-09-20.pdf"));
+				}
+			case 2:
+				System.out.println("Please enter your username in order to find your account.");
+				int out = NursingHome.check();
+				if (out == -1) {
 					System.exit(0);
+				} else {
+					displayNMenu(out);
+				}
+				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
+				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
+				// θέλει να δηλώσει κρούσμα κλπ
+				break;
+			case 3:
+				System.out.println(
+						"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
+				Desktop d = Desktop.getDesktop();
+				d.browse(new URI(
+						"https://eody.gov.gr/wp-content/uploads/2020/09/%CE%91%CE%9D%CE%A4%CE%99%CE%9C%CE%95%CE%A4%CE%A9%CE%A0%CE%99%CE%A3%CE%97-COVID-%CE%A3%CE%A4%CE%9F-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%9F-%CE%A0%CE%A1%CE%A9%CE%A4%CE%9F%CE%9A%CE%9F%CE%9B%CE%9B%CE%9F-%CE%91%CE%9D%CE%91%CE%A3%CE%A4%CE%9F%CE%9B%CE%97%CE%A3-%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%CE%A3-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%A9%CE%9D_18-09-20.pdf"));
+				System.exit(0);
 			}
 		}
 	}
 
-
-	public static void sMenu() throws IOException, URISyntaxException {
+	public static void sMenu() throws URISyntaxException {
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the school user menu.");
@@ -179,40 +179,41 @@ public class Main {
 				}
 			}
 			switch (answer) {
-				case 1:
-					Schools.createSchool();
-					System.out.println("The school have been created, now enter as refistered");
-					System.out.println("Would you like to connect?, enter 1 for yes");
-					String ans = sc.nextLine();
-					if (ans.equals("1")) {
-						System.out.println("Going to registered menu...");
-					} else {
-						break;
-					}
-				case 2:
-					System.out.println("Please enter your username in order to find your account.");
-					int out = Schools.chech();
-					if (out == -1) {
-						System.exit(0);
-					} else {
-						displaySMenu(out);
-					}
-					// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-					// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-					// θέλει να δηλώσει κρούσμα κλπ
+			case 1:
+				Schools.createOrg();// Schools.createOrg() should be implemented in order to create a new
+									// school-organisation.
+				System.out.println("The school have been created, now enter as refistered");
+				System.out.println("Would you like to connect?, enter 1 for yes");
+				String ans = sc.nextLine();
+				if (ans.equals("1")) {
+					System.out.println("Going to registered menu...");
+				} else {
 					break;
-				case 3:
-					System.out.println(
-							"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
-					Desktop d = Desktop.getDesktop();
-					d.browse(new URI(
-							"https://eody.gov.gr/wp-content/uploads/2020/09/%CE%91%CE%9D%CE%A4%CE%99%CE%9C%CE%95%CE%A4%CE%A9%CE%A0%CE%99%CE%A3%CE%97-COVID-%CE%A3%CE%A4%CE%9F-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%9F-%CE%A0%CE%A1%CE%A9%CE%A4%CE%9F%CE%9A%CE%9F%CE%9B%CE%9B%CE%9F-%CE%91%CE%9D%CE%91%CE%A3%CE%A4%CE%9F%CE%9B%CE%97%CE%A3-%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%CE%A3-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%A9%CE%9D_18-09-20.pdf"));
+				}
+			case 2:
+				System.out.println("Please enter your username in order to find your account.");
+				int out = Schools.chech();
+				if (out == -1) {
 					System.exit(0);
+				} else {
+					displaySMenu(out);
+				}
+				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
+				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
+				// θέλει να δηλώσει κρούσμα κλπ
+				break;
+			case 3:
+				System.out.println(
+						"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
+				Desktop d = Desktop.getDesktop();
+				d.browse(new URI(
+						"https://eody.gov.gr/wp-content/uploads/2020/09/%CE%91%CE%9D%CE%A4%CE%99%CE%9C%CE%95%CE%A4%CE%A9%CE%A0%CE%99%CE%A3%CE%97-COVID-%CE%A3%CE%A4%CE%9F-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%9F-%CE%A0%CE%A1%CE%A9%CE%A4%CE%9F%CE%9A%CE%9F%CE%9B%CE%9B%CE%9F-%CE%91%CE%9D%CE%91%CE%A3%CE%A4%CE%9F%CE%9B%CE%97%CE%A3-%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%CE%A3-%CE%A3%CE%A7%CE%9F%CE%9B%CE%95%CE%99%CE%A9%CE%9D_18-09-20.pdf"));
+				System.exit(0);
 			}
 		}
 	}
 
-	public static void uMenu() throws IOException, URISyntaxException {
+	public static void uMenu() throws URISyntaxException {
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the university user menu.");
@@ -233,42 +234,69 @@ public class Main {
 				}
 			}
 			switch (answer) {
-				case 1:
-					Universities.createUni();
-					System.out.println("The university have been created, now enter as refistered");
-					System.out.println("Would you like to connect?, enter 1 for yes");
-					String ans = sc.nextLine();
-					if (ans.equals("1")) {
-						System.out.println("Going to registered menu...");
-					} else {
-						break;
-					}
-				case 2:
-					System.out.println("Please enter your username in order to find your account.");
-					// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-					// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-					// θέλει να δηλώσει κρούσμα κλπ
-					int output = Universities.check();
-					if (output == -1) {
-						System.exit(0);
-					} else {
-						displayUMenu(output);
-					}
+			case 1:
+				Universities.createOrg();// should be implement the createOrg in order to create the uni
+				System.out.println("The university have been created, now enter as refistered");
+				System.out.println("Would you like to connect?, enter 1 for yes");
+				String ans = sc.nextLine();
+				if (ans.equals("1")) {
+					System.out.println("Going to registered menu...");
+				} else {
 					break;
-				case 3:
-					System.out.println(
-							"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
-					Desktop d = Desktop.getDesktop();
-					d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));
+				}
+			case 2:
+				System.out.println("Please enter your username in order to find your account.");
+				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
+				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
+				// θέλει να δηλώσει κρούσμα κλπ
+				int output = Universities.check();
+				if (output == -1) {
 					System.exit(0);
+				} else {
+					displayUMenu(output);
+				}
+				break;
+			case 3:
+				System.out.println(
+						"You chose Exit!Here is a link for more info about covid.Stay safe and keep your people safe.");
+				Desktop d = Desktop.getDesktop();
+				d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));
+				System.exit(0);
 			}
 		}
 
 	}
 
-	public static void lMenu() {}
+	public static void lMenu() {
+		int answer;
+		while (true) {
+			System.out.println("Welcome to the Labor user menu.");
+			System.out.println("Type 1:if you want the public services menu.");
+			System.out.println("Type 2:if you want the companies menu.");
+			System.out.println("Type anything else:if you want to exit.");
+			// validate and different menus options
+			// 1 will hava publicServices.createOrg and 2 will have Companies.createOrg.
+			System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
+					+ "\n Type 3:if you want to exit.");
+			while (true) {
+				if (!sc.hasNextInt()) {
+					String input = sc.nextLine();
+					System.out.println(
+							" Your import(" + input + ")it's not number.Please choose a number between 1 and 5.\n");
+					continue;
+				} else {
+					answer = sc.nextInt();
+					if (answer > 3 || answer < 1) {
+						System.out.println("Wrong number!Place a number between 1 and 5");
+						continue;
+					}
+					break;
+				}
+			}
+		}
+	}
 
-	public static void eMenu() throws Exception, URISyntaxException {
+	public static void eMenu() throws URISyntaxException, Exception {
 		System.out.println("You chose exit.Thank you.Stay safe!");
 		System.out.println("Below is the information website.");
 		Desktop d = Desktop.getDesktop();
@@ -283,22 +311,21 @@ public class Main {
 		System.exit(0);
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws URISyntaxException {
 
 		System.out.println("Welcome to the app of case detection and contact detection!"
 				+ "\nThe application is designed to make it easier for all organisations to manage the pandemic."
 				+ "\nData access and analysis will only be for the provision of statistical "
 				+ "data and for the purpose of limiting the spread of.");
 
-		for (; ; ) {
-			System.out
-					.println("To get to the menu that's right for you, type in what kind of user you are:"
-							+ "\n-Type 1 or G if you are the user responsible for surveillance. "//think about not even tell them the option
-							+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
-							+ "\n-Type 3 or S if you belong to educational institution. "
-							+ "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
-							+ "\n-Type 6 or E if you wish exit. ");
+		for (;;) {
+			System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
+					+ "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell
+																							// them the option
+					+ "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
+					+ "\n-Type 3 or S if you belong to educational institution. "
+					+ "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
+					+ "\n-Type 6 or E if you wish exit. ");
 
 			String usersInput = null;
 
@@ -313,7 +340,6 @@ public class Main {
 					usersInput = sc.next();
 				}
 
-
 			} catch (Exception e) {
 				System.out.println("Your import was invalid.Try again:");
 				continue;
@@ -322,30 +348,35 @@ public class Main {
 			}
 
 			switch (usersInput) {
-				case "1":
-				case "G":
-					gMenu();
-					break;
-				case "2":
-				case "L":
-					lMenu();
-					break;
-				case "3":
-				case "S":
-					sMenu();
-					break;
-				case "4":
-				case "U":
-					uMenu();
-					break;
-				case "5":
-				case "N":
-					nMenu();
-					break;
-				case "6":
-				case "E":
-				default:
+			case "1":
+			case "G":
+				gMenu();
+				break;
+			case "2":
+			case "L":
+				lMenu();
+				break;
+			case "3":
+			case "S":
+				sMenu();
+				break;
+			case "4":
+			case "U":
+				uMenu();
+				break;
+			case "5":
+			case "N":
+				nMenu();
+				break;
+			case "6":
+			case "E":
+			default:
+				try {
 					eMenu();
+				} catch (Exception e) {
+
+					e.printStackTrace();
+				}
 
 			}
 		}
@@ -353,9 +384,8 @@ public class Main {
 
 	private static void displayUMenu(int code) {
 		while (true) {
-			Universities.printDetails(code);//details of uni
-			System.out.println("For import of case press 1" +
-					"");
+			Universities.printDetails(code);// details of uni
+			System.out.println("For import of case press 1" + "");
 			Universities.callDeclareCase(code);
 			System.out.println("Want to exit, press 1");
 			String ans = sc.next();
@@ -368,10 +398,9 @@ public class Main {
 
 	private static void displaySMenu(int code) {
 		while (true) {
-			Schools.printDetails(code);//shows details for this school
-			//choices of a school minister
-			System.out.println("For import of a case of the school press 1 \n" +
-			+"");//to add more option
+			Schools.printDetails(code);// shows details for this school
+			// choices of a school minister
+			System.out.println("For import of a case of the school press 1 \n" + +"");// to add more option
 
 			Schools.callDeclareCase(code);
 			System.out.println("Want to exit, press 1");
@@ -394,7 +423,5 @@ public class Main {
 			sc.nextLine();
 		}
 	}
-
-
 
 }
