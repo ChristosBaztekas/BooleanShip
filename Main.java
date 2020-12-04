@@ -13,15 +13,12 @@ import java.io.IOException;
 public class Main {
 	static Scanner sc = new Scanner(System.in);
 	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for
-															// the
-															// platform, WHY FINAL?
-	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for the
-	// platform, WHY FINAL?
+
 	static int chance = 0;
 
 	private static void displayGMenu() {
 		int choice;
-		for (; ; ) {
+		for (;;) {
 			System.out.println("User Surveillance Menu." + "\n Press 1 to see all registered organizations."
 					+ "\n Press 2 to see the latest statistics on the pandemic."
 					+ "\n Press 3 to see all recorded case contacts." + "\n Press 4 to see cases by regions."
@@ -35,6 +32,7 @@ public class Main {
 					continue;
 				} else {
 					choice = sc.nextInt();
+					sc.nextLine();
 					if (choice >= 5 || choice <= 1) {
 						System.out.println("Wrong number!Place a number between 1 and 5");
 						continue;
@@ -118,6 +116,7 @@ public class Main {
 					continue;
 				} else {
 					answer = sc.nextInt();
+					sc.nextLine();
 					if (answer > 3 || answer < 1) {
 						System.out.println("Wrong number!Place a number between 1 and 5");
 						continue;
@@ -173,6 +172,7 @@ public class Main {
 					continue;
 				} else {
 					answer = sc.nextInt();
+					sc.nextLine();
 					if (answer > 3 || answer < 1) {
 						System.out.println("Wrong number!Place a number between 1 and 5");
 						continue;
@@ -228,6 +228,7 @@ public class Main {
 					continue;
 				} else {
 					answer = sc.nextInt();
+					sc.nextLine();
 					if (answer > 3 || answer < 1) {
 						System.out.println("Wrong number!Place a number between 1 and 3");
 						continue;
@@ -269,33 +270,77 @@ public class Main {
 
 	}
 
-	public static void lMenu() {
-		int answer;
-		while (true) {
-			System.out.println("Welcome to the Labor user menu.");
-			System.out.println("Type 1:if you want the public services menu.");
-			System.out.println("Type 2:if you want the companies menu.");
-			System.out.println("Type anything else:if you want to exit.");
-			// validate and different menus options
-			// 1 will hava publicServices.createOrg and 2 will have Companies.createOrg.
-			System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
-					+ "\n Type 3:if you want to exit.");
-			while (true) {
-				if (!sc.hasNextInt()) {
-					String input = sc.nextLine();
-					System.out.println(
-							" Your import(" + input + ")it's not number.Please choose a number between 1 and 5.\n");
-					continue;
-				} else {
-					answer = sc.nextInt();
-					if (answer > 3 || answer < 1) {
-						System.out.println("Wrong number!Place a number between 1 and 5");
-						continue;
-					}
-					break;
-				}
-			}
+	public static void displaylMenu() {
+		System.out.println("Type 1 to insert a new member");
+		System.out.println("Type 2 to delete a  member");
+		System.out.println("Type 3 to declare a case");
+		System.out.println("Type 4 to send a covid related mail to your members.");
+		System.out.println("Type anything else to exit.");
+		String answer = sc.next();
+		// create or use the write method in order to implement the above fuctions
+		if (Integer.valueOf(answer) == 1) {
+
+		} else if ((Integer.valueOf(answer) == 2)) {
+
+		} else if ((Integer.valueOf(answer) == 3)) {
+
+		} else if ((Integer.valueOf(answer) == 4)) {
+			// i will create this so we may ask for the mails of every employee
+		} else {
+			System.out.println("You chose exit.Stay safe!");
+			System.exit(0);
 		}
+
+	}
+
+	public static void lMenu() {
+		System.out.println("Welcome to the Labor user menu.");
+		System.out.println("Type 1:if you want the public services menu.");
+		System.out.println("Type 2:if you want the companies menu.");
+		System.out.println("Type anything else:if you want to exit.");
+		String answer = sc.next();
+		if (Integer.valueOf(answer) == 1) {
+			System.out.println("Welcome to the Public services menu.");
+			System.out.println("Type 1:if you already have an account.");
+			System.out.println("Type 2:if you want to register.");
+			System.out.println("Type anything else:if you want to exit.");
+			String option = sc.next();
+			if (Integer.valueOf(option) == 1) {
+				displaylMenu();
+
+			} else if (Integer.valueOf(option) == 2) {
+				System.out.println(
+						"After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
+				Labors.createOrg();// must implement the interface in order to create the new user
+				lMenu();
+			} else {
+				System.out.println("You chose exit.Stay safe!");
+				System.exit(0);
+			}
+		} else if (Integer.valueOf(answer) == 2) {
+			System.out.println("Welcome to the companies services menu.");
+			System.out.println("Type 1:if you already have an account.");
+			System.out.println("Type 2:if you want to register.");
+			System.out.println("Type anything else:if you want to exit.");
+			String option = sc.next();
+			if (Integer.valueOf(option) == 1) {
+				displaylMenu();
+
+			} else if (Integer.valueOf(option) == 2) {
+				System.out.println(
+						"After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
+				Companies.createOrg();// obviously the same as above
+				lMenu();
+			} else {
+				System.out.println("You chose exit.Stay safe!");
+				System.exit(0);
+			}
+
+		} else {
+			System.out.println("You chose exit.Stay safe!");
+			System.exit(0);
+		}
+
 	}
 
 	public static void eMenu() throws URISyntaxException, Exception {
