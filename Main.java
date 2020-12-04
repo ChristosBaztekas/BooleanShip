@@ -12,14 +12,19 @@ import java.io.IOException;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
+<<<<<<< Updated upstream
 	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for
 															// the
 															// platform, WHY FINAL?
+=======
+	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for the
+	// platform, WHY FINAL?
+>>>>>>> Stashed changes
 	static int chance = 0;
 
 	private static void displayGMenu() {
 		int choice;
-		for (;;) {
+		for (; ; ) {
 			System.out.println("User Surveillance Menu." + "\n Press 1 to see all registered organizations."
 					+ "\n Press 2 to see the latest statistics on the pandemic."
 					+ "\n Press 3 to see all recorded case contacts." + "\n Press 4 to see cases by regions."
@@ -41,6 +46,7 @@ public class Main {
 				}
 			}
 			switch (choice) {
+<<<<<<< Updated upstream
 			case 1:
 				Human.printAllHumans();
 				break;
@@ -56,6 +62,23 @@ public class Main {
 			case 5:
 				System.out.println("You chose exit.Stay safe.");
 				System.exit(0);
+=======
+				case 1:
+					Human.printAllHumans();
+					break;
+				case 2:// an api will be added along the way so that the option can be provided
+					break;
+				case 3:
+					//i dont know if its posible now,we have to keep every case to a static member
+					//for (int i = 0; i < callMethods.contactsNames.size(); i++) {
+					//System.out.println(callMethods.contactsNames.toString());
+					//}
+				case 4:// when we import the api we will add the option
+					break;
+				case 5:
+					System.out.println("You chose exit.Stay safe.");
+					System.exit(0);
+>>>>>>> Stashed changes
 			}
 
 		}
@@ -268,6 +291,7 @@ public class Main {
 	}
 
 	public static void lMenu() {
+<<<<<<< Updated upstream
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the Labor user menu.");
@@ -294,6 +318,8 @@ public class Main {
 				}
 			}
 		}
+=======
+>>>>>>> Stashed changes
 	}
 
 	public static void eMenu() throws URISyntaxException, Exception {
@@ -301,13 +327,13 @@ public class Main {
 		System.out.println("Below is the information website.");
 		Desktop d = Desktop.getDesktop();
 		d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));// here will lead the user to
-																			// an informational website but
-																			// the com[iler does not cooperate
-																			// today
-																			// so I can't confirm
-																			// that there is no logical error
-																			// that will prevent the user from
-																			// getting here.
+		// an informational website but
+		// the com[iler does not cooperate
+		// today
+		// so I can't confirm
+		// that there is no logical error
+		// that will prevent the user from
+		// getting here.
 		System.exit(0);
 	}
 
@@ -398,9 +424,16 @@ public class Main {
 
 	private static void displaySMenu(int code) {
 		while (true) {
+<<<<<<< Updated upstream
 			Schools.printDetails(code);// shows details for this school
 			// choices of a school minister
 			System.out.println("For import of a case of the school press 1 \n" + +"");// to add more option
+=======
+			Schools.printDetails(code);//shows details for this school
+			//choices of a school minister
+			System.out.println("For import of a case of the school press 1 \n" +
+					+"");//to add more option
+>>>>>>> Stashed changes
 
 			Schools.callDeclareCase(code);
 			System.out.println("Want to exit, press 1");
@@ -423,5 +456,8 @@ public class Main {
 			sc.nextLine();
 		}
 	}
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }
