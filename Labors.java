@@ -6,22 +6,17 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 		super(name, area, numbersOfPeople);
 	}
 
-	
-	public void insertHumanToOrganisation(Human human) {
-		
-		
+	public void managementCases() {
+		//look caseManagmentAndHumanAddition
 	}
-
-	
-	public void managementCases(Human anyH) {
-	
-		
+	public static void createOrg() {
+		//look caseManagmentAndHumanAddition
 	}
-
-	
-	public void declareCase() {
-		
-		
+	public static void declareCase(int number) {
+		//look caseManagmentAndHumanAddition
+	}
+	public static void printDetails(int number) {
+		//look caseManagmentAndHumanAddition
 	}
 
 }
