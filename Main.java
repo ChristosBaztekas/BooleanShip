@@ -58,23 +58,6 @@ public class Main {
 			case 5:
 				System.out.println("You chose exit.Stay safe.");
 				System.exit(0);
-=======
-				case 1:
-					Human.printAllHumans();
-					break;
-				case 2:// an api will be added along the way so that the option can be provided
-					break;
-				case 3:
-					//i dont know if its posible now,we have to keep every case to a static member
-					//for (int i = 0; i < callMethods.contactsNames.size(); i++) {
-					//System.out.println(callMethods.contactsNames.toString());
-					//}
-				case 4:// when we import the api we will add the option
-					break;
-				case 5:
-					System.out.println("You chose exit.Stay safe.");
-					System.exit(0);
->>>>>>> Stashed changes
 			}
 
 		}
@@ -287,7 +270,6 @@ public class Main {
 	}
 
 	public static void lMenu() {
-<<<<<<< Updated upstream
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the Labor user menu.");
@@ -314,8 +296,6 @@ public class Main {
 				}
 			}
 		}
-=======
->>>>>>> Stashed changes
 	}
 
 	public static void eMenu() throws URISyntaxException, Exception {
@@ -420,20 +400,12 @@ public class Main {
 
 	private static void displaySMenu(int code) {
 		while (true) {
-<<<<<<< Updated upstream
 			Schools.printDetails(code);// shows details for this school
 			// choices of a school minister
 			System.out.println("For import of a case of the school press 1 \n" + +"");// to add more option
-=======
 			Schools.printDetails(code);//shows details for this school
 			//choices of a school minister
 			System.out.println("For import of a case of the school press 1 \n" +
-					+"");//to add more option
->>>>>>> Stashed changes
-
-			Schools.callDeclareCase(code);
-			System.out.println("Want to exit, press 1");
-			String ans = sc.next();
 			if (ans.equals("1")) {
 				break;
 			}
@@ -452,8 +424,4 @@ public class Main {
 			sc.nextLine();
 		}
 	}
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 }
