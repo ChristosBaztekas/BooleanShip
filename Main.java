@@ -42,7 +42,7 @@ public class Main {
 			}
 			switch (choice) {
 			case 1:
-				Human.printAllHumans();
+				Organisations.printAllOrganisations(EodyPassword);
 				break;
 			case 2:// an api will be added along the way so that the option can be provided
 				break;
@@ -81,6 +81,7 @@ public class Main {
 						sc.nextLine();
 						String secondC = sc.next();
 						if (secondC.equals(EodyPassword)) {
+							sc.nextLine();
 							displayGMenu();
 						} else {
 							System.out.println(
@@ -137,7 +138,7 @@ public class Main {
 				}
 			case 2:
 				System.out.println("Please enter your username in order to find your account.");
-				int out = NursingHome.check();
+				//register proccess
 				if (out == -1) {
 					System.exit(0);
 				} else {
@@ -194,7 +195,7 @@ public class Main {
 				}
 			case 2:
 				System.out.println("Please enter your username in order to find your account.");
-				int out = Schools.chech();
+				//register progress
 				if (out == -1) {
 					System.exit(0);
 				} else {
@@ -252,7 +253,7 @@ public class Main {
 				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
 				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
 				// θέλει να δηλώσει κρούσμα κλπ
-				int output = Universities.check();
+				//register progress
 				if (output == -1) {
 					System.exit(0);
 				} else {
