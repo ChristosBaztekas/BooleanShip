@@ -7,6 +7,8 @@ public class Organisations {
 	private String name, area;
 	private final int id;
 	private static int count = 0;
+
+	private static final String EodyPassword = "78892GG";
 	ArrayList<String> contactsNames;//extra info for people
 															//that we dont have right now
 	static Scanner sc = new Scanner(System.in);
@@ -112,6 +114,13 @@ public class Organisations {
 	@Override
 	public String toString() {
 		return "People that came to contact with a positive covid-19 person are: [contactsNames=" + contactsNames + "]";
+	}
+	public static void printAllOrganisations(String code) {
+		if (code.equals(EodyPassword)) {
+			//print all Organisations
+			return;
+		}
+		System.out.println("You dont have acceess");
 	}
   
 }
