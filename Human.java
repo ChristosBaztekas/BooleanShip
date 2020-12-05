@@ -1,9 +1,8 @@
 package gr.projAboutCovid.leo.proj;
 
 import java.text.Collator;
+import java.util.Comparator;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,6 +14,7 @@ public class Human {
 						//the state of the object is found
 	private Status status = Status.NORMAL;// initialization of all people in a normal state
 	private static int count = 0;
+	private static SortByAfm sortItem =new SortByAfm();//do not need to understand it
 	static Scanner sc = new Scanner(System.in);
 
 	public Human(String name, String surname, String afm, String belongsOrganisation, String gender, int orgId)
@@ -34,7 +34,18 @@ public class Human {
 		this.belongsOrganisation = belongsOrganisation;
 		this.orgId = orgId;
 		allHuman.add(this);
-		Collections.sort(allHuman, Collator.getInstance());
+		sort();
+	}
+	//helps for sort
+	private static class SortByAfm implements Comparator<Human> {
+		public int compare(Human a, Human b) {
+			return a.afm.compareTo(b.afm);
+		}
+	}
+	//it sorts with unicode form, that means the number not gonna be
+	//in arithmetic series, but id doesnt mind,search gonna work the same
+	private static void sort() {//it is called in constructor
+		allHuman.sort(sortItem);
 	}
 
 	public static boolean isValidAfm(String afm) {
@@ -166,15 +177,14 @@ public class Human {
 	// if yes, returns its position, otherwise -1
 	//be sure of giving a number
 	private static int search(String idGiven) {
-		int ssn = Integer.parseInt(idGiven)
 		int low = 0;
 		int high = allHuman.size();
 		int mid;
 		while (low <=high) {
 			mid = (low + high) / 2;
-			if (idGiven < allHuman[mid].getAfm) {
+			if (idGiven.compareTo(allHuman.get(mid).afm) < 0)  {
 				high = mid -1;
-			} else if (idGiven > allHuman[mid].getAfm()) {
+			} else if (idGiven.compareTo(allHuman.get(mid).afm) > 0) {
 				low = mid +1;
 			} else {
 				return mid;
