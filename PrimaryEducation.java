@@ -1,5 +1,5 @@
 
-package projectCovid19.nikoluckies;
+package gr.projAboutCovid.leo.proj;
 
 import java.util.Scanner;
 
