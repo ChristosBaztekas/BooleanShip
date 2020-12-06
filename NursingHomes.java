@@ -11,7 +11,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     static Scanner scanner = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
     private final int id;
-    private static ArrayList<NursingHomes> = new ArrayList<NursingHomes>();
+    private static ArrayList<NursingHomes> allNursingHomes = new ArrayList<NursingHomes>();
     private static int count = 0;
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);
