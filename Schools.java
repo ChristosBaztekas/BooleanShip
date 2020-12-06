@@ -1,12 +1,24 @@
 package gr.projAboutCovid.leo.proj;
 
+import java.util.Scanner;
+import java.util.ArrayList;
 public class Schools extends Organisations implements caseManagmentAndHumanAddition{
-
-	public Schools(String name, String area, int numbersOfPeople) {
+	private Scanner scanner = new Scanner(System.in);
+	private ArrayList<Schools> allSchools = new ArrayList<Schools>() ;
+	private static int count = 0; //use for our personal separation of the objects
+	private int id ;//personal id of each object
+	private ArrayList<Human> teachers = new ArrayList<Human>();
+	private ArrayList<Human> w
+	public Schools(String name, String area, int numbersOfPeople,) {
 		//see if the arguments will be taken outside of the constructor or inside
 		//more info call christos
 		super(name, area, numbersOfPeople);
-		
+		createDetails();
+		id = count++;
+		allSchools.add(this);
+	}
+	public void createDetails() {
+
 	}
 
 	public static void printDetails(int code) {
