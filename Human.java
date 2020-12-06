@@ -67,9 +67,7 @@ public class Human {
 	public void instertHuman(Human anyHuman) {
 		System.out.println(
 				"Παρακαλώ προσθέστε το άτομο στην βάση δεδομένων για την συμβολή στην διαχείριση κρουσμάτων. ");
-		allHuman.add(anyHuman);
-		Collections.sort(allHuman, Collator.getInstance());// τοποθετεί τα αντικείμενα σε αλφαβητική σειρά
-															// κάθε φορά που προστίθετε ένα νέο
+		Human anyHuman = this;//wrong!! is all ready a human
 
 	}// ουσιαστικά θα καλείται η μέθοδος αυτόματα με την δημιουργία ενός νέου ατόμου
 		// σε πιθανόν κάποια unlimited loop της  main
