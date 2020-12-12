@@ -113,6 +113,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 		System.out.println("Enter:area");
 		String area = scanner.nextLine();
 		System.out.println("Enter: numberOfPeople");
+		 int numberOfPeople = scanner.nextInt();
 		System.out.println("Enter Yes, No");
 		String input = scanner.nextLine();
         if(input.equals('Yes')){
@@ -120,6 +121,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 		}else {
 			boolean enclosed = true;
 		}
+        NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
+        newOne.display();
+	}
 
 
 
@@ -130,6 +134,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     public static void printDetails(int number) {
+
         //look caseManagmentAndHumanAddition
 
 }
