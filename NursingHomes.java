@@ -108,33 +108,34 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     public static void createOrg() {
-		System.out.println("Enter:name");
-		String name = scanner.nextLine();
-		System.out.println("Enter:area");
-		String area = scanner.nextLine();
-		System.out.println("Enter: numberOfPeople");
-		 int numberOfPeople = scanner.nextInt();
-		System.out.println("Enter Yes, No");
-		String input = scanner.nextLine();
-        if(input.equals('Yes')){
+		System.out.println("What is the name of the NursingHome?/nWrite the name without spaces!");
+		String name = sc.next();
+		System.out.println("In which area is your organization located?/nWrite the are without spaces!");
+		String area = sc.next();
+		System.out.println("How many employees does your organization have?");
+		scanner.nextLine();
+		int numberOfEmployees = scanner.nextInt();
+		System.out.println("How many carenPeople does your organization have?");
+		int numberofCarenPeople = scanner.nextInt();
+		System.out.println("Is your organization open? 1for yes");
+		String input = sc.next();
+        if(input.equals("1")){
 			boolean enclosed = false;
 		}else {
 			boolean enclosed = true;
 		}
-        NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
-        newOne.display();
-	}
+		System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d.Is that correct? 1for yes",name,area,employess+carenpeople);
+		if (scanner.nextLine().equals("1")) {
+			break;
+		}
+		NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
+	     //look caseManagmentAndHumanAddition
+	 }
 
-
-
-
-        //look caseManagmentAndHumanAddition
-    }
     public static void declareCase(int number) {
         //look caseManagmentAndHumanAddition
     }
     public static void printDetails(int number) {
-
-        //look caseManagmentAndHumanAddition
-
+		System.out.println("Welcome.The" + allNursingHomes.get(code).super.getName + "NursingHome of" + allNursingHomes.get(code).super.getArea + "will take drastic measures to stop spread of covid-19 in our NursingHome.Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!Thanks for understanding in these difficult times.");
+      //look caseManagmentAndHumanAddition
 }
