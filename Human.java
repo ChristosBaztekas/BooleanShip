@@ -1,4 +1,4 @@
-package gr.projAboutCovid.leo.proj;
+package sample;
 
 import java.text.Collator;
 import java.util.Comparator;
@@ -131,7 +131,7 @@ public class Human {
 		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
 			String afmGiven = sc.nextInt();
-			if (afmGiven.equal("-1") {
+			if (afmGiven.equals("-1") {
 				break;
 			}
 			int position = search(afmGiven);
@@ -206,7 +206,7 @@ public class Human {
 				System.out.printf("The %s is not right afm try again", ans_afm);
 				continue;
 			}
-			int pos = search(afm);
+			int pos = search(ans_afm);
 			if (pos == -1) {
 				String name ,surname, gender;
 				System.out.printf("Δεν υπάρχει άνθρωπος με ΑΦΜ:%s στην βάση, δημιουργεία ανθρώπου");
@@ -225,7 +225,12 @@ public class Human {
 						break;
 					}
 				}
-				Human one = new Human(name, surname, ans_afm, class_name, gender, orgId1);
+				Human one = null;
+				try {
+					one = new Human(name, surname, ans_afm, class_name, gender, orgId1);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
 				return one;
 
 
