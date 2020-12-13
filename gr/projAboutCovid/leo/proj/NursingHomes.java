@@ -84,7 +84,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         }
     }
     public void monitoring(int orgNum) {
-        
+
     }
     public void declareCase(){
         System.out.println("Is the case Employee(s), caren person(s) or both");
@@ -101,19 +101,40 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         }
     }
     private void fillingCarenPeople() {
-        
+
     }
 
     public void managementCases() {
         //look caseManagmentAndHumanAddition
     }
     public static void createOrg() {
+		System.out.println("Enter:name");
+		String name = scanner.nextLine();
+		System.out.println("Enter:area");
+		String area = scanner.nextLine();
+		System.out.println("Enter: numberOfPeople");
+		 int numberOfPeople = scanner.nextInt();
+		System.out.println("Enter Yes, No");
+		String input = scanner.nextLine();
+        if(input.equals('Yes')){
+			boolean enclosed = false;
+		}else {
+			boolean enclosed = true;
+		}
+        NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
+        newOne.display();
+	}
+
+
+
+
         //look caseManagmentAndHumanAddition
     }
     public static void declareCase(int number) {
         //look caseManagmentAndHumanAddition
     }
     public static void printDetails(int number) {
+
         //look caseManagmentAndHumanAddition
-	
+
 }
