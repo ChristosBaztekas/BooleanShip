@@ -1,4 +1,4 @@
-package gr.projAboutCovid.leo.proj;
+package sample;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
