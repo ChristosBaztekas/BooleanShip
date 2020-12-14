@@ -1,4 +1,4 @@
-package gr.projAboutCovid.leo.proj;
+package sample;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class Organisations {
 	private static int count = 0;
 
 	private static final String EodyPassword = "78892GG";
-	ArrayList<String> contactsNames;//extra info for people
+	private ArrayList<String> contactsNames;//extra info for people
 															//that we dont have right now
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
