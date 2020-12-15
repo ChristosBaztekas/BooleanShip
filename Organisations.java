@@ -14,7 +14,7 @@ public class Organisations {
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
 	public Organisations(String name, String area, int numbersOfPeople) {
-		
+
 		this.name = name;
 		this.area = area;
 		count++;
@@ -40,6 +40,9 @@ public class Organisations {
 
 	public String getArea() {
 		return area;
+	}
+	public int getNumbersOfPeople() {
+			return numbersOfPeople;
 	}
 
 	public void setArea(String name) {
@@ -109,7 +112,7 @@ public class Organisations {
 			}
 
 		}
-		
+
 	}// typical information of the contacts
 	@Override
 	public String toString() {
@@ -122,5 +125,5 @@ public class Organisations {
 		}
 		System.out.println("You dont have acceess");
 	}
-  
+
 }
