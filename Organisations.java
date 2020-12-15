@@ -41,6 +41,7 @@ public class Organisations {
 	public String getArea() {
 		return area;
 	}
+
 	public int getNumbersOfPeople() {
 			return numbersOfPeople;
 	}
@@ -56,13 +57,13 @@ public class Organisations {
 			String area = sc.next();
 			System.out.println("How many people does your organisation hava?");
 			sc.nextLine();
-			int people = sc.nextInt();
-			System.out.printf("Name Organisation: %s, Area: %s, Total People: %d. Is that correct? 1 for yes", name, area, people);
+			int numbersOfpeople = sc.nextInt();
+			System.out.printf("Name Organisation: %s, Area: %s, Total People: %d. Is that correct? 1 for yes", name, area, numbersOfPeople);
 			if (sc.nextLine().equals("1")) {
 				break;
 			}
 		}
-	new Organisations(name, area, people);
+	new Organisations(name, area, numbersOfPeople);
 	}
 
 	public void notifyContacts(Human anyH) {//maybe changes to be done
