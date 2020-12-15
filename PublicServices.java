@@ -37,12 +37,13 @@ public class PublicServices extends Labors {
 		PublicServices newOne = new PublicServices(name, area, employees);
 	}
 	@Override
-	public static void declareCase(int number) {
+	public static void declareCase(int code) {
 		//look caseManagmentAndHumanAddition
 	}
 	@Override
-	public static void printDetails(int number) {
-		//look caseManagmentAndHumanAddition
+	public static void printDetails(int code) {
+		System.out.println("Welcome.The" + allPublicServices.get(code).super.getName + "Companies of" + allPublicServices.get(code).super.getArea + "will take drastic measures to stop spread of covid-19 in this public sector. Please stay safe and we will call you soon. Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 	}
 
 }
+
