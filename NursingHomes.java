@@ -1,4 +1,4 @@
-package gr.projAboutCovid.leo.proj;
+package sample;
 
 import java.util.Scanner;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
@@ -19,65 +19,63 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         status_descr = (enclosed ? "Enclosed" : "Free Access");
         id = count ++;
         modifyEmployees();
-        fillingCarenPeople();//yet to do
+        modifyCarenPeople();//yet to do
     }
     private void modifyEmployees() {
         while (true){
-            if(employees != null) {
-                System.out.printf("There are %d Employee(s), would you like to add new?\nPress 1 for yes,otherwise we will go to remove panel", employees.size());
-                int ans = scanner.nextInt();
-                if (ans == 1) {
-                    System.out.println("How many? ");
-                    int num = scanner.nextInt();
-                    for (int i=0 ; i < num ; i++) {
-                        System.out.printf("Adding the %d employ", i+1);
-                        Human one = createHuman(this.getClass().getName(), this.id);
-                        if(one == null){
-                            System.out.printlf("Δεν προσθέθηκε ο %d υπάλληλος", i+1);
-                            i -=1;//να επαναληφθεί η διαδικασία
-                            continue;
+            if(employees.size() != 0) {
+                System.out.printf("There are %d Employee(s), would you like to add new?\n" +
+                        "Press 1 for yes,otherwise we will go to remove panel", employees.size());
+                String ans = scanner.nextLine();
+                if (ans.equals("1")) {
+                    int i = 0;
+                    while (true) {
+                        System.out.printf("Adding the %d employ, for exit 0", i+1);
+                        if (scanner.nextLine().equals("0")) {
+                            break;
                         }
+                        Human one = createHuman(this.getClass().getName(), this.id);
                         employees.add(one);
                     }
                     break;
                 }
-                System.out.printf("There are %d Employee(s), would you like to remove one?\nPress 1 for yes", employees.size());
-                int ans = scanner.nextInt();
-                if (ans == 1) {
+                System.out.printf("There are %d Employee(s), would you like to remove one?\n" +
+                        "Press 1 for yes", employees.size());
+                String ans = scanner.nextLine();
+                if (ans.equals("1")) {
                     while (true){
                         System.out.println("Give the afm of the employee that want to remove");
                         String afm = scanner.nextLine();
-                        boolean flag;
-                        for (int i=0; i<employees.size(); i++) {
-                            //search
-                            //an to vrei prepei na paei stin human na svisei to belongsOrganisation
-                            flag = false;
-                            break;
+                        boolean flag = true;
+                        for (int i=0; i < employees.size(); i++) {
+                            if (employees.get(i).getAfm().equals(afm)) {
+                                employees.remove(i);
+                                flag = false;
+                                break;
+                            }
                         }
                         if (flag) {
                             System.out.printf("Δεν βρεθηκε υπαλληλος με αφμ:%s", afm);
                         }
                         System.out.println("Να συνεχιστεί η διαδικασία διαγγραφής; 0 για εξοδο");
-                        int ans1 = scanner.nextInt();
-                        if (ans1 == 0) {
+                        String ans1 = scanner.nextLine();
+                        if (ans1.equals("0")) {
                             break;
                         }
                     }
                     break;
                 }
-            } else {
+            } else {//from cunstractor
                 System.out.println("There are no employes filled, Please start with giving them");
-                System.out.println("Ποσοι δουλεύουνε;");
-                int num = scanner.nextInt();
-                for (int i=0 ; i < num ; i++) {
-                    System.out.printf("Creating the %d employ", i+1);
-                    Human one = createHuman(this.getClass().getName(), this.id);
-                    if(one == null){
-                        System.out.printlf("Δεν προσθέθηκε ο %d υπάλληλος", i+1);
-                        i -=1;//να επαναληφθεί η διαδικασία
-                        continue;
+                int i = 0;
+                while (true) {
+                    System.out.printf("Creating the %d employ, 0 for exit", i+1);
+                    if (scanner.nextLine().equals("0")) {
+                        break;
                     }
+                    Human one = createHuman(this.getClass().getName(), this.id);
                     employees.add(one);
+                    i++;
                 }
                 break;
             }
@@ -108,33 +106,38 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     public static void createOrg() {
-		System.out.println("Enter:name");
-		String name = scanner.nextLine();
-		System.out.println("Enter:area");
-		String area = scanner.nextLine();
-		System.out.println("Enter: numberOfPeople");
-		 int numberOfPeople = scanner.nextInt();
-		System.out.println("Enter Yes, No");
-		String input = scanner.nextLine();
-        if(input.equals('Yes')){
+		System.out.println("What is the name of the NursingHome?/nWrite the name without spaces!");
+		String name = sc.next();
+		System.out.println("In which area is your organization located?/nWrite the are without spaces!");
+		String area = sc.next();
+		System.out.println("How many employees does your organization have?");
+		scanner.nextLine();
+		int numberOfEmployees = scanner.nextInt();
+		System.out.println("How many carenPeople does your organization have?");
+		int numberofCarenPeople = scanner.nextInt();
+		System.out.println("Is your organization open? 1for yes");
+		String input = sc.next();
+        if(input.equals("1")){
 			boolean enclosed = false;
 		}else {
 			boolean enclosed = true;
 		}
-        NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
-        newOne.display();
-	}
+		System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d.Is that correct? 1for yes",name,area,employess+carenpeople);
+		if (scanner.nextLine().equals("1")) {
+			break;
+		}
+		NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
+	     //look caseManagmentAndHumanAddition
+	 }
 
-
-
-
-        //look caseManagmentAndHumanAddition
-    }
     public static void declareCase(int number) {
         //look caseManagmentAndHumanAddition
     }
     public static void printDetails(int number) {
-
-        //look caseManagmentAndHumanAddition
-
+		System.out.println("Welcome.The" + allNursingHomes.get(code).getName() +
+                "NursingHome of" + allNursingHomes.get(code).getArea() +
+                "will take drastic measures to stop spread of covid-19 in our NursingHome." +
+                "Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!" +
+                "Thanks for understanding in these difficult times.");
+      //look caseManagmentAndHumanAddition
 }

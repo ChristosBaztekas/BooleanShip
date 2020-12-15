@@ -1,4 +1,4 @@
-package gr.projAboutCovid.leo.proj;
+package sample;
 
 import java.text.Collator;
 import java.util.Comparator;
@@ -64,24 +64,14 @@ public class Human {
 		}
 		return true;
 	}
-	public void instertHuman(Human anyHuman) {
-		System.out.println(
-				"Παρακαλώ προσθέστε το άτομο στην βάση δεδομένων για την συμβολή στην διαχείριση κρουσμάτων. ");
-		Human anyHuman = this;//wrong!! is all ready a human
-
-	}// ουσιαστικά θα καλείται η μέθοδος αυτόματα με την δημιουργία ενός νέου ατόμου
-		// σε πιθανόν κάποια unlimited loop της  main
 
 	@Override
 	public String toString() {
 		return "Το άτομο [" + ", Όνομα = " + name + ", Επίθετο = " + surname + ", ΑΦΜ = " + afm + "]";
 	}
 
-	public ArrayList<Human> getAllHuman() {
-		return allHuman;
-	}
 
-	public void setAllHuman(ArrayList<Human> allHuman) {// μονο στην αρχη ισως ,αλλα καλυτερα να γινει διαγραφη
+	public void setAllHuman(ArrayList<Human> allHuman) {// only in start for initilization
 		this.allHuman = allHuman;
 	}
 
@@ -131,7 +121,7 @@ public class Human {
 		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
 			String afmGiven = sc.nextInt();
-			if (afmGiven.equal("-1") {
+			if (afmGiven.equals("-1") {
 				break;
 			}
 			int position = search(afmGiven);
@@ -206,7 +196,7 @@ public class Human {
 				System.out.printf("The %s is not right afm try again", ans_afm);
 				continue;
 			}
-			int pos = search(afm);
+			int pos = search(ans_afm);
 			if (pos == -1) {
 				String name ,surname, gender;
 				System.out.printf("Δεν υπάρχει άνθρωπος με ΑΦΜ:%s στην βάση, δημιουργεία ανθρώπου");
@@ -225,7 +215,12 @@ public class Human {
 						break;
 					}
 				}
-				Human one = new Human(name, surname, ans_afm, class_name, gender, orgId1);
+				Human one = null;
+				try {
+					one = new Human(name, surname, ans_afm, class_name, gender, orgId1);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
 				return one;
 
 
