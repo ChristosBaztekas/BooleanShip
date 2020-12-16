@@ -1,5 +1,3 @@
-package sample;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -11,8 +9,8 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 
-public class TestMain extends JFrame implements ActionListener {
-    private static TestMain wsFrame = new TestMain();
+public class MainTest extends JFrame implements ActionListener {
+
     private JMenuBar mainApp = new JMenuBar();
     private JMenu menu1 = new JMenu("Goverment Menu");
     private JMenu menu2 = new JMenu("Labor Menu");
@@ -53,14 +51,14 @@ public class TestMain extends JFrame implements ActionListener {
     //private Organisations Eody = new Organisations("Eody", "Marousi",200 );
 
     public static void main(String[] args) {
-
+        MainTest wsFrame = new MainTest();
         wsFrame.setSize(600, 600);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setVisible(true);
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public TestMain() {
+    public MainTest() {
         setLayout(new FlowLayout());
         setJMenuBar(mainApp);
         mainApp.add(menu1);
@@ -149,6 +147,7 @@ public class TestMain extends JFrame implements ActionListener {
         } else if (source == gmenu) {
         } else if (source == gmenu1) {
         } else if (source == gmenu2) {
+
         } else if (source == gmenu3) {
         } else if (source == gmenu4) {
         } else if (source == gmenu5) {
@@ -164,6 +163,12 @@ public class TestMain extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == lmenu1) {
         } else if (source == lmenu2) {
+            LogOrg frame=new LogOrg();
+            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
+            frame.setVisible(true);
+            frame.setBounds(10,10,370,600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(true);
         } else if (source == lmenu3) {
         } else if (source == lmenu4) {
             Desktop d = Desktop.getDesktop();
@@ -178,6 +183,12 @@ public class TestMain extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == smenu1) {
         } else if (source == smenu2) {
+            LogOrg frame=new LogOrg();
+            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
+            frame.setVisible(true);
+            frame.setBounds(10,10,370,600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(true);
         } else if (source == smenu3) {
         } else if (source == smenu4) {
             Desktop d = Desktop.getDesktop();
@@ -192,6 +203,12 @@ public class TestMain extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == umenu1) {
         } else if (source == umenu2) {
+            LogOrg frame=new LogOrg();
+            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
+            frame.setVisible(true);
+            frame.setBounds(10,10,370,600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(true);
         } else if (source == umenu3) {
         } else if (source == umenu4) {
             Desktop d = Desktop.getDesktop();
@@ -206,6 +223,12 @@ public class TestMain extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == nmenu1) {
         } else if (source == nmenu2) {
+            LogOrg frame=new LogOrg();
+            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
+            frame.setVisible(true);
+            frame.setBounds(10,10,370,600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(true);
         } else if (source == nmenu3) {
         } else if (source == nmenu4) {
             Desktop d = Desktop.getDesktop();
