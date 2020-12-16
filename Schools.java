@@ -35,7 +35,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 			System.out.println("In which area is your organization located?\nWrite the are without spaces!");
 			String area = scanner.next();
 			System.out.println("How many teachers does your organization have?");
-			scanner.nextLine();
 			int teachers = scanner.nextInt();
 			System.out.println("How many students does your organization have?");
 			int students = scanner.nextInt();
