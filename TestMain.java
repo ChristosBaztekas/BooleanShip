@@ -19,6 +19,7 @@ public class MainTest extends JFrame implements ActionListener {
     private JMenu menu5 = new JMenu("Nursing home Menu");
     private JMenu menu6 = new JMenu("Exit");
 
+    private JMenuItem justExit = new JMenuItem("Exit");
     private JMenuItem gmenu = new JMenuItem("User Surveillance Menu.");
     private JMenuItem gmenu1 = new JMenuItem("See all registered organizations");
     private JMenuItem gmenu2 = new JMenuItem("See the latest statistics on the pandemic");
@@ -96,8 +97,8 @@ public class MainTest extends JFrame implements ActionListener {
         menu5.add(nmenu4);
 
         add(text);
-        menu6.addActionListener(this);
-
+        menu6.add(justExit);
+        justExit.addActionListener(this);
         gmenu.addActionListener(this);
         gmenu1.addActionListener(this);
         gmenu2.addActionListener(this);
@@ -132,7 +133,7 @@ public class MainTest extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (source == menu6) {
+        if (source == justExit) {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
@@ -145,9 +146,9 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
 
         } else if (source == gmenu) {
+            alreadyUserOption("Log in as a Surveilence User.");
         } else if (source == gmenu1) {
         } else if (source == gmenu2) {
-
         } else if (source == gmenu3) {
         } else if (source == gmenu4) {
         } else if (source == gmenu5) {
@@ -163,12 +164,7 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == lmenu1) {
         } else if (source == lmenu2) {
-            LogOrg frame=new LogOrg();
-            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
-            frame.setVisible(true);
-            frame.setBounds(10,10,370,600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setResizable(true);
+            alreadyUserOption("Log in as a Labor User.");
         } else if (source == lmenu3) {
         } else if (source == lmenu4) {
             Desktop d = Desktop.getDesktop();
@@ -183,12 +179,7 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == smenu1) {
         } else if (source == smenu2) {
-            LogOrg frame=new LogOrg();
-            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
-            frame.setVisible(true);
-            frame.setBounds(10,10,370,600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setResizable(true);
+            alreadyUserOption("Log in as a School User.");
         } else if (source == smenu3) {
         } else if (source == smenu4) {
             Desktop d = Desktop.getDesktop();
@@ -203,12 +194,7 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == umenu1) {
         } else if (source == umenu2) {
-            LogOrg frame=new LogOrg();
-            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
-            frame.setVisible(true);
-            frame.setBounds(10,10,370,600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setResizable(true);
+            alreadyUserOption("Log in as a University User.");
         } else if (source == umenu3) {
         } else if (source == umenu4) {
             Desktop d = Desktop.getDesktop();
@@ -223,12 +209,7 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
         } else if (source == nmenu1) {
         } else if (source == nmenu2) {
-            LogOrg frame=new LogOrg();
-            frame.setTitle("Login to your Organisation");//this is how we will give different Titles for each occasion
-            frame.setVisible(true);
-            frame.setBounds(10,10,370,600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setResizable(true);
+            alreadyUserOption("Log in as a Nursing Home User.");
         } else if (source == nmenu3) {
         } else if (source == nmenu4) {
             Desktop d = Desktop.getDesktop();
@@ -243,4 +224,14 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
         }
     }
-}
+    public static void alreadyUserOption(String anyString){
+        LogOrg frame=new LogOrg();
+        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setVisible(true);
+        frame.setBounds(10,10,370,600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+    }
+
+    }
+
