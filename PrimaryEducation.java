@@ -1,6 +1,3 @@
-
-package gr.projAboutCovid.leo.proj;
-
 import java.util.Scanner;
 
 public class PrimaryEducation extends Schools {
