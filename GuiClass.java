@@ -9,9 +9,10 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 
-public class MainTest extends JFrame implements ActionListener {
+public class GuiClass extends JFrame implements ActionListener {
 
     private JMenuBar mainApp = new JMenuBar();
+
     private JMenu menu1 = new JMenu("Goverment Menu");
     private JMenu menu2 = new JMenu("Labor Menu");
     private JMenu menu3 = new JMenu("School Menu");
@@ -52,16 +53,17 @@ public class MainTest extends JFrame implements ActionListener {
     //private Organisations Eody = new Organisations("Eody", "Marousi",200 );
 
     public static void main(String[] args) {
-        MainTest wsFrame = new MainTest();
-        wsFrame.setSize(600, 600);
+        GuiClass wsFrame = new GuiClass();
+        wsFrame.setSize(450, 500);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setVisible(true);
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public MainTest() {
+    public GuiClass() {
         setLayout(new FlowLayout());
         setJMenuBar(mainApp);
+        mainApp.setSize(400, 400);
         mainApp.add(menu1);
         mainApp.add(menu2);
         mainApp.add(menu3);
@@ -132,12 +134,13 @@ public class MainTest extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(this,"Hi");
         Object source = e.getSource();
         if (source == justExit) {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
-                        "https://www.weinegg.com/en/cuisine/wine-store/29-0.html"));
+                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAiAoOz-BRBdEiwAyuvA64TVCxGKlmLGkNUbDnVnGcV0QNNtSdm8qQUpCqkWgS56lwgtEP5GCRoCJNUQAvD_BwE"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
@@ -155,7 +158,7 @@ public class MainTest extends JFrame implements ActionListener {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
-                        "https://www.weinegg.com/en/cuisine/wine-store/29-0.html"));
+                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAiAoOz-BRBdEiwAyuvA64TVCxGKlmLGkNUbDnVnGcV0QNNtSdm8qQUpCqkWgS56lwgtEP5GCRoCJNUQAvD_BwE"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
@@ -170,7 +173,7 @@ public class MainTest extends JFrame implements ActionListener {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
-                        "https://www.weinegg.com/en/cuisine/wine-store/29-0.html"));
+                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAiAoOz-BRBdEiwAyuvA64TVCxGKlmLGkNUbDnVnGcV0QNNtSdm8qQUpCqkWgS56lwgtEP5GCRoCJNUQAvD_BwE"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
@@ -185,7 +188,7 @@ public class MainTest extends JFrame implements ActionListener {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
-                        "https://www.weinegg.com/en/cuisine/wine-store/29-0.html"));
+                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAiAoOz-BRBdEiwAyuvA64TVCxGKlmLGkNUbDnVnGcV0QNNtSdm8qQUpCqkWgS56lwgtEP5GCRoCJNUQAvD_BwE"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
@@ -200,7 +203,7 @@ public class MainTest extends JFrame implements ActionListener {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
-                        "https://www.weinegg.com/en/cuisine/wine-store/29-0.html"));
+                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAiAoOz-BRBdEiwAyuvA64TVCxGKlmLGkNUbDnVnGcV0QNNtSdm8qQUpCqkWgS56lwgtEP5GCRoCJNUQAvD_BwE"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
@@ -215,7 +218,7 @@ public class MainTest extends JFrame implements ActionListener {
             Desktop d = Desktop.getDesktop();
             try {
                 d.browse(new URI(
-                        "https://www.weinegg.com/en/cuisine/wine-store/29-0.html"));
+                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAiAoOz-BRBdEiwAyuvA64TVCxGKlmLGkNUbDnVnGcV0QNNtSdm8qQUpCqkWgS56lwgtEP5GCRoCJNUQAvD_BwE"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
@@ -224,14 +227,16 @@ public class MainTest extends JFrame implements ActionListener {
             System.exit(0);
         }
     }
-    public static void alreadyUserOption(String anyString){
-        LogOrg frame=new LogOrg();
+
+    public static void alreadyUserOption(String anyString) {
+        LogOrg frame = new LogOrg();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
         frame.setVisible(true);
-        frame.setBounds(10,10,370,600);
+        frame.setBounds(10, 10, 370, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
 
-    }
+}
+
 
