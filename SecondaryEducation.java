@@ -1,5 +1,3 @@
-package gr.projAboutCovid.leo.proj;
-
 import java.util.Scanner;
 
 
