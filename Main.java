@@ -1,5 +1,3 @@
-package sample;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.net.URI;
