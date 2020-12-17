@@ -42,8 +42,8 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	}
 	@Override
 	public static void printDetails(int code) {
-		System.out.println("Welcome.The" + allCompanies.get(code).getName + "Companies of" + allCompanies.get(code).getArea
-				+ "will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon. "
+		System.out.println("Welcome.The" + allCompanies.get(code).getName + "of" + allCompanies.get(code).getArea
+				+ "will take drastic measures to stop spread of covid-19 in our company.Please stay safe and we will call you soon. "
 				+"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 		//look caseManagmentAndHumanAddition
 	}
