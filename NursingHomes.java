@@ -55,9 +55,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                             }
                         }
                         if (flag) {
-                            System.out.printf("Δεν βρεθηκε υπαλληλος με αφμ:%s", afm);
+                            System.out.printf("Could not find employee with afm:% s", afm);
                         }
-                        System.out.println("Να συνεχιστεί η διαδικασία διαγγραφής; 0 για εξοδο");
+                        System.out.println("Continue the deletion process? 0 for exit");
                         String ans1 = scanner.nextLine();
                         if (ans1.equals("0")) {
                             break;
@@ -126,7 +126,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 		if (scanner.nextLine().equals("1")) {
 			break;
 		}
-		NursingHomes newOne = new NursingHomes(String name, String area, int numberOfPeople, boolean enclosed);
+		NursingHomes newOne = new NursingHomes(name, area, numberOfPeople, enclosed);
 	     //look caseManagmentAndHumanAddition
 	 }
 
@@ -134,10 +134,11 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     public static void printDetails(int number) {
-		System.out.println("Welcome.The" + allNursingHomes.get(code).getName() +
+        System.out.println("Welcome.The" + allNursingHomes.get(code).getName() +
                 "NursingHome of" + allNursingHomes.get(code).getArea() +
                 "will take drastic measures to stop spread of covid-19 in our NursingHome." +
                 "Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!" +
                 "Thanks for understanding in these difficult times.");
-      //look caseManagmentAndHumanAddition
+        //look caseManagmentAndHumanAddition
+    }
 }

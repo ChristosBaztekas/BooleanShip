@@ -144,9 +144,8 @@ public class Main {
 				} else {
 					displayNMenu(out);
 				}
-				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-				// θέλει να δηλώσει κρούσμα κλπ
+				//must be created a method checking if the inputed name already exists
+				//and give access as a specific user and can in case to give a positice test
 				break;
 			case 3:
 				System.out.println(
@@ -201,9 +200,8 @@ public class Main {
 				} else {
 					displaySMenu(out);
 				}
-				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-				// θέλει να δηλώσει κρούσμα κλπ
+				//must be created a method checking if the inputed name already exists
+				//and give access as a specific user and can in case to give a positice test
 				break;
 			case 3:
 				System.out.println(
@@ -250,9 +248,8 @@ public class Main {
 				}
 			case 2:
 				System.out.println("Please enter your username in order to find your account.");
-				// εδώ πρέπει να δημιουργηθεί μια μέθοδος που θα ελέγχει εάν το όνομα που
-				// εισάγει υπάρχει ήδη και θα τον βγάζει ως υπάρχων χρήστη σε περίπτωση που
-				// θέλει να δηλώσει κρούσμα κλπ
+				//must be created a method checking if the inputed name already exists
+				//and give access as a specific user and can in case to give a positice test
 				//register progress
 				if (output == -1) {
 					System.exit(0);
@@ -451,7 +448,7 @@ public class Main {
 			System.out.println("For import of a case of the school press 1 \n" + +"");// to add more option
 			Schools.printDetails(code);//shows details for this school
 			//choices of a school minister
-			System.out.println("For import of a case of the school press 1 \n" +
+			System.out.println("For import of a case of the school press 1 \n");
 			if (ans.equals("1")) {
 				break;
 			}

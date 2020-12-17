@@ -34,7 +34,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 		while (true){
 			if (department.size() == 0) {
 				//crete departments
-				int count = 0
+				int count = 0;
 				while (true) {
 					System.out.printf("Creating the %d department,for exit 0", count + 1);
 					if (scanner.nextLine().equals("0")) {

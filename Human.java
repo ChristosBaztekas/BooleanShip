@@ -121,7 +121,7 @@ public class Human {
 		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
 			String afmGiven = sc.nextInt();
-			if (afmGiven.equals("-1") {
+			if (afmGiven.equals("-1")) {
 				break;
 			}
 			int position = search(afmGiven);
@@ -129,7 +129,7 @@ public class Human {
 				System.out.printf("Does not exist this %s afm", afmGiven);
 				continue;
 			}
-			System.out.printf("Καταχώριση του ανθρώπου %s με ΑΦΜ: %s ;", allHuman[position].getName(), allHuman[position].getAFM());
+			System.out.printf("Human registration %s with AFM: %s ;", allHuman[position].getName(), allHuman[position].getAFM());
 			String confirmed = sc.nextLine();
 			if (confirmed.equals("Yes") || confirmed.equals("yes") || confirmed.equals("y") || confirmed.equals("Y")) {
 				for(;;) {
@@ -141,8 +141,8 @@ public class Human {
 					} else if (result == 1) {
 						allHuman[position].status = Status.CONFIRMED;
 						//συνεχιζεται η διαδικασια με ιχνηλατιση
-						if (allHuman[position].belongsOrganisation = null) {//θα στελνονται στις αλλες κλασεις και απο κει
-							//θα αλλαζει πεδια και θα γινονται αναλογες πραξεις
+						if (allHuman[position].belongsOrganisation = null) {//goes where a human belong
+							//will change fields and similar operations will be performed
 							// ισως την manageCase() της organisations και αλλες
 						} else if (allHuman[position].belongsOrganisation.equals(NursingHomes)) {
 
@@ -189,7 +189,7 @@ public class Human {
 		for(;;) {
 			System.out.println("Give the AFM of the Person, 0 for exit");
 			String ans_afm = sc.nextLine();
-			if (ans_afm.equals("0") {
+			if (ans_afm.equals("0")) {
 				break;
 			}
 			if (!isValidAfm(ans_afm)) {
@@ -199,7 +199,7 @@ public class Human {
 			int pos = search(ans_afm);
 			if (pos == -1) {
 				String name ,surname, gender;
-				System.out.printf("Δεν υπάρχει άνθρωπος με ΑΦΜ:%s στην βάση, δημιουργεία ανθρώπου");
+				System.out.printf("No human with Afm number: %s at base, human creations", ans_afm);
 				for(;;){
 					System.out.println("Give the name: ");
 					name = sc.nextLine();
@@ -208,9 +208,9 @@ public class Human {
 					System.out.println("Give the gender: ");
 					gender = sc.nextLine();
 					System.out.printf("Είναι αυτά τα σωστά στοιχεία %s %s %s;,0 για οχι\n", name, surname, gender);
-					int ans = sc.nextInt()
-					if(ans == 0) {
-						System.out.println("Επαναλαμβάνεται η διαδικασία για την δημιουργεία ανθρώπου");
+					String ans = sc.nextLine();
+					if(!ans.equals("0")) {
+						System.out.println("The process of creating man is repeated");
 					} else {
 						break;
 					}
@@ -225,13 +225,13 @@ public class Human {
 
 
 			} else {
-				System.out.println("Το άτομο βρέθηκε στην βάση");
-				System.out.printf("Συνεχίζουμε την διαδικασία με τον άνθρωπο:%s;/n 0 για έξοδο: ", allHuman[pos].toString());
+				System.out.println("The person was found at the base");
+				System.out.printf("We continue the process with man:% s;\n 0 to exit: ", allHuman[pos].toString());
 				int ans = sc.nextInt();
 				if (ans != 0) {
 					return allHuman[pos];
 				} else {
-					System.out.println("Η διαδικασία για το συγκεκριμένο άτομο σταμάτησε, ξαναρχίζει για την επόμενη εισαγωγή");
+					System.out.println("The process for that person has stopped, it starts again for the next introduction");
 				}
 
 			}

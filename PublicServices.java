@@ -42,7 +42,9 @@ public class PublicServices extends Labors {
 	}
 	@Override
 	public static void printDetails(int code) {
-		System.out.println("Welcome.The" + allPublicServices.get(code).super.getName + "Companies of" + allPublicServices.get(code).super.getArea + "will take drastic measures to stop spread of covid-19 in this public sector. Please stay safe and we will call you soon. Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
+		System.out.println("Welcome.The" + allPublicServices.get(code).getName + "Companies of" + allPublicServices.get(code).getArea +
+				"will take drastic measures to stop spread of covid-19 in this public sector. Please stay safe and we will call you soon. " +
+				"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 	}
 
 }
