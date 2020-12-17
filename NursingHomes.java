@@ -1,8 +1,4 @@
-package sample;
-
 import java.util.Scanner;
-//import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-// why do we need that
 import java.util.ArrayList;
 
 public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
@@ -66,7 +62,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                     }
                     break;
                 }
-            } else {//from cunstractor
+            } else {//from constractor
                 System.out.println("There are no employes filled, Please start with giving them");
                 int i = 0;
                 while (true) {
