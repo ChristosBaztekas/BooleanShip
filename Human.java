@@ -36,6 +36,10 @@ public class Human {
 		allHuman.add(this);
 		sort();
 	}
+	enum Status {
+		NORMAL, SUSPECT,PRESUMPITIVE,CONFIRMED
+	}
+
 	//helps for sort
 	private static class SortByAfm implements Comparator<Human> {
 		public int compare(Human a, Human b) {
@@ -120,7 +124,7 @@ public class Human {
 	public static void testResult() {
 		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
-			String afmGiven = sc.nextInt();
+			String afmGiven = sc.nextLine();
 			if (afmGiven.equals("-1")) {
 				break;
 			}
@@ -129,28 +133,28 @@ public class Human {
 				System.out.printf("Does not exist this %s afm", afmGiven);
 				continue;
 			}
-			System.out.printf("Human registration %s with AFM: %s ;", allHuman[position].getName(), allHuman[position].getAFM());
+			System.out.printf("Human registration %s with AFM: %s ;", allHuman.get(position).getName(), allHuman.get(position).getAfm());
 			String confirmed = sc.nextLine();
 			if (confirmed.equals("Yes") || confirmed.equals("yes") || confirmed.equals("y") || confirmed.equals("Y")) {
 				for(;;) {
 					System.out.println("Give 0 for negative, 1 for positive for the result of the test: ");
 					int result = sc.nextInt();
 					if (result == 0) {
-						allHuman[position].status = Status.NORMAL;
+						allHuman.get(position).status = Status.NORMAL;
 						break;
 					} else if (result == 1) {
-						allHuman[position].status = Status.CONFIRMED;
+						allHuman.get(position).status = Status.CONFIRMED;
 						//συνεχιζεται η διαδικασια με ιχνηλατιση
-						if (allHuman[position].belongsOrganisation = null) {//goes where a human belong
+						if (allHuman.get(position).belongsOrganisation == null) {//goes where a human belong
 							//will change fields and similar operations will be performed
 							// ισως την manageCase() της organisations και αλλες
-						} else if (allHuman[position].belongsOrganisation.equals(NursingHomes)) {
+						} else if (allHuman.get(position).belongsOrganisation.equals("NursingHomes")) {
 
-						} else if (allHuman[position].belongsOrganisation.equals(Labors)) {
+						} else if (allHuman.get(position).belongsOrganisation.equals("Labors")) {
 
-						} else if (allHuman[position].belongsOrganisation.equals(Schools)) {
+						} else if (allHuman.get(position).belongsOrganisation.equals("Schools")) {
 
-						} else if (allHuman[position].belongsOrganisation.equals(Universities)) {
+						} else if (allHuman.get(position).belongsOrganisation.equals("Universities")) {
 
 						}
 						break;
@@ -226,10 +230,10 @@ public class Human {
 
 			} else {
 				System.out.println("The person was found at the base");
-				System.out.printf("We continue the process with man:% s;\n 0 to exit: ", allHuman[pos].toString());
+				System.out.printf("We continue the process with man:% s;\n 0 to exit: ", allHuman.get(pos).toString());
 				int ans = sc.nextInt();
 				if (ans != 0) {
-					return allHuman[pos];
+					return allHuman.get(pos);
 				} else {
 					System.out.println("The process for that person has stopped, it starts again for the next introduction");
 				}
@@ -237,5 +241,6 @@ public class Human {
 			}
 
 		}
+		return null;
 	}
 }

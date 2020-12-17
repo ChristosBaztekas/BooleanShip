@@ -1,7 +1,8 @@
 package sample;
 
 import java.util.Scanner;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+//import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+// why do we need that
 import java.util.ArrayList;
 
 public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
@@ -34,15 +35,15 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-                        Human one = createHuman(this.getClass().getName(), this.id);
+                        Human one = Human.createHuman(this.getClass().getName(), this.id);
                         employees.add(one);
                     }
                     break;
                 }
                 System.out.printf("There are %d Employee(s), would you like to remove one?\n" +
                         "Press 1 for yes", employees.size());
-                String ans = scanner.nextLine();
-                if (ans.equals("1")) {
+                String ans0 = scanner.nextLine();
+                if (ans0.equals("1")) {
                     while (true){
                         System.out.println("Give the afm of the employee that want to remove");
                         String afm = scanner.nextLine();
@@ -73,7 +74,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-                    Human one = createHuman(this.getClass().getName(), this.id);
+                    Human one = Human.createHuman(this.getClass().getName(), this.id);
                     employees.add(one);
                     i++;
                 }
@@ -84,7 +85,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     public void monitoring(int orgNum) {
 
     }
-    public void declareCase(){
+    private void declareCase() {
+
         System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B");
         String input = scanner.nextLine();
@@ -106,39 +108,47 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     public static void createOrg() {
-		System.out.println("What is the name of the NursingHome?/nWrite the name without spaces!");
-		String name = sc.next();
-		System.out.println("In which area is your organization located?/nWrite the are without spaces!");
-		String area = sc.next();
-		System.out.println("How many employees does your organization have?");
-		scanner.nextLine();
-		int numberOfEmployees = scanner.nextInt();
-		System.out.println("How many carenPeople does your organization have?");
-		int numberofCarenPeople = scanner.nextInt();
-		System.out.println("Is your organization open? 1for yes");
-		String input = sc.next();
-        if(input.equals("1")){
-			boolean enclosed = false;
-		}else {
-			boolean enclosed = true;
-		}
-		System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d.Is that correct? 1for yes",name,area,employess+carenpeople);
-		if (scanner.nextLine().equals("1")) {
-			break;
-		}
-		NursingHomes newOne = new NursingHomes(name, area, numberOfPeople, enclosed);
-	     //look caseManagmentAndHumanAddition
+        while (true) {
+            System.out.println("What is the name of the NursingHome?/nWrite the name without spaces!");
+            String name = sc.next();
+            System.out.println("In which area is your organization located?/nWrite the are without spaces!");
+            String area = sc.next();
+            System.out.println("How many employees does your organization have?");
+            scanner.nextLine();
+            int numberOfEmployees = scanner.nextInt();
+            System.out.println("How many carenPeople does your organization have?");
+            int numberofCarenPeople = scanner.nextInt();
+            System.out.println("Is your organization open? 1for yes");
+            String input = sc.next();
+            boolean enclosed;
+            if(input.equals("1")){
+                enclosed = false;
+            }else {
+                enclosed = true;
+            }
+            System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d." +
+                    "Is that correct? 0 for no", name, area, numberofCarenPeople + numberOfEmployees);
+            if (scanner.nextLine().equals("0")) {
+                continue;
+            }
+            NursingHomes newOne = new NursingHomes(name, area, numberofCarenPeople + numberOfEmployees, enclosed);
+            //look caseManagmentAndHumanAddition
+        }
+
 	 }
 
     public static void declareCase(int number) {
         //look caseManagmentAndHumanAddition
     }
-    public static void printDetails(int number) {
+    public static void printDetails(int code) {
         System.out.println("Welcome.The" + allNursingHomes.get(code).getName() +
                 "NursingHome of" + allNursingHomes.get(code).getArea() +
                 "will take drastic measures to stop spread of covid-19 in our NursingHome." +
                 "Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!" +
                 "Thanks for understanding in these difficult times.");
         //look caseManagmentAndHumanAddition
+    }
+    private void modifyCarenPeople() {
+
     }
 }

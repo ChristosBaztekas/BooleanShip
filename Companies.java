@@ -19,16 +19,19 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	public void managementCases() {
 		//look caseManagmentAndHumanAddition
 	}
-	@Override
+
 	public static void createOrg() {
 		//look caseManagmentAndHumanAddition
+		String name;
+		String area;
+		int employees;
 		while(true) {
 			System.out.println("What is your name?");
-			String name = scanner.nextLine();
+			name = scanner.nextLine();
 			System.out.println("In which area is your company located?");
-			String area = scanner.nextLine();
+			area = scanner.nextLine();
 			System.out.println("How many employees does your company have?");
-			int employees = scanner.nextInt();
+			employees = scanner.nextInt();
 			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes",name,area,employees);
 			if (scanner.nextLine().equals("1")) {
 				break;
@@ -36,14 +39,14 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		}
 		Companies newOne = new Companies(name, area, employees);
 	}
-	@Override
+
 	public static void declareCase(int number) {
 		//look caseManagmentAndHumanAddition
 	}
-	@Override
+
 	public static void printDetails(int code) {
-		System.out.println("Welcome.The" + allCompanies.get(code).getName + "of" + allCompanies.get(code).getArea
-				+ "will take drastic measures to stop spread of covid-19 in our company.Please stay safe and we will call you soon. "
+		System.out.println("Welcome.The" + allCompanies.get(code).getName() + "Companies of" + allCompanies.get(code).getArea()
+				+ "will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon. "
 				+"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 		//look caseManagmentAndHumanAddition
 	}

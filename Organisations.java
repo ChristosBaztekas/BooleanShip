@@ -7,7 +7,7 @@ public class Organisations {
 	private String name, area;
 	private final int id;
 	private static int count = 0;
-
+	private int numbersOfPeople;
 	private static final String EodyPassword = "78892GG";
 	private ArrayList<String> contactsNames;//extra info for people
 															//that we dont have right now
@@ -23,6 +23,7 @@ public class Organisations {
 	}
 	public Organisations() {
 		insertAnewOrganisation();
+		this.id = count;
 		//do not count++, the ahead method calls the other constructor
 	}
 
@@ -50,20 +51,23 @@ public class Organisations {
 		this.name = area;
 	}
 	public static void insertAnewOrganisation() {
+		String name;
+		String area;
+		int numbersOfpeople;
 		while (true) {
 			System.out.println("What is the name of your Organisation?/n Write the name without spaces!");
-			String name = sc.next();
+			name = sc.next();
 			System.out.println("In which area is your organisation located?/n Write the name without spaces!");
-			String area = sc.next();
+			area = sc.next();
 			System.out.println("How many people does your organisation hava?");
 			sc.nextLine();
-			int numbersOfpeople = sc.nextInt();
-			System.out.printf("Name Organisation: %s, Area: %s, Total People: %d. Is that correct? 1 for yes", name, area, numbersOfPeople);
+			numbersOfpeople = sc.nextInt();
+			System.out.printf("Name Organisation: %s, Area: %s, Total People: %d. Is that correct? 1 for yes", name, area, numbersOfpeople);
 			if (sc.nextLine().equals("1")) {
 				break;
 			}
 		}
-	new Organisations(name, area, numbersOfPeople);
+	new Organisations(name, area, numbersOfpeople);
 	}
 
 	public void notifyContacts(Human anyH) {//maybe changes to be done

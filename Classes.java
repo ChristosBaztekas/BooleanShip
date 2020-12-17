@@ -6,6 +6,7 @@ public class Classes {
     private static Scanner scanner = new Scanner(System.in);
     private String idifier;
     private String clas;
+    private int id;
     private ArrayList<Human> members = new ArrayList<Human>();
     private static int count = 0;
 

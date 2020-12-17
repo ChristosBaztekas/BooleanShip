@@ -55,63 +55,63 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 				"Always our first priority was the safety of our children!Thanks for understanding in these difficult times.");
 	}
 	private void modifyTeachers() {
-        	while (true){
-            		if(teachers.size() != 0) {
-                		System.out.printf("There are %d Teacher(s), would you like to add new?\n" +
-                        		"Press 1 for yes,otherwise we will go to remove panel", teachers.size());
-                		String ans = scanner.nextLine();
-                		if (ans.equals("1")) {
-                    			int i = 0;
-                    			while (true) {
-                        			System.out.printf("Adding the %d teacher, for exit 0", i+1);
-                        			if (scanner.nextLine().equals("0")) {
-                            				break;
-			                        }
-			                        Human one = createHuman(this.getClass().getName(), this.id);
-			                        teachers.add(one);
-		                        }
-			                break;
-		                }
-		                System.out.printf("There are %d Teacher(s), would you like to remove one?\n" +
-		                        "Press 1 for yes", teachers.size());
-                		String ans = scanner.nextLine();
-                		if (ans.equals("1")) {
-                    			while (true){
-                        			System.out.println("Give the afm of the teacher that want to remove");
-                        			String afm = scanner.nextLine();
-                        			boolean flag = true;
-                        			for (int i=0; i < teachers.size(); i++) {
-                            				if (teachers.get(i).getAfm().equals(afm)) {
-                                				teachers.remove(i);
-                                				flag = false;
-                                				break;
-                            				}
-                        			}
-                        			if (flag) {
-                            				System.out.printf("Could not find teacher with afm:% s", afm);
-                        			}
-                        			System.out.println("Continue the deletion process? 0 for exit");
-                        			String ans1 = scanner.nextLine();
-                        			if (ans1.equals("0")) {
-                            				break;
-                        			}
-                    			}
-                    			break;
-                		}
-            		} else {//from cunstractor
-                		System.out.println("There are no teachers filled, Please start with giving them");
-                		int i = 0;
-                		while (true) {
-                    			System.out.printf("Creating the %d teacher, 0 for exit", i+1);
-                    			if (scanner.nextLine().equals("0")) {
-                        			break;
-                    			}
-                    			Human one = createHuman(this.getClass().getName(), this.id);
-                    			teachers.add(one);
-                    			i++;
-                		}
-                		break;
-            		}
-        	}
-    	}
+		while (true){
+			if(teachers.size() != 0) {
+				System.out.printf("There are %d Teacher(s), would you like to add new?\n" +
+						"Press 1 for yes,otherwise we will go to remove panel", teachers.size());
+				String ans = scanner.nextLine();
+				if (ans.equals("1")) {
+					int i = 0;
+					while (true) {
+						System.out.printf("Adding the %d teacher, for exit 0", i+1);
+						if (scanner.nextLine().equals("0")) {
+							break;
+						}
+						Human one = Human.createHuman(this.getClass().getName(), this.id);
+						teachers.add(one);
+					}
+					break;
+				}
+				System.out.printf("There are %d Teacher(s), would you like to remove one?\n" +
+						"Press 1 for yes", teachers.size());
+				String ans0 = scanner.nextLine();
+				if (ans0.equals("1")) {
+					while (true){
+						System.out.println("Give the afm of the teacher that want to remove");
+						String afm = scanner.nextLine();
+						boolean flag = true;
+						for (int i=0; i < teachers.size(); i++) {
+							if (teachers.get(i).getAfm().equals(afm)) {
+								teachers.remove(i);
+								flag = false;
+								break;
+							}
+						}
+						if (flag) {
+							System.out.printf("Could not find teacher with afm:% s", afm);
+						}
+						System.out.println("Continue the deletion process? 0 for exit");
+						String ans1 = scanner.nextLine();
+						if (ans1.equals("0")) {
+							break;
+						}
+					}
+					break;
+				}
+			} else {//from cunstractor
+				System.out.println("There are no teachers filled, Please start with giving them");
+				int i = 0;
+				while (true) {
+					System.out.printf("Creating the %d teacher, 0 for exit", i+1);
+					if (scanner.nextLine().equals("0")) {
+						break;
+					}
+					Human one = Human.createHuman(this.getClass().getName(), this.id);
+					teachers.add(one);
+					i++;
+				}
+				break;
+			}
+		}
+	}
 }

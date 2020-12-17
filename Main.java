@@ -103,7 +103,7 @@ public class Main {
 
 	}
 
-	public static void nMenu() {
+	public static void nMenu() throws URISyntaxException, IOException {
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the Nursing Homes user menu.");
@@ -127,7 +127,7 @@ public class Main {
 			}
 			switch (answer) {
 			case 1:
-				NursingHome.createOrg();// implementation of createOrg to NursingHomes in order to create the user
+				NursingHomes.createOrg();// implementation of createOrg to NursingHomes in order to create the user
 				System.out.println("The Nursing Home has been created, now enter as registered");
 				System.out.println("Would you like to connect?, enter 1 for yes");
 				String ans = sc.nextLine();
@@ -138,7 +138,8 @@ public class Main {
 				}
 			case 2:
 				System.out.println("Please enter your username in order to find your account.");
-				//register proccess
+				//register proccess out =...
+				int out =0;
 				if (out == -1) {
 					System.exit(0);
 				} else {
@@ -158,7 +159,7 @@ public class Main {
 		}
 	}
 
-	public static void sMenu() throws URISyntaxException {
+	public static void sMenu() throws URISyntaxException, IOException {
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the school user menu.");
@@ -194,7 +195,8 @@ public class Main {
 				}
 			case 2:
 				System.out.println("Please enter your username in order to find your account.");
-				//register progress
+				//register progress out=...
+				int out = -1;
 				if (out == -1) {
 					System.exit(0);
 				} else {
@@ -214,7 +216,7 @@ public class Main {
 		}
 	}
 
-	public static void uMenu() throws URISyntaxException {
+	public static void uMenu() throws URISyntaxException, IOException {
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the university user menu.");
@@ -250,7 +252,8 @@ public class Main {
 				System.out.println("Please enter your username in order to find your account.");
 				//must be created a method checking if the inputed name already exists
 				//and give access as a specific user and can in case to give a positice test
-				//register progress
+				//register progress, out=...
+				int output = 0;
 				if (output == -1) {
 					System.exit(0);
 				} else {
@@ -391,38 +394,36 @@ public class Main {
 			} finally {
 				sc.nextLine();
 			}
-
-			switch (usersInput) {
-			case "1":
-			case "G":
-				gMenu();
-				break;
-			case "2":
-			case "L":
-				lMenu();
-				break;
-			case "3":
-			case "S":
-				sMenu();
-				break;
-			case "4":
-			case "U":
-				uMenu();
-				break;
-			case "5":
-			case "N":
-				nMenu();
-				break;
-			case "6":
-			case "E":
-			default:
-				try {
-					eMenu();
-				} catch (Exception e) {
-
-					e.printStackTrace();
+			try {
+				switch (usersInput) {
+					case "1":
+					case "G":
+						gMenu();
+						break;
+					case "2":
+					case "L":
+						lMenu();
+						break;
+					case "3":
+					case "S":
+						sMenu();
+						break;
+					case "4":
+					case "U":
+						uMenu();
+						break;
+					case "5":
+					case "N":
+						nMenu();
+						break;
+					case "6":
+					case "E":
+					default:
+						eMenu();
+						break;
 				}
-
+			} catch (Exception e ) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -445,10 +446,9 @@ public class Main {
 		while (true) {
 			Schools.printDetails(code);// shows details for this school
 			// choices of a school minister
-			System.out.println("For import of a case of the school press 1 \n" + +"");// to add more option
-			Schools.printDetails(code);//shows details for this school
+			System.out.println("For import of a case of the school press 1 \n" +"");// to add more option
 			//choices of a school minister
-			System.out.println("For import of a case of the school press 1 \n");
+			String ans = sc.nextLine();
 			if (ans.equals("1")) {
 				break;
 			}
@@ -458,9 +458,10 @@ public class Main {
 
 	private static void displayNMenu(int code) {
 		while (true) {
-			NursingHome.printDetails(code);
+			NursingHomes.printDetails(code);
 
-			NursingHome.callDeclareCase(code);
+			NursingHomes.declareCase(code);
+			String ans = sc.nextLine();
 			if (ans.equals("1")) {
 				break;
 			}

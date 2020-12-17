@@ -1,5 +1,4 @@
-package gr.projAboutCovid.leo.proj;
-
+package sample;
 public interface caseManagmentAndHumanAddition {
 	public static void managementCases() {};//is called by inside the class with cooperation of declareCase for the protocol
 	public static void createOrg() {};//creates a new whole object of your class
