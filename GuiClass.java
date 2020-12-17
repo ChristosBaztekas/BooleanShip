@@ -31,6 +31,9 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenu menu5 = new JMenu("Nursing home Menu");
     private JMenu menu6 = new JMenu("Exit");
 
+    private JMenu rateUs = new JMenu("Rate us");
+
+    private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
 
     private JMenuItem latestProtocolsl = new JMenuItem("Latest Protocols for the Labors category.");
     private JMenuItem latestProtocolss = new JMenuItem("Latest Protocols for the School category.");
@@ -47,22 +50,22 @@ public class GuiClass extends JFrame implements ActionListener {
 
     private JMenuItem nmenu1 = new JMenuItem("Info about this menu");
     private JMenuItem nmenu2 = new JMenuItem("User menu");
-    private JMenuItem nmenu3 = new JMenuItem("Sign in");
+    private JMenuItem nmenu3 = new JMenuItem("Sign up");
     private JMenuItem nmenu4 = new JMenuItem("Exit");
 
     private JMenuItem smenu1 = new JMenuItem("Info about this menu");
     private JMenuItem smenu2 = new JMenuItem("User menu");
-    private JMenuItem smenu3 = new JMenuItem("Sign in");
+    private JMenuItem smenu3 = new JMenuItem("Sign up");
     private JMenuItem smenu4 = new JMenuItem("Exit");
 
     private JMenuItem umenu1 = new JMenuItem("Info about this menu");
     private JMenuItem umenu2 = new JMenuItem("User menu");
-    private JMenuItem umenu3 = new JMenuItem("Sign in");
+    private JMenuItem umenu3 = new JMenuItem("Sign up");
     private JMenuItem umenu4 = new JMenuItem("Exit");
 
     private JMenuItem lmenu1 = new JMenuItem("Info about this menu");
     private JMenuItem lmenu2 = new JMenuItem("User menu");
-    private JMenuItem lmenu3 = new JMenuItem("Sign in");
+    private JMenuItem lmenu3 = new JMenuItem("Sign up");
     private JMenuItem lmenu4 = new JMenuItem("Exit");
 
 
@@ -100,6 +103,7 @@ public class GuiClass extends JFrame implements ActionListener {
         mainApp.add(help);
         mainApp.add(contactUs);
         mainApp.add(justExit);
+        mainApp.add(rateUs);
         useFullWebsitesAboutCovid.add(whoWebpage);
         useFullWebsitesAboutCovid.add(eodyWebpage);
         contactUs.add(emailAd);
@@ -110,7 +114,7 @@ public class GuiClass extends JFrame implements ActionListener {
         allmenus.add(menu4);
         allmenus.add(menu5);
         allmenus.add(menu6);
-
+        rateUs.add(helpUsBecomeBetter);
 
         menu2.add(lmenu1);
         menu2.add(lmenu2);
@@ -147,6 +151,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
 
         menu6.add(justExit);
+        helpUsBecomeBetter.addActionListener(this);
         latestProtocolsl.addActionListener(this);
         latestProtocolsu.addActionListener(this);
         latestProtocolsn.addActionListener(this);
@@ -333,6 +338,15 @@ public class GuiClass extends JFrame implements ActionListener {
             try {
                 d.browse(new URI(
                         "https://eody.gov.gr/"));//input here a url that leads to the latest protocol website
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+        }else if(source == helpUsBecomeBetter){
+            try {
+                d.browse(new URI(
+                        "https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c"));
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             } catch (URISyntaxException uriSyntaxException) {
