@@ -7,29 +7,28 @@ import java.io.IOException;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health for
-
+	private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
 	static int chance = 0;
-
 	private static void displayGMenu() {
 		int choice;
 		for (;;) {
 			System.out.println("User Surveillance Menu." + "\n Press 1 to see all registered organizations."
 					+ "\n Press 2 to see the latest statistics on the pandemic."
-					+ "\n Press 3 to see all recorded case contacts." + "\n Press 4 to see cases by regions."
-					+ "\n Press 5 to exit");
+					+ "\n Press 3 to see all recorded case." + "\n Press 4 to see all Contacts of Cases"
+					+ "\n Press 5 to give testResults" + "\n Press 6 to see cases by regions."
+					+ "\n Press 7 to send an email to all registered Organisations" + "\n Press 8 to exit");
 
 			while (true) {
 				if (!sc.hasNextInt()) {
 					String input = sc.nextLine();
 					System.out.println(
-							" Your import(" + input + ")it's not number.Please choose a number between 1 and 5.\n");
+							" Your import(" + input + ")it's not number.Please choose a number between 1 and 8.\n");
 					continue;
 				} else {
 					choice = sc.nextInt();
 					sc.nextLine();
-					if (choice >= 5 || choice <= 1) {
-						System.out.println("Wrong number!Place a number between 1 and 5");
+					if (choice > 8 || choice < 1) {
+						System.out.println("Wrong number!Place a number between 1 and 8");
 						continue;
 					}
 					break;
@@ -39,16 +38,25 @@ public class Main {
 			case 1:
 				Organisations.printAllOrganisations(EodyPassword);
 				break;
-			case 2:// an api will be added along the way so that the option can be provided
+			case 2:
 				break;
 			case 3:
+				Human.printAllRecordedCases(EodyPassword);
 				// i dont know if its posible now,we have to keep every case to a static member
 				// for (int i = 0; i < callMethods.contactsNames.size(); i++) {
 				// System.out.println(callMethods.contactsNames.toString());
 				// }
 			case 4:// when we import the api we will add the option
+				Human.printAllRecordedContacts(EodyPassword);
 				break;
 			case 5:
+				Human.testResults(EodyPassword);//we believe only Eody gives results
+				break;
+			case 6:
+				break;
+			case 7:
+				//send an email
+			case 8:
 				System.out.println("You chose exit.Stay safe.");
 				System.exit(0);
 			}
@@ -63,6 +71,7 @@ public class Main {
 						+ "\n To exit or in case of incorrect selection press any other key.  ");
 		try {
 			String UsersPassword = sc.next();
+			sc.nextLine();
 			if (UsersPassword.equals(EodyPassword)) {
 				System.out.println("Correct code.Below are the options of the user responsible for surveillance:");
 				displayGMenu();
@@ -72,8 +81,7 @@ public class Main {
 					if (chance == 0) {
 						chance = 1;
 						System.out.println(
-								"You are denied access.In case of error insert t to try again otherwise any other key to exit .");
-						sc.nextLine();
+								"You are denied access. In case of error insert try again otherwise any other key to exit.");
 						String secondC = sc.next();
 						if (secondC.equals(EodyPassword)) {
 							sc.nextLine();
@@ -102,13 +110,13 @@ public class Main {
 		int answer;
 		while (true) {
 			System.out.println("Welcome to the Nursing Homes user menu.");
-			System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
+			System.out.println(" Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
 					+ "\n Type 3:if you want to exit.");
 			while (true) {
 				if (!sc.hasNextInt()) {
 					String input = sc.nextLine();
 					System.out.println(
-							" Your import(" + input + ")it's not number.Please choose a number between 1 and 5.\n");
+							" Your import(" + input + ")it's not number.Please choose a number between 1 and 3.\n");
 					continue;
 				} else {
 					answer = sc.nextInt();
@@ -122,7 +130,7 @@ public class Main {
 			}
 			switch (answer) {
 			case 1:
-				NursingHomes.createOrg();// implementation of createOrg to NursingHomes in order to create the user
+				NursingHomes.createOrg();
 				System.out.println("The Nursing Home has been created, now enter as registered");
 				System.out.println("Would you like to connect?, enter 1 for yes");
 				String ans = sc.nextLine();
@@ -164,13 +172,13 @@ public class Main {
 				if (!sc.hasNextInt()) {
 					String input = sc.nextLine();
 					System.out.println(
-							" Your import(" + input + ")it's not number.Please choose a number between 1 and 5.\n");
+							" Your import(" + input + ")it's not number.Please choose a number between 1 and 3.\n");
 					continue;
 				} else {
 					answer = sc.nextInt();
 					sc.nextLine();
 					if (answer > 3 || answer < 1) {
-						System.out.println("Wrong number!Place a number between 1 and 5");
+						System.out.println("Wrong number!Place a number between 1 and 3");
 						continue;
 					}
 					break;
@@ -178,8 +186,7 @@ public class Main {
 			}
 			switch (answer) {
 			case 1:
-				Schools.createOrg();// Schools.createOrg() should be implemented in order to create a new
-									// school-organisation.
+				Schools.createOrg();
 				System.out.println("The school have been created, now enter as refistered");
 				System.out.println("Would you like to connect?, enter 1 for yes");
 				String ans = sc.nextLine();
@@ -197,8 +204,6 @@ public class Main {
 				} else {
 					displaySMenu(out);
 				}
-				//must be created a method checking if the inputed name already exists
-				//and give access as a specific user and can in case to give a positice test
 				break;
 			case 3:
 				System.out.println(
@@ -266,27 +271,59 @@ public class Main {
 
 	}
 
-	public static void displaylMenu() {
-		System.out.println("Type 1 to insert a new member");
-		System.out.println("Type 2 to delete a  member");
-		System.out.println("Type 3 to declare a case");
-		System.out.println("Type 4 to send a covid related mail to your members.");
-		System.out.println("Type anything else to exit.");
-		String answer = sc.next();
-		// create or use the write method in order to implement the above fuctions
-		if (Integer.valueOf(answer) == 1) {
-
-		} else if ((Integer.valueOf(answer) == 2)) {
-
-		} else if ((Integer.valueOf(answer) == 3)) {
-
-		} else if ((Integer.valueOf(answer) == 4)) {
-			// i will create this so we may ask for the mails of every employee
-		} else {
-			System.out.println("You chose exit.Stay safe!");
-			System.exit(0);
+	private static void displaylMenu(int code, int idefier) {
+		while (true) {
+			int input;
+			while (true) {
+				if (idefier == 1) {
+					PublicServices.printDetails(code);
+				} else {
+					Companies.printDetails(code);
+				}
+				System.out.println("\n Press 1: To modify Departments" +
+						"\n Press 2: To Declare a Case of Covid-19" + "\n Press 3: To see the Status of your Labor" +
+						"\n Press 4: To exit");
+				if (!sc.hasNextInt()) {
+					String input1 = sc.nextLine();
+					System.out.println(
+							" Your import(" + input1 + ")it's not number.Please choose a number between 1 and 4.\n");
+					continue;
+				} else {
+					input = sc.nextInt();
+					sc.nextLine();
+					if (input > 4 || input < 1) {
+						System.out.println("Wrong number!Place a number between 1 and 4");
+						continue;
+					}
+					break;
+				}
+			}
+			switch (input) {
+				case 1:
+					if (idefier == 1) {
+						PublicServices.modifyDepartments(code);
+					} else {
+						Companies.modifyDepartments(code);
+					}
+					break;
+				case 2:
+					if (idefier == 1) {
+						PublicServices.declareCase(code);
+					} else {
+						Companies.declareCase(code);
+					}
+					break;
+				case 3:
+					if (idefier == 1) {
+						PublicServices.seeStatus(code);
+					} else {
+						Companies.seeStatus(code);
+					}
+					break;
+				case 4:
+					System.exit(0);
+			}
 		}
-
 	}
 
 	public static void lMenu() {
@@ -301,16 +338,18 @@ public class Main {
 			System.out.println("Type 2:if you want to register.");
 			System.out.println("Type anything else:if you want to exit.");
 			String option = sc.next();
-			if (Integer.valueOf(option) == 1) {
-				displaylMenu();
+			if (option.equals("1")) {
+				//sign up int code = ...
+				int code = 0;
+				displaylMenu(code, 0);
 
-			} else if (Integer.valueOf(option) == 2) {
+			} else if (option.equals("2")) {
 				System.out.println(
 						"After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
-				Labors.createOrg();// must implement the interface in order to create the new user
+				PublicServices.createOrg();// must implement the interface in order to create the new user
 				lMenu();
 			} else {
-				System.out.println("You chose exit.Stay safe!");
+				System.out.printf("You chose exit(input= %s ).Stay safe!", answer);
 				System.exit(0);
 			}
 		} else if (Integer.valueOf(answer) == 2) {
@@ -319,10 +358,12 @@ public class Main {
 			System.out.println("Type 2:if you want to register.");
 			System.out.println("Type anything else:if you want to exit.");
 			String option = sc.next();
-			if (Integer.valueOf(option) == 1) {
-				displaylMenu();
+			if (option.equals("1")) {
+				//sign up int code =
+				int code = 0;
+				displaylMenu(code, 1);
 
-			} else if (Integer.valueOf(option) == 2) {
+			} else if (option.equals("2")) {
 				System.out.println(
 						"After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
 				Companies.createOrg();// obviously the same as above
@@ -336,6 +377,8 @@ public class Main {
 			System.out.println("You chose exit.Stay safe!");
 			System.exit(0);
 		}
+		System.exit(0);
+
 
 	}
 
@@ -376,7 +419,8 @@ public class Main {
 				usersInput = sc.next();
 				while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
 						&& !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
-						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")) {
+						&& !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
+						&& !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
 
 					System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
 					sc.nextLine();
@@ -385,7 +429,7 @@ public class Main {
 
 			} catch (Exception e) {
 				System.out.println("Your import was invalid.Try again:");
-				continue;
+				break;
 			} finally {
 				sc.nextLine();
 			}
@@ -425,42 +469,133 @@ public class Main {
 
 	private static void displayUMenu(int code) {
 		while (true) {
-			Universities.printDetails(code);// details of uni
-			System.out.println("For import of case press 1" + "");
-			Universities.callDeclareCase(code);
-			System.out.println("Want to exit, press 1");
-			String ans = sc.next();
-			if (ans.equals("1")) {
-				break;
+			int input;
+			while (true) {
+				Universities.printDetails(code);// shows details for this uni
+				// choices of a chancellor
+				System.out.println("\n Press 1: To modify departments" + "\n Press 2: To modify teachers" +
+						"\n Press 3: To Declare a Case of Covid-19" + "\n Press 4: To see the status of your University"
+						+ "\n Press 5: To modify the other ralated working people" + "\n Press 6: To exit");
+				if (!sc.hasNextInt()) {
+					String input1 = sc.nextLine();
+					System.out.println(
+							" Your import(" + input1 + ")it's not number.Please choose a number between 1 and 6.\n");
+					continue;
+				} else {
+					input = sc.nextInt();
+					sc.nextLine();
+					if (input > 6 || input < 1) {
+						System.out.println("Wrong number!Place a number between 1 and 6");
+						continue;
+					}
+					break;
+				}
 			}
-			sc.nextLine();
+			switch (input) {
+				case 1:
+					Universities.modifyDepartments(code);
+					break;
+				case 2:
+					Universities.modifyTeachers(code);
+					break;
+				case 3:
+					Universities.declareCase(code);
+					break;
+				case 4:
+					Universities.seeStatus(code);
+					break;
+				case 5:
+					Universities.modifyOthers(code);
+				case 6:
+					System.exit(0);
+			}
 		}
 	}
 
 	private static void displaySMenu(int code) {
 		while (true) {
-			Schools.printDetails(code);// shows details for this school
-			// choices of a school minister
-			System.out.println("For import of a case of the school press 1 \n" +"");// to add more option
-			//choices of a school minister
-			String ans = sc.nextLine();
-			if (ans.equals("1")) {
-				break;
+			int input;
+			while (true) {
+				Schools.printDetails(code);// shows details for this school
+				// choices of a school minister
+				System.out.println("\n Press 1: To modify students and classes" + "\n Press 2: To modify teachers" +
+						"\n Press 3: To Declare a Case of Covid-19" + "\n Press 4: To see the status of your School"
+						+ "\n Press 5: To modify the other ralated working people" + "\n Press 5: To exit");
+				if (!sc.hasNextInt()) {
+					String input1 = sc.nextLine();
+					System.out.println(
+							" Your import(" + input1 + ")it's not number.Please choose a number between 1 and 6.\n");
+					continue;
+				} else {
+					input = sc.nextInt();
+					sc.nextLine();
+					if (input > 6 || input < 1) {
+						System.out.println("Wrong number!Place a number between 1 and 6");
+						continue;
+					}
+					break;
+				}
 			}
-			sc.nextLine();
+			switch (input) {
+				case 1:
+					Schools.modifyDepartments(code);
+					break;
+				case 2:
+					Schools.modifyTeachers(code);
+					break;
+				case 3:
+					Schools.declareCase(code);
+					break;
+				case 4:
+					Schools.seeStatus(code);
+					break;
+				case 5:
+					Schools.modifyOthers(code);
+				case 6:
+					System.exit(0);
+			}
+
 		}
 	}
 
 	private static void displayNMenu(int code) {
 		while (true) {
-			NursingHomes.printDetails(code);
-
-			NursingHomes.declareCase(code);
-			String ans = sc.nextLine();
-			if (ans.equals("1")) {
-				break;
+			int input;
+			while (true) {
+				NursingHomes.printDetails(code);
+				System.out.println("\n Press 1: To modify employees" + "\n Press 2: To modify guesters people" +
+						"\n Press 3: To Declare a Case of Covid-19" + "\n Press 4: To see the status of your Nursing Home"
+						+"\n Press 5: To exit");
+				if (!sc.hasNextInt()) {
+					String input1 = sc.nextLine();
+					System.out.println(
+							" Your import(" + input1 + ")it's not number.Please choose a number between 1 and 4.\n");
+					continue;
+				} else {
+					input = sc.nextInt();
+					sc.nextLine();
+					if (input > 4 || input < 1) {
+						System.out.println("Wrong number!Place a number between 1 and 4");
+						continue;
+					}
+					break;
+				}
 			}
-			sc.nextLine();
+			switch (input) {
+				case 1:
+					NursingHomes.modifyEmployees(code);
+					break;
+				case 2:
+					NursingHomes.modifyCarenPeople(code);
+					break;
+				case 3:
+					NursingHomes.declareCase(code);
+					break;
+				case 4:
+					NursingHomes.seeStatus(code);
+				case 5:
+					System.exit(0);
+			}
 		}
 	}
 }

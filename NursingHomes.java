@@ -124,6 +124,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
             System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d." +
                     "Is that correct? 0 for no", name, area, numberofCarenPeople + numberOfEmployees);
+            if (scanner.hasNext()) {
+                scanner.nextLine();
+            }
             if (scanner.nextLine().equals("0")) {
                 continue;
             }
@@ -145,6 +148,15 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     private void modifyCarenPeople() {
+
+    }
+    public static void seeStatus(int code) {
+
+    }
+    public static void modifyEmployees(int code) {
+
+    }
+    public static void modifyCarenPeople(int code) {
 
     }
 }

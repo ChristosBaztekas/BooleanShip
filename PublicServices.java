@@ -11,7 +11,6 @@ public class PublicServices extends Labors {
 		super(name, area, numbersOfPeople);
 		id = count ++;
 		allPublicServices.add(this);
-
 	}
 	@Override
 	public void managementCases() {
@@ -30,8 +29,12 @@ public class PublicServices extends Labors {
 			area = scanner.nextLine();
 			System.out.println("How many employees does your Service have?");
 			employees = scanner.nextInt();
-			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes",name,area,employees);
-			if (scanner.nextLine().equals("1")) {
+			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d. Is that correct? (1) for yes",name,area,employees);
+			if (scanner.hasNext()) {
+				scanner.nextLine();
+			}
+			String a = scanner.nextLine();
+			if (a.equals("1")) {
 				break;
 			}
 		}
@@ -45,6 +48,13 @@ public class PublicServices extends Labors {
 				"will take drastic measures to stop spread of covid-19 in this public sector. Please stay safe and we will call you soon. " +
 				"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 	}
+	public static void modifyDepartments(int code) {
+
+	}
+	public static void seeStatus(int code) {
+
+	}
+
 
 }
 

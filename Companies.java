@@ -1,4 +1,4 @@
-package sample;
+
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -33,6 +33,9 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 			System.out.println("How many employees does your company have?");
 			employees = scanner.nextInt();
 			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes",name,area,employees);
+			if (scanner.hasNext()) {
+				scanner.nextLine();
+			}
 			if (scanner.nextLine().equals("1")) {
 				break;
 			}
@@ -49,5 +52,11 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 				+ "will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon. "
 				+"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 		//look caseManagmentAndHumanAddition
+	}
+	public static void modifyDepartments(int code) {
+
+	}
+	public static void seeStatus(int code) {
+
 	}
 }

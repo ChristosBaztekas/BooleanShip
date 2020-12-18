@@ -8,12 +8,22 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	private int id ;//personal id of each object
 	private ArrayList<Human> teachers = new ArrayList<Human>();
 	private ArrayList<Classes> departments = new ArrayList<Classes>();
+	private ArrayList<Human> others = new ArrayList<Human>();
 	public Schools(String name, String area, int numbersOfPeople) {
 		//see if the arguments will be taken outside of the constructor or inside
 		super(name, area, numbersOfPeople);
 		modifyTeachers();
 		id = count++;
 		allSchools.add(this);
+	}
+	public static void seeStatus(int code) {
+
+	}
+	public static void callModifyOthers(int code) {
+
+	}
+	private void modifyOthers() {
+
 	}
 
 	public static void callDeclareCase(int code) {
@@ -27,23 +37,29 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		//look caseManagmentAndHumanAddition
 	}
 	public static void createOrg() {
+		String name;
+		String area;
+		int teachers;
+		int students;
 		while(true) {
 			System.out.println("What is the name of the school?\nWrite the name without spaces!");
-			String name = scanner.next();
+			name = scanner.next();
 			System.out.println("In which area is your organization located?\nWrite the are without spaces!");
-			String area = scanner.next();
+			area = scanner.next();
 			System.out.println("How many teachers does your organization have?");
-			int teachers = scanner.nextInt();
+			teachers = scanner.nextInt();
 			System.out.println("How many students does your organization have?");
-			int students = scanner.nextInt();
+			students = scanner.nextInt();
 			System.out.printf("Name School: %s, Area: %s, Total People(Teachers plus Students): %d." +
 					"Is that correct? 1for yes",name,area,teachers+students);
+			if (scanner.hasNext()) {
+				scanner.nextLine();
+			}
 			if (scanner.nextLine().equals("1")) {
 				break;
 			}
-			Schools newOn = new Schools(name,area,teachers+students);
 		}
-
+		Schools newOn = new Schools(name,area,teachers+students);
 	}
 
 	public static void printDetails(int code) {
@@ -111,5 +127,18 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 				break;
 			}
 		}
+	}
+
+	private void declareCase() {
+
+	}
+	public static void modifyDepartments(int code) {
+
+	}
+	public static void modifyTeachers(int code) {
+
+	}
+	public static void modifyOthers(int code) {
+
 	}
 }

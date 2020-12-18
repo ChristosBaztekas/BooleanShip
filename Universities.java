@@ -6,6 +6,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	private ArrayList<Classes> department = new ArrayList<Classes>();
 	private ArrayList<Classes> secretariat = new ArrayList<Classes>();
 	private ArrayList<Human> teachers = new ArrayList<Human>();
+	private ArrayList<Human> others = new ArrayList<Human>();
 	private static Scanner scanner = new Scanner(System.in);
 	private static ArrayList<Universities> allUnis = new ArrayList<Universities>();
 	private int id ;
@@ -101,6 +102,21 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	}
 
 	private void modifySecretariat() {
+
+	}
+	public static void seeStatus(int code) {
+
+	}
+	public static void modifyOthers(int code) {
+
+	}
+	private void modifyOthers() {
+
+	}
+	public static void modifyDepartments(int code) { //dont touch
+
+	}
+	public static void modifyTeachers(int code) { //dont touch
 
 	}
 
