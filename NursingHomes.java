@@ -5,7 +5,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<Human>();
     private ArrayList<Human> carenPeople = new ArrayList<Human>();
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
     private final int id;
     private static ArrayList<NursingHomes> allNursingHomes = new ArrayList<NursingHomes>();
@@ -17,16 +17,16 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private static String[] register() {
         while (true) {
             System.out.println("Give a username: ");
-            String input = scanner.nextLine();
+            String input = sc.nextLine();
             if (fields.get(input) != null) {
                 System.out.println("Unfortunately this username is already used! Please try another one");
                 continue;
             }
             while (true) {
                 System.out.println("Give password: ");
-                String pass1 = scanner.nextLine();
+                String pass1 = sc.nextLine();
                 System.out.println("Give again password: ");
-                String pass2 = scanner.nextLine();
+                String pass2 = sc.nextLine();
                 if (pass1.equals(pass2)) {
                     fields.put(input, pass1);
                     String[] a = {input, pass1};
@@ -49,46 +49,46 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         modifyEmployees();
         modifyCarenPeople();//yet to do
         allNursingHomes.add(this);
-        index.put(username, allNursingHomes.size() - 1)
+        index.put(username, allNursingHomes.size() - 1);
     }
     private void modifyEmployees() {
         while (true){
             if(employees.size() != 0) {
                 System.out.printf("There are %d Employee(s), would you like to add new?\n" +
                         "Press 1 for yes,otherwise we will go to remove panel", employees.size());
-                String ans = scanner.nextLine();
+                String ans = sc.nextLine();
                 if (ans.equals("1")) {
                     int i = 0;
                     while (true) {
                         System.out.printf("Adding the %d employ, for exit 0", i+1);
-                        if (scanner.nextLine().equals("0")) {
+                        if (sc.nextLine().equals("0")) {
                             break;
                         }
-                        Human one = Human.createHuman(this.getClass().getName(), this.id);
-                        employees.add(one);
+                 //not fuctional code       //Human one = Human.createHuman(this.getClass().getName(), this.id);
+                        //employees.add(one);
                     }
                     break;
                 }
                 System.out.printf("There are %d Employee(s), would you like to remove one?\n" +
                         "Press 1 for yes", employees.size());
-                String ans0 = scanner.nextLine();
+                String ans0 = sc.nextLine();
                 if (ans0.equals("1")) {
                     while (true){
                         System.out.println("Give the afm of the employee that want to remove");
-                        String afm = scanner.nextLine();
+                        String afm = sc.nextLine();
                         boolean flag = true;
                         for (int i=0; i < employees.size(); i++) {
-                            if (employees.get(i).getAfm().equals(afm)) {
+                            /*if (employees.get(i).getAfm().equals(afm)) {
                                 employees.remove(i);
                                 flag = false;
                                 break;
-                            }
+                            }*/
                         }
                         if (flag) {
                             System.out.printf("Could not find employee with afm:% s", afm);
                         }
                         System.out.println("Continue the deletion process? 0 for exit");
-                        String ans1 = scanner.nextLine();
+                        String ans1 = sc.nextLine();
                         if (ans1.equals("0")) {
                             break;
                         }
@@ -100,11 +100,11 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 int i = 0;
                 while (true) {
                     System.out.printf("Creating the %d employ, 0 for exit", i+1);
-                    if (scanner.nextLine().equals("0")) {
+                    if (sc.nextLine().equals("0")) {
                         break;
                     }
-                    Human one = Human.createHuman(this.getClass().getName(), this.id);
-                    employees.add(one);
+                    //Human one = Human.createHuman(this.getClass().getName(), this.id);
+                    //employees.add(one);
                     i++;
                 }
                 break;
@@ -118,7 +118,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 
         System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B");
-        String input = scanner.nextLine();
+        String input = sc.nextLine();
         if(input.equals('E')){
 
         } else if (input.equals('C')){
@@ -143,10 +143,10 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             System.out.println("In which area is your organization located?/nWrite the are without spaces!");
             String area = sc.next();
             System.out.println("How many employees does your organization have?");
-            scanner.nextLine();
-            int numberOfEmployees = scanner.nextInt();
+            sc.nextLine();
+            int numberOfEmployees = sc.nextInt();
             System.out.println("How many carenPeople does your organization have?");
-            int numberofCarenPeople = scanner.nextInt();
+            int numberofCarenPeople = sc.nextInt();
             System.out.println("Is your organization open? 1for yes");
             String input = sc.next();
             boolean enclosed;
@@ -157,10 +157,10 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
             System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d." +
                     "Is that correct? 0 for no", name, area, numberofCarenPeople + numberOfEmployees);
-            if (scanner.hasNext()) {
-                scanner.nextLine();
+            if (sc.hasNext()) {
+                sc.nextLine();
             }
-            if (scanner.nextLine().equals("0")) {
+            if (sc.nextLine().equals("0")) {
                 continue;
             }
             NursingHomes newOne = new NursingHomes(name, area, numberofCarenPeople + numberOfEmployees, enclosed);
