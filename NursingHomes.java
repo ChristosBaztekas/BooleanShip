@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.TreeMap;
 public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<Human>();
@@ -10,6 +10,35 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private final int id;
     private static ArrayList<NursingHomes> allNursingHomes = new ArrayList<NursingHomes>();
     private static int count = 0;
+    private String password;
+    private String username;
+    private static TreeMap<String, String> fields = new TreeMap<String, String>();
+    private static void register() {
+        while (true) {
+            System.out.println("For exit press 0\nGive a username: ");
+            String input = scanner.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            if (fields.get(input) != null) {
+                System.out.println("Unfortunately this username is already used! Please try another one");
+                continue;
+            }
+            while (true) {
+                System.out.println("Give password: ");
+                String pass1 = scanner.nextLine();
+                System.out.println("Give again password: ");
+                String pass2 = scanner.nextLine();
+                if (pass1.equals(pass2)) {
+                    fields.put(input, pass1);
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            break;
+        }
+    }
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);
         en_status = enclosed;
