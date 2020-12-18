@@ -13,13 +13,11 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private String password;
     private String username;
     private static TreeMap<String, String> fields = new TreeMap<String, String>();
-    private static void register() {
+    private static TreeMap<String, Integer> index = new TreeMap<String, Integer>();
+    private static String[] register() {
         while (true) {
-            System.out.println("For exit press 0\nGive a username: ");
+            System.out.println("Give a username: ");
             String input = scanner.nextLine();
-            if (input.equals("0")) {
-                break;
-            }
             if (fields.get(input) != null) {
                 System.out.println("Unfortunately this username is already used! Please try another one");
                 continue;
@@ -31,21 +29,27 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 String pass2 = scanner.nextLine();
                 if (pass1.equals(pass2)) {
                     fields.put(input, pass1);
-                    break;
+                    String[] a = {input, pass1};
+                    return a;
                 } else {
+                    System.out.println("Does not match");
                     continue;
                 }
             }
-            break;
         }
     }
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);
+        String[] a = register();
+        username = a[0];
+        password = a[1];
         en_status = enclosed;
         status_descr = (enclosed ? "Enclosed" : "Free Access");
         id = count ++;
         modifyEmployees();
         modifyCarenPeople();//yet to do
+        allNursingHomes.add(this);
+        index.put(username, allNursingHomes.size() - 1)
     }
     private void modifyEmployees() {
         while (true){
