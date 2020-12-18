@@ -8,7 +8,7 @@ public class Organisations {
 	private int numbersOfPeople;
 	private static final String EodyPassword = "78892GG";
 	private ArrayList<String> contactsNames;//extra info for people
-															//that we dont have right now
+															
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
 	public Organisations(String name, String area, int numbersOfPeople) {
@@ -22,7 +22,7 @@ public class Organisations {
 	public Organisations() {
 		insertAnewOrganisation();
 		this.id = count;
-		//do not count++, the ahead method calls the other constructor
+		
 	}
 
 	public int getId() {
@@ -33,9 +33,6 @@ public class Organisations {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getArea() {
 		return area;
@@ -45,9 +42,6 @@ public class Organisations {
 			return numbersOfPeople;
 	}
 
-	public void setArea(String name) {
-		this.name = area;
-	}
 	public static void insertAnewOrganisation() {
 		String name;
 		String area;
@@ -116,7 +110,7 @@ public class Organisations {
 
 		}
 
-	}// typical information of the contacts
+	}
 	@Override
 	public String toString() {
 		return "People that came to contact with a positive covid-19 person are: [contactsNames=" + contactsNames + "]";
@@ -126,7 +120,7 @@ public class Organisations {
 			//print all Organisations
 			return;
 		}
-		System.out.println("You dont have acceess");
+		System.out.println("You dont have access");
 	}
 
 }
