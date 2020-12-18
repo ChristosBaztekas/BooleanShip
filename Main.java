@@ -2,9 +2,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-//import javax.swing.JFrame;
-
 import java.awt.Desktop;
 import java.io.IOException;
 
