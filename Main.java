@@ -604,4 +604,21 @@ public class Main {
             }
         }
     }
+    private static void signUp() {
+        Organisations org = Organisations.giveAccess();
+        if (org instanceof Schools) {
+            //
+        } else if (org instanceof Universities) {
+            //
+        } else if (org instanceof NursingHomes) {
+            //
+        } else if (org instanceof Companies) {
+            //
+        } else if (org instanceof PublicServices) {
+            //
+        } else {
+            System.out.println("Not Organisation of our app");
+        }
+            
+    }
 }
