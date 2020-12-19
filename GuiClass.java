@@ -1,14 +1,12 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 
-import static java.awt.Font.*;
+import static java.awt.Font.PLAIN;
 
 
 public class GuiClass extends JFrame implements ActionListener {
@@ -68,7 +66,6 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenuItem lmenu4 = new JMenuItem("Exit");
 
 
-
     public GuiClass() {
         setLayout(new FlowLayout());
         setJMenuBar(mainApp);
@@ -77,20 +74,14 @@ public class GuiClass extends JFrame implements ActionListener {
         displayLabel3 = new JLabel("Data access and analysis will only be for the provision of statistical data and for the purpose of limiting the spread of.");
         displayLabel.setFont(new Font("Serif",
                 PLAIN,
-                30));
+                18));
         displayLabel2.setFont(new Font("Serif",
                 PLAIN,
-                30));
+                18));
         displayLabel3.setFont(new Font("Serif",
                 PLAIN,
-                30));
-        displayLabel3.setFont(new Font("Serif",
-                PLAIN,
-                30));
+                18));
 
-        getContentPane().setBackground(Color.gray);
-        add(displayLabel, BorderLayout.CENTER);
-        add(displayLabel2, BorderLayout.CENTER);
         getContentPane().setBackground(Color.gray);
         add(displayLabel, BorderLayout.CENTER);
         add(displayLabel2, BorderLayout.CENTER);
@@ -107,7 +98,7 @@ public class GuiClass extends JFrame implements ActionListener {
         useFullWebsitesAboutCovid.add(whoWebpage);
         useFullWebsitesAboutCovid.add(eodyWebpage);
         contactUs.add(emailAd);
-        mainApp.setSize(700, 700);
+        mainApp.setSize(800, 800);
         allmenus.add(menu1);
         allmenus.add(menu2);
         allmenus.add(menu3);
@@ -147,7 +138,7 @@ public class GuiClass extends JFrame implements ActionListener {
         menu5.add(nmenu4);
 
 
-         menu6.add(justExit);
+        menu6.add(justExit);
         Exit.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
         latestProtocolsl.addActionListener(this);
@@ -163,10 +154,6 @@ public class GuiClass extends JFrame implements ActionListener {
         emailAd.addActionListener(this);
 
         gmenu.addActionListener(this);
-        /*gmenu1.addActionListener(this);
-        gmenu2.addActionListener(this);
-        gmenu3.addActionListener(this);
-        gmenu4.addActionListener(this);*/
         gmenu5.addActionListener(this);
 
         lmenu1.addActionListener(this);
@@ -343,7 +330,7 @@ public class GuiClass extends JFrame implements ActionListener {
             } catch (URISyntaxException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
-        }else if(source == helpUsBecomeBetter){
+        } else if (source == helpUsBecomeBetter) {
             try {
                 d.browse(new URI(
                         "https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c"));
@@ -352,7 +339,7 @@ public class GuiClass extends JFrame implements ActionListener {
             } catch (URISyntaxException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
-        }else if(source == Problems){
+        } else if (source == Problems) {
             try {
                 d.browse(new URI(
                         "https://www.surveymonkey.com/r/2WKC6MB"));
@@ -361,7 +348,7 @@ public class GuiClass extends JFrame implements ActionListener {
             } catch (URISyntaxException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
-        }else if(source == Exit){
+        } else if (source == Exit) {
             try {
                 d.browse(new URI(
                         "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
