@@ -71,13 +71,6 @@ public class GuiClass extends JFrame implements ActionListener {
 
     //private Organisations Eody = new Organisations("Eody", "Marousi",200 );
 
-    public static void main(String[] args) {
-        GuiClass wsFrame = new GuiClass();
-        wsFrame.setSize(450, 500);
-        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
-        wsFrame.setVisible(true);
-        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
 
     public GuiClass() {
         setLayout(new FlowLayout());
