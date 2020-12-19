@@ -17,14 +17,7 @@ public class LogOrg extends JFrame implements ActionListener {
     JButton resetButton = new JButton("RESET");
     JCheckBox showPassword = new JCheckBox("Show Password");
     JButton exit = new JButton("Exit Program");
-    Container govMenu = getContentPane();
-    JButton info = new JButton("Info");
 
-    public void goverment(){
-        govMenu.setLayout(null);
-        govMenu.add(info);
-        info.addActionListener(this);
-    }
     LogOrg() {
         setLayoutManager();
         setLocationAndSize();
@@ -75,12 +68,54 @@ public class LogOrg extends JFrame implements ActionListener {
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("LeonidasDiam") && pwdText.equalsIgnoreCase("fixBugs")) {
+            if (userText.equalsIgnoreCase("LeonidasDiamg") && pwdText.equalsIgnoreCase("fixBugs")) {
                 JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                OrgMenu wsFrame = new OrgMenu();
+                wsFrame.setSize(450, 500);
+                wsFrame.setTitle("Welcome to the main Goverment User Menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            } else if (userText.equalsIgnoreCase("LeonidasDiams") && pwdText.equalsIgnoreCase("fixBugs")){
 
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                SchoolMenu wsFrame = new SchoolMenu();
+                wsFrame.setSize(450, 500);
+                wsFrame.setTitle("Welcome to the main School user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else if (userText.equalsIgnoreCase("LeonidasDiaml") && pwdText.equalsIgnoreCase("fixBugs")){
+
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                LaborMenu wsFrame = new LaborMenu();
+                wsFrame.setSize(450, 500);
+                wsFrame.setTitle("Welcome to the main Labor user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else if (userText.equalsIgnoreCase("LeonidasDiamu") && pwdText.equalsIgnoreCase("fixBugs")){
+
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                UniversityMenu wsFrame = new UniversityMenu();
+                wsFrame.setSize(450, 500);
+                wsFrame.setTitle("Welcome to the main University user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else if (userText.equalsIgnoreCase("LeonidasDiamn") && pwdText.equalsIgnoreCase("fixBugs")){
+
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                NursingHomeMenu wsFrame = new NursingHomeMenu();
+                wsFrame.setSize(450, 500);
+                wsFrame.setTitle("Welcome to the main nursing home user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
             } else {
                 JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
             }
+
 
         }
         //Coding Part of RESET button
@@ -107,9 +142,7 @@ public class LogOrg extends JFrame implements ActionListener {
             }
                 System.exit(0);
         }
-        if(e.getSource() == info){
-            JOptionPane.showMessageDialog(this, "Η Κωνσταντίνα αγαπάει μόνο τον εαυτό της");
-        }
+
 
     }
 
