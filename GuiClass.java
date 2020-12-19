@@ -14,13 +14,13 @@ import static java.awt.Font.*;
 public class GuiClass extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar mainApp = new JMenuBar();
-    private JLabel displayLabel, displayLabel2, displayLabel3;
+    private JLabel displayLabel, displayLabel2, displayLabel3;//for the text that describes our open and welcomes the user
     private JMenu allmenus = new JMenu("All Menus Available");
     private JMenu useFullWebsitesAboutCovid = new JMenu("Usefull Websites about covid");
     private JMenu help = new JMenu("Help");
     private JMenu contactUs = new JMenu("Contact us");
     private JMenu exitMenu = new JMenu("Exit");
-
+    private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
     private JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
     private JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
     private JMenuItem emailAd = new JMenuItem("Email address");
@@ -32,7 +32,7 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenu menu5 = new JMenu("Nursing home Menu");
     private JMenu menu6 = new JMenu("Exit");
 
-    private JMenuItem Problems = new JMenuItem("Please describe if you had any problem.");
+    private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private JMenu rateUs = new JMenu("Rate us");
 
     private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
@@ -44,10 +44,7 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenuItem Exit = new JMenuItem("Close Program");
     private JMenuItem justExit = new JMenuItem("Exit");
     private JMenuItem gmenu = new JMenuItem("Menu and info are not available for not authorized users");
-    private JMenuItem gmenu1 = new JMenuItem("See all registered organizations");
-    private JMenuItem gmenu2 = new JMenuItem("See the latest statistics on the pandemic");
-    private JMenuItem gmenu3 = new JMenuItem("See all recorded case contacts");
-    private JMenuItem gmenu4 = new JMenuItem("See cases by regions");
+
     private JMenuItem gmenu5 = new JMenuItem("Exit");
 
     private JMenuItem nmenu1 = new JMenuItem("Info about this menu");
@@ -71,8 +68,6 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenuItem lmenu4 = new JMenuItem("Exit");
 
 
-    //private Organisations Eody = new Organisations("Eody", "Marousi",200 );
-
 
     public GuiClass() {
         setLayout(new FlowLayout());
@@ -89,7 +84,13 @@ public class GuiClass extends JFrame implements ActionListener {
         displayLabel3.setFont(new Font("Serif",
                 PLAIN,
                 30));
-        
+        displayLabel3.setFont(new Font("Serif",
+                PLAIN,
+                30));
+
+        getContentPane().setBackground(Color.gray);
+        add(displayLabel, BorderLayout.CENTER);
+        add(displayLabel2, BorderLayout.CENTER);
         getContentPane().setBackground(Color.gray);
         add(displayLabel, BorderLayout.CENTER);
         add(displayLabel2, BorderLayout.CENTER);
@@ -114,7 +115,7 @@ public class GuiClass extends JFrame implements ActionListener {
         allmenus.add(menu5);
         allmenus.add(menu6);
         rateUs.add(helpUsBecomeBetter);
-
+        help.add(frequentlyAskedQuestions);
         menu2.add(lmenu1);
         menu2.add(lmenu2);
         menu2.add(lmenu3);
@@ -123,10 +124,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
 
         menu1.add(gmenu);
-        /*menu1.add(gmenu1);
-        menu1.add(gmenu2);
-        menu1.add(gmenu3);
-        menu1.add(gmenu4);*/
+
         menu1.add(gmenu5);
 
 
@@ -262,6 +260,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == umenu2) {
             alreadyUserOption("Log in as a University User.");
         } else if (source == umenu3) {
+
         } else if (source == umenu4) {
             try {
                 d.browse(new URI(
