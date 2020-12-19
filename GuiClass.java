@@ -19,6 +19,7 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenu useFullWebsitesAboutCovid = new JMenu("Usefull Websites about covid");
     private JMenu help = new JMenu("Help");
     private JMenu contactUs = new JMenu("Contact us");
+    private JMenu exitMenu = new JMenu("Exit");
 
     private JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
     private JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
@@ -31,6 +32,7 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenu menu5 = new JMenu("Nursing home Menu");
     private JMenu menu6 = new JMenu("Exit");
 
+    private JMenuItem Problems = new JMenuItem("Please describe if you had any problem.");
     private JMenu rateUs = new JMenu("Rate us");
 
     private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
@@ -39,7 +41,7 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenuItem latestProtocolss = new JMenuItem("Latest Protocols for the School category.");
     private JMenuItem latestProtocolsu = new JMenuItem("Latest Protocols for the University category.");
     private JMenuItem latestProtocolsn = new JMenuItem("Latest Protocols for the Nursing Home category.");
-
+    private JMenuItem Exit = new JMenuItem("Close Program");
     private JMenuItem justExit = new JMenuItem("Exit");
     private JMenuItem gmenu = new JMenuItem("Menu and info are not available for not authorized users");
     private JMenuItem gmenu1 = new JMenuItem("See all registered organizations");
@@ -97,6 +99,9 @@ public class GuiClass extends JFrame implements ActionListener {
         mainApp.add(contactUs);
         mainApp.add(justExit);
         mainApp.add(rateUs);
+        mainApp.add(exitMenu);
+        exitMenu.add(Exit);
+        help.add(Problems);
         useFullWebsitesAboutCovid.add(whoWebpage);
         useFullWebsitesAboutCovid.add(eodyWebpage);
         contactUs.add(emailAd);
@@ -143,13 +148,15 @@ public class GuiClass extends JFrame implements ActionListener {
         menu5.add(nmenu4);
 
 
-        menu6.add(justExit);
+         menu6.add(justExit);
+        Exit.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
         latestProtocolsl.addActionListener(this);
         latestProtocolsu.addActionListener(this);
         latestProtocolsn.addActionListener(this);
         latestProtocolss.addActionListener(this);
 
+        Problems.addActionListener(this);
         contactUs.addActionListener(this);
         eodyWebpage.addActionListener(this);
         whoWebpage.addActionListener(this);
@@ -345,6 +352,25 @@ public class GuiClass extends JFrame implements ActionListener {
             } catch (URISyntaxException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
+        }else if(source == Problems){
+            try {
+                d.browse(new URI(
+                        "https://www.surveymonkey.com/r/2WKC6MB"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+        }else if(source == Exit){
+            try {
+                d.browse(new URI(
+                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+            System.exit(0);
         }
 
     }
