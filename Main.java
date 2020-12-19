@@ -1,20 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import com.sun.prism.Image;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.awt.*;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.awt.Desktop;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageProducer;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.awt.Label;
-
+import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
@@ -410,10 +399,12 @@ public class Main {
 
     public static void main(String[] args) throws URISyntaxException, IOException {
         GuiClass wsFrame = new GuiClass();
-        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        wsFrame.setBounds(500, 200, 700, 700);
+        wsFrame.setBounds(400, 100, 900, 700);
+        wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
-        
+        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
         System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
