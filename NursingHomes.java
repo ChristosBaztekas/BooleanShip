@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.TreeMap;
+
 public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<Human>();
@@ -8,48 +8,16 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
     private final int id;
-    private static ArrayList<NursingHomes> allNursingHomes = new ArrayList<NursingHomes>();
     private static int count = 0;
-    private String password;
-    private String username;
-    private static TreeMap<String, String> fields = new TreeMap<String, String>();
-    private static TreeMap<String, Integer> index = new TreeMap<String, Integer>();
-    private static String[] register() {
-        while (true) {
-            System.out.println("Give a username: ");
-            String input = sc.nextLine();
-            if (fields.get(input) != null) {
-                System.out.println("Unfortunately this username is already used! Please try another one");
-                continue;
-            }
-            while (true) {
-                System.out.println("Give password: ");
-                String pass1 = sc.nextLine();
-                System.out.println("Give again password: ");
-                String pass2 = sc.nextLine();
-                if (pass1.equals(pass2)) {
-                    fields.put(input, pass1);
-                    String[] a = {input, pass1};
-                    return a;
-                } else {
-                    System.out.println("Does not match");
-                    continue;
-                }
-            }
-        }
-    }
+
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);
-        String[] a = register();
-        username = a[0];
-        password = a[1];
         en_status = enclosed;
         status_descr = (enclosed ? "Enclosed" : "Free Access");
         id = count ++;
+        add(this);
         modifyEmployees();
         modifyCarenPeople();//yet to do
-        allNursingHomes.add(this);
-        index.put(username, allNursingHomes.size() - 1);
     }
     private void modifyEmployees() {
         while (true){
@@ -169,12 +137,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 
 	 }
 
-    public static void declareCase(int number) {
+    public void declareCase() {
         //look caseManagmentAndHumanAddition
     }
-    public static void printDetails(int code) {
-        System.out.println("Welcome.The" + allNursingHomes.get(code).getName() +
-                "NursingHome of" + allNursingHomes.get(code).getArea() +
+    public void printDetails() {
+        System.out.println("Welcome.The" + getName() +
+                "NursingHome of" + getArea() +
                 "will take drastic measures to stop spread of covid-19 in our NursingHome." +
                 "Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!" +
                 "Thanks for understanding in these difficult times.");
@@ -183,13 +151,14 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private void modifyCarenPeople() {
 
     }
-    public static void seeStatus(int code) {
+    public void seeStatus(int code) {
 
     }
-    public static void modifyEmployees(int code) {
+    public void modifyEmployees() {
 
     }
-    public static void modifyCarenPeople(int code) {
+    public void modifyCarenPeople() {
 
     }
+    //checks username and password input, and if corrects give num in static array
 }

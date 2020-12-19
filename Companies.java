@@ -7,12 +7,11 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	private final int id;
 	private static int count = 0;
 	static Scanner scanner = new Scanner(System.in);
-	private static ArrayList<Companies> allCompanies = new ArrayList<Companies>();
 
 	public Companies(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
+		add(this);
 		id = count++;
-		allCompanies.add(this);
 
 	}
 	@Override
@@ -43,20 +42,20 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		Companies newOne = new Companies(name, area, employees);
 	}
 
-	public static void declareCase(int number) {
+	public void declareCase() {
 		//look caseManagmentAndHumanAddition
 	}
 
-	public static void printDetails(int code) {
-		System.out.println("Welcome.The" + allCompanies.get(code).getName() + "Companies of" + allCompanies.get(code).getArea()
+	public void printDetails() {
+		System.out.println("Welcome.The" + getName() + "Companies of" + getArea()
 				+ "will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon. "
 				+"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 		//look caseManagmentAndHumanAddition
 	}
-	public static void modifyDepartments(int code) {
+	public void modifyDepartments() {
 
 	}
-	public static void seeStatus(int code) {
+	public void seeStatus() {
 
 	}
 }

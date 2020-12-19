@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Schools extends Organisations implements caseManagmentAndHumanAddition {
 	private static Scanner scanner = new Scanner(System.in);
-	private static ArrayList<Schools> allSchools = new ArrayList<Schools>() ;
 	private static int count = 0; //use for our personal separation of the objects
 	private int id ;//personal id of each object
 	private ArrayList<Human> teachers = new ArrayList<Human>();
@@ -12,30 +11,24 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	public Schools(String name, String area, int numbersOfPeople) {
 		//see if the arguments will be taken outside of the constructor or inside
 		super(name, area, numbersOfPeople);
+		add(this);
 		modifyTeachers();
 		id = count++;
-		allSchools.add(this);
 	}
-	public static void seeStatus(int code) {
+	public void seeStatus() {
 
 	}
-	public static void callModifyOthers(int code) {
+	public void callModifyOthers() {
 
 	}
 	private void modifyOthers() {
 
 	}
 
-	public static void callDeclareCase(int code) {
-		//for example allSchools.get(code).declareCase();
-	}
 	public void managementCases() {
 		//look caseManagmentAndHumanAddition
 	}
 
-	public static void declareCase(int number) {
-		//look caseManagmentAndHumanAddition
-	}
 	public static void createOrg() {
 		String name;
 		String area;
@@ -62,9 +55,9 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		Schools newOn = new Schools(name,area,teachers+students);
 	}
 
-	public static void printDetails(int code) {
-		System.out.println("Welcome.The" + allSchools.get(code).getName() +
-				"School of" + allSchools.get(code).getArea() +
+	public void printDetails() {
+		System.out.println("Welcome.The" + getName() +
+				"School of" + .getArea() +
 				"will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon." +
 				"Always our first priority was the safety of our children!Thanks for understanding in these difficult times.");
 	}
@@ -132,13 +125,13 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	private void declareCase() {
 
 	}
-	public static void modifyDepartments(int code) {
+	public void modifyDepartments() {
 
 	}
-	public static void modifyTeachers(int code) {
+	public void modifyTeachers() {
 
 	}
-	public static void modifyOthers(int code) {
+	public void modifyOthers() {
 
 	}
 }

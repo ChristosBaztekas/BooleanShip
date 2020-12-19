@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Organisations {
 	private String name, area;
@@ -8,16 +9,63 @@ public class Organisations {
 	private int numbersOfPeople;
 	private static final String EodyPassword = "78892GG";
 	private ArrayList<String> contactsNames;//extra info for people
-															
 	static Scanner sc = new Scanner(System.in);
     static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
+	private String password;
+	private String username;
+	private Organisations subclass;
+	private static TreeMap<String, String> fields = new TreeMap<String, String>();
+	private static TreeMap<String, Organisations> codes = new TreeMap<String, Organisations>();
 	public Organisations(String name, String area, int numbersOfPeople) {
-
 		this.name = name;
 		this.area = area;
 		count++;
 		this.id = count;
+		register();
 		allOrgs.add(this);
+		codes.put(username,this);
+	}
+	private void register() {
+		while (true) {
+			System.out.println("Give a username: ");
+			String input = sc.nextLine();
+			if (fields.containsKey(input)) {
+				System.out.println("Unfortunately this username is already used! Please try another one");
+				continue;
+			}
+			while (true) {
+				System.out.println("Give password: ");
+				String pass1 = sc.nextLine();
+				System.out.println("Give again password: ");
+				String pass2 = sc.nextLine();
+				if (pass1.equals(pass2)) {
+					fields.put(input, pass1);
+					username = input;
+					password = pass1;
+
+				} else {
+					System.out.println("Does not match");
+					continue;
+				}
+			}
+		}
+	}
+	protected void add(Organisations org) {
+		subclass = org;
+	}
+	public static Organisations giveAccess() {
+		while (true) {
+			System.out.println("Give your username: ");
+			String name = sc.nextLine();
+			System.out.println("Give your password: ");
+			String pass = sc.nextLine();
+			if (fields.get(name) == pass) {
+				System.out.print("The authication has procced");
+				return codes.get(name);
+			} else {
+				System.out.print("Wrong!!!Try again!");
+			}
+		}
 	}
 	public Organisations() {
 		insertAnewOrganisation();

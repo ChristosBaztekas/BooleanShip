@@ -8,25 +8,20 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	private ArrayList<Human> teachers = new ArrayList<Human>();
 	private ArrayList<Human> others = new ArrayList<Human>();
 	private static Scanner scanner = new Scanner(System.in);
-	private static ArrayList<Universities> allUnis = new ArrayList<Universities>();
 	private int id ;
 	private static int count = 0;
 	public Universities(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
+		add(this);
 		modifyTeachers();
 		modifySecretariat();
 		id = count++;
-		allUnis.add(this);
-		
 	}
-	public static void printDetails(int code) {
+	public void printDetails() {
 		//this method is used in displayUMenu
 		//prints all details of the specific Uni(FE name,region)
 		//with the code that takes,the code is similar the the check method ahead
 		//look caseManagmentAndHumanAddition
-	}
-	public static void callDeclareCase(int code) {
-		//for example allUni.get(code).declareCase();
 	}
 	public void managementCases() {
 		//look caseManagmentAndHumanAddition
@@ -34,7 +29,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	public static void createOrg() {
 		//look caseManagmentAndHumanAddition
 	}
-	public static void declareCase(int number) {
+	public void declareCase() {
 		//look caseManagmentAndHumanAddition
 	}
 	private void modifyDepartments(){
@@ -104,19 +99,10 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	private void modifySecretariat() {
 
 	}
-	public static void seeStatus(int code) {
-
-	}
-	public static void modifyOthers(int code) {
+	public void seeStatus() {
 
 	}
 	private void modifyOthers() {
-
-	}
-	public static void modifyDepartments(int code) { //dont touch
-
-	}
-	public static void modifyTeachers(int code) { //dont touch
 
 	}
 
