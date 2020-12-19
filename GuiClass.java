@@ -89,6 +89,7 @@ public class GuiClass extends JFrame implements ActionListener {
         displayLabel3.setFont(new Font("Serif",
                 PLAIN,
                 30));
+        
         getContentPane().setBackground(Color.gray);
         add(displayLabel, BorderLayout.CENTER);
         add(displayLabel2, BorderLayout.CENTER);

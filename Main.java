@@ -1,10 +1,19 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import com.sun.prism.Image;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.awt.Desktop;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.awt.Label;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
@@ -399,13 +408,12 @@ public class Main {
         System.exit(0);
     }
 
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args) throws URISyntaxException, IOException {
         GuiClass wsFrame = new GuiClass();
-        wsFrame.setSize(450, 500);
-        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
-        wsFrame.setVisible(true);
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        wsFrame.setBounds(500, 200, 700, 700);
+        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+        
         System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
