@@ -2,9 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class LogOrg extends JFrame implements ActionListener {
-
+    static Desktop d = Desktop.getDesktop();
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -13,8 +16,15 @@ public class LogOrg extends JFrame implements ActionListener {
     JButton loginButton = new JButton("LOGIN");
     JButton resetButton = new JButton("RESET");
     JCheckBox showPassword = new JCheckBox("Show Password");
+    JButton exit = new JButton("Exit Program");
+    Container govMenu = getContentPane();
+    JButton info = new JButton("Info");
 
-
+    public void goverment(){
+        govMenu.setLayout(null);
+        govMenu.add(info);
+        info.addActionListener(this);
+    }
     LogOrg() {
         setLayoutManager();
         setLocationAndSize();
@@ -33,10 +43,9 @@ public class LogOrg extends JFrame implements ActionListener {
         userTextField.setBounds(150, 150, 150, 30);
         passwordField.setBounds(150, 220, 150, 30);
         showPassword.setBounds(150, 250, 150, 30);
-        loginButton.setBounds(50, 300, 100, 30);
-        resetButton.setBounds(200, 300, 100, 30);
-
-
+        loginButton.setBounds(20, 300, 100, 30);
+        resetButton.setBounds(120, 300, 100, 30);
+        exit.setBounds(220, 300, 120, 30);
     }
 
     public void addComponentsToContainer() {
@@ -47,12 +56,14 @@ public class LogOrg extends JFrame implements ActionListener {
         container.add(showPassword);
         container.add(loginButton);
         container.add(resetButton);
+        container.add(exit);
     }
 
     public void addActionEvent() {
         loginButton.addActionListener(this);
         resetButton.addActionListener(this);
         showPassword.addActionListener(this);
+        exit.addActionListener(this);
     }
 
 
@@ -66,6 +77,7 @@ public class LogOrg extends JFrame implements ActionListener {
             pwdText = passwordField.getText();
             if (userText.equalsIgnoreCase("LeonidasDiam") && pwdText.equalsIgnoreCase("fixBugs")) {
                 JOptionPane.showMessageDialog(this, "Login Successful");
+
             } else {
                 JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
             }
@@ -83,9 +95,22 @@ public class LogOrg extends JFrame implements ActionListener {
             } else {
                 passwordField.setEchoChar('*');
             }
-
-
         }
+        if(e.getSource() == exit){
+            try {
+                d.browse(new URI(
+                        "https://www.surveymonkey.com/r/2WKC6MB"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+                System.exit(0);
+        }
+        if(e.getSource() == info){
+            JOptionPane.showMessageDialog(this, "Η Κωνσταντίνα αγαπάει μόνο τον εαυτό της");
+        }
+
     }
 
 }
