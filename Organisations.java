@@ -61,7 +61,7 @@ public class Organisations {
 			String pass = sc.nextLine();
 			if (fields.get(name) == pass) {
 				System.out.print("The authication has procced");
-				return codes.get(name);
+				return codes.get(name).subclass;
 			} else {
 				System.out.print("Wrong!!!Try again!");
 			}

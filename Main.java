@@ -592,15 +592,19 @@ public class Main {
         Organisations org = Organisations.giveAccess();
         if (org instanceof Schools) {
             Schools school = (Schools) org;
-            //menu(school);
+            displaySMenu(school);
         } else if (org instanceof Universities) {
-            //
+            Universities u = (Universities) org;
+            displayUMenu(u);
         } else if (org instanceof NursingHomes) {
-            //
+            NursingHomes nh = (NursingHomes) org;
+            displayNMenu(nh);
         } else if (org instanceof Companies) {
-            //
+            Labors l = (Labors) org;
+            displaylMenu(l);
         } else if (org instanceof PublicServices) {
-            //
+            Labors l = (Labors) org;
+            displaylMenu(l);
         } else {
             System.out.println("Not Organisation of our app");
         }

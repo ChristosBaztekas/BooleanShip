@@ -41,7 +41,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 							break;
 						}
 					}
-					Classes one = new Classes("Labors", code);
+					Classes one = new Classes(this);
 					department.add(one);
 				}
 				break;

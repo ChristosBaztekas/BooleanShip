@@ -74,7 +74,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 						if (scanner.nextLine().equals("0")) {
 							break;
 						}
-						Human one = Human.createHuman(this.getClass().getName(), this.id);
+						Human one = Human.createHuman(this);
 						teachers.add(one);
 					}
 					break;
@@ -113,7 +113,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 					if (scanner.nextLine().equals("0")) {
 						break;
 					}
-					Human one = Human.createHuman(this.getClass().getName(), this.id);
+					Human one = Human.createHuman(this);
 					teachers.add(one);
 					i++;
 				}

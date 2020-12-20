@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Human {
 	private static ArrayList<Human> allHuman = new ArrayList<Human>();
-	private String name, surname, afm, belongsOrganisation, gender;
-	private int orgId;
+	private String name, surname, afm, gender, email;
+	private ArrayList<Organisations> belongs = new ArrayList<Organisations>();
 	private final int id; // for our personal counting and faster dialing of items in what condition can
 						//the state of the object is found
 	private Status status = Status.NORMAL;// initialization of all people in a normal state
@@ -15,13 +15,14 @@ public class Human {
 	private static SortByAfm sortItem =new SortByAfm();//do not need to understand it
 	static Scanner sc = new Scanner(System.in);
 
-	public Human(String name, String surname, String afm, String belongsOrganisation, String gender, int orgId)
+	public Human(String name, String surname, String afm, String email, String gender, Organisations org)
 			throws IllegalAccessException {
 		count++;
 		this.id = count;
 		this.gender = gender;
 		this.name = name;
 		this.surname = surname;
+		this.email = email;
 		if (!isValidAfm(afm))
 			throw new IllegalAccessException("Your input<" + afm + ">not valid afm");
 		this.afm = afm;// when we will ask the afm from the user the code will be:
@@ -29,8 +30,7 @@ public class Human {
 		 * String ssn = getSsnFromUser(); while(!YourClass.isValidSSN(ssn)) {
 		 * showErrorMessage("Not a valid ssn: " + ssn); ssn = getSsnFromUser(); }
 		 */
-		this.belongsOrganisation = belongsOrganisation;
-		this.orgId = orgId;
+		belongs.add(org);
 		allHuman.add(this);
 		sort();
 	}
@@ -149,17 +149,20 @@ public class Human {
 					} else if (result == 1) {
 						allHuman.get(position).status = Status.CONFIRMED;
 						//συνεχιζεται η διαδικασια με ιχνηλατιση
-						if (allHuman.get(position).belongsOrganisation == null) {//goes where a human belong
-							//will change fields and similar operations will be performed
-							// ισως την manageCase() της organisations και αλλες
-						} else if (allHuman.get(position).belongsOrganisation.equals("NursingHomes")) {
+						for (var org : allHuman.get(position).belongs){
+							if (org instanceof NursingHomes) {
 
-						} else if (allHuman.get(position).belongsOrganisation.equals("Labors")) {
+							} else if (org instanceof Schools) {
 
-						} else if (allHuman.get(position).belongsOrganisation.equals("Schools")) {
+							} else if (org instanceof Universities) {
 
-						} else if (allHuman.get(position).belongsOrganisation.equals("Universities")) {
+							} else if (org instanceof Companies) {
 
+							} else if (org instanceof PublicServices) {
+
+							} else {
+								System.out.println("Does not exist in a organisation of our app");
+							}
 						}
 						break;
 					} else {
@@ -191,9 +194,10 @@ public class Human {
 	//create human that returns, if does not exist
 	//argument class name and id class
 	//if person exists return the person
-	public static Human createHuman(String class_name, int orgId1) {
-		//class name=object.getClass().getName() or write your class F.E. Schools
-		//orgId1 is a indifier of the object that belongs F.E. 31 for thirty first school
+	public static Human createHuman(Oganisations org) {
+		//called as Human.creteHuman(this);
+		//RETURNS A HUMAN OR NULL FOR EXIT
+		Human one = null;
 		for(;;) {
 			System.out.println("Give the AFM of the Person, 0 for exit");
 			String ans_afm = sc.nextLine();
@@ -206,7 +210,7 @@ public class Human {
 			}
 			int pos = search(ans_afm);
 			if (pos == -1) {
-				String name ,surname, gender;
+				String name ,surname, gender, email;
 				System.out.printf("No human with Afm number: %s at base, human creations", ans_afm);
 				for(;;){
 					System.out.println("Give the name: ");
@@ -215,7 +219,9 @@ public class Human {
 					surname = sc.nextLine();
 					System.out.println("Give the gender: ");
 					gender = sc.nextLine();
-					System.out.printf("Είναι αυτά τα σωστά στοιχεία %s %s %s;,0 για οχι\n", name, surname, gender);
+					System.out.println("Give the email: ");
+					email = sc.nextLine();
+					System.out.printf("Are these the correct datas %s %s %s %s;,0 for no \n", name, surname, gender, email);
 					String ans = sc.nextLine();
 					if(!ans.equals("0")) {
 						System.out.println("The process of creating man is repeated");
@@ -223,11 +229,12 @@ public class Human {
 						break;
 					}
 				}
-				Human one = null;
 				try {
-					one = new Human(name, surname, ans_afm, class_name, gender, orgId1);
+					one = new Human(name, surname, ans_afm, email, gender, org);
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
+					System.out.println("Something gone wrong, repeat this Progress please!");
+					continue;
 				}
 				return one;
 
@@ -237,6 +244,7 @@ public class Human {
 				System.out.printf("We continue the process with man:% s;\n 0 to exit: ", allHuman.get(pos).toString());
 				int ans = sc.nextInt();
 				if (ans != 0) {
+					allHuman.get(pos).belongs.add(org);
 					return allHuman.get(pos);
 				} else {
 					System.out.println("The process for that person has stopped, it starts again for the next introduction");
