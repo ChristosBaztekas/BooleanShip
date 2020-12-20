@@ -12,6 +12,7 @@ public class Human {
 						//the state of the object is found
 	private Status status = Status.NORMAL;// initialization of all people in a normal state
 	private static int count = 0;
+	private static ArrayList<Human> waitTest = new ArrayList<Human>();
 	private static SortByAfm sortItem =new SortByAfm();//do not need to understand it
 	static Scanner sc = new Scanner(System.in);
 
@@ -35,7 +36,7 @@ public class Human {
 		sort();
 	}
 	enum Status {
-		NORMAL, SUSPECT, PRESUMPITIVE, CONFIRMED, QUARANTINE
+		NORMAL, SUSPECT, PRESUMPTIVE, CONFIRMED, QUARANTINE
 	}
 
 	//helps for sort
@@ -118,9 +119,22 @@ public class Human {
 	public static void printAllRecordedContacts(String password) {
 
 	}
-	private static void quarantineMode(Human human) {
+	protected void haveToBeTested {
+		status = Status.PRESUMPTIVE;
+		waitTest.add(this);
+	}
+	protected void removeFromOrg(Organisations org) {
+		for (int i = 0; i < belongs.size(); i++) {
+			if (belongs.get(i) == org) {
+				belongs.remove(i);
+				break;
+			}
+		}
+	}
+
+	protected static void quarantineMode(Human human) {
 		System.out.println(human.toString() + "has been found with covid");
-		human.status = Status.QUARANTINE;
+		human.status = Status.CONFIRMED;
 		while (true) {
 			System.out.println("Give us the SSN of the people that will stay with him too, exit 0");
 			System.out.println("If these person have not already be registered, they will have to do it now");
@@ -162,24 +176,40 @@ public class Human {
 			if (afmGiven.equals("-1")) {
 				break;
 			}
-			int position = search(afmGiven);
-			if (position == -1) {
-				System.out.printf("Does not exist this %s afm", afmGiven);
+			if (!isValidAfm(afmGiven)) {
+				System.out.printf("Does not exist this kind: %s afm", afmGiven);
 				continue;
 			}
-			System.out.printf("Human registration %s with AFM: %s ;", allHuman.get(position).getName(), allHuman.get(position).getAfm());
+			int position = search(afmGiven);
+			Human ahuman;
+			if (position == -1) {
+				ahuman = createHuman(afmGiven);
+			}
+			Human theHuman;
+			if (!(position < 0)) {
+				theHuman = allHuman.get(position);
+			} else {
+				theHuman = ahuman
+			}
+			System.out.printf("Human registration %s with AFM: %s ;", theHuman.getName(), theHuman.getAfm());
 			String confirmed = sc.nextLine();
 			if (confirmed.equals("Yes") || confirmed.equals("yes") || confirmed.equals("y") || confirmed.equals("Y")) {
 				for(;;) {
 					System.out.println("Give 0 for negative, 1 for positive for the result of the test: ");
 					int result = sc.nextInt();
 					if (result == 0) {
-						allHuman.get(position).status = Status.NORMAL;
+						theHuman.status = Status.NORMAL;
+						if (waitTest.remove(theHuman)) {
+							System.out.println("The %s had to be tested and the Test is negative", theHuman.toString());
+						}
 						break;
 					} else if (result == 1) {
-						allHuman.get(position).status = Status.CONFIRMED;
-						//συνεχιζεται η διαδικασια με ιχνηλατιση
-						for (var org : allHuman.get(position).belongs){
+						theHuman.status = Status.CONFIRMED;
+						if (waitTest.remove(theHuman)) {
+							System.out.println("The %s had to be tested and the Test is positive", theHuman.toString());
+						}
+						quarantineMode(theHuman);
+						for (var org : theHuman.belongs){
 							if (org == null) {
 								continue;
 							} else if (org instanceof Schools) {
