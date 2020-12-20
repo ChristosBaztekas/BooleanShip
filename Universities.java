@@ -68,7 +68,62 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		if (status) {
 			System.out.println("First go to see your Status of your University. New cases have been entered by EODY");
 		} else {
-
+			System.out.println("Give the ssn of the person that is positive");
+			String input = scanner.nextLine();
+			/*Human human = Human.checkIfCovid(input, this);
+			if (human == null) {
+				System.out.println("We dont have a member with");
+			}*/
+			for (var c : department) {
+				Human oneHuman = c.isSame(input);
+				if (oneHuman != null) {
+					System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
+					String input = scanner.nextLine();
+					if (input.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+			for (var c : secretariat) {
+				Human oneHuman = c.isSame(input);
+				if (oneHuman != null) {
+					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
+					String ans = scanner.nextLine();
+					if (ans.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+			for (var c : others) {
+				if (c.toString.equals(input)) {
+					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
+					String ans = scanner.nextLine();
+					if (ans.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+			for (var c : teachers) {
+				if (c.toString.equals(input)) {
+					System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", oneHuman.toString());
+					String ans = scanner.nextLine();
+					if (ans.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
 		}
 	}
 	private void modifyDepartments(){
@@ -209,7 +264,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						if (choice == 0) {
 							continue;
 						} else if (choice <= teachers.size()) {
-							secretariat.get(choice -1 ).haveToBeTested();
+							secretariat.get(choice -1 ).affected();
 						}
 					} else if (input.equals("3")) {
 						while (true) {
