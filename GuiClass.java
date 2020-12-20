@@ -197,7 +197,9 @@ public class GuiClass extends JFrame implements ActionListener {
             System.exit(0);
 
         } else if (source == gmenu) {
-            alreadyUserOption("Log in as a Surveilence User.");
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the Surveillance login form");
+            alreadyUserOption("Log in as a Surveillance User");
         /*} else if (source == gmenu1) {
         } else if (source == gmenu2) {
         } else if (source == gmenu3) {
@@ -215,6 +217,8 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == lmenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for public services and companies authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == lmenu2) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the Labor user login form");
             alreadyUserOption("Log in as a Labor User.");
         } else if (source == lmenu3) {
         } else if (source == lmenu4) {
@@ -230,6 +234,8 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == smenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for School authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == smenu2) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the School login form");
             alreadyUserOption("Log in as a School User.");
         } else if (source == smenu3) {
         } else if (source == smenu4) {
@@ -245,6 +251,8 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == umenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for university authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == umenu2) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the University login form");
             alreadyUserOption("Log in as a University User.");
         } else if (source == umenu3) {
 
@@ -261,6 +269,8 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nmenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for Nursing home authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == nmenu2) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home login form");
             alreadyUserOption("Log in as a Nursing Home User.");
         } else if (source == nmenu3) {
         } else if (source == nmenu4) {
