@@ -1,8 +1,14 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
+import com.sun.prism.Image;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Scanner;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
+import java.awt.Label;
 public class Main {
     /*static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
