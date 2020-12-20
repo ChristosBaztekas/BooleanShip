@@ -12,7 +12,6 @@ import static java.awt.Font.PLAIN;
 public class GuiClass extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar mainApp = new JMenuBar();
-    private JLabel displayLabel, displayLabel2, displayLabel3;//for the text that describes our open and welcomes the user
     private JMenu allmenus = new JMenu("All Menus Available");
     private JMenu useFullWebsitesAboutCovid = new JMenu("Usefull Websites about covid");
     private JMenu help = new JMenu("Help");
@@ -69,23 +68,16 @@ public class GuiClass extends JFrame implements ActionListener {
     public GuiClass() {
         setLayout(new FlowLayout());
         setJMenuBar(mainApp);
-        displayLabel = new JLabel("Welcome to the app of case detection and contact detection!");
-        displayLabel2 = new JLabel("The application is designed to make it easier for all organisations to manage the pandemic.");
-        displayLabel3 = new JLabel("Data access and analysis will only be for the provision of statistical data and for the purpose of limiting the spread of.");
-        displayLabel.setFont(new Font("Serif",
-                PLAIN,
-                18));
-        displayLabel2.setFont(new Font("Serif",
-                PLAIN,
-                18));
-        displayLabel3.setFont(new Font("Serif",
-                PLAIN,
-                18));
-
-        getContentPane().setBackground(Color.gray);
-        add(displayLabel, BorderLayout.CENTER);
-        add(displayLabel2, BorderLayout.CENTER);
-        add(displayLabel3, BorderLayout.CENTER);
+        //create image
+        	JLabel background;
+        	setSize(1200, 700);
+        	setLayout(null);
+        	setDefaultCloseOperation(EXIT_ON_CLOSE);
+        	ImageIcon img = new ImageIcon("covid.jpg");
+        	background = new JLabel("", img, JLabel.CENTER);
+        	background.setBounds(0, 0, 1200, 700);
+        	add(background);
+        	setVisible(true);
         mainApp.add(allmenus);
         mainApp.add(useFullWebsitesAboutCovid);
         mainApp.add(help);
