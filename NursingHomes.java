@@ -173,9 +173,67 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         //look caseManagmentAndHumanAddition
     }
     private void modifyCarenPeople() {
+		while (true){
+			if(carenPeople.size() != 0) {
+				System.out.printf("There are %d carenPeople, would you like to add new?\n" +
+										"Press 1 for yes,otherwise we will go to remove panel", carenPeople.size());
+				String ans = scanner.nextLine();
+				if (ans.equals("1")) {
+					int i=0;
+					while(true) {
+						System.out.printf("Adding the %d carenPeople, for exit 0", i+1);
+						if (scanner.nextLine().equals("0")) {
+							break;
+						}
+						Human one = Human.createHuman(this);
+						carenPeople.add(one);
+					}
+					break;
+				}
+				System.out.printf("There are %d carenPeople, would you like to remove one?\n" +
+				        "Press 1 for yes", carenPeople.size());
+				String ans0 = scanner.nextLine();
+				if (ans0.equals("1")) {
+					while (true){
+						System.out.println("Give the afm of the carenPeople that want to remove");
+						String afm = scanner.nextLine();
+						boolean flag = true;
+						for (int i=0; i < carenPeople.size(); i++) {
+							if (carenPeople.get(i).getAfm().equals(afm)) {
+								carenPeople.remove(i);
+								flag = false;
+								break;
+							}
+						}
+						if (flag) {
+							System.out.printf("Could not find carenPeople with afm:% s", afm);
+						}
+						System.out.println("Continue the deletion process? 0 for exit");
+						String ans1 = scanner.nextLine();
+						if (ans1.equals("0")) {
+							break;
+						}
+					}
+					break;
+				}
+			} else {
+				System.out.println("There are no carenPeople filled, Please start with giving them");
+				int i = 0;
+				while (true) {
+					System.out.printf("Creating the %d carenPeople, 0 for exit", i+1);
+					if (scanner.nextLine().equals("0")) {
+						break;
+					}
+					Human one = Human.createHuman(this);
+					carenPeople.add(one);
+					i++;
+				}
+				break;
+			}
+		}
+	}
 
-    }
-    public void seeStatus() {
+	public void seeStatus() {
         if (update) {
             update = false;
             System.out.println("There have been changes");
