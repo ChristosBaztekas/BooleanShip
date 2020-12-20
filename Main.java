@@ -1,11 +1,22 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
+
+import com.sun.prism.Image;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Scanner;
+import java.awt.Desktop;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.awt.Label;
+
 public class Main {
-    static Scanner sc = new Scanner(System.in);
+	/*static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
     static int chance = 0;
 
@@ -271,11 +282,15 @@ public class Main {
 
     }
 
-    private static void displaylMenu(Labor labor) {
+    private static void displaylMenu(int code, int idefier) {
         while (true) {
             int input;
             while (true) {
-                labor.printDetails();
+                if (idefier == 1) {
+                    PublicServices.printDetails(code);
+                } else {
+                    Companies.printDetails(code);
+                }
                 System.out.println("\n Press 1: To modify Departments" +
                         "\n Press 2: To Declare a Case of Covid-19" + "\n Press 3: To see the Status of your Labor" +
                         "\n Press 4: To exit");
@@ -296,13 +311,25 @@ public class Main {
             }
             switch (input) {
                 case 1:
-                    labor.modifyDepartments();
+                    if (idefier == 1) {
+                        PublicServices.modifyDepartments(code);
+                    } else {
+                        Companies.modifyDepartments(code);
+                    }
                     break;
                 case 2:
-                    labor.declareCase();
+                    if (idefier == 1) {
+                        PublicServices.declareCase(code);
+                    } else {
+                        Companies.declareCase(code);
+                    }
                     break;
                 case 3:
-                    labor.seeStatus();
+                    if (idefier == 1) {
+                        PublicServices.seeStatus(code);
+                    } else {
+                        Companies.seeStatus(code);
+                    }
                     break;
                 case 4:
                     System.exit(0);
@@ -379,17 +406,16 @@ public class Main {
         // that will prevent the user from
         // getting here.
         System.exit(0);
-    }
+    }*/
 
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws URISyntaxException {
         GuiClass wsFrame = new GuiClass();
-        wsFrame.setBounds(400, 100, 900, 700);
+        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        wsFrame.setBounds(500, 200, 700, 700);
         wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
-        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        System.out.println("Welcome to the app of case detection and contact detection!"
+        
+        /*System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
                 + "data and for the purpose of limiting the spread of.");
@@ -457,11 +483,11 @@ public class Main {
         }
     }
 
-    private static void displayUMenu(Universities u) {
+    private static void displayUMenu(int code) {
         while (true) {
             int input;
             while (true) {
-                u.printDetails();// shows details for this uni
+                Universities.printDetails(code);// shows details for this uni
                 // choices of a chancellor
                 System.out.println("\n Press 1: To modify departments" + "\n Press 2: To modify teachers" +
                         "\n Press 3: To Declare a Case of Covid-19" + "\n Press 4: To see the status of your University"
@@ -483,30 +509,30 @@ public class Main {
             }
             switch (input) {
                 case 1:
-                    u.modifyDepartments();
+                    Universities.modifyDepartments(code);
                     break;
                 case 2:
-                    u.modifyTeachers();
+                    Universities.modifyTeachers(code);
                     break;
                 case 3:
-                    u.declareCase();
+                    Universities.declareCase(code);
                     break;
                 case 4:
-                    u.seeStatus();
+                    Universities.seeStatus(code);
                     break;
                 case 5:
-                    u.modifyOthers();
+                    Universities.modifyOthers(code);
                 case 6:
                     System.exit(0);
             }
         }
     }
 
-    private static void displaySMenu(Schools school) {
+    private static void displaySMenu(int code) {
         while (true) {
             int input;
             while (true) {
-                school.printDetails();// shows details for this school
+                Schools.printDetails(code);// shows details for this school
                 // choices of a school minister
                 System.out.println("\n Press 1: To modify students and classes" + "\n Press 2: To modify teachers" +
                         "\n Press 3: To Declare a Case of Covid-19" + "\n Press 4: To see the status of your School"
@@ -528,19 +554,19 @@ public class Main {
             }
             switch (input) {
                 case 1:
-                    school.modifyDepartments();
+                    Schools.modifyDepartments(code);
                     break;
                 case 2:
-                    school.modifyTeachers();
+                    Schools.modifyTeachers(code);
                     break;
                 case 3:
-                    school.declareCase();
+                    Schools.declareCase(code);
                     break;
                 case 4:
-                    school.seeStatus();
+                    Schools.seeStatus(code);
                     break;
                 case 5:
-                    school.modifyOthers();
+                    Schools.modifyOthers(code);
                 case 6:
                     System.exit(0);
             }
@@ -548,11 +574,11 @@ public class Main {
         }
     }
 
-    private static void displayNMenu(NursingHomes nh) {
+    private static void displayNMenu(int code) {
         while (true) {
             int input;
             while (true) {
-                nh.printDetails();
+                NursingHomes.printDetails(code);
                 System.out.println("\n Press 1: To modify employees" + "\n Press 2: To modify guesters people" +
                         "\n Press 3: To Declare a Case of Covid-19" + "\n Press 4: To see the status of your Nursing Home"
                         + "\n Press 5: To exit");
@@ -573,41 +599,19 @@ public class Main {
             }
             switch (input) {
                 case 1:
-                    nh.modifyEmployees();
+                    NursingHomes.modifyEmployees(code);
                     break;
                 case 2:
-                    nh.modifyCarenPeople();
+                    NursingHomes.modifyCarenPeople(code);
                     break;
                 case 3:
-                    nh.declareCase();
+                    NursingHomes.declareCase(code);
                     break;
                 case 4:
-                    nh.seeStatus();
+                    NursingHomes.seeStatus(code);
                 case 5:
                     System.exit(0);
             }
-        }
-    }
-    private static void signUp() {
-        Organisations org = Organisations.giveAccess();
-        if (org instanceof Schools) {
-            Schools school = (Schools) org;
-            displaySMenu(school);
-        } else if (org instanceof Universities) {
-            Universities u = (Universities) org;
-            displayUMenu(u);
-        } else if (org instanceof NursingHomes) {
-            NursingHomes nh = (NursingHomes) org;
-            displayNMenu(nh);
-        } else if (org instanceof Companies) {
-            Labors l = (Labors) org;
-            displaylMenu(l);
-        } else if (org instanceof PublicServices) {
-            Labors l = (Labors) org;
-            displaylMenu(l);
-        } else {
-            System.out.println("Not Organisation of our app");
-        }
-
+        }*/
     }
 }
