@@ -7,7 +7,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private ArrayList<Human> carenPeople = new ArrayList<Human>();
     static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
-    private boolean status = false;//has covid
+    private boolean status = false;//has covid if trues
+    private ArrayList<Human> changes = new ArrayList<Human>();
+    private boolean update = false;
     private final int id;
     private static int count = 0;
 
@@ -139,6 +141,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 	 }
 
     public void declareCase(Human human) {
+        if (!update) {
+            changes.clear();
+            update = true;
+        } else {
+            changes.add(human);
+        }
         status = true;
         for (var empl : employees) {
             if (empl != human) {
@@ -153,6 +161,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
     }
+    public void declareCase() {
+
+    }
     public void printDetails() {
         System.out.println("Welcome.The" + getName() +
                 "NursingHome of" + getArea() +
@@ -165,6 +176,14 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 
     }
     public void seeStatus() {
+        if (update) {
+            update = false;
+            System.out.println("There have been changes");
+            System.out.println("Positive have been found: ");
+            for (var c : changes) {
+                System.out.printf("   The person: %s\n", c.toString());
+            }
+        }
         System.out.println("Status of your employees");
         for (var c  : employees) {
             System.out.println("%s has status:%s", c.toString(), c.seeStatus());
