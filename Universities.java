@@ -20,6 +20,10 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		id = count++;
 	}
 	public void printDetails() {
+		System.out.println("Welcome.The" + getName() +
+				"University of" + .getArea() +
+				"will take drastic measures to stop spread of covid-19 in our University.Please stay safe and we will call you soon." +
+				"Always our first priority was the safety of our students!Thanks for understanding in these difficult times.");
 		//this method is used in displayUMenu
 		//prints all details of the specific Uni(FE name,region)
 		//with the code that takes,the code is similar the the check method ahead
@@ -29,6 +33,30 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		//look caseManagmentAndHumanAddition
 	}
 	public static void createOrg() {
+		String name;
+		String area;
+		int teachers;
+		int students;
+		while(true) {
+			System.out.println("What is the name of the university?\nWrite the name without spaces!");
+			name = scanner.next();
+			System.out.println("In which area is your organization located?\nWrite the are without spaces!");
+			area = scanner.next();
+			System.out.println("How many teachers does your organization have?");
+			teachers = scanner.nextInt();
+			System.out.println("How many students does your organization have?");
+			students = scanner.nextInt();
+			System.out.printf("Name University: %s, Area: %s, Total People(Teachers plus Students): %d." +
+					"Is that correct? 1for yes",name,area,teachers+students);
+			if (scanner.hasNext()) {
+				scanner.nextLine();
+			}
+			if (scanner.nextLine().equals("1")) {
+				break;
+			}
+		}
+		Universities newOn = new Universities(name,area,teachers+students);
+	}
 		//look caseManagmentAndHumanAddition
 	}
 	public void declareCase(Human human) {
