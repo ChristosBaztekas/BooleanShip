@@ -35,7 +35,7 @@ public class Human {
 		sort();
 	}
 	enum Status {
-		NORMAL, SUSPECT,PRESUMPITIVE,CONFIRMED
+		NORMAL, SUSPECT, PRESUMPITIVE, CONFIRMED, QUARANTINE
 	}
 
 	//helps for sort
@@ -93,13 +93,6 @@ public class Human {
 
 	}
 
-	public String getBelongsOrganisation() {
-		return belongsOrganisation;
-	}
-
-	public void setBelongsOrganisation(String belongsOrganisation) {
-		this.belongsOrganisation = belongsOrganisation;
-	}
 
 	public String getGender() {
 		return gender;
@@ -123,6 +116,43 @@ public class Human {
 
 	}
 	public static void printAllRecordedContacts(String password) {
+
+	}
+	private static void quarantineMode(Human human) {
+		System.out.println(human.toString() + "has been found with covid");
+		human.status = Status.QUARANTINE;
+		while (true) {
+			System.out.println("Give us the SSN of the people that will stay with him too, exit 0");
+			System.out.println("If these person have not already be registered, they will have to do it now");
+			String ssntemp = sc.nextLine();
+			if (ssntemp.equals("0")) {
+				break;
+			}
+			if (!isValidAfm(ssntemp)) {
+				System.out.printf("This ssn:%s can not exist. Try again\n", ssntemp);
+				continue;
+			}
+			int search = search(ssntemp);
+			if (search == -1) {
+				System.out.printf("This ssn: does not exist, going to register, 0 for wrong input", ssntemp);
+				String num = sc.nextLine();
+				if (num.equals("0")) {
+					continue;
+
+				} else {
+					Human a = Human.createHuman(ssntemp);
+					a.status = Status.QUARANTINE;
+				}
+			} else {
+				Human a = allHuman.get(search);
+				//status and perhaps test
+				for (var c : a.belongs) {
+					//inform organisations where belongs
+				}
+			}
+		}
+	}
+
 
 	}
 	public static void testResults(String password) {
@@ -150,8 +180,8 @@ public class Human {
 						allHuman.get(position).status = Status.CONFIRMED;
 						//συνεχιζεται η διαδικασια με ιχνηλατιση
 						for (var org : allHuman.get(position).belongs){
-							if (org instanceof NursingHomes) {
-
+							if (org == null) {
+								continue;
 							} else if (org instanceof Schools) {
 
 							} else if (org instanceof Universities) {
@@ -159,6 +189,8 @@ public class Human {
 							} else if (org instanceof Companies) {
 
 							} else if (org instanceof PublicServices) {
+
+							} else if (org instanceof NursingHomes) {
 
 							} else {
 								System.out.println("Does not exist in a organisation of our app");
@@ -254,5 +286,34 @@ public class Human {
 
 		}
 		return null;
+	}
+	private static Human createHuman(String ssn) {
+		Human one = null;
+		String name ,surname, gender, email;
+		for(;;){
+			System.out.println("Give the name: ");
+			name = sc.nextLine();
+			System.out.println("Give the surname: ");
+			surname = sc.nextLine();
+			System.out.println("Give the gender: ");
+			gender = sc.nextLine();
+			System.out.println("Give the email: ");
+			email = sc.nextLine();
+			System.out.printf("Are these the correct datas %s %s %s %s;,0 for no \n", name, surname, gender, email);
+			String ans = sc.nextLine();
+			if(!ans.equals("0")) {
+				System.out.println("The process of creating man is repeated");
+			} else {
+				break;
+			}
+		}
+		try {
+			one = new Human(name, surname, ans_afm, email, gender, null);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			System.out.println("Something gone wrong, repeat this Progress please!");
+			continue;
+		}
+		return one;
 	}
 }
