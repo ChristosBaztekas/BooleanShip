@@ -38,4 +38,47 @@ public class Classes {
 	protected void modify() {
 		//asks for deleting or adding a Human
 	}
+	private void affected() {
+    	int choice;
+		while (true) {
+			System.out.println("Give the number for each member");
+			System.out.println("0: Exit");
+			for (int i = 0; i < members.size(); i++) {
+				System.out.printf("%d: %s\n", i + 1, members.get(i).toString());
+			}
+			if (!sc.hasNextInt()) {
+				String ans = sc.nextLine();
+				System.out.printf(
+						" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", members.size());
+				continue;
+			} else {
+				choice = sc.nextInt();
+				sc.nextLine();
+				if (choice > members.size()  || choice < 0) {
+					System.out.println("Wrong number!Place a number between 0 and "+ members.size());
+					continue;
+				}
+				break;
+			}
+		}
+		if (choice == 0) {
+			return;
+		} else if (choice <= members.size()) {
+			members.get(choice - 1).haveToBeTested();
+		}
+	}
+	public void printStatus() {
+    	for (var c : members) {
+			System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+		}
+	}
+	public Human isSame(String ssn) {
+    	for (var c : members) {
+    		if (c.getAfm().equals(ssn)) {
+    			return c;
+			}
+		}
+    	return null;
+	}
+
 }
