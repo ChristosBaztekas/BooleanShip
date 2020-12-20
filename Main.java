@@ -1,11 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 public class Main {
-    static Scanner sc = new Scanner(System.in);
+    /*static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
     static int chance = 0;
 
@@ -379,17 +378,17 @@ public class Main {
         // that will prevent the user from
         // getting here.
         System.exit(0);
-    }
+    }*/
 
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws URISyntaxException {
         GuiClass wsFrame = new GuiClass();
-        wsFrame.setBounds(400, 100, 900, 700);
+        wsFrame.setBounds(500, 200, 700, 700);
         wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        System.out.println("Welcome to the app of case detection and contact detection!"
+        /*System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
                 + "data and for the purpose of limiting the spread of.");
@@ -607,7 +606,7 @@ public class Main {
             displaylMenu(l);
         } else {
             System.out.println("Not Organisation of our app");
-        }
+        }*/
 
     }
 }
