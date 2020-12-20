@@ -376,7 +376,8 @@ public class GuiClass extends JFrame implements ActionListener {
         LogOrg frame = new LogOrg();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
         frame.setVisible(true);
-        frame.setBounds(10, 10, 370, 600);
+
+        frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
