@@ -23,7 +23,6 @@ public class LogOrg extends JFrame implements ActionListener {
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-
     }
 
     public void setLayoutManager() {
@@ -58,12 +57,11 @@ public class LogOrg extends JFrame implements ActionListener {
         showPassword.addActionListener(this);
         exit.addActionListener(this);
     }
-
-
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         //Coding Part of LOGIN button
-        if (e.getSource() == loginButton) {
+        if (e.getSource() == loginButton) { //if we don't put any items in passwordField and userTextField it produces an exception
             String userText;
             String pwdText;
             userText = userTextField.getText();
@@ -116,8 +114,6 @@ public class LogOrg extends JFrame implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
             }
-
-
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
@@ -125,6 +121,7 @@ public class LogOrg extends JFrame implements ActionListener {
             passwordField.setText("");
         }
         //Coding Part of showPassword JCheckBox
+        //it doesn't working 
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
@@ -143,8 +140,5 @@ public class LogOrg extends JFrame implements ActionListener {
             }
                 System.exit(0);
         }
-
-
     }
-
 }
