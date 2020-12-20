@@ -70,45 +70,46 @@ public class LogOrg extends JFrame implements ActionListener {
             pwdText = passwordField.getText();
             if (userText.equalsIgnoreCase("LeonidasDiamg") && pwdText.equalsIgnoreCase("fixBugs")) {
                 JOptionPane.showMessageDialog(this, "Login Successful");
-                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main goverment menu");
+                dispose();
                 OrgMenu wsFrame = new OrgMenu();
-                wsFrame.setSize(450, 500);
+                wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main Goverment User Menu!");
                 wsFrame.setVisible(true);
                 wsFrame.setDefaultCloseOperation(3);
             } else if (userText.equalsIgnoreCase("LeonidasDiams") && pwdText.equalsIgnoreCase("fixBugs")){
-
                 JOptionPane.showMessageDialog(this, "Login Successful");
-                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main School menu");
+                dispose();
                 SchoolMenu wsFrame = new SchoolMenu();
-                wsFrame.setSize(450, 500);
+                wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main School user menu!");
                 wsFrame.setVisible(true);
                 wsFrame.setDefaultCloseOperation(3);
             }else if (userText.equalsIgnoreCase("LeonidasDiaml") && pwdText.equalsIgnoreCase("fixBugs")){
-
                 JOptionPane.showMessageDialog(this, "Login Successful");
-                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main Labor menu");
+                dispose();
                 LaborMenu wsFrame = new LaborMenu();
-                wsFrame.setSize(450, 500);
+                wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main Labor user menu!");
                 wsFrame.setVisible(true);
                 wsFrame.setDefaultCloseOperation(3);
             }else if (userText.equalsIgnoreCase("LeonidasDiamu") && pwdText.equalsIgnoreCase("fixBugs")){
-
                 JOptionPane.showMessageDialog(this, "Login Successful");
-                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main university menu");
+                dispose();
                 UniversityMenu wsFrame = new UniversityMenu();
-                wsFrame.setSize(450, 500);
+                wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main University user menu!");
                 wsFrame.setVisible(true);
                 wsFrame.setDefaultCloseOperation(3);
             }else if (userText.equalsIgnoreCase("LeonidasDiamn") && pwdText.equalsIgnoreCase("fixBugs")){
-
                 JOptionPane.showMessageDialog(this, "Login Successful");
-                JOptionPane.showMessageDialog(this, "Redirecting to the main menu");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu");
+                dispose();
                 NursingHomeMenu wsFrame = new NursingHomeMenu();
-                wsFrame.setSize(450, 500);
+                wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main nursing home user menu!");
                 wsFrame.setVisible(true);
                 wsFrame.setDefaultCloseOperation(3);
