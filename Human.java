@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Human {
+public static class Human {
 	private static ArrayList<Human> allHuman = new ArrayList<Human>();
 	private String name, surname, afm, gender, email;
 	private ArrayList<Organisations> belongs = new ArrayList<Organisations>();
@@ -39,6 +39,7 @@ public class Human {
 		NORMAL, SUSPECT, PRESUMPTIVE, CONFIRMED, QUARANTINE
 	}
 
+
 	//helps for sort
 	private static class SortByAfm implements Comparator<Human> {
 		public int compare(Human a, Human b) {
@@ -51,7 +52,7 @@ public class Human {
 		allHuman.sort(sortItem);
 	}
 
-	public static boolean isValidAfm(String afm) {
+	private static boolean isValidAfm(String afm) {
 		int len = afm.length();
 		if (len != 9) {
 			return false;
@@ -73,6 +74,9 @@ public class Human {
 		return "Το άτομο [" + ", Όνομα = " + name + ", Επίθετο = " + surname + ", ΑΦΜ = " + afm + "]";
 	}
 
+	public String seeStatus() {
+		return status.toString();
+	}
 
 	public void setAllHuman(ArrayList<Human> allHuman) {// only in start for initilization
 		this.allHuman = allHuman;
@@ -118,6 +122,21 @@ public class Human {
 	}
 	public static void printAllRecordedContacts(String password) {
 
+	}
+	
+	//true is org member a human
+	static Human checkIfCovid(String a, Organisations org) {
+		if (isValidAfm(a)) {
+			int z = search(a);
+			if (z > -1) {
+				for (var c : allHuman.get(z).belongs) {
+					if (org == c) {
+						return allHuman.get(z);
+					}
+				}
+			}
+		}
+		return null;
 	}
 	protected void haveToBeTested {
 		status = Status.PRESUMPTIVE;
@@ -236,7 +255,6 @@ public class Human {
 	}
 	// finds if the human exists in allHuman
 	// if yes, returns its position, otherwise -1
-	//be sure of giving a number
 	private static int search(String idGiven) {
 		int low = 0;
 		int high = allHuman.size();
