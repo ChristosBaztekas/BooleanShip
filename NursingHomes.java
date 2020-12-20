@@ -7,6 +7,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private ArrayList<Human> carenPeople = new ArrayList<Human>();
     static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
+    private boolean status = false;//has covid
     private final int id;
     private static int count = 0;
 
@@ -82,7 +83,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     public void monitoring(int orgNum) {
 
     }
-    private void declareCase() {
+    private void DdeclareCase() {
 
         System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B");
@@ -137,8 +138,20 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 
 	 }
 
-    public void declareCase() {
-        //look caseManagmentAndHumanAddition
+    public void declareCase(Human human) {
+        status = true;
+        for (var empl : employees) {
+            if (empl != human) {
+                empl.haveToBeTested();
+            }
+        }
+        if (a == null) {
+            for (var p : carenPeople) {
+                if (p != human) {
+                    p.haveToBeTested();
+                }
+            }
+        }
     }
     public void printDetails() {
         System.out.println("Welcome.The" + getName() +
@@ -151,8 +164,21 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private void modifyCarenPeople() {
 
     }
-    public void seeStatus(int code) {
-
+    public void seeStatus() {
+        System.out.println("Status of your employees");
+        for (var c  : employees) {
+            System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+        }
+        System.out.println("Status of your guesters");
+        for (var c : carenPeople) {
+            System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+        }
+        if (status) {
+            System.out.println("Your Nursing Home can not be visited");
+        } else {
+            System.out.println("You are able to have visitors, but all " +
+                    "have to respect the measures for covid");
+        }
     }
     public void modifyEmployees() {
 
