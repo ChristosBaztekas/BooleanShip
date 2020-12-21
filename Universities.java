@@ -32,168 +32,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	public void managementCases() {
 		//look caseManagmentAndHumanAddition
 	}
-	public static void createOrg() {
-		String name;
-		String area;
-		int teachers;
-		int students;
-		while(true) {
-			System.out.println("What is the name of the university?\nWrite the name without spaces!");
-			name = scanner.next();
-			System.out.println("In which area is your organization located?\nWrite the are without spaces!");
-			area = scanner.next();
-			System.out.println("How many teachers does your organization have?");
-			teachers = scanner.nextInt();
-			System.out.println("How many students does your organization have?");
-			students = scanner.nextInt();
-			System.out.printf("Name University: %s, Area: %s, Total People(Teachers plus Students): %d." +
-					"Is that correct? 1for yes",name,area,teachers+students);
-			if (scanner.hasNext()) {
-				scanner.nextLine();
-			}
-			if (scanner.nextLine().equals("1")) {
-				break;
-			}
-		}
-		Universities newOn = new Universities(name,area,teachers+students);
-	}
-		//look caseManagmentAndHumanAddition
-	}
-	public void declareCase(Human human) {
-		Human one;
-		changes.add(human);
-		//where belongs in uni
-	}
-	public void declareCase() {//from user
-		if (status) {
-			System.out.println("First go to see your Status of your University. New cases have been entered by EODY");
-		} else {
-			System.out.println("Give the ssn of the person that is positive");
-			String input = scanner.nextLine();
-			/*Human human = Human.checkIfCovid(input, this);
-			if (human == null) {
-				System.out.println("We dont have a member with");
-			}*/
-			for (var c : department) {
-				Human oneHuman = c.isSame(input);
-				if (oneHuman != null) {
-					System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
-					String input = scanner.nextLine();
-					if (input.equals("0")) {
-						return;
-					} else {
-						oneHuman.haveToBeTested();
-						return;
-					}
-				}
-			}
-			for (var c : secretariat) {
-				Human oneHuman = c.isSame(input);
-				if (oneHuman != null) {
-					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
-					String ans = scanner.nextLine();
-					if (ans.equals("0")) {
-						return;
-					} else {
-						oneHuman.haveToBeTested();
-						return;
-					}
-				}
-			}
-			for (var c : others) {
-				if (c.toString.equals(input)) {
-					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
-					String ans = scanner.nextLine();
-					if (ans.equals("0")) {
-						return;
-					} else {
-						oneHuman.haveToBeTested();
-						return;
-					}
-				}
-			}
-			for (var c : teachers) {
-				if (c.toString.equals(input)) {
-					System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", oneHuman.toString());
-					String ans = scanner.nextLine();
-					if (ans.equals("0")) {
-						return;
-					} else {
-						oneHuman.haveToBeTested();
-						return;
-					}
-				}
-			}
-		}
-	}
-	private void modifyDepartments(){
-
-	}
-	private void modifyTeachers() {
-		while (true){
-			if(teachers.size() != 0) {
-				System.out.printf("There are %d Professor(s), would you like to add new?\n" +
-						"Press 1 for yes,otherwise we will go to remove panel", teachers.size());
-				String ans = scanner.nextLine();
-				if (ans.equals("1")) {
-					int i = 0;
-					while (true) {
-						System.out.printf("Adding the %d professor, for exit 0", i+1);
-						if (scanner.nextLine().equals("0")) {
-							break;
-						}
-						Human one = Human.createHuman(this.getClass().getName(), this.id);
-						teachers.add(one);
-					}
-					break;
-				}
-				System.out.printf("There are %d Professor(s), would you like to remove one?\n" +
-						"Press 1 for yes", teachers.size());
-				String ans0 = scanner.nextLine();
-				if (ans0.equals("1")) {
-					while (true){
-						System.out.println("Give the afm of the professor that want to remove");
-						String afm = scanner.nextLine();
-						boolean flag = true;
-						for (int i=0; i < teachers.size(); i++) {
-							if (teachers.get(i).getAfm().equals(afm)) {
-								teachers.remove(i);
-								flag = false;
-								break;
-							}
-						}
-						if (flag) {
-							System.out.printf("Could not find professor with afm:% s", afm);
-						}
-						System.out.println("Continue the deletion process? 0 for exit");
-						String ans1 = scanner.nextLine();
-						if (ans1.equals("0")) {
-							break;
-						}
-					}
-					break;
-				}
-			} else {//from cunstractor
-				System.out.println("There are no professors filled, Please start with giving them");
-				int i = 0;
-				while (true) {
-					System.out.printf("Creating the %d professor, 0 for exit", i+1);
-					if (scanner.nextLine().equals("0")) {
-						break;
-					}
-					Human one = Human.createHuman(this.getClass().getName(), this.id);
-					teachers.add(one);
-					i++;
-				}
-				break;
-			}
-		}
-	}
-
-	private void modifySecretariat() {
-
-	}
-	public void seeStatus() {
+	private void monitoring() {
 		if (status) {
 			System.out.println("Some changes have been ocured");
 			status = false;
@@ -325,6 +164,177 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 					}
 				}
 			}
+		} else {
+			System.out.println("Everything is done");
+		}
+	}
+	public static void createOrg() {
+		String name;
+		String area;
+		int teachers;
+		int students;
+		while(true) {
+			System.out.println("What is the name of the university?\nWrite the name without spaces!");
+			name = scanner.next();
+			System.out.println("In which area is your organization located?\nWrite the are without spaces!");
+			area = scanner.next();
+			System.out.println("How many teachers does your organization have?");
+			teachers = scanner.nextInt();
+			System.out.println("How many students does your organization have?");
+			students = scanner.nextInt();
+			System.out.printf("Name University: %s, Area: %s, Total People(Teachers plus Students): %d." +
+					"Is that correct? 1for yes",name,area,teachers+students);
+			if (scanner.hasNext()) {
+				scanner.nextLine();
+			}
+			if (scanner.nextLine().equals("1")) {
+				break;
+			}
+		}
+		Universities newOn = new Universities(name,area,teachers+students);
+	}
+		//look caseManagmentAndHumanAddition
+	}
+	public void declareCase(Human human) {
+		Human one;
+		changes.add(human);
+		status = true;
+		//maybe where belongs
+	}
+	public void declareCase() {//from user
+		if (status) {
+			System.out.println("New cases in your university have been occured\nGoing to monitoring menu");
+			monitoring();
+		}
+		System.out.println("Give the ssn of the person that is positive");
+		String input = scanner.nextLine();
+		/*Human human = Human.checkIfCovid(input, this);
+		if (human == null) {
+		System.out.println("We dont have a member with");
+		}*/
+		for (var c : department) {
+				Human oneHuman = c.isSame(input);
+				if (oneHuman != null) {
+					System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
+					String input = scanner.nextLine();
+					if (input.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+		for (var c : secretariat) {
+				Human oneHuman = c.isSame(input);
+				if (oneHuman != null) {
+					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
+					String ans = scanner.nextLine();
+					if (ans.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+		for (var c : others) {
+				if (c.toString.equals(input)) {
+					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
+					String ans = scanner.nextLine();
+					if (ans.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+		for (var c : teachers) {
+				if (c.toString.equals(input)) {
+					System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", oneHuman.toString());
+					String ans = scanner.nextLine();
+					if (ans.equals("0")) {
+						return;
+					} else {
+						oneHuman.haveToBeTested();
+						return;
+					}
+				}
+			}
+		System.out.println("Cant find a member with ssn:" + input);
+	}
+	private void modifyDepartments(){
+
+	}
+	private void modifyTeachers() {
+		while (true){
+			if(teachers.size() != 0) {
+				System.out.printf("There are %d Professor(s), would you like to add new?\n" +
+						"Press 1 for yes,otherwise we will go to remove panel", teachers.size());
+				String ans = scanner.nextLine();
+				if (ans.equals("1")) {
+					int i = 0;
+					while (true) {
+						System.out.printf("Adding the %d professor, for exit 0", i+1);
+						if (scanner.nextLine().equals("0")) {
+							break;
+						}
+						Human one = Human.createHuman(this.getClass().getName(), this.id);
+						teachers.add(one);
+					}
+					break;
+				}
+				System.out.printf("There are %d Professor(s), would you like to remove one?\n" +
+						"Press 1 for yes", teachers.size());
+				String ans0 = scanner.nextLine();
+				if (ans0.equals("1")) {
+					while (true){
+						System.out.println("Give the afm of the professor that want to remove");
+						String afm = scanner.nextLine();
+						boolean flag = true;
+						for (int i=0; i < teachers.size(); i++) {
+							if (teachers.get(i).getAfm().equals(afm)) {
+								teachers.remove(i);
+								flag = false;
+								break;
+							}
+						}
+						if (flag) {
+							System.out.printf("Could not find professor with afm:% s", afm);
+						}
+						System.out.println("Continue the deletion process? 0 for exit");
+						String ans1 = scanner.nextLine();
+						if (ans1.equals("0")) {
+							break;
+						}
+					}
+					break;
+				}
+			} else {//from cunstractor
+				System.out.println("There are no professors filled, Please start with giving them");
+				int i = 0;
+				while (true) {
+					System.out.printf("Creating the %d professor, 0 for exit", i+1);
+					if (scanner.nextLine().equals("0")) {
+						break;
+					}
+					Human one = Human.createHuman(this.getClass().getName(), this.id);
+					teachers.add(one);
+					i++;
+				}
+				break;
+			}
+		}
+	}
+
+	private void modifySecretariat() {
+
+	}
+	public void seeStatus() {
+		if (status) {
+			System.out.println("New cases in your university have been occured\nGoing to monitoring menu");
+			monitoring();
 		}
 		System.out.println("Status of professors");
 		for (var c : teachers) {
