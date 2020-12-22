@@ -44,6 +44,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 			for (var c : changes) {
 				int choice;
 				while (true) {
+					System.out.println("Contacts of the" + c.toString());
 					System.out.println("0 for exit, 1 for profesors, 2 for secretariat, 3 other people related, 4 departments");
 					String input = scanner.nextLine();
 					if (input.equals("0")) {
@@ -82,18 +83,18 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						while (true) {
 							System.out.println("Give the number for each secretariat");
 							System.out.println("0: Exit");
-							for (int i = 0; i < teachers.size(); i++) {
-								System.out.printf("%d: %s\n", i + 1, teachers.get(i).toString());
+							for (int i = 0; i < secretariat.size(); i++) {
+								System.out.printf("%d: %s\n", i + 1, secretariat.get(i).getIdifier());
 							}
 							if (!sc.hasNextInt()) {
 								String ans = sc.nextLine();
 								System.out.printf(
-										" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", teachers.size());
+										" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", secretariat.size());
 								continue;
 							} else {
 								choice = sc.nextInt();
 								sc.nextLine();
-								if (choice > teachers.size()  || choice < 0) {
+								if (choice > secretariat.size()  || choice < 0) {
 									System.out.println("Wrong number!Place a number between 0 and "+ teachers.size());
 									continue;
 								}
@@ -109,19 +110,19 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						while (true) {
 							System.out.println("Give the number for each other employee");
 							System.out.println("0: Exit");
-							for (int i = 0; i < teachers.size(); i++) {
+							for (int i = 0; i < others.size(); i++) {
 								System.out.printf("%d: %s\n", i + 1, others.get(i).toString());
 							}
 							if (!sc.hasNextInt()) {
 								String ans = sc.nextLine();
 								System.out.printf(
-										" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", teachers.size());
+										" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", others.size());
 								continue;
 							} else {
 								choice = sc.nextInt();
 								sc.nextLine();
-								if (choice > teachers.size()  || choice < 0) {
-									System.out.println("Wrong number!Place a number between 0 and "+ teachers.size());
+								if (choice > others.size()  || choice < 0) {
+									System.out.println("Wrong number!Place a number between 0 and "+ others.size());
 									continue;
 								}
 								break;
@@ -196,9 +197,12 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		//look caseManagmentAndHumanAddition
 	}
 	public void declareCase(Human human) {
-		Human one;
+	if (status) {
 		changes.add(human);
-		status = true;
+	} else {
+		changes.clear();
+		changes.add(human);
+	}
 		//maybe where belongs
 	}
 	public void declareCase() {//from user
@@ -338,20 +342,20 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		}
 		System.out.println("Status of professors");
 		for (var c : teachers) {
-			System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+			System.out.printf("%s has status:%s\n", c.toString(), c.seeStatus());
 		}
 		System.out.println("Status of secretariat");
 		for (var c : secretariat) {
-			System.out.println("    Status secretariat:%s", c.getIdifier());
+			System.out.printf("    Status secretariat:%s", c.getIdifier());
 			c.printStatus();
 		}
 		System.out.println("Status of other employee");
 		for (var c : others) {
-			System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+			System.out.printf("%s has status:%s\n", c.toString(), c.seeStatus());
 		}
 		System.out.println("Status of each department");
 		for (var c : department) {
-			System.out.println("    Status secretariat:%s", c.getIdifier());
+			System.out.printf("    Status department:%s", c.getIdifier());
 			c.printStatus();
 		}
 
