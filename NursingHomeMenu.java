@@ -11,6 +11,10 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private JMenuBar controlnMenu = new JMenuBar();
 
     private JMenu mainMenun = new JMenu("Nursing Home user Menu.");
+     private JMenu help = new JMenu("Help");
+    private JMenu contactUs = new JMenu("Contact us");
+    private JMenu rateUs = new JMenu("Rate us");
+    private JMenu exitm = new JMenu("Close Program");
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
 
     private JMenuItem phone = new JMenuItem("Phone number for emergency");
@@ -25,6 +29,8 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private JMenuItem i5 = new JMenuItem("Modify other conected with your org people");
 
     private JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private JMenuItem exit = new JMenuItem("Exit");
+    private JMenuItem close = new JMenuItem("Exit");
     public NursingHomeMenu(){
         setLayout(new FlowLayout());
         setJMenuBar(controlnMenu);
