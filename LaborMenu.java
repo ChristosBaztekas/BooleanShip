@@ -10,6 +10,10 @@ public class LaborMenu extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar controlsMenu = new JMenuBar();
     private JMenu mainMenul = new JMenu("Labor user Menu.");
+     private JMenu help = new JMenu("Help");
+    private JMenu contactUs = new JMenu("Contact us");
+    private JMenu rateUs = new JMenu("Rate us");
+    private JMenu exitm = new JMenu("Close Program");
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
 
     private JMenuItem phone = new JMenuItem("Phone number for emergency");
@@ -24,8 +28,9 @@ public class LaborMenu extends JFrame implements ActionListener {
     private JMenuItem i5 = new JMenuItem("Modify other related people");
 
     private JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
-    public JMenuItem exit = new JMenuItem("Exit");
-    public JMenuItem close = new JMenuItem("Exit");
+    private JMenuItem exit = new JMenuItem("Exit");
+    private JMenuItem close = new JMenuItem("Exit");
+    
     public LaborMenu(){
         setLayout(new FlowLayout());
         setJMenuBar(controlsMenu);
