@@ -5,7 +5,11 @@ public class PublicServices extends Labors {
 	private final int id;
 	private static int count = 0;
 	static Scanner scanner = new Scanner(System.in);
-
+	private boolean lockdown = false;
+	private int limit_per_department = 1;
+	private int limit_total_number_small = 3;
+	private int limit_percentage = 0.1;
+	private int total_limit_percentage = 30;
 	public PublicServices(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
 		add(this);
@@ -14,6 +18,39 @@ public class PublicServices extends Labors {
 	@Override
 	public void managementCases() {
 		//look caseManagmentAndHumanAddition
+	}
+	protected void autoMonitoring() {
+		int total_number = 0;
+		for (var c : department) {
+			total_number += c.size();
+		}
+		if (total_number > total_limit_percentage) {
+			int total_number_positive = 0;
+			for (var c : department) {
+				int number_per_department;
+				number_per_department = c.covidCase();
+				total_number_positive += number_per_department;
+				if (number_per_department > limit_per_department) {
+					//lockdown department
+				}
+			}
+			if (total_number_positive > limit_percentage *total_number ) {
+				//lockdown labor
+			}
+		} else {
+			int total_number_positive = 0;
+			for (var c : department) {
+				int number_per_department;
+				number_per_department = c.covidCase();
+				total_number_positive += number_per_department;
+				if (number_per_department > limit_per_department) {
+					//lockdown department
+				}
+			}
+			if (total_number_positive > limit_total_number_small ) {
+				//lockdown labor
+			}
+		}
 	}
 
 	public static void createOrg() {
