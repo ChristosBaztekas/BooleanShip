@@ -185,9 +185,6 @@ public static class Human {
 			}
 		}
 	}
-
-
-	}
 	public static void testResults(String password) {
 		for(;;) {
 			System.out.println("Give AFM of the person that get tested, (-1 for break): ");
