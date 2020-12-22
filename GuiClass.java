@@ -7,20 +7,19 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import static java.awt.Font.PLAIN;
-
-
 public class GuiClass extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar mainApp = new JMenuBar();
     private JMenu allmenus = new JMenu("All Menus Available");
     private JMenu useFullWebsitesAboutCovid = new JMenu("Usefull Websites about covid");
-    private JMenu help = new JMenu("Help");
-    private JMenu contactUs = new JMenu("Contact us");
-    private JMenu exitMenu = new JMenu("Exit");
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
     private JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
     private JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
     private JMenuItem emailAd = new JMenuItem("Email address");
+    public JMenu help = new JMenu("Help");
+    public JMenu contactUs = new JMenu("Contact us");
+    public JMenu rateUs1 = new JMenu("Rate us");
+    public JMenu exitm = new JMenu("Close Program");
 
     private JMenu menu1 = new JMenu("Goverment Menu");
     private JMenu menu2 = new JMenu("Labor Menu");
@@ -83,9 +82,9 @@ public class GuiClass extends JFrame implements ActionListener {
         mainApp.add(help);
         mainApp.add(contactUs);
         mainApp.add(justExit);
-        mainApp.add(rateUs);
-        mainApp.add(exitMenu);
-        exitMenu.add(Exit);
+        mainApp.add(rateUs1);
+        mainApp.add(exitm);
+        exitm.add(Exit);
         help.add(Problems);
         useFullWebsitesAboutCovid.add(whoWebpage);
         useFullWebsitesAboutCovid.add(eodyWebpage);
@@ -97,7 +96,7 @@ public class GuiClass extends JFrame implements ActionListener {
         allmenus.add(menu4);
         allmenus.add(menu5);
         allmenus.add(menu6);
-        rateUs.add(helpUsBecomeBetter);
+        rateUs1.add(helpUsBecomeBetter);
         help.add(frequentlyAskedQuestions);
         menu2.add(lmenu1);
         menu2.add(lmenu2);
@@ -375,5 +374,3 @@ public class GuiClass extends JFrame implements ActionListener {
     }
 
 }
-
-
