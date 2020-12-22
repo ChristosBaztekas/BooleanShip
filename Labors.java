@@ -5,8 +5,11 @@ import java.util.Scanner;
 public class Labors extends Organisations implements caseManagmentAndHumanAddition{
 	private final int id;
 	private static int count = 0;
-	private ArrayList<Classes> department = new ArrayList<Classes>();
+	protected ArrayList<Classes> department = new ArrayList<Classes>();
 	private static ArrayList<Labors> allLabors = new ArrayList<Labors>();//see if we needs
+	private ArrayList<Human> changes = new ArrayList<Human>();
+	private boolean status = false;//eody changes something
+	private boolean lockdown = false;
 	private static Scanner scanner = new Scanner(System.in);
 	public Labors(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
@@ -21,11 +24,96 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 	public static void createOrg() {
 		//look caseManagmentAndHumanAddition
 	}
-	public static void declareCase(int number) {
-		//look caseManagmentAndHumanAddition
+	public void declareCase(Human human) {
+		if (status) {
+			changes.add(human);
+		} else {
+			changes.clear();
+			changes.add(human);
+		}
+		//where belongs
+	}
+	protected void autoMonitoring() {
+	}//childs to do, and check if is called the child one
+	public void declareCase() {
+		if (status) {
+			autoMonitoring();
+			System.out.println("New cases in your Labor have been occured\nGoing to monitoring menu");
+			monitoring();
+		}
+		System.out.println("Give the ssn of the person that is positive");
+		String input = scanner.nextLine();
+		for (var c : department) {
+			Human one = c.isSame(input);
+			if (one != null) {
+				System.out.printf("Want to report positive of employee: %s, 0 exit", one.toString());
+				String input = scanner.nextLine();
+				if (input.equals("0")) {
+					return;
+				} else {
+					one.haveToBeTested();
+					autoMonitoring();
+					return;
+				}
+			}
+		}
+		System.out.println("Cant find a member with ssn:" + input);
+	}
+	private void monitoring() {
+		if (status) {
+			status = false;
+			System.out.println("Some changes have been ocurred");
+			System.out.println("Positive have been found: ");
+			for (var c : changes) {
+				System.out.printf("    The person: %s", c.toString());
+			}
+			System.out.println("Please tell who is likely to be positive too");
+			for (var c :changes) {
+				int choice;
+				while (true) {
+					System.out.println("Give the number for each department of your Labor");
+					System.out.println("0: Exit");
+					for (int i = 0; i < department.size()) {
+						System.out.printf("%d: %s\n", i + 1, department.get(i).getIdifier());
+					}
+					if (!sc.hasNextInt()) {
+						String ans = sc.nextLine();
+						System.out.printf(
+								" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", department.size());
+						continue;
+					} else {
+						choice = sc.nextInt();
+						sc.nextLine();
+						if (choice > department.size()  || choice < 0) {
+							System.out.println("Wrong number!Place a number between 0 and "+ department.size());
+							continue;
+						}
+						break;
+					}
+				}
+				if (choice == 0) {
+					continue;
+				} else if (choice <= department.size()) {
+					department.get(choice - 1).affected();
+				}
+			}
+		} else {
+			System.out.println("Everything is ok");
+		}
 	}
 	public static void printDetails(int number) {
-		//look caseManagmentAndHumanAddition
+
+	}
+	protected void seeStatus() {
+		if (status) {
+			autoMonitoring();
+			System.out.println("New cases in your Labor have been occured\nGoing to monitoring menu");
+			monitoring();
+		}
+		for (var c : department) {
+			System.out.println("Status of department: " + c.getIdifier());
+			c.printStatus();
+		}
 	}
 	private void modifyDepartments(int code) {
 		while (true){
