@@ -8,6 +8,17 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	private ArrayList<Human> teachers = new ArrayList<Human>();
 	private ArrayList<Classes> departments = new ArrayList<Classes>();
 	private ArrayList<Human> others = new ArrayList<Human>();
+	private int number_of_students_positive;
+	private int number_of_teachers_positive;
+	private int number_of_others_positive;
+	private boolean lockdown = false;
+	private static final limit = 5;//auto limit for concentrated positive covid
+	private static final limitteachers = 2;
+	private static final limitothers = 3;
+	private static final limitstudents = 4;
+	private static final limitdecision = 1;
+	private boolean status = false;//eody have something changed
+	private ArrayList<Human> changes = new ArrayList<Human>();
 	public Schools(String name, String area, int numbersOfPeople) {
 		//see if the arguments will be taken outside of the constructor or inside
 		super(name, area, numbersOfPeople);
@@ -15,8 +26,57 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		modifyTeachers();
 		id = count++;
 	}
+	private void autoMonitoring() {//to be changed
+		int n = number_of_others_positive + number_of_teachers_positive + number_of_students_positive;
+		if (n > limit) {
+			declareLockdown();
+		}
+		if (number_of_teachers_positive > limitteachers) {
+			declareLockdown();
+		}
+		if (number_of_others_positive > limitothers) {
+			declareLockdown();
+		}
+		if (number_of_students_positive > limitstudents) {
+			declareLockdown();
+		}
+	}
+	private void declareLockdown() {
+		lockdown = true;
+	}
+	private boolean isLockdown() {
+		return lockdown;
+	}
 	public void seeStatus() {
-
+		autoMonitoring();
+		if (isLockdown()) {
+			System.out.println("Your school is closed");
+		}
+		if (status) {
+			System.out.println("New cases in your school have been occured\nGoing to monitoring menu");
+			monitoring();
+		}
+		System.out.println("Status of teachers");
+		for (var c : teachers) {
+			System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+		}
+		System.out.println("Status of the department");
+		for (var c : departments) {
+			System.out.println("    Status secretariat:%s", c.getIdifier());
+			c.printStatus();
+		}
+		System.out.println("Status of other employee");
+		for (var c : others) {
+			System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+		}
+		int total = number_of_others_positive + number_of_students_positive + number_of_teachers_positive;
+		if (total > limitdecision) {
+			System.out.println("Do you want to close your school?, 1 yes");//option if is serious
+			String ans = scanner.nextLine();
+			if (ans.equals("1")) {
+				declareLockdown();
+			}
+		}
 	}
 	public void callModifyOthers() {
 
@@ -121,9 +181,23 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 			}
 		}
 	}
+	//from user
+	protected void declareCase() {
+		if (status) {
+			System.out.println("New cases in the school, going to monitoring menu");
+			monitoring();
+		}
+		//continue
+	}
+	protected void declareCase(Human human) {
+		changes.add(human);
+		status = true;
+		String look = human.toString()
+		for (var c : teachers) {
+			if (c.getAfm().equals(look)) {
 
-	private void declareCase() {
-
+			}
+		}
 	}
 	public void modifyDepartments() {
 
@@ -132,6 +206,16 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 
 	}
 	public void modifyOthers() {
+
+	}
+	private void monitoring() {
+		if (status) {
+
+		} else {
+			System.out.println("Everything is done");
+		}
+	}
+	private void monitoring() {
 
 	}
 }
