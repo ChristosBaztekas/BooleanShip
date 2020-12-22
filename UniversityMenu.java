@@ -11,6 +11,10 @@ public class UniversityMenu extends JFrame implements ActionListener {
     private JMenuBar controluMenu = new JMenuBar();
 
     private JMenu mainMenuu = new JMenu("Labor user Menu.");
+    private JMenu help = new JMenu("Help");
+    private JMenu contactUs = new JMenu("Contact us");
+    private JMenu rateUs = new JMenu("Rate us");
+    private JMenu exitm = new JMenu("Close Program");
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
     private JMenuItem phone = new JMenuItem("Phone number for emergency");
     private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
@@ -22,8 +26,9 @@ public class UniversityMenu extends JFrame implements ActionListener {
     private JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
     private JMenuItem i4 = new JMenuItem("Status of your University");
     private JMenuItem i5 = new JMenuItem("Modify other related with your organisation people");
-
     private JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private JMenuItem exit = new JMenuItem("Exit");
+    private JMenuItem close = new JMenuItem("Exit");
     
     public UniversityMenu(){
         setLayout(new FlowLayout());
