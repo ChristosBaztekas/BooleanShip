@@ -7,7 +7,11 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	private final int id;
 	private static int count = 0;
 	static Scanner scanner = new Scanner(System.in);
-
+	private boolean lockdown = false;
+	private int limit_per_department = 2;
+	private int limit_total_number_small = 5;
+	private int limit_percentage = 0.1;
+	private int total_limit_percentage = 60;
 	public Companies(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
 		add(this);
@@ -17,6 +21,38 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	@Override
 	public void managementCases() {
 		//look caseManagmentAndHumanAddition
+	}
+	protected void autoMonitoring() {
+		int count = 0;
+		int numbercases;
+		int
+		for (c : department) {
+			count += c.size();
+		}
+		if (count > total_limit_percentage) {
+			int total_positive = 0;
+			for (var c : department) {
+				int numberdepartment;
+				total_positive += numberdepartment;
+				if (numberdepartment > limit_per_department) {
+					//lockdown department
+				}
+			}
+			if (count * percentage < numbercases)
+		} else {
+			int total_positive = 0;
+			for (var c: department) {
+				int numberdepartment;
+				numberdepartment = c.covidCases();
+				total_positive += numberdepartment;
+				if (numberdepartment > limit_per_department) {
+					//lockdown department
+				}
+			}
+			if (total_positive > limit_total_number_small) {
+				//lockdown labor
+			}
+		}
 	}
 
 	public static void createOrg() {
