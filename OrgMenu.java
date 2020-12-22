@@ -11,6 +11,10 @@ public class OrgMenu extends JFrame implements ActionListener {
     private JMenuBar controlGovMenu = new JMenuBar();
 
     private JMenu mainMenug = new JMenu("User Surveillance Menu.");
+    private JMenu help = new JMenu("Help");
+    private JMenu contactUs = new JMenu("Contact us");
+    private JMenu rateUs = new JMenu("Rate us");
+    private JMenu exitm = new JMenu("Close Program");
     private JMenu emergencyContact = new JMenu("Emergency contact");
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
     private JMenuItem phone = new JMenuItem("Phone number for emergency");
@@ -25,6 +29,8 @@ public class OrgMenu extends JFrame implements ActionListener {
     private JMenuItem i5 = new JMenuItem("All test Results");
     private JMenuItem i6 = new JMenuItem("Cases by regions");
     private JMenuItem i7 = new JMenuItem("Send email to all registered Organisations");
+    private JMenuItem exit = new JMenuItem("Exit");
+    private JMenuItem close = new JMenuItem("Exit");
 
     public OrgMenu() {
         setLayout(new FlowLayout());
