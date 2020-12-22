@@ -80,5 +80,16 @@ public class Classes {
 		}
     	return null;
 	}
-
+	protected int size() {
+    	return members.size();
+	}
+	protected int covidCases() {
+    	int count = 0;
+    	for (var c : members) {
+    		if (c.seeStatus().equals("CONFIRMED")) {//check if it works
+    			count += 1;
+			}
+		}
+    	return count;
+	}
 }
