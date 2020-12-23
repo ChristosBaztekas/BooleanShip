@@ -70,7 +70,7 @@ public class Organisations {
 	public Organisations() {
 		insertAnewOrganisation();
 		this.id = count;
-		
+
 	}
 
 	public int getId() {
@@ -161,14 +161,14 @@ public class Organisations {
 	}
 	@Override
 	public String toString() {
-		return "People that came to contact with a positive covid-19 person are: [contactsNames=" + contactsNames + "]";
+		return "Name of organisation is: " + name + "\n Organisation Area is: " + area + "\n Number of employees: " + numbersOfpeople;
 	}
 	public static void printAllOrganisations(String code) {
-		if (code.equals(EodyPassword)) {
-			//print all Organisations
-			return;
-		}
+		if (codes.equals(EodyPassword)) {
+			System.out.println(toString());
+		} else {
 		System.out.println("You dont have access");
+	    }
 	}
 
 }
