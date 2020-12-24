@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public static class Human {
+public final class Human {
 	private static ArrayList<Human> allHuman = new ArrayList<Human>();
 	private String name, surname, afm, gender, email;
 	private ArrayList<Organisations> belongs = new ArrayList<Organisations>();
@@ -138,7 +138,7 @@ public static class Human {
 		}
 		return null;
 	}
-	protected void haveToBeTested {
+	protected void haveToBeTested() {
 		status = Status.PRESUMPTIVE;
 		waitTest.add(this);
 	}
@@ -205,7 +205,7 @@ public static class Human {
 			if (!(position < 0)) {
 				theHuman = allHuman.get(position);
 			} else {
-				theHuman = ahuman
+				theHuman = ahuman;
 			}
 			System.out.printf("Human registration %s with AFM: %s ;", theHuman.getName(), theHuman.getAfm());
 			String confirmed = sc.nextLine();
@@ -271,7 +271,7 @@ public static class Human {
 	//create human that returns, if does not exist
 	//argument class name and id class
 	//if person exists return the person
-	public static Human createHuman(Oganisations org) {
+	public static Human createHuman(Organisations org) {
 		//called as Human.creteHuman(this);
 		//RETURNS A HUMAN OR NULL FOR EXIT
 		Human one = null;

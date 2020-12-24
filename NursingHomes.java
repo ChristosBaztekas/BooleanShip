@@ -22,7 +22,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         modifyEmployees();
         modifyCarenPeople();
     }
-    private void modifyEmployees() {
+    protected void modifyEmployees() {
         while (true){
             if(employees.size() != 0) {
                 System.out.printf("There are %d Employee(s), would you like to add new?\n" +
@@ -85,7 +85,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     public void monitoring(int orgNum) {
 
     }
-    private void declareCase() {
+    public void declareCase() {
 
         System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B");
@@ -158,9 +158,6 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
     }
-    public void declareCase() {
-
-    }
     public void printDetails() {
         System.out.println("Welcome.The" + getName() +
                 "NursingHome of" + getArea() +
@@ -169,7 +166,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 "Thanks for understanding in these difficult times.");
         //look caseManagmentAndHumanAddition
     }
-    private void modifyCarenPeople() {
+    public void modifyCarenPeople() {
 		while (true){
 			if(carenPeople.size() != 0) {
 				System.out.printf("There are %d carenPeople, would you like to add new?\n" +
@@ -253,8 +250,5 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             System.out.println("You are able to have visitors, but all " +
                     "have to respect the measures for covid");
         }
-    }
-    public void modifyCarenPeople() {
-
     }
 }

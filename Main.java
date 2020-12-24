@@ -9,8 +9,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.awt.Label;
+import java.io.IOException;
 public class Main {
-    /*static Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
     static int chance = 0;
 
@@ -151,7 +152,7 @@ public class Main {
                     if (out == -1) {
                         System.exit(0);
                     } else {
-                        displayNMenu(out);
+
                     }
                     //must be created a method checking if the inputed name already exists
                     //and give access as a specific user and can in case to give a positice test
@@ -207,7 +208,7 @@ public class Main {
                     if (out == -1) {
                         System.exit(0);
                     } else {
-                        displaySMenu(out);
+
                     }
                     break;
                 case 3:
@@ -262,7 +263,7 @@ public class Main {
                     if (output == -1) {
                         System.exit(0);
                     } else {
-                        displayUMenu(output);
+
                     }
                     break;
                 case 3:
@@ -276,7 +277,7 @@ public class Main {
 
     }
 
-    private static void displaylMenu(Labor labor) {
+    private static void displaylMenu(Labors labor) {
         while (true) {
             int input;
             while (true) {
@@ -328,9 +329,6 @@ public class Main {
             System.out.println("Type anything else:if you want to exit.");
             String option = sc.next();
             if (option.equals("1")) {
-                //sign up int code = ...
-                int code = 0;
-                displaylMenu(code, 0);
 
             } else if (option.equals("2")) {
                 System.out.println(
@@ -348,9 +346,6 @@ public class Main {
             System.out.println("Type anything else:if you want to exit.");
             String option = sc.next();
             if (option.equals("1")) {
-                //sign up int code =
-                int code = 0;
-                displaylMenu(code, 1);
 
             } else if (option.equals("2")) {
                 System.out.println(
@@ -384,7 +379,7 @@ public class Main {
         // that will prevent the user from
         // getting here.
         System.exit(0);
-    }*/
+    }
 
     public static void main(String[] args) throws URISyntaxException {
         GuiClass wsFrame = new GuiClass();
@@ -394,7 +389,7 @@ public class Main {
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        /*System.out.println("Welcome to the app of case detection and contact detection!"
+        System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
                 + "data and for the purpose of limiting the spread of.");
@@ -612,7 +607,7 @@ public class Main {
             displaylMenu(l);
         } else {
             System.out.println("Not Organisation of our app");
-        }*/
+        }
 
     }
 }

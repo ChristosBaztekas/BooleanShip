@@ -4,6 +4,6 @@ public interface caseManagmentAndHumanAddition {
 	public void declareCase(Human human);
 	public void declareCase();// implements the protocol of each class
 	public void printDetails();//prints the details of the object
-	private void monitoring();
-	private void autoMonitoring();
+	public void monitoring();
+	public void autoMonitoring();
 }

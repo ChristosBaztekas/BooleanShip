@@ -18,11 +18,10 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		id = count++;
 
 	}
-	protected void autoMonitoring() {
+	public void autoMonitoring() {
 		int count = 0;
 		int numbercases;
-		int
-		for (c : department) {
+		for (var c : department) {
 			count += c.size();
 		}
 		if (count > total_limit_percentage) {
@@ -34,7 +33,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 					//lockdown department
 				}
 			}
-			if (count * percentage < numbercases)
+			if (count * percentage < numbercases){}
 		} else {
 			int total_positive = 0;
 			for (var c: department) {

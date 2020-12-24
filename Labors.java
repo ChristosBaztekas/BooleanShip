@@ -26,7 +26,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 		}
 		//where belongs
 	}
-	protected void autoMonitoring() {
+	public void autoMonitoring() {
 	}//childs to do, and check if is called the child one
 	public void declareCase() {
 		if (status) {
@@ -40,8 +40,8 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 			Human one = c.isSame(input);
 			if (one != null) {
 				System.out.printf("Want to report positive of employee: %s, 0 exit", one.toString());
-				String input = scanner.nextLine();
-				if (input.equals("0")) {
+				String input1 = scanner.nextLine();
+				if (input1.equals("0")) {
 					return;
 				} else {
 					one.haveToBeTested();
@@ -52,7 +52,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 		}
 		System.out.println("Cant find a member with ssn:" + input);
 	}
-	private void monitoring() {
+	public void monitoring() {
 		if (status) {
 			status = false;
 			System.out.println("Some changes have been ocurred");
@@ -66,7 +66,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 				while (true) {
 					System.out.println("Give the number for each department of your Labor");
 					System.out.println("0: Exit");
-					for (int i = 0; i < department.size()) {
+					for (int i = 0; i < department.size(); i++) {
 						System.out.printf("%d: %s\n", i + 1, department.get(i).getIdifier());
 					}
 					if (!sc.hasNextInt()) {
@@ -94,10 +94,8 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 			System.out.println("Everything is ok");
 		}
 	}
-	public static void printDetails(int number) {
-
-	}
-	protected void seeStatus() {
+	public void printDetails(){}
+	public void seeStatus() {
 		if (status) {
 			autoMonitoring();
 			System.out.println("New cases in your Labor have been occured\nGoing to monitoring menu");
@@ -108,7 +106,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 			c.printStatus();
 		}
 	}
-	private void modifyDepartments() {
+	public void modifyDepartments() {
 		while (true){
 			if (department.size() == 0) {
 				//crete departments

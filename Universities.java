@@ -23,7 +23,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	}
 	public void printDetails() {
 		System.out.println("Welcome.The" + getName() +
-				"University of" + .getArea() +
+				"University of" + getArea() +
 				"will take drastic measures to stop spread of covid-19 in our University.Please stay safe and we will call you soon." +
 				"Always our first priority was the safety of our students!Thanks for understanding in these difficult times.");
 		//this method is used in displayUMenu
@@ -31,16 +31,13 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		//with the code that takes,the code is similar the the check method ahead
 		//look caseManagmentAndHumanAddition
 	}
-	public void managementCases() {
-		//look caseManagmentAndHumanAddition
-	}
-	private void monitoring() {
+	public void monitoring() {
 		if (status) {
 			System.out.println("Some changes have been ocured");
 			status = false;
 			System.out.println("Positive have been found: ");
 			for (var c : changes) {
-				System.out.printf("    The person: %s", c.toString);
+				System.out.printf("    The person: %s", c.toString());
 			}
 			System.out.println("Please say us who have to tested");
 			for (var c : changes) {
@@ -197,7 +194,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		Universities newOn = new Universities(name,area,teachers+students);
 	}
 		//look caseManagmentAndHumanAddition
-	}
+	public void autoMonitoring() {}
 	public void declareCase(Human human) { //called by eody
 	if (status) {
 		changes.add(human);
@@ -223,8 +220,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 				Human oneHuman = c.isSame(input);
 				if (oneHuman != null) {
 					System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
-					String input = scanner.nextLine();
-					if (input.equals("0")) {
+					String input1 = scanner.nextLine();
+					if (input1.equals("0")) {
 						return;
 					} else {
 						oneHuman.haveToBeTested();
@@ -240,19 +237,19 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 					if (ans.equals("0")) {
 						return;
 					} else {
-						oneHuman.haveToBeTested();
+						oneHumanuu.haveToBeTested();
 						return;
 					}
 				}
 			}
 		for (var c : others) {
-				if (c.toString.equals(input)) {
+				if (c.toString().equals(input)) {
 					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
 					String ans = scanner.nextLine();
 					if (ans.equals("0")) {
 						return;
 					} else {
-						oneHuman.haveToBeTested();
+
 						return;
 					}
 				}
@@ -273,7 +270,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	}
 
 
-	private void modifyDepartments(){
+	protected void modifyDepartments(){
 		while (true){
 				if (department.size() == 0) {
 					//crete departments
@@ -321,7 +318,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 				}
 		}
 	}
-	private void modifyTeachers() {
+	protected void modifyTeachers() {
 		while (true){
 			if(teachers.size() != 0) {
 				System.out.printf("There are %d Professor(s), would you like to add new?\n" +
@@ -382,7 +379,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		}
 	}
 
-	private void modifySecretariat() {
+	protected void modifySecretariat() {
 
 	}
 	public void seeStatus() {
@@ -410,7 +407,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		}
 
 	}
-	private void modifyOthers() {
+	protected void modifyOthers() {
 
 	}
 

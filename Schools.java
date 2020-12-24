@@ -12,11 +12,11 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	private int number_of_teachers_positive;
 	private int number_of_others_positive;
 	private boolean lockdown = false;
-	private static final limit = 5;//auto limit for concentrated positive covid
-	private static final limitteachers = 2;
-	private static final limitothers = 3;
-	private static final limitstudents = 4;
-	private static final limitdecision = 1;
+	private static final int limit = 5;//auto limit for concentrated positive covid
+	private static final int limitteachers = 2;
+	private static final int limitothers = 3;
+	private static final int limitstudents = 4;
+	private static final int limitdecision = 1;
 	private boolean status = false;//eody have something changed
 	private ArrayList<Human> changes = new ArrayList<Human>();
 	public Schools(String name, String area, int numbersOfPeople) {
@@ -80,17 +80,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 			}
 		}
 	}
-	public void callModifyOthers() {
-
-	}
-	private void modifyOthers() {
-
-	}
-
-	public void managementCases() {
-		//look caseManagmentAndHumanAddition
-	}
-
 	public static void createOrg() {
 		String name;
 		String area;
@@ -119,11 +108,11 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 
 	public void printDetails() {
 		System.out.println("Welcome.The" + getName() +
-				"School of" + .getArea() +
+				"School of" + getArea() +
 				"will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon." +
 				"Always our first priority was the safety of our children!Thanks for understanding in these difficult times.");
 	}
-	private void modifyTeachers() {
+	protected void modifyTeachers() {
 		while (true){
 			if(teachers.size() != 0) {
 				System.out.printf("There are %d Teacher(s), would you like to add new?\n" +
@@ -184,17 +173,17 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		}
 	}
 	//from user
-	protected void declareCase() {
+	public void declareCase() {
 		if (status) {
 			System.out.println("New cases in the school, going to monitoring menu");
 			monitoring();
 		}
 		//continue
 	}
-	protected void declareCase(Human human) {
+	public void declareCase(Human human) {
 		changes.add(human);
 		status = true;
-		String look = human.toString()
+		String look = human.toString();
 		for (var c : teachers) {
 			if (c.getAfm().equals(look)) {
 
@@ -204,20 +193,14 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	public void modifyDepartments() {
 
 	}
-	public void modifyTeachers() {
-
-	}
 	public void modifyOthers() {
 
 	}
-	private void monitoring() {
+	public void monitoring() {
 		if (status) {
 
 		} else {
 			System.out.println("Everything is done");
 		}
-	}
-	private void monitoring() {
-
 	}
 }

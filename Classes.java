@@ -38,7 +38,7 @@ public class Classes {
 	protected void modify() {
 		//asks for deleting or adding a Human
 	}
-	private void affected() {
+	protected void affected() {
     	int choice;
 		while (true) {
 			System.out.println("Give the number for each member");

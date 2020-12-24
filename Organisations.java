@@ -19,6 +19,7 @@ public class Organisations {
 	public Organisations(String name, String area, int numbersOfPeople) {
 		this.name = name;
 		this.area = area;
+		this.numbersOfPeople = numbersOfPeople;
 		count++;
 		this.id = count;
 		register();
@@ -161,11 +162,13 @@ public class Organisations {
 	}
 	@Override
 	public String toString() {
-		return "Name of organisation is: " + name + "\n Organisation Area is: " + area + "\n Number of employees: " + numbersOfpeople;
+		return "Name of organisation is: " + name + "\n Organisation Area is: " + area + "\n Number of employees: " + numbersOfPeople;
 	}
 	public static void printAllOrganisations(String code) {
 		if (codes.equals(EodyPassword)) {
-			System.out.println(toString());
+			for (var c : allOrgs) {
+				System.out.println(c.toString());
+			}
 		} else {
 		System.out.println("You dont have access");
 	    }
