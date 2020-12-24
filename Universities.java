@@ -380,23 +380,21 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	}
 
 	protected void modifySecretariat() {
-		
-
 		while (true){
-			if (department.size() == 0) {
-				//crete departments
+			if (secretariat.size() == 0) {
+				//crete secretariat
 				int count = 0;
 				while (true) {
-					System.out.printf("Creating the %d department,for exit 0", count + 1);
+					System.out.printf("Creating the %d secretariat,for exit 0", count + 1);
 					if (scanner.nextLine().equals("0")) {
-							if (department.size() == 0){
-								System.out.println("Cant exit without creating one department");
+							if (secretariat.size() == 0){
+								System.out.println("Cant exit without creating one secretariat");
 							}else {
 								break;
 							}
 						}
 						Classes one = new Classes(this);
-						department.add(one);
+						secretariat.add(one);
 					}
 					break;
 				} else {
@@ -404,15 +402,15 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						int ans = 0;
 
 						try {
-							System.out.println("Select which department to modify");
+							System.out.println("Select which secretariat to modify");
 							int num = 0;
-							for (Classes c : department) {
+							for (Classes c : secretariat) {
 								System.out.printf("%d for : %s", num, c.getIdifier());
 								num++;
 							}
 							System.out.println("Press a number");
 							ans = scanner.nextInt();
-							if (ans < 0 && ans > department.size()) {
+							if (ans < 0 && ans > secretariat.size()) {
 								System.out.println("Invalid number, try again");
 								continue;
 							}
@@ -422,15 +420,14 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							scanner.nextLine();
 						}
 						//add or delete
-						department.get(ans).modify();
+						secretariat.get(ans).modify();
 						break;
 					}
 					break;
 				}
-			}
 		}
-
 	}
+
 	public void seeStatus() {
 		if (status) {
 			System.out.println("New cases in your university have been occured\nGoing to monitoring menu");
