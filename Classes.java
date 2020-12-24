@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Classes {
     private static Scanner scanner = new Scanner(System.in);
     private String idifier;
-<<<<<<< Updated upstream
+
     private Organisations organisation;
     private ArrayList<Human> members = new ArrayList<Human>();
     private static int count = 0;
@@ -31,7 +31,7 @@ public class Classes {
 				}
 			}
 		}
-=======
+
     private String clas;
     private ArrayList<Human> students = new ArrayList<Human>();
     private static int count = 0;
@@ -56,13 +56,13 @@ public class Classes {
 					continue;
 				}
 			}
->>>>>>> Stashed changes
+
     }
 
     public String getIdifier() {
 		return idifier;
 	}
-<<<<<<< Updated upstream
+
 	protected void modify() {
 		//asks for deleting or adding a Human
 	}
@@ -120,6 +120,5 @@ public class Classes {
 		}
     	return count;
 	}
-=======
->>>>>>> Stashed changes
+
 }
