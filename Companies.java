@@ -51,7 +51,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	}
 
 	public static void createOrg() {
-<<<<<<< Updated upstream
+
 		String name;
 		String area;
 		int employees;
@@ -66,7 +66,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 			if (scanner.hasNext()) {
 				scanner.nextLine();
 			}
-=======
+
 		//look caseManagmentAndHumanAddition
 		while(true) {
 			System.out.println("What is your name?");
@@ -76,7 +76,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 			System.out.println("How many employees does your company have?");
 			int employees = scanner.nextInt();
 			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes",name,area,employees);
->>>>>>> Stashed changes
+
 			if (scanner.nextLine().equals("1")) {
 				break;
 			}
