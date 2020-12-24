@@ -20,7 +20,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         id = count ++;
         add(this);
         modifyEmployees();
-        modifyCarenPeople();//yet to do
+        modifyCarenPeople();
     }
     private void modifyEmployees() {
         while (true){
@@ -85,7 +85,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     public void monitoring(int orgNum) {
 
     }
-    private void DdeclareCase() {
+    private void declareCase() {
 
         System.out.println("Is the case Employee(s), caren person(s) or both");
         System.out.println("Enter       E,          C,                B");
@@ -99,9 +99,6 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         } else {
 
         }
-    }
-    private void fillingCarenPeople() {
-
     }
 
     public void managementCases() {
@@ -257,11 +254,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                     "have to respect the measures for covid");
         }
     }
-    public void modifyEmployees() {
-
-    }
     public void modifyCarenPeople() {
 
     }
-    //checks username and password input, and if corrects give num in static array
 }

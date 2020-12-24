@@ -17,6 +17,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		add(this);
 		modifyTeachers();
 		modifySecretariat();
+		modifyOthers();
+		modifyDepartments();
 		id = count++;
 	}
 	public void printDetails() {
@@ -196,11 +198,12 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	}
 		//look caseManagmentAndHumanAddition
 	}
-	public void declareCase(Human human) {
+	public void declareCase(Human human) { //called by eody
 	if (status) {
 		changes.add(human);
 	} else {
 		changes.clear();
+		status = true;
 		changes.add(human);
 	}
 		//maybe where belongs
@@ -270,7 +273,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	}
 
 
-	private void modifyDepartments(int code){
+	private void modifyDepartments(){
 		while (true){
 				if (department.size() == 0) {
 					//crete departments
@@ -294,14 +297,14 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 
 						try {
 							System.out.println("Select which department to modify");
-							int num = 0;
+							int num = 1;
 							for (Classes c : department) {
 								System.out.printf("%d for : %s", num, c.getIdifier());
 								num++;
 							}
 							System.out.println("Press a number");
 							ans = scanner.nextInt();
-							if (ans < 0 && ans > department.size()) {
+							if (ans < 1 && ans > department.size()) {
 								System.out.println("Invalid number, try again");
 								continue;
 							}
@@ -311,15 +314,12 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							scanner.nextLine();
 						}
 						//add or delete
-						department.get(ans).modify();
+						department.get(ans  - 1).modify();
 						break;
 					}
 					break;
 				}
-			}
 		}
-
-
 	}
 	private void modifyTeachers() {
 		while (true){

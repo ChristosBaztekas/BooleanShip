@@ -18,10 +18,6 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		id = count++;
 
 	}
-	@Override
-	public void managementCases() {
-		//look caseManagmentAndHumanAddition
-	}
 	protected void autoMonitoring() {
 		int count = 0;
 		int numbercases;
@@ -56,7 +52,6 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	}
 
 	public static void createOrg() {
-		//look caseManagmentAndHumanAddition
 		String name;
 		String area;
 		int employees;
@@ -78,20 +73,9 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		Companies newOne = new Companies(name, area, employees);
 	}
 
-	public void declareCase() {
-		//look caseManagmentAndHumanAddition
-	}
-
 	public void printDetails() {
 		System.out.println("Welcome.The" + getName() + "Companies of" + getArea()
-				+ "will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon. "
-				+"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
-		//look caseManagmentAndHumanAddition
-	}
-	public void modifyDepartments() {
-
-	}
-	public void seeStatus() {
-
+				+ "will take drastic measures to stop spread of covid-19 in your companie.Please stay safe and we will call you soon. "
+				+"Always our first priority was the safety of your employees! Thanks for understanding in these difficult times.");
 	}
 }

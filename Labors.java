@@ -14,15 +14,8 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 	public Labors(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
 		id = count++;
-		modifyDepartments(id);
+		modifyDepartments();
 		allLabors.add(this);
-	}
-
-	public void managementCases() {
-		//look caseManagmentAndHumanAddition
-	}
-	public static void createOrg() {
-		//look caseManagmentAndHumanAddition
 	}
 	public void declareCase(Human human) {
 		if (status) {
@@ -115,7 +108,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 			c.printStatus();
 		}
 	}
-	private void modifyDepartments(int code) {
+	private void modifyDepartments() {
 		while (true){
 			if (department.size() == 0) {
 				//crete departments

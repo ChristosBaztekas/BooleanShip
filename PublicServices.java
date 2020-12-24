@@ -15,10 +15,6 @@ public class PublicServices extends Labors {
 		add(this);
 		id = count ++;
 	}
-	@Override
-	public void managementCases() {
-		//look caseManagmentAndHumanAddition
-	}
 	protected void autoMonitoring() {
 		int total_number = 0;
 		for (var c : department) {
@@ -54,7 +50,6 @@ public class PublicServices extends Labors {
 	}
 
 	public static void createOrg() {
-		//look caseManagmentAndHumanAddition
 		String name;
 		String area;
 		int employees;
@@ -76,21 +71,10 @@ public class PublicServices extends Labors {
 		}
 		PublicServices newOne = new PublicServices(name, area, employees);
 	}
-	public void declareCase() {
-		//look caseManagmentAndHumanAddition
-	}
 	public void printDetails() {
 		System.out.println("Welcome.The" + getName() + "Companies of" + getArea() +
 				"will take drastic measures to stop spread of covid-19 in this public sector. Please stay safe and we will call you soon. " +
 				"Always our first priority was the safety of our employees! Thanks for understanding in these difficult times.");
 	}
-	public void modifyDepartments() {
-
-	}
-	public void seeStatus() {
-
-	}
-
-
 }
 

@@ -24,6 +24,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		super(name, area, numbersOfPeople);
 		add(this);
 		modifyTeachers();
+		modifyOthers();
+		modifyDepartments();
 		id = count++;
 	}
 	private void autoMonitoring() {//to be changed
