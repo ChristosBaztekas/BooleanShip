@@ -51,7 +51,6 @@ public class PublicServices extends Labors {
 	}
 
 	public static void createOrg() {
-
 		String name;
 		String area;
 		int employees;
@@ -68,7 +67,6 @@ public class PublicServices extends Labors {
 			}
 			String a = scanner.nextLine();
 			if (a.equals("1")) {
-
 				break;
 			}
 		}

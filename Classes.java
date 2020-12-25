@@ -10,12 +10,12 @@ public class Classes {
     private static int count = 0;
 
     public Classes(Organisations org) {
-    	//Here we create a class for schools, unis and labors
+		//Here we create a class for schools, unis and labors
 		organisation = org;
 		System.out.println("Please give the name of the department ");
 		this.idifier = scanner.nextLine();
 		int metr = 1;
-		for (;;) {
+		for (; ; ) {
 			System.out.printf("Adding the %d member,0 for exit", metr);
 			String answr = scanner.nextLine();
 			if (answr.equals("0")) {
@@ -31,34 +31,7 @@ public class Classes {
 				}
 			}
 		}
-
-    private String clas;
-    private ArrayList<Human> students = new ArrayList<Human>();
-    private static int count = 0;
-
-    	public Classes(String clas, int id) {
-			//Here we create a class for schools
-			count++;
-			this.id = count;
-			this.clas = clas;
-			System.out.println("Parakalo, eisagetai tmhma(gramma kai arithmos xwris keno). ");
-			this.idifier = scanner.nextLine();
-
-			for (;;) {
-				System.out.println("Na ginei eisagwgh mathitwn? (n), gia Nai/(o), gia Oxi" );
-				String answr = scanner.nextLine();
-				if (answr.equals("n")) {
-					human = Human.createHuman(clas, id);
-					students.add(human);
-				} else if (answr.equals("o")) {
-					break;
-				} else {
-					continue;
-				}
-			}
-
-    }
-
+	}
     public String getIdifier() {
 		return idifier;
 	}
