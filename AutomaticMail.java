@@ -13,12 +13,12 @@ public class AutomaticMail {
         properties.put("mail.smtp.post","587");
 
         String mail = "booleanship@gmail.com";
-        String passwordB = "2109885125";
+        String passwordB = "fixBugs1";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication("booleanship@gmail.com","2109885125");
+                return new PasswordAuthentication("booleanship@gmail.com","fixBugs1");
             }
         });
         Message message = prepareMessage(session,mail,usersMail);
