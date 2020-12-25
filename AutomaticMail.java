@@ -31,8 +31,8 @@ public class AutomaticMail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(mail));
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(usersMail));
-            message.setSubject("Αληθεια");
-            message.setText("Ο Λεωνιδας ειναι ο αγαπημενος ανιψιος και σιγουρα δεν υπαρχει καν συναγωνισμος!");
+            message.setSubject("First Automatic mail");
+            message.setText("This mail is sent using the mail api");
             return message;
         } catch (MessagingException e) {
             e.printStackTrace();
