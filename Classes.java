@@ -65,7 +65,44 @@ public class Classes {
 
 	protected void modify() {
 		//asks for deleting or adding a Human
+		System.out.println(allHuman);
+		for (;;) {
+			System.out.println("Add or Delete a Person?");
+			System.out.println("Give (a) for add, (d) for delete, or (0) for exit");
+			String answ = scanner.nextLine();
+			if (answ.equals("0")) {
+				break;
+			}
+			if (answ.equals("d")) {
+				System.out.println("Please give afm of the person");
+				String checkAfm = scanner.nextLine();
+				if (!isValidAfm(checkAfm)) {
+					System.out.printf("Does not exist this kind: %s afm", checkAfm);
+					continue;
+				}
+				int position = search(checkAfm);
+				Human theHuman;
+				if (!(position < 0)) {
+					theHuman = allHuman.get(position);
+					System.out.printf("The person %s with AFM: %s is being removed", theHuman.getName(), theHuman.getAfm());
+					allHuman.remove(theHuman);
+				} else {
+					System.out.printf("Does not exist this : %s afm in our list", checkAfm);
+				}
+			}
+			if (answ.equals("a")) {
+				System.out.println("Please give afm of the person");
+				String addAfm = scanner.nextLine();
+				if (!isValidAfm(addAfm)) {
+					System.out.printf("Does not exist this kind: %s afm", addAfm);
+					continue;
+				}
+				Human addHuman = createHuman(addAfm);
+				allHuman.add(addHuman);
+			}
+		}
 	}
+	
 	protected void affected() {
     	int choice;
 		while (true) {
