@@ -1,19 +1,86 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import com.sun.prism.Image;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.FileInputStream;
-import java.awt.Label;
-import java.io.IOException;
 public class Main {
-    static Scanner sc = new Scanner(System.in);
+    /*static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
-    static int chance = 0;
+    static int chance = 0;*/
+    public static void main(String[] args) throws Exception {
+        AutomaticMail test = new AutomaticMail();
+            test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
+
+        GuiClass wsFrame = new GuiClass();
+        wsFrame.setBounds(400, 100, 900, 700);
+        wsFrame.setVisible(true);
+        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        /*System.out.println("Welcome to the app of case detection and contact detection!"
+                + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
+                + "\nData access and analysis will only be for the provision of statistical "
+                + "data and for the purpose of limiting the spread of.");
+
+        for (; ; ) {
+            System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
+                    + "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell
+                    // them the option
+                    + "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
+                    + "\n-Type 3 or S if you belong to educational institution. "
+                    + "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
+                    + "\n-Type 6 or E if you wish exit. ");
+
+            String usersInput = null;
+
+            try {
+                usersInput = sc.next();
+                while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
+                        && !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
+                        && !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
+                        && !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
+
+                    System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
+                    sc.nextLine();
+                    usersInput = sc.next();
+                }
+
+            } catch (Exception e) {
+                System.out.println("Your import was invalid.Try again:");
+                break;
+            } finally {
+                sc.nextLine();
+            }
+            try {
+                switch (usersInput) {
+                    case "1":
+                    case "G":
+                        gMenu();
+                        break;
+                    case "2":
+                    case "L":
+                        lMenu();
+                        break;
+                    case "3":
+                    case "S":
+                        sMenu();
+                        break;
+                    case "4":
+                    case "U":
+                        uMenu();
+                        break;
+                    case "5":
+                    case "N":
+                        nMenu();
+                        break;
+                    case "6":
+                    case "E":
+                    default:
+                        eMenu();
+                        break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private static void displayGMenu() {
         int choice;
@@ -370,92 +437,11 @@ public class Main {
         System.out.println("You chose exit.Thank you.Stay safe!");
         System.out.println("Below is the information website.");
         Desktop d = Desktop.getDesktop();
-        d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));// here will lead the user to
-        // an informational website but
-        // the com[iler does not cooperate
-        // today
-        // so I can't confirm
-        // that there is no logical error
-        // that will prevent the user from
-        // getting here.
+        d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));
         System.exit(0);
     }
 
-    public static void main(String[] args) throws URISyntaxException {
-        GuiClass wsFrame = new GuiClass();
-        wsFrame.setBounds(500, 200, 700, 700);
-        wsFrame.setVisible(true);
-        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
-        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-        System.out.println("Welcome to the app of case detection and contact detection!"
-                + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
-                + "\nData access and analysis will only be for the provision of statistical "
-                + "data and for the purpose of limiting the spread of.");
-
-        for (; ; ) {
-            System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
-                    + "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell
-                    // them the option
-                    + "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
-                    + "\n-Type 3 or S if you belong to educational institution. "
-                    + "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
-                    + "\n-Type 6 or E if you wish exit. ");
-
-            String usersInput = null;
-
-            try {
-                usersInput = sc.next();
-                while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
-                        && !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
-                        && !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
-                        && !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
-
-                    System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
-                    sc.nextLine();
-                    usersInput = sc.next();
-                }
-
-            } catch (Exception e) {
-                System.out.println("Your import was invalid.Try again:");
-                break;
-            } finally {
-                sc.nextLine();
-            }
-            try {
-                switch (usersInput) {
-                    case "1":
-                    case "G":
-                        gMenu();
-                        break;
-                    case "2":
-                    case "L":
-                        lMenu();
-                        break;
-                    case "3":
-                    case "S":
-                        sMenu();
-                        break;
-                    case "4":
-                    case "U":
-                        uMenu();
-                        break;
-                    case "5":
-                    case "N":
-                        nMenu();
-                        break;
-                    case "6":
-                    case "E":
-                    default:
-                        eMenu();
-                        break;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private static void displayUMenu(Universities u) {
         while (true) {
@@ -608,6 +594,6 @@ public class Main {
         } else {
             System.out.println("Not Organisation of our app");
         }
-
+*/
     }
 }

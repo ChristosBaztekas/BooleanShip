@@ -55,35 +55,24 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		String name;
 		String area;
 		int employees;
-		while(true) {
+		while (true) {
 			System.out.println("What is your name?");
 			name = scanner.nextLine();
 			System.out.println("In which area is your company located?");
 			area = scanner.nextLine();
 			System.out.println("How many employees does your company have?");
 			employees = scanner.nextInt();
-			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes",name,area,employees);
+			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes", name, area, employees);
 			if (scanner.hasNext()) {
 				scanner.nextLine();
 			}
-
-		//look caseManagmentAndHumanAddition
-		while(true) {
-			System.out.println("What is your name?");
-			String name = scanner.nextLine();
-			System.out.println("In which area is your company located?");
-			String area = scanner.nextLine();
-			System.out.println("How many employees does your company have?");
-			int employees = scanner.nextInt();
-			System.out.printf("Your Name: %s, Area: %s, Total Employees: %d.Is that correct? (1) for yes",name,area,employees);
-
-			if (scanner.nextLine().equals("1")) {
+			String input = scanner.nextLine();
+			if (input.equals("1")) {
 				break;
 			}
 		}
 		Companies newOne = new Companies(name, area, employees);
 	}
-
 	public void printDetails() {
 		System.out.println("Welcome.The" + getName() + "Companies of" + getArea()
 				+ "will take drastic measures to stop spread of covid-19 in your companie.Please stay safe and we will call you soon. "
