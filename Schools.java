@@ -193,9 +193,69 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 	public void modifyDepartments() {
 
 	}
-	public void modifyOthers() {
-
+	protected void modifyOthers() {
+			while (true){
+				if(others.size() != 0) {
+					System.out.printf("There are %d People, would you like to add new?\n" +
+							"Press 1 for yes,otherwise we will go to remove panel", others.size());
+					String ans = scanner.nextLine();
+					if (ans.equals("1")) {
+						int i = 0;
+						while (true) {
+							System.out.printf("Adding the %d person, for exit 0", i+1);
+							if (scanner.nextLine().equals("0")) {
+								break;
+							}
+							Human one = Human.createHuman(this.getClass().getName(), this.id);
+							others.add(one);
+						}
+						break;
+					}
+					System.out.printf("There are %d People, would you like to remove one?\n" +
+							"Press 1 for yes", others.size());
+					String ans0 = scanner.nextLine();
+					if (ans0.equals("1")) {
+						while (true){
+							System.out.println("Give the afm of the person that want to remove");
+							String afm = scanner.nextLine();
+							boolean flag = true;
+							for (int i=0; i < others.size(); i++) {
+								if (others.get(i).getAfm().equals(afm)) {
+									others.remove(i);
+									flag = false;
+									break;
+								}
+							}
+							if (flag) {
+								System.out.printf("Could not find person with afm:% s", afm);
+							}
+							System.out.println("Continue the deletion process? 0 for exit");
+							String ans1 = scanner.nextLine();
+							if (ans1.equals("0")) {
+								break;
+							}
+						}
+						break;
+					}
+				} else {//from constractor
+					System.out.println("There are no people filled, Please start with giving them");
+					int i = 0;
+					while (true) {
+						System.out.printf("Creating the %d person, 0 for exit", i+1);
+						if (scanner.nextLine().equals("0")) {
+							break;
+						}
+						Human one = Human.createHuman(this.getClass().getName(), this.id);
+						others.add(one);
+						i++;
+					}
+					break;
+				}
+			}
 	}
+
+
+
 	public void monitoring() {
 		if (status) {
 
