@@ -193,7 +193,6 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		}
 		Universities newOn = new Universities(name,area,teachers+students);
 	}
-		//look caseManagmentAndHumanAddition
 	public void autoMonitoring() {}
 	public void declareCase(Human human) { //called by eody
 	if (status) {

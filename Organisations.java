@@ -65,13 +65,12 @@ public class Organisations {
 				return codes.get(name).subclass;
 			} else {
 				System.out.print("Wrong!!!Try again!");
+				return null;
 			}
 		}
 	}
 	public Organisations() {
 		insertAnewOrganisation();
-		this.id = count;
-
 	}
 
 	public int getId() {

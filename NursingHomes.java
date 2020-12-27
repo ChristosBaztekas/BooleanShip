@@ -35,8 +35,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                         if (sc.nextLine().equals("0")) {
                             break;
                         }
-                 //not fuctional code       //Human one = Human.createHuman(this.getClass().getName(), this.id);
-                        //employees.add(one);
+                        Human one = Human.createHuman(this);
+                        if (one == null) {
+                            break;
+                        } else {
+                            employees.add(one);
+                        }
                     }
                     break;
                 }
@@ -49,11 +53,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                         String afm = sc.nextLine();
                         boolean flag = true;
                         for (int i=0; i < employees.size(); i++) {
-                            /*if (employees.get(i).getAfm().equals(afm)) {
+                            if (employees.get(i).getAfm().equals(afm)) {
+                                employees.get(i).removeFromOrg(this);
                                 employees.remove(i);
                                 flag = false;
                                 break;
-                            }*/
+                            }
                         }
                         if (flag) {
                             System.out.printf("Could not find employee with afm:% s", afm);
@@ -72,38 +77,63 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 while (true) {
                     System.out.printf("Creating the %d employ, 0 for exit", i+1);
                     if (sc.nextLine().equals("0")) {
-                        break;
+                        if (employees.size() == 0) {
+                            System.out.println("Cant continue without giving an employee");
+                        } else {
+                            break;
+                        }
                     }
-                    //Human one = Human.createHuman(this.getClass().getName(), this.id);
-                    //employees.add(one);
+
+                    Human one = Human.createHuman(this);
+                    employees.add(one);
                     i++;
                 }
                 break;
             }
         }
     }
-    public void monitoring(int orgNum) {
-
-    }
-    public void declareCase() {
-
-        System.out.println("Is the case Employee(s), caren person(s) or both");
-        System.out.println("Enter       E,          C,                B");
-        String input = sc.nextLine();
-        if(input.equals('E')){
-
-        } else if (input.equals('C')){
-
-        } else if (input.equals('B')){
-
-        } else {
-
+    public void monitoring() {
+        if (status) {
+            status = false;
+            System.out.println("Some changes have been ocured");
+            System.out.println("Please for the safety of your institute" +
+                    ", keep safety measures more carefully for the safety of your own people");
+            en_status = true;
+            status_descr = "Enclosed";
+            System.out.println("Positive have been found: ");
+            for (var c : changes) {
+                System.out.printf("    The person: %s", c.toString());
+            }
         }
     }
-
-    public void managementCases() {
-        //look caseManagmentAndHumanAddition
+    public void declareCase() {
+        for (var c : carenPeople) {
+            if (c.toString().equals(input)) {
+                System.out.printf("Want to report of a member of elder people: %s, 0 for exit\n", oneHuman.toString());
+                String ans = scanner.nextLine();
+                if (ans.equals("0")) {
+                    return;
+                } else {
+                    c.haveToBeTested();
+                    return;
+                }
+            }
+        }
+        for (var c : employees) {
+            if (c.toString.equals(input)) {
+                System.out.printf("Want to report of a member of employee: %s, 0 for exit\n", oneHuman.toString());
+                String ans = scanner.nextLine();
+                if (ans.equals("0")) {
+                    return;
+                } else {
+                    c.haveToBeTested();
+                    return;
+                }
+            }
+        }
+        System.out.println("Cant find a member with ssn:" + input);
     }
+
     public static void createOrg() {
         while (true) {
             System.out.println("What is the name of the NursingHome?/nWrite the name without spaces!");

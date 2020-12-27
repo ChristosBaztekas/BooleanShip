@@ -57,7 +57,6 @@ public final class Human {
 		if (len != 9) {
 			return false;
 		} else {
-
 			for (int i = 0; i < 9; i++) {
 				if (afm.charAt(i) >= '0' && afm.charAt(i) <= '9') {
 				    continue;
@@ -71,15 +70,11 @@ public final class Human {
 
 	@Override
 	public String toString() {
-		return "Το άτομο [" + ", Όνομα = " + name + ", Επίθετο = " + surname + ", ΑΦΜ = " + afm + "]";
+		return name + surname + afm;
 	}
 
 	public String seeStatus() {
 		return status.toString();
-	}
-
-	public void setAllHuman(ArrayList<Human> allHuman) {// only in start for initilization
-		this.allHuman = allHuman;
 	}
 
 	public String getName() {
@@ -97,7 +92,6 @@ public final class Human {
 	public void changeStatus(String st) {
 
 	}
-
 
 	public String getGender() {
 		return gender;
