@@ -342,6 +342,10 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 System.out.printf("   The person: %s\n", c.toString());
             }
         }
+        if (status) {
+            System.out.println("Your Nursing Home is closed because of covid");
+            System.out.printf("Employees positive:%d - Elder positive:%d", count_employees, count_carenPeople);
+        }
         System.out.println("Status of your employees");
         for (var c  : employees) {
             System.out.println("%s has status:%s", c.toString(), c.seeStatus());
