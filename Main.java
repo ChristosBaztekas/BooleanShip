@@ -1,11 +1,11 @@
+import com.Gui.BooleanShip.GuiClass;
+import com.Gui.BooleanShip.JavaMailUtil;
+
+import javax.mail.MessagingException;
 import javax.swing.*;
+
 public class Main {
-    /*static Scanner sc = new Scanner(System.in);
-    private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
-    static int chance = 0;*/
-    public static void main(String[] args) throws Exception {
-        AutomaticMail test = new AutomaticMail();
-            test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
+    public static void main(String[] args) throws MessagingException {
 
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
@@ -14,11 +14,28 @@ public class Main {
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        /*System.out.println("Welcome to the app of case detection and contact detection!"
+    }
+}
+    /*import javax.swing.*;
+    public class Main {
+        /*static Scanner sc = new Scanner(System.in);
+        private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
+        static int chance = 0;*/
+    /*public static void main(String[] args) throws Exception {
+        AutomaticMail test = new AutomaticMail();
+        test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
+
+        GuiClass wsFrame = new GuiClass();
+        wsFrame.setBounds(400, 100, 900, 700);
+        wsFrame.setVisible(true);
+        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
                 + "data and for the purpose of limiting the spread of.");
-
         for (; ; ) {
             System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
                     + "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell
@@ -27,21 +44,17 @@ public class Main {
                     + "\n-Type 3 or S if you belong to educational institution. "
                     + "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
                     + "\n-Type 6 or E if you wish exit. ");
-
             String usersInput = null;
-
             try {
                 usersInput = sc.next();
                 while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
                         && !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
                         && !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
                         && !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
-
                     System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
                     sc.nextLine();
                     usersInput = sc.next();
                 }
-
             } catch (Exception e) {
                 System.out.println("Your import was invalid.Try again:");
                 break;
@@ -81,7 +94,6 @@ public class Main {
             }
         }
     }
-
     private static void displayGMenu() {
         int choice;
         for (; ; ) {
@@ -90,7 +102,6 @@ public class Main {
                     + "\n Press 3 to see all recorded case." + "\n Press 4 to see all Contacts of Cases"
                     + "\n Press 5 to give testResults" + "\n Press 6 to see cases by regions."
                     + "\n Press 7 to send an email to all registered Organisations" + "\n Press 8 to exit");
-
             while (true) {
                 if (!sc.hasNextInt()) {
                     String input = sc.nextLine();
@@ -133,11 +144,8 @@ public class Main {
                     System.out.println("You chose exit.Stay safe.");
                     System.exit(0);
             }
-
         }
-
     }
-
     public static void gMenu() {
         System.out.println(
                 "You have chosen the menu of the user responsible for surveillance.\n To proceed, enter a code. "
@@ -148,7 +156,6 @@ public class Main {
             if (UsersPassword.equals(EodyPassword)) {
                 System.out.println("Correct code.Below are the options of the user responsible for surveillance:");
                 displayGMenu();
-
             } else {
                 try {
                     if (chance == 0) {
@@ -171,14 +178,11 @@ public class Main {
                 } catch (Exception e) {
                     System.err.println("There's an unexpected mistake.End of program.");
                 }
-
             }
         } catch (Exception e) {
             System.err.println("There's an unexpected mistake.End of program.");
         }
-
     }
-
     public static void nMenu() throws URISyntaxException, IOException {
         int answer;
         while (true) {
@@ -219,7 +223,6 @@ public class Main {
                     if (out == -1) {
                         System.exit(0);
                     } else {
-
                     }
                     //must be created a method checking if the inputed name already exists
                     //and give access as a specific user and can in case to give a positice test
@@ -234,7 +237,6 @@ public class Main {
             }
         }
     }
-
     public static void sMenu() throws URISyntaxException, IOException {
         int answer;
         while (true) {
@@ -275,7 +277,6 @@ public class Main {
                     if (out == -1) {
                         System.exit(0);
                     } else {
-
                     }
                     break;
                 case 3:
@@ -288,7 +289,6 @@ public class Main {
             }
         }
     }
-
     public static void uMenu() throws URISyntaxException, IOException {
         int answer;
         while (true) {
@@ -330,7 +330,6 @@ public class Main {
                     if (output == -1) {
                         System.exit(0);
                     } else {
-
                     }
                     break;
                 case 3:
@@ -341,9 +340,7 @@ public class Main {
                     System.exit(0);
             }
         }
-
     }
-
     private static void displaylMenu(Labors labor) {
         while (true) {
             int input;
@@ -382,7 +379,6 @@ public class Main {
             }
         }
     }
-
     public static void lMenu() {
         System.out.println("Welcome to the Labor user menu.");
         System.out.println("Type 1:if you want the public services menu.");
@@ -396,7 +392,6 @@ public class Main {
             System.out.println("Type anything else:if you want to exit.");
             String option = sc.next();
             if (option.equals("1")) {
-
             } else if (option.equals("2")) {
                 System.out.println(
                         "After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
@@ -413,7 +408,6 @@ public class Main {
             System.out.println("Type anything else:if you want to exit.");
             String option = sc.next();
             if (option.equals("1")) {
-
             } else if (option.equals("2")) {
                 System.out.println(
                         "After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
@@ -423,16 +417,12 @@ public class Main {
                 System.out.println("You chose exit.Stay safe!");
                 System.exit(0);
             }
-
         } else {
             System.out.println("You chose exit.Stay safe!");
             System.exit(0);
         }
         System.exit(0);
-
-
     }
-
     public static void eMenu() throws URISyntaxException, Exception {
         System.out.println("You chose exit.Thank you.Stay safe!");
         System.out.println("Below is the information website.");
@@ -440,9 +430,6 @@ public class Main {
         d.browse(new URI("https://eody.gov.gr/neos-koronaios-covid-19/"));
         System.exit(0);
     }
-
-
-
     private static void displayUMenu(Universities u) {
         while (true) {
             int input;
@@ -487,7 +474,6 @@ public class Main {
             }
         }
     }
-
     private static void displaySMenu(Schools school) {
         while (true) {
             int input;
@@ -530,10 +516,8 @@ public class Main {
                 case 6:
                     System.exit(0);
             }
-
         }
     }
-
     private static void displayNMenu(NursingHomes nh) {
         while (true) {
             int input;
@@ -595,5 +579,5 @@ public class Main {
             System.out.println("Not Organisation of our app");
         }
 */
-    }
-}
+ //   }
+//}
