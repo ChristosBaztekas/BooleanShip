@@ -5,6 +5,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<Human>();
     private ArrayList<Human> carenPeople = new ArrayList<Human>();
+    private int count_employees = 0;
+    private int count_carenPeople = 0;
     static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
     private boolean status = false;//has covid if trues
@@ -90,8 +92,15 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                             break;
                         }
                     }
-
                     Human one = Human.createHuman(this);
+                    if (one == null) {
+                        if (carenPeople.size() == 0) {
+                            System.out.println("Give at least one");
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
                     employees.add(one);
                     i++;
                 }
@@ -113,10 +122,37 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
     }
-    private void toBeTested(Human human) {
+    protected void toBeTested(Human human) {
         System.out.println("Give the people that have to be tested, 0 exit");
         String input = sc.nextLine();
-
+        if (input.equals("0")) {
+            return;
+        }
+        for (var c : carenPeople) {
+            if (c.toString().equals(input)) {
+                System.out.printf("Elder people: %s must be tested?, 0 for exit\n", oneHuman.toString());
+                String ans = scanner.nextLine();
+                if (ans.equals("0")) {
+                    return;
+                } else {
+                    c.haveToBeTested();
+                    return;
+                }
+            }
+        }
+        for (var c : employees) {
+            if (c.toString.equals(input)) {
+                System.out.printf("Member of employee: %s must be tested?, 0 for exit\n", oneHuman.toString());
+                String ans = scanner.nextLine();
+                if (ans.equals("0")) {
+                    return;
+                } else {
+                    c.haveToBeTested();
+                    return;
+                }
+            }
+        }
+        System.out.println("Cant find a member with ssn:" + input);
     }
     public void declareCase() {
         System.out.println("Give the afm of the person that have been found positive, 0 for exit");
@@ -132,6 +168,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                     return;
                 } else {
                     c.bePositive();
+                    changeStatus(c);
                     return;
                 }
             }
@@ -143,13 +180,29 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.haveToBeTested();
-                    toBeTested(c);
+                    c.bePositive();
+                    changeStatus(c);
                     return;
                 }
             }
         }
         System.out.println("Cant find a member with ssn:" + input);
+    }
+    protected void changeStatus(Human human) {
+        for (var empl : employees) {
+            if (empl != human) {
+                empl.haveToBeTested();
+            } else {
+                count_employees += 1;
+            }
+        }
+        for (var p : carenPeople) {
+            if (p != human) {
+                p.haveToBeTested();
+            } else {
+                count_carenPeople += 1;
+            }
+        }
     }
 
     public static void createOrg() {
@@ -188,22 +241,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         if (!update) {
             changes.clear();
             update = true;
+            changes.add(human);
         } else {
             changes.add(human);
         }
         status = true;
-        for (var empl : employees) {
-            if (empl != human) {
-                empl.haveToBeTested();
-            }
-        }
-        if (a == null) {
-            for (var p : carenPeople) {
-                if (p != human) {
-                    p.haveToBeTested();
-                }
-            }
-        }
+        changeStatus(human);
     }
     public void printDetails() {
         System.out.println("Welcome.The" + getName() +
@@ -211,7 +254,6 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 "will take drastic measures to stop spread of covid-19 in our NursingHome." +
                 "Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!" +
                 "Thanks for understanding in these difficult times.");
-        //look caseManagmentAndHumanAddition
     }
     public void modifyCarenPeople() {
 		while (true){
@@ -274,9 +316,17 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 						    break;
                         }
 					}
-					Human one = Human.createHuman(this);
-					carenPeople.add(one);
-					i++;
+                    Human one = Human.createHuman(this);
+                    if (one == null) {
+                        if (carenPeople.size() == 0) {
+                            System.out.println("Give at least one");
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
+                    employees.add(one);
+                    i++;
 				}
 				break;
 			}
