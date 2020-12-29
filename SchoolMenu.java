@@ -10,7 +10,7 @@ public class SchoolMenu extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar controlsMenu = new JMenuBar();
 
-    private JMenu mainMenus = new JMenu("School user Menu.");
+    private JMenu mainMenus = new JMenu("School user Menu");
      private JMenu help = new JMenu("Help");
     private JMenu contactUs = new JMenu("Contact us");
     private JMenu rateUs = new JMenu("Rate us");
