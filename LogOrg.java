@@ -9,134 +9,148 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class OrgMenu extends JFrame implements ActionListener {
+public class LogOrg extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
-    private JMenuBar controlGovMenu = new JMenuBar();
-
-    private JMenu mainMenug = new JMenu("User Surveillance Menu.");
-    private JMenu help = new JMenu("Help");
-    private JMenu contactUs = new JMenu("Contact us");
-    private JMenu rateUs = new JMenu("Rate us");
-    private JMenu exitm = new JMenu("Close Program");
-    private JMenu emergencyContact = new JMenu("Emergency contact");
-    private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
-
-    private JMenuItem phone = new JMenuItem("Phone number for emergency");
-    private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
-    private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
-    private JMenuItem emailAd = new JMenuItem("Email address");
-
-    private JMenuItem i1 = new JMenuItem("All registered organizations");
-    private JMenuItem i2 = new JMenuItem("Latest statistics on the pandemic");
-    private JMenuItem i3 = new JMenuItem("All recorded case");
-    private JMenuItem i4 = new JMenuItem("All Contacts recorder");
-    private JMenuItem i5 = new JMenuItem("All test Results");
-    private JMenuItem i6 = new JMenuItem("Cases by regions");
-    private JMenuItem i7 = new JMenuItem("Send email to all registered Organisations");
-    private JMenuItem exit = new JMenuItem("Exit");
-    private JMenuItem close = new JMenuItem("Exit");
-
-    public OrgMenu() {
-        setLayout(new FlowLayout());
-        setJMenuBar(controlGovMenu);
-        controlGovMenu.add(mainMenug);
-        controlGovMenu.add(help);
-        controlGovMenu.add(contactUs);
-        controlGovMenu.add(rateUs);
-        controlGovMenu.add(exitm);
-        exitm.add(close);
-        mainMenug.add(i1);
-        mainMenug.add(i2);
-        mainMenug.add(i3);
-        mainMenug.add(i4);
-        mainMenug.add(i5);
-        mainMenug.add(i6);
-        mainMenug.add(i7);
+    Container container = getContentPane();
+    JLabel userLabel = new JLabel("USERNAME");
+    JLabel passwordLabel = new JLabel("PASSWORD");
+    JTextField userTextField = new JTextField();
+    JPasswordField passwordField = new JPasswordField();
+    JButton loginButton = new JButton("LOGIN");
+    JButton resetButton = new JButton("RESET");
+    JCheckBox showPassword = new JCheckBox("Show Password");
+    JCheckBox forgotPassword = new JCheckBox("Forgot Password");
+    JButton exit = new JButton("Exit Program");
 
 
+    LogOrg() {
+        setLayoutManager();
+        setLocationAndSize();
+        addComponentsToContainer();
+        addActionEvent();
 
-        mainMenug.add(exit);
-        help.add(frequentlyAskedQuestions);
-        help.add(Problems);
-        rateUs.add(helpUsBecomeBetter);
-        contactUs.add(emailAd);
-        contactUs.add(emergencyContact);
-        emergencyContact.add(phone);
+    }
 
-        Problems.addActionListener(this);
-        phone.addActionListener(this);
-        emailAd.addActionListener(this);
-        helpUsBecomeBetter.addActionListener(this);
-        close.addActionListener(this);
-        i1.addActionListener(this);
-        i2.addActionListener(this);
-        i3.addActionListener(this);
-        i4.addActionListener(this);
-        i5.addActionListener(this);
-        i6.addActionListener(this);
-        i7.addActionListener(this);
+    public void setLayoutManager() {
+        container.setLayout(null);
+    }
+
+    public void setLocationAndSize() {
+        userLabel.setBounds(50, 150, 100, 30);
+        passwordLabel.setBounds(50, 220, 100, 30);
+        userTextField.setBounds(150, 150, 150, 30);
+        passwordField.setBounds(150, 220, 150, 30);
+        showPassword.setBounds(150, 250, 150, 30);
+        forgotPassword.setBounds(5, 250, 150, 30);
+        loginButton.setBounds(20, 300, 100, 30);
+        resetButton.setBounds(120, 300, 100, 30);
+        exit.setBounds(220, 300, 120, 30);
+    }
+
+    public void addComponentsToContainer() {
+        container.add(userLabel);
+        container.add(passwordLabel);
+        container.add(userTextField);
+        container.add(passwordField);
+        container.add(showPassword);
+        container.add(forgotPassword);
+        container.add(loginButton);
+        container.add(resetButton);
+        container.add(exit);
+    }
+
+    public void addActionEvent() {
+        loginButton.addActionListener(this);
+        resetButton.addActionListener(this);
+        showPassword.addActionListener(this);
+        forgotPassword.addActionListener(this);
         exit.addActionListener(this);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == i1) {
-            JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
-        } else if (e.getSource() == i2) {
+        //Coding Part of LOGIN button
+        if (e.getSource() == loginButton) {
+            String userText;
+            String pwdText;
+            userText = userTextField.getText();
+            pwdText = passwordField.getText();
+            if (userText.equalsIgnoreCase("LeonidasDiamg") && pwdText.equalsIgnoreCase("fixBugs")) {
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main goverment menu");
+                dispose();
+                OrgMenu wsFrame = new OrgMenu();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setTitle("Welcome to the main Goverment User Menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            } else if (userText.equalsIgnoreCase("LeonidasDiams") && pwdText.equalsIgnoreCase("fixBugs")){
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main School menu");
+                dispose();
+                SchoolMenu wsFrame = new SchoolMenu();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setTitle("Welcome to the main School user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else if (userText.equalsIgnoreCase("LeonidasDiaml") && pwdText.equalsIgnoreCase("fixBugs")){
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main Labor menu");
+                dispose();
+                LaborMenu wsFrame = new LaborMenu();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setTitle("Welcome to the main Labor user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else if (userText.equalsIgnoreCase("LeonidasDiamu") && pwdText.equalsIgnoreCase("fixBugs")){
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main university menu");
+                dispose();
+                UniversityMenu wsFrame = new UniversityMenu();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setTitle("Welcome to the main University user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else if (userText.equalsIgnoreCase("LeonidasDiamn") && pwdText.equalsIgnoreCase("fixBugs")){
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu");
+                dispose();
+                NursingHomeMenu wsFrame = new NursingHomeMenu();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setTitle("Welcome to the main nursing home user menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            } else {
+                JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!");
 
-        } else if (e.getSource() == i3) {
+            }
 
-        } else if (e.getSource() == i4) {
 
-        } else if (e.getSource() == i5) {
-
-        } else if (e.getSource() == i6) {
-
-        }else if (e.getSource() == i7) {
-            String emailAddress = (String)JOptionPane.showInputDialog("Input the recipient's email address");
-            String subject = (String)JOptionPane.showInputDialog("Input subject");
-            String mainText = (String)JOptionPane.showInputDialog("Input main text");
+        }
+        if(e.getSource() == forgotPassword){
+            String emailF = (String)JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
+            forgotPassword.setSelected(false);
             try {
-                JavaMailUtil.sendMail(emailAddress,subject,mainText);
+                JavaMailUtil.sendMail(emailF,"Password","Call us on 6983461347(9:00-17:00) and after verifying your identity we will give you your new password.");
             } catch (MessagingException messagingException) {
-                JOptionPane.showMessageDialog(this,"An error occurred please ensure that your email address is right!");
+                JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.");
             }
-
-        }  else if (e.getSource() == exit) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
+        }
+        //Coding Part of RESET button
+        if (e.getSource() == resetButton) {
+            userTextField.setText("");
+            passwordField.setText("");
+        }
+        //Coding Part of showPassword JCheckBox
+        if (e.getSource() == showPassword) {
+            if (showPassword.isSelected()) {
+                passwordField.setEchoChar((char) 0);
+            } else {
+                passwordField.setEchoChar('*');
             }
-            System.exit(0);
-        } else if (e.getSource() == close) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
-
-        }else if (e.getSource() == phone) {
-            JOptionPane.showMessageDialog(null, "Only in case of emergency feel free to contact us any time in 6983461347!");
-        }else if (e.getSource() == helpUsBecomeBetter) {
-            try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-        }else if (e.getSource() == emailAd) {
-            JOptionPane.showMessageDialog(null, "Our mail is BooleanShip@gmail.com feel free to contact us!");
-        }else if(e.getSource() == Problems){
+        }
+        if(e.getSource() == exit){
             try {
                 d.browse(new URI(
                         "https://www.surveymonkey.com/r/2WKC6MB"));
@@ -145,8 +159,11 @@ public class OrgMenu extends JFrame implements ActionListener {
             } catch (URISyntaxException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
+            System.exit(0);
         }
 
+
     }
+
 }
 
