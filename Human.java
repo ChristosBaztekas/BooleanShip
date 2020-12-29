@@ -213,13 +213,13 @@ public final class Human {
 					if (result == 0) {
 						theHuman.status = Status.NORMAL;
 						if (waitTest.remove(theHuman)) {
-							System.out.println("The %s had to be tested and the Test is negative", theHuman.toString());
+							System.out.printf("The %s had to be tested and the Test is negative", theHuman.toString());
 						}
 						break;
 					} else if (result == 1) {
 						theHuman.status = Status.CONFIRMED;
 						if (waitTest.remove(theHuman)) {
-							System.out.println("The %s had to be tested and the Test is positive", theHuman.toString());
+							System.out.printf("The %s had to be tested and the Test is positive", theHuman.toString());
 						}
 						quarantineMode(theHuman);
 						for (var org : theHuman.belongs){
@@ -350,11 +350,10 @@ public final class Human {
 			}
 		}
 		try {
-			one = new Human(name, surname, ans_afm, email, gender, null);
+			one = new Human(name, surname, ssn, email, gender, null);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 			System.out.println("Something gone wrong, repeat this Progress please!");
-			continue;
 		}
 		return one;
 	}

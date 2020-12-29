@@ -8,7 +8,7 @@ public class PublicServices extends Labors {
 	private boolean lockdown = false;
 	private int limit_per_department = 1;
 	private int limit_total_number_small = 3;
-	private int limit_percentage = 0.1;
+	private double limit_percentage = 0.1;
 	private int total_limit_percentage = 30;
 	public PublicServices(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
@@ -16,7 +16,7 @@ public class PublicServices extends Labors {
 		id = count ++;
 
 	}
-	protected void autoMonitoring() {
+	public void autoMonitoring() {
 		ArrayList<Classes> department = getDepartment();
 		int total_number = 0;
 		for (var c : department) {
@@ -25,7 +25,7 @@ public class PublicServices extends Labors {
 		if (total_number > total_limit_percentage) {
 			int total_number_positive = 0;
 			for (int i = 0; i<department.size(); i++) {
-				int number_per_department = department.get(i).covidCase();
+				int number_per_department = department.get(i).covidCases();
 				total_number_positive += number_per_department;
 				if (number_per_department > limit_per_department) {
 					setDepartmentLockdown(i);
@@ -37,10 +37,10 @@ public class PublicServices extends Labors {
 		} else {
 			int total_number_positive = 0;
 			for (int i = 0; i < department.size(); i++) {
-				int number_per_department = department.get(i).covidCase();
+				int number_per_department = department.get(i).covidCases();
 				total_number_positive += number_per_department;
 				if (number_per_department > limit_per_department) {
-					setDepartmentLockdown(i)
+					setDepartmentLockdown(i);
 				}
 			}
 			if (total_number_positive > limit_total_number_small ) {

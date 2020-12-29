@@ -58,7 +58,7 @@ public class Classes {
 					}
 				}
 				if (flag) {
-					System.out.printf("Could not find member with afm:% s", afm);
+					System.out.printf("Could not find member with afm:% s", answ);
 				} else {
 					organisation.reducePeople(1);
 				}
@@ -73,7 +73,7 @@ public class Classes {
 				if (one == null) {
 					break;
 				} else {
-					addPeople(1);
+					organisation.addPeople(1);
 				}
 				members.add(one);
 			}
@@ -88,14 +88,14 @@ public class Classes {
 			for (int i = 0; i < members.size(); i++) {
 				System.out.printf("%d: %s\n", i + 1, members.get(i).toString());
 			}
-			if (!sc.hasNextInt()) {
-				String ans = sc.nextLine();
+			if (!scanner.hasNextInt()) {
+				String ans = scanner.nextLine();
 				System.out.printf(
 						" Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", members.size());
 				continue;
 			} else {
-				choice = sc.nextInt();
-				sc.nextLine();
+				choice = scanner.nextInt();
+				scanner.nextLine();
 				if (choice > members.size()  || choice < 0) {
 					System.out.println("Wrong number!Place a number between 0 and "+ members.size());
 					continue;
@@ -111,7 +111,7 @@ public class Classes {
 	}
 	public void printStatus() {
     	for (var c : members) {
-			System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+			System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
 		}
 	}
 	public Human isSame(String ssn) {

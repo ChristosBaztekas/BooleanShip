@@ -21,7 +21,7 @@ public class Organisations {
 		this.area = area;
 		this.numbersOfPeople = numbersOfPeople;
 		count++;
-		this.id = count;
+		this.id = count++;
 		register();
 		allOrgs.add(this);
 		codes.put(username,this);

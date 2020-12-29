@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Universities extends Organisations implements caseManagmentAndHumanAddition{
 	private ArrayList<Classes> department = new ArrayList<Classes>();
@@ -220,7 +221,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 			if (dep > limit_per_department) {
 				//lockdown dep
 			}
-			count += dep
+			count += dep;
 		}
 		for (var c : secretariat) {
 			int secr = c.covidCases();
@@ -277,11 +278,11 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 					if (input1.equals("0")) {
 						return;
 					} else {
-						oneHuman.haveToBeTested();
+						oneHuman.bePositive();
 						return;
 					}
 				}
-			}
+		}
 		for (var c : secretariat) {
 				Human oneHuman = c.isSame(input);
 				if (oneHuman != null) {
@@ -290,14 +291,14 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 					if (ans.equals("0")) {
 						return;
 					} else {
-						oneHumanuu.haveToBeTested();
+						oneHuman.bePositive();
 						return;
 					}
 				}
 			}
 		for (var c : others) {
-				if (c.toString().equals(input)) {
-					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
+				if (c.getAfm().equals(input)) {
+					System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", c.toString());
 					String ans = scanner.nextLine();
 					if (ans.equals("0")) {
 						return;
@@ -308,17 +309,17 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 				}
 			}
 		for (var c : teachers) {
-				if (c.toString.equals(input)) {
-					System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", oneHuman.toString());
+				if (c.getAfm().equals(input)) {
+					System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", c.toString());
 					String ans = scanner.nextLine();
 					if (ans.equals("0")) {
 						return;
 					} else {
-						oneHuman.haveToBeTested();
+						c.bePositive();
 						return;
 					}
 				}
-			}
+		}
 		System.out.println("Cant find a member with ssn:" + input);
 	}
 
@@ -434,7 +435,10 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 					if (scanner.nextLine().equals("0")) {
 						break;
 					}
-					Human one = Human.createHuman(this.getClass().getName(), this.id);
+					Human one = Human.createHuman(this);
+					if (one == null) {
+						break;
+					}
 					teachers.add(one);
 					i++;
 				}
@@ -537,7 +541,10 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 								if (scanner.nextLine().equals("0")) {
 									break;
 								}
-								Human one = Human.createHuman(this.getClass().getName(), this.id);
+								Human one = Human.createHuman(this);
+								if (one == null) {
+									break;
+								}
 								others.add(one);
 								i++;
 							}
@@ -578,7 +585,10 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							if (scanner.nextLine().equals("0")) {
 								break;
 							}
-							Human one = Human.createHuman(this.getClass().getName(), this.id);
+							Human one = Human.createHuman(this);
+							if (one == null) {
+								break;
+							}
 							others.add(one);
 							i++;
 						}

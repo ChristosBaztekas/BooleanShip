@@ -10,7 +10,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 	private boolean lockdown = false;
 	private int limit_per_department = 2;
 	private int limit_total_number_small = 5;
-	private int limit_percentage = 0.85;
+	private double limit_percentage = 0.85;
 	private int total_limit_percentage = 60;
 	public Companies(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
@@ -28,7 +28,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		if (count > total_limit_percentage) {
 			int total_positive = 0;
 			for (int i = 0; i < department.size(); i++) {
-				int numberdepartment = department.get(i).covidCase();
+				int numberdepartment = department.get(i).covidCases();
 				total_positive += numberdepartment;
 				if (numberdepartment > limit_per_department) {
 					setDepartmentLockdown(i);
@@ -40,7 +40,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
 		} else {
 			int total_positive = 0;
 			for (int i = 0; i < department.size(); i++) {
-				int numberdepartment = department.get(i).covidCase();
+				int numberdepartment = department.get(i).covidCases();
 				total_positive += numberdepartment;
 				if (numberdepartment > limit_per_department) {
 					setDepartmentLockdown(i);

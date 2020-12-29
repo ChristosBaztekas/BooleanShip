@@ -129,9 +129,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             return;
         }
         for (var c : carenPeople) {
-            if (c.toString().equals(input)) {
-                System.out.printf("Elder people: %s must be tested?, 0 for exit\n", oneHuman.toString());
-                String ans = scanner.nextLine();
+            if (c.getAfm().equals(input)) {
+                System.out.printf("Elder people: %s must be tested?, 0 for exit\n", c.toString());
+                String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
@@ -141,9 +141,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
         for (var c : employees) {
-            if (c.toString.equals(input)) {
-                System.out.printf("Member of employee: %s must be tested?, 0 for exit\n", oneHuman.toString());
-                String ans = scanner.nextLine();
+            if (c.getAfm().equals(input)) {
+                System.out.printf("Member of employee: %s must be tested?, 0 for exit\n", c.toString());
+                String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
@@ -161,9 +161,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             return;
         }
         for (var c : carenPeople) {
-            if (c.toString().equals(input)) {
-                System.out.printf("Want to report of a member of elder people: %s, 0 for exit\n", oneHuman.toString());
-                String ans = scanner.nextLine();
+            if (c.getAfm().equals(input)) {
+                System.out.printf("Want to report of a member of elder people: %s, 0 for exit\n", c.toString());
+                String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
@@ -174,9 +174,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
         for (var c : employees) {
-            if (c.toString.equals(input)) {
-                System.out.printf("Want to report of a member of employee: %s, 0 for exit\n", oneHuman.toString());
-                String ans = scanner.nextLine();
+            if (c.getAfm().equals(input)) {
+                System.out.printf("Want to report of a member of employee: %s, 0 for exit\n", c.toString());
+                String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
@@ -260,12 +260,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 			if(carenPeople.size() != 0) {
 				System.out.printf("There are %d carenPeople, would you like to add new?\n" +
 										"Press 1 for yes,otherwise we will go to remove panel", carenPeople.size());
-				String ans = scanner.nextLine();
+				String ans = sc.nextLine();
 				if (ans.equals("1")) {
 					int i=0;
 					while(true) {
 						System.out.printf("Adding the %d carenPeople, for exit 0", i+1);
-						if (scanner.nextLine().equals("0")) {
+						if (sc.nextLine().equals("0")) {
 							break;
 						}
 						Human one = Human.createHuman(this);
@@ -276,11 +276,11 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 				}
 				System.out.printf("There are %d carenPeople, would you like to remove one?\n" +
 				        "Press 1 for yes", carenPeople.size());
-				String ans0 = scanner.nextLine();
+				String ans0 = sc.nextLine();
 				if (ans0.equals("1")) {
 					while (true){
 						System.out.println("Give the afm of the carenPeople that want to remove");
-						String afm = scanner.nextLine();
+						String afm = sc.nextLine();
 						boolean flag = true;
 						for (int i=0; i < carenPeople.size(); i++) {
 							if (carenPeople.get(i).getAfm().equals(afm)) {
@@ -296,7 +296,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                             reducePeople(1);
                         }
 						System.out.println("Continue the deletion process? 0 for exit");
-						String ans1 = scanner.nextLine();
+						String ans1 = sc.nextLine();
 						if (ans1.equals("0")) {
 							break;
 						}
@@ -308,7 +308,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 				int i = 0;
 				while (true) {
 					System.out.printf("Creating the %d carenPeople, 0 for exit", i+1);
-					if (scanner.nextLine().equals("0")) {
+					if (sc.nextLine().equals("0")) {
 						if (employees.size() == 0) {
 						    System.out.println("There no employees, you can not exit without giving at least one employee");
 						    System.out.println("Please try again");
@@ -348,11 +348,11 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         }
         System.out.println("Status of your employees");
         for (var c  : employees) {
-            System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
         }
         System.out.println("Status of your guesters");
         for (var c : carenPeople) {
-            System.out.println("%s has status:%s", c.toString(), c.seeStatus());
+            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
         }
         if (status) {
             System.out.println("Your Nursing Home can not be visited");

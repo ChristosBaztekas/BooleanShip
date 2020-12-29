@@ -10,7 +10,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 	private ArrayList<Human> changes = new ArrayList<Human>();
 	private boolean status = false;//eody changes something
 	private boolean lockdown = false;
-	private ArrayList<boolean> lockdown_department = new ArrayList<boolean>();
+	private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
 	private static Scanner scanner = new Scanner(System.in);
 	public Labors(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
@@ -41,7 +41,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 		if (number > lockdown_department.size() -1) {
 			System.out.println("Wrong number" + number);
 		} else {
-			lockdown_department.get(number) = true;
+			lockdown_department.set(number, true);
 		}
 	}
 	public void autoMonitoring() {
