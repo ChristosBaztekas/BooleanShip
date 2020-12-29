@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.Properties;
 
 public class JavaMailUtil extends JFrame {
-    public static void sendMail(String usersMail) throws MessagingException {
+    public static void sendMail(String usersMail,String subject,String mainText) throws MessagingException {
         JOptionPane.showMessageDialog(null, "Preparing to send mail.");
         Properties properties = new Properties();
         properties.put("mail.smtp.auth","true");
@@ -25,20 +25,20 @@ public class JavaMailUtil extends JFrame {
             }
         });
 
-        Message message = prepareMessage(session,mail,usersMail);
+        Message message = prepareMessage(session,mail,usersMail,subject,mainText);
 
         Transport.send(message);
 
         JOptionPane.showMessageDialog(null, "Message sent successfully!");
     }
 
-    private static Message prepareMessage(Session session, String mail,String usersMail) {
+    private static Message prepareMessage(Session session, String mail,String usersMail,String subject,String mainText) {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(mail));
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(usersMail));
-            message.setSubject("Subject");
-            message.setText("Activity");
+            message.setSubject(subject);
+            message.setText(mainText);
             return message;
         } catch (MessagingException e) {
             e.printStackTrace();
