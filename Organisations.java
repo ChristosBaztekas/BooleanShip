@@ -13,7 +13,7 @@ public class Organisations {
     static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
 	private String password;
 	private String username;
-	private Organisations subclass;
+	private Organisations subclass;//see if it doesnt need
 	private static TreeMap<String, String> fields = new TreeMap<String, String>();
 	private static TreeMap<String, Organisations> codes = new TreeMap<String, Organisations>();
 	public Organisations(String name, String area, int numbersOfPeople) {
@@ -62,7 +62,7 @@ public class Organisations {
 			String pass = sc.nextLine();
 			if (fields.get(name) == pass) {
 				System.out.print("The authication has procced");
-				return codes.get(name).subclass;
+				return codes.get(name).subclass;//see if doesnot need subclass
 			} else {
 				System.out.print("Wrong!!!Try again!");
 				return null;
@@ -84,6 +84,15 @@ public class Organisations {
 
 	public String getArea() {
 		return area;
+	}
+	public void setNumbersOfPeople(int numbers) {
+		numbersOfPeople = numbers;
+	}
+	public void reducePeople(int numbers) {//reduce
+		numbersOfPeople -= numbers;
+	}
+	public void addPeople(int numbers) {//adding
+		numbersOfPeople += numbers;
 	}
 
 	public int getNumbersOfPeople() {

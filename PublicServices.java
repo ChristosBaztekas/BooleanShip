@@ -17,35 +17,34 @@ public class PublicServices extends Labors {
 
 	}
 	protected void autoMonitoring() {
+		ArrayList<Classes> department = getDepartment();
 		int total_number = 0;
 		for (var c : department) {
 			total_number += c.size();
 		}
 		if (total_number > total_limit_percentage) {
 			int total_number_positive = 0;
-			for (var c : department) {
-				int number_per_department;
-				number_per_department = c.covidCase();
+			for (int i = 0; i<department.size(); i++) {
+				int number_per_department = department.get(i).covidCase();
 				total_number_positive += number_per_department;
 				if (number_per_department > limit_per_department) {
-					//lockdown department
+					setDepartmentLockdown(i);
 				}
 			}
 			if (total_number_positive > limit_percentage *total_number ) {
-				//lockdown labor
+				setLockdown(true);
 			}
 		} else {
 			int total_number_positive = 0;
-			for (var c : department) {
-				int number_per_department;
-				number_per_department = c.covidCase();
+			for (int i = 0; i < department.size(); i++) {
+				int number_per_department = department.get(i).covidCase();
 				total_number_positive += number_per_department;
 				if (number_per_department > limit_per_department) {
-					//lockdown department
+					setDepartmentLockdown(i)
 				}
 			}
 			if (total_number_positive > limit_total_number_small ) {
-				//lockdown labor
+				setLockdown(true);
 			}
 		}
 	}

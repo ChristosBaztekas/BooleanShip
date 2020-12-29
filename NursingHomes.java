@@ -21,6 +21,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         add(this);
         modifyEmployees();
         modifyCarenPeople();
+        setNumbersOfPeople(employees.size() + carenPeople.size());
+
     }
     protected void modifyEmployees() {
         while (true){
@@ -31,7 +33,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 if (ans.equals("1")) {
                     int i = 0;
                     while (true) {
-                        System.out.printf("Adding the %d employ, for exit 0", i+1);
+                        System.out.printf("Adding the %d employ, for exit 0", i + 1);
                         if (sc.nextLine().equals("0")) {
                             break;
                         }
@@ -40,8 +42,10 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                             break;
                         } else {
                             employees.add(one);
+                            i++;
                         }
                     }
+                    addPeople(i);
                     break;
                 }
                 System.out.printf("There are %d Employee(s), would you like to remove one?\n" +
@@ -62,6 +66,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                         }
                         if (flag) {
                             System.out.printf("Could not find employee with afm:% s", afm);
+                        } else {
+                            reducePeople(1);
                         }
                         System.out.println("Continue the deletion process? 0 for exit");
                         String ans1 = sc.nextLine();
@@ -79,6 +85,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                     if (sc.nextLine().equals("0")) {
                         if (employees.size() == 0) {
                             System.out.println("Cant continue without giving an employee");
+                            continue;
                         } else {
                             break;
                         }
@@ -106,7 +113,17 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
     }
+    private void toBeTested(Human human) {
+        System.out.println("Give the people that have to be tested, 0 exit");
+        String input = sc.nextLine();
+
+    }
     public void declareCase() {
+        System.out.println("Give the afm of the person that have been found positive, 0 for exit");
+        String input = sc.nextLine();
+        if (input.equals("0")) {
+            return;
+        }
         for (var c : carenPeople) {
             if (c.toString().equals(input)) {
                 System.out.printf("Want to report of a member of elder people: %s, 0 for exit\n", oneHuman.toString());
@@ -114,7 +131,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.haveToBeTested();
+                    c.bePositive();
                     return;
                 }
             }
@@ -127,6 +144,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                     return;
                 } else {
                     c.haveToBeTested();
+                    toBeTested(c);
                     return;
                 }
             }
@@ -162,7 +180,6 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 continue;
             }
             NursingHomes newOne = new NursingHomes(name, area, numberofCarenPeople + numberOfEmployees, enclosed);
-            //look caseManagmentAndHumanAddition
         }
 
 	 }
@@ -212,6 +229,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 						Human one = Human.createHuman(this);
 						carenPeople.add(one);
 					}
+                    addPeople(i);
 					break;
 				}
 				System.out.printf("There are %d carenPeople, would you like to remove one?\n" +
@@ -224,6 +242,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 						boolean flag = true;
 						for (int i=0; i < carenPeople.size(); i++) {
 							if (carenPeople.get(i).getAfm().equals(afm)) {
+							    carenPeople.get(i).removeFromOrg(this);
 								carenPeople.remove(i);
 								flag = false;
 								break;
@@ -231,7 +250,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 						}
 						if (flag) {
 							System.out.printf("Could not find carenPeople with afm:% s", afm);
-						}
+						} else {
+                            reducePeople(1);
+                        }
 						System.out.println("Continue the deletion process? 0 for exit");
 						String ans1 = scanner.nextLine();
 						if (ans1.equals("0")) {
@@ -246,7 +267,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 				while (true) {
 					System.out.printf("Creating the %d carenPeople, 0 for exit", i+1);
 					if (scanner.nextLine().equals("0")) {
-						break;
+						if (employees.size() == 0) {
+						    System.out.println("There no employees, you can not exit without giving at least one employee");
+						    System.out.println("Please try again");
+                        } else {
+						    break;
+                        }
 					}
 					Human one = Human.createHuman(this);
 					carenPeople.add(one);

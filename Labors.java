@@ -10,6 +10,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 	private ArrayList<Human> changes = new ArrayList<Human>();
 	private boolean status = false;//eody changes something
 	private boolean lockdown = false;
+	private ArrayList<boolean> lockdown_department = new ArrayList<boolean>();
 	private static Scanner scanner = new Scanner(System.in);
 	public Labors(String name, String area, int numbersOfPeople) {
 		super(name, area, numbersOfPeople);
@@ -25,12 +26,28 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 			changes.add(human);
 		}
 		//where belongs
+		autoMonitoring();
+	}
+	protected ArrayList<Classes> getDepartment() {
+		return department;
+	}
+	protected boolean getLockdown() {
+		return lockdown;
+	}
+	protected void setLockdown(boolean b) {
+		lockdown = b;
+	}
+	protected void setDepartmentLockdown(int number) {
+		if (number > lockdown_department.size() -1) {
+			System.out.println("Wrong number" + number);
+		} else {
+			lockdown_department.get(number) = true;
+		}
 	}
 	public void autoMonitoring() {
 	}//childs to do, and check if is called the child one
 	public void declareCase() {
 		if (status) {
-			autoMonitoring();
 			System.out.println("New cases in your Labor have been occured\nGoing to monitoring menu");
 			monitoring();
 		}
@@ -97,7 +114,6 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
 	public void printDetails(){}
 	public void seeStatus() {
 		if (status) {
-			autoMonitoring();
 			System.out.println("New cases in your Labor have been occured\nGoing to monitoring menu");
 			monitoring();
 		}

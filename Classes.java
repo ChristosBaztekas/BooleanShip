@@ -38,7 +38,6 @@ public class Classes {
 
 	protected void modify() {
 		//asks for deleting or adding a Human
-		System.out.println(allHuman);
 		for (;;) {
 			System.out.println("Add or Delete a Person?");
 			System.out.println("Give (a) for add, (d) for delete, or (0) for exit");
@@ -49,29 +48,34 @@ public class Classes {
 			if (answ.equals("d")) {
 				System.out.println("Please give afm of the person");
 				String checkAfm = scanner.nextLine();
-				if (!isValidAfm(checkAfm)) {
-					System.out.printf("Does not exist this kind: %s afm", checkAfm);
-					continue;
+				boolean flag = true;
+				for (int i = 0; i < members.size(); i++) {
+					if (members.get(i).getAfm().equals(checkAfm)) {
+						members.get(i).removeFromOrg(organisation);
+						members.remove(i);
+						flag = false;
+						break;
+					}
 				}
-				int position = search(checkAfm);
-				Human theHuman;
-				if (!(position < 0)) {
-					theHuman = allHuman.get(position);
-					System.out.printf("The person %s with AFM: %s is being removed", theHuman.getName(), theHuman.getAfm());
-					allHuman.remove(theHuman);
+				if (flag) {
+					System.out.printf("Could not find member with afm:% s", afm);
 				} else {
-					System.out.printf("Does not exist this : %s afm in our list", checkAfm);
+					organisation.reducePeople(1);
+				}
+				System.out.println("Continue the deletion process? 0 for exit");
+				String ans1 = scanner.nextLine();
+				if (ans1.equals("0")) {
+					break;
 				}
 			}
 			if (answ.equals("a")) {
-				System.out.println("Please give afm of the person");
-				String addAfm = scanner.nextLine();
-				if (!isValidAfm(addAfm)) {
-					System.out.printf("Does not exist this kind: %s afm", addAfm);
-					continue;
+				Human one = Human.createHuman(organisation);
+				if (one == null) {
+					break;
+				} else {
+					addPeople(1);
 				}
-				Human addHuman = createHuman(addAfm);
-				allHuman.add(addHuman);
+				members.add(one);
 			}
 		}
 	}

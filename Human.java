@@ -136,6 +136,9 @@ public final class Human {
 		status = Status.PRESUMPTIVE;
 		waitTest.add(this);
 	}
+	protected void bePositive() {
+		status = Status.CONFIRMED;
+	}
 	protected void removeFromOrg(Organisations org) {
 		for (int i = 0; i < belongs.size(); i++) {
 			if (belongs.get(i) == org) {

@@ -10,6 +10,13 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 	private boolean status = false;//eody have smth changed
 	private ArrayList<Human> changes = new ArrayList<Human>();
 	private static Scanner scanner = new Scanner(System.in);
+	private int number_others_positive;
+	private int number_teachers_positive;
+	private ArrayList<Integer> number_department_positive = new ArrayList<Integer>();
+	private ArrayList<Integer> number_secreterariat_positive = new ArrayList<Integer>();
+	private int limit_per_department = 2;
+	private int limit_per_secretariat = 0;
+	private int total_limit = 15;
 	private int id ;
 	private static int count = 0;
 	public Universities(String name, String area, int numbersOfPeople) {
@@ -20,6 +27,19 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		modifyOthers();
 		modifyDepartments();
 		id = count++;
+		setSize();
+	}
+	protected void setSize() {
+		int count = 0;
+		for (var c : department) {
+			count += c.size();
+		}
+		for (var c : secretariat) {
+			count += c.size();
+		}
+		count += teachers.size();
+		count += others.size();
+		setNumbersOfPeople(count);
 	}
 	public void printDetails() {
 		System.out.println("Welcome.The" + getName() +
@@ -193,10 +213,44 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		}
 		Universities newOn = new Universities(name,area,teachers+students);
 	}
-	public void autoMonitoring() {}
+	public void autoMonitoring() {
+		int count = 0;
+		for (var c : department) {
+			int dep = c.covidCases();
+			if (dep > limit_per_department) {
+				//lockdown dep
+			}
+			count += dep
+		}
+		for (var c : secretariat) {
+			int secr = c.covidCases();
+			count += secr;
+			if (secr > limit_per_secretariat) {
+				//lockdown secr
+			}
+		}
+		int sum = 0;
+		for (var c : teachers) {
+			if (c.seeStatus().equals("CONFIRMED")) {//check if it works
+				sum += 1;
+			}
+		}
+		for (var c : others) {
+			if (c.seeStatus().equals("CONFIRMED")) {//check if it works
+				sum += 1;
+			}
+		}
+		if (sum > total_limit) {
+			//lockdown uni
+		}
+	}
+	public void findWhereBelongs() {
+
+	}
 	public void declareCase(Human human) { //called by eody
 	if (status) {
 		changes.add(human);
+
 	} else {
 		changes.clear();
 		status = true;
@@ -284,15 +338,16 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							}
 						}
 						Classes one = new Classes(this);
+						number_department_positive.add(0);
 						department.add(one);
 					}
 					break;
 				} else {
 					while (true) {
 						int ans = 0;
-
 						try {
 							System.out.println("Select which department to modify");
+							System.out.println("Press 0 to create a new one");
 							int num = 1;
 							for (Classes c : department) {
 								System.out.printf("%d for : %s", num, c.getIdifier());
@@ -300,6 +355,11 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							}
 							System.out.println("Press a number");
 							ans = scanner.nextInt();
+							if (ans == 0) {
+								Classes one = new Classes(this);
+								number_department_positive.add(0);
+								department.add(one);
+							}
 							if (ans < 1 && ans > department.size()) {
 								System.out.println("Invalid number, try again");
 								continue;
@@ -330,9 +390,11 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						if (scanner.nextLine().equals("0")) {
 							break;
 						}
-						Human one = Human.createHuman(this.getClass().getName(), this.id);
+						Human one = Human.createHuman(this);
 						teachers.add(one);
+						i++;
 					}
+					addPeople(i);
 					break;
 				}
 				System.out.printf("There are %d Professor(s), would you like to remove one?\n" +
@@ -345,6 +407,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						boolean flag = true;
 						for (int i=0; i < teachers.size(); i++) {
 							if (teachers.get(i).getAfm().equals(afm)) {
+								teachers.get(i).removeFromOrg(this);
 								teachers.remove(i);
 								flag = false;
 								break;
@@ -352,6 +415,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						}
 						if (flag) {
 							System.out.printf("Could not find professor with afm:% s", afm);
+						} else {
+							reducePeople(1);
 						}
 						System.out.println("Continue the deletion process? 0 for exit");
 						String ans1 = scanner.nextLine();
@@ -394,6 +459,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						}
 						Classes one = new Classes(this);
 						secretariat.add(one);
+						number_secreterariat_positive.add(0);
 					}
 					break;
 				} else {
@@ -402,6 +468,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 
 						try {
 							System.out.println("Select which secretariat to modify");
+							System.out.println("O to create a new one");
 							int num = 0;
 							for (Classes c : secretariat) {
 								System.out.printf("%d for : %s", num, c.getIdifier());
@@ -409,7 +476,12 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							}
 							System.out.println("Press a number");
 							ans = scanner.nextInt();
-							if (ans < 0 && ans > secretariat.size()) {
+							if (ans == 0) {
+								Classes one = new Classes(this);
+								number_secreterariat_positive.add(0);
+								department.add(one);
+							}
+							if (ans < 1 && ans > secretariat.size()) {
 								System.out.println("Invalid number, try again");
 								continue;
 							}
@@ -419,7 +491,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 							scanner.nextLine();
 						}
 						//add or delete
-						secretariat.get(ans).modify();
+						secretariat.get(ans - 1).modify();
 						break;
 					}
 					break;
@@ -458,8 +530,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						System.out.printf("There are %d People, would you like to add new?\n" +
 								"Press 1 for yes,otherwise we will go to remove panel", others.size());
 						String ans = scanner.nextLine();
+						int i = 0;
 						if (ans.equals("1")) {
-							int i = 0;
 							while (true) {
 								System.out.printf("Adding the %d person, for exit 0", i+1);
 								if (scanner.nextLine().equals("0")) {
@@ -467,7 +539,9 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 								}
 								Human one = Human.createHuman(this.getClass().getName(), this.id);
 								others.add(one);
+								i++;
 							}
+							addPeople(i);
 							break;
 						}
 						System.out.printf("There are %d People, would you like to remove one?\n" +
@@ -478,7 +552,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 								System.out.println("Give the afm of the person that want to remove");
 								String afm = scanner.nextLine();
 								boolean flag = true;
-								for (int i=0; i < others.size(); i++) {
+								for (i = 0; i < others.size(); i++) {
 									if (others.get(i).getAfm().equals(afm)) {
 										others.remove(i);
 										flag = false;
@@ -510,8 +584,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 						}
 						break;
 					}
-				}
+		}
 	}
-
 
 }
