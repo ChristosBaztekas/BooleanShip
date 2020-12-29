@@ -93,8 +93,10 @@ public class OrgMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == i6) {
 
         }else if (e.getSource() == i7) {
+            String subject = (String)JOptionPane.showInputDialog("Input subject");
+            String mainText = (String)JOptionPane.showInputDialog("Input main text");
             try {
-                JavaMailUtil.sendMail("leonidasdiam2001@gmail.com");
+                JavaMailUtil.sendMail("leonidasdiam2001@gmail.com",subject,mainText);
             } catch (MessagingException messagingException) {
                 messagingException.printStackTrace();
             }
