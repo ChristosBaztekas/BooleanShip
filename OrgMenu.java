@@ -1,3 +1,6 @@
+package com.Gui.BooleanShip;
+
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +20,7 @@ public class OrgMenu extends JFrame implements ActionListener {
     private JMenu exitm = new JMenu("Close Program");
     private JMenu emergencyContact = new JMenu("Emergency contact");
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
+
     private JMenuItem phone = new JMenuItem("Phone number for emergency");
     private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
     private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
@@ -87,6 +91,13 @@ public class OrgMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == i5) {
 
         } else if (e.getSource() == i6) {
+
+        }else if (e.getSource() == i7) {
+            try {
+                JavaMailUtil.sendMail("leonidasdiam2001@gmail.com");
+            } catch (MessagingException messagingException) {
+                messagingException.printStackTrace();
+            }
 
         }  else if (e.getSource() == exit) {
             try {
