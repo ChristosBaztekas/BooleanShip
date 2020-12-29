@@ -1,5 +1,6 @@
 package com.Gui.BooleanShip;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -121,14 +122,22 @@ public class LogOrg extends JFrame implements ActionListener {
                 wsFrame.setVisible(true);
                 wsFrame.setDefaultCloseOperation(3);
             } else {
-                JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
+                JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!");
 
             }
 
 
         }
         if(e.getSource() == forgotPassword){
-            JOptionPane.showMessageDialog(this, "Send an email on booleanship@gmail.com and we will contact you immediatelly. ");
+            String emailF = (String)JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
+            forgotPassword.setSelected(false);
+            try {
+                JavaMailUtil.sendMail(emailF,"Password","Call us on 6983461347(9:00-17:00) and after verifying your identity we will give you your new password." +
+                        "Regards," +
+                        "BooleanShip team");
+            } catch (MessagingException messagingException) {
+                JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.");
+            }
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
