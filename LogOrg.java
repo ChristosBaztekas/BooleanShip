@@ -1,3 +1,5 @@
+package com.Gui.BooleanShip;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,13 +18,16 @@ public class LogOrg extends JFrame implements ActionListener {
     JButton loginButton = new JButton("LOGIN");
     JButton resetButton = new JButton("RESET");
     JCheckBox showPassword = new JCheckBox("Show Password");
+    JCheckBox forgotPassword = new JCheckBox("Forgot Password");
     JButton exit = new JButton("Exit Program");
+
 
     LogOrg() {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
+
     }
 
     public void setLayoutManager() {
@@ -35,6 +40,7 @@ public class LogOrg extends JFrame implements ActionListener {
         userTextField.setBounds(150, 150, 150, 30);
         passwordField.setBounds(150, 220, 150, 30);
         showPassword.setBounds(150, 250, 150, 30);
+        forgotPassword.setBounds(5, 250, 150, 30);
         loginButton.setBounds(20, 300, 100, 30);
         resetButton.setBounds(120, 300, 100, 30);
         exit.setBounds(220, 300, 120, 30);
@@ -46,6 +52,7 @@ public class LogOrg extends JFrame implements ActionListener {
         container.add(userTextField);
         container.add(passwordField);
         container.add(showPassword);
+        container.add(forgotPassword);
         container.add(loginButton);
         container.add(resetButton);
         container.add(exit);
@@ -55,13 +62,15 @@ public class LogOrg extends JFrame implements ActionListener {
         loginButton.addActionListener(this);
         resetButton.addActionListener(this);
         showPassword.addActionListener(this);
+        forgotPassword.addActionListener(this);
         exit.addActionListener(this);
     }
-   
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         //Coding Part of LOGIN button
-        if (e.getSource() == loginButton) { //if we don't put any items in passwordField and userTextField it produces an exception
+        if (e.getSource() == loginButton) {
             String userText;
             String pwdText;
             userText = userTextField.getText();
@@ -113,7 +122,13 @@ public class LogOrg extends JFrame implements ActionListener {
                 wsFrame.setDefaultCloseOperation(3);
             } else {
                 JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
+
             }
+
+
+        }
+        if(e.getSource() == forgotPassword){
+            JOptionPane.showMessageDialog(this, "Send an email on booleanship@gmail.com and we will contact you immediatelly. ");
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
@@ -121,7 +136,6 @@ public class LogOrg extends JFrame implements ActionListener {
             passwordField.setText("");
         }
         //Coding Part of showPassword JCheckBox
-        //it doesn't working 
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
@@ -138,7 +152,11 @@ public class LogOrg extends JFrame implements ActionListener {
             } catch (URISyntaxException uriSyntaxException) {
                 uriSyntaxException.printStackTrace();
             }
-                System.exit(0);
+            System.exit(0);
         }
+
+
     }
+
 }
+
