@@ -132,7 +132,9 @@ public class LogOrg extends JFrame implements ActionListener {
             String emailF = (String)JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
             forgotPassword.setSelected(false);
             try {
+
                 JavaMailUtil.sendMail(emailF,"Password","Call us on 6983461347(9:00-17:00) and after verifying your identity we will give you your new password.");
+                JOptionPane.showMessageDialog(this, "Please check your mail box!");
             } catch (MessagingException messagingException) {
                 JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.");
             }
