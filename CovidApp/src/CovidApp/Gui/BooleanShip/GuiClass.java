@@ -1,5 +1,6 @@
 package CovidApp.Gui.BooleanShip;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,10 +35,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
     private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
 
-    private JMenuItem latestProtocolsl = new JMenuItem("Latest Protocols for the Labors category.");
-    private JMenuItem latestProtocolss = new JMenuItem("Latest Protocols for the School category.");
-    private JMenuItem latestProtocolsu = new JMenuItem("Latest Protocols for the University category.");
-    private JMenuItem latestProtocolsn = new JMenuItem("Latest Protocols for the Nursing Home category.");
+
     private JMenuItem Exit = new JMenuItem("Close Program");
     private JMenuItem justExit = new JMenuItem("Exit");
     private JMenuItem gmenu = new JMenuItem("Menu and info are not available for not authorized users");
@@ -102,7 +100,7 @@ public class GuiClass extends JFrame implements ActionListener {
         menu2.add(lmenu1);
         menu2.add(lmenu2);
         menu2.add(lmenu3);
-        menu2.add(latestProtocolsl);
+
         menu2.add(lmenu4);
 
 
@@ -114,29 +112,26 @@ public class GuiClass extends JFrame implements ActionListener {
         menu3.add(smenu1);
         menu3.add(smenu2);
         menu3.add(smenu3);
-        menu3.add(latestProtocolss);
+
         menu3.add(smenu4);
 
         menu4.add(umenu1);
         menu4.add(umenu2);
         menu4.add(umenu3);
-        menu4.add(latestProtocolsu);
+
         menu4.add(umenu4);
 
         menu5.add(nmenu1);
         menu5.add(nmenu2);
         menu5.add(nmenu3);
-        menu5.add(latestProtocolsn);
+
         menu5.add(nmenu4);
 
 
         menu6.add(justExit);
         Exit.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
-        latestProtocolsl.addActionListener(this);
-        latestProtocolsu.addActionListener(this);
-        latestProtocolsn.addActionListener(this);
-        latestProtocolss.addActionListener(this);
+
 
         Problems.addActionListener(this);
         contactUs.addActionListener(this);
@@ -296,42 +291,6 @@ public class GuiClass extends JFrame implements ActionListener {
             }
         } else if (source == emailAd) {
             JOptionPane.showMessageDialog(null, "Our mail is BooleanShip@gmail.com feel free to contact us!");
-        } else if (source == latestProtocolsl) {
-            try {
-                d.browse(new URI(
-                        "https://eody.gov.gr/"));//input here a url that leads to the latest protocol website
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-        } else if (source == latestProtocolsn) {
-            try {
-                d.browse(new URI(
-                        "https://eody.gov.gr/"));//input here a url that leads to the latest protocol website
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-        } else if (source == latestProtocolss) {
-            try {
-                d.browse(new URI(
-                        "https://eody.gov.gr/"));//input here a url that leads to the latest protocol website
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-        } else if (source == latestProtocolsu) {
-            try {
-                d.browse(new URI(
-                        "https://eody.gov.gr/"));//input here a url that leads to the latest protocol website
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
         } else if (source == helpUsBecomeBetter) {
             try {
                 d.browse(new URI(
@@ -342,13 +301,14 @@ public class GuiClass extends JFrame implements ActionListener {
                 uriSyntaxException.printStackTrace();
             }
         } else if (source == Problems) {
+            String problemDescription = (String)JOptionPane.showInputDialog("Please describe your problem in order to fix it");
             try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/2WKC6MB"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
+
+                JOptionPane.showMessageDialog(null, "Sending...");
+                JavaMailUtil.sendMail("booleanshipproblems@gmail.com","Problem",problemDescription);
+                JOptionPane.showMessageDialog(null, "Our team will do the best in order to solve your problem as soon as possible!");
+            } catch (MessagingException messagingException) {
+                JOptionPane.showMessageDialog(this, "An unexpected error occurred.Please try again.");
             }
         } else if (source == Exit) {
             try {
@@ -372,6 +332,17 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
+    }
+    public static void sendingProblem(){
+        String problemDescription = (String)JOptionPane.showInputDialog("Please describe your problem in order to fix it");
+        try {
+
+
+            JavaMailUtil.sendMail("booleanshipproblems@gmail.com","Problem",problemDescription);
+            JOptionPane.showMessageDialog(null, "Our team will do the best in order to solve your problem as soon as possible!");
+        } catch (MessagingException messagingException) {
+            JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.");
+        }
     }
 
 }
