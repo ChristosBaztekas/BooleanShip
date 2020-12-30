@@ -1,5 +1,6 @@
 package CovidApp.Gui.BooleanShip;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,7 +30,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private JMenuItem i2 = new JMenuItem("Modify the list of guests");
     private JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
     private JMenuItem i4 = new JMenuItem("Status of your NursingHome");
-    private JMenuItem i5 = new JMenuItem("Modify other conected with your org people");
+    private JMenuItem i5 = new JMenuItem("Modify other connected with your org people");
 
     private JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
     private JMenuItem exit = new JMenuItem("Exit");
@@ -118,14 +119,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
         }else if (e.getSource() == emailAd) {
             JOptionPane.showMessageDialog(null, "Our mail is BooleanShip@gmail.com feel free to contact us!");
         }else if(e.getSource() == Problems){
-            try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/2WKC6MB"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
+            GuiClass.sendingProblem();
         }
     }
 }
