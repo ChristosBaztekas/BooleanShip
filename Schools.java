@@ -65,6 +65,11 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 			System.out.println("New cases in your school have been occured\nGoing to monitoring menu");
 			monitoring();
 		}
+		for (int i = 0; i < departments.size()) {
+			if (lockdown_department.get(i)) {
+				System.out.printf("Department %s is closed",departments.get(i).getIdifier());
+			}
+		}
 		System.out.printf("Students with Covid: %d", number_of_students_positive);
 		System.out.printf("Teachers with Covid: %d", number_of_teachers_positive);
 		System.out.printf("Others with Covid: %d", number_of_others_positive);
@@ -81,6 +86,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		for (var c : others) {
 			System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
 		}
+
 		int total = number_of_others_positive + number_of_students_positive + number_of_teachers_positive;
 		if (total > limitdecision) {
 			System.out.println("Do you want to close your school?, 1 yes");//option if is serious
@@ -140,7 +146,9 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 							break;
 						}
 						teachers.add(one);
+						i++;
 					}
+					addPeople(i);
 					break;
 				}
 				System.out.printf("There are %d Teacher(s), would you like to remove one?\n" +
@@ -160,6 +168,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 						}
 						if (flag) {
 							System.out.printf("Could not find teacher with afm:% s", afm);
+						} else {
+							reducePeople(1);
 						}
 						System.out.println("Continue the deletion process? 0 for exit");
 						String ans1 = scanner.nextLine();
@@ -269,7 +279,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 			changes.add(human);
 		}
 		findPerson(human);
-		autoMonitoring();
 	}
 	public void modifyDepartments() {
 		while (true){
@@ -297,6 +306,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 					try {
 						System.out.println("Select which department to modify");
 						System.out.println("Press 0 to create a new one");
+						System.out.println("Press -1 to exit");
 						int num = 1;
 						for (var c : departments) {
 							System.out.printf("%d for : %s", num, c.getIdifier());
@@ -304,6 +314,9 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 						}
 						System.out.println("Press a number");
 						ans = scanner.nextInt();
+						if (ans == -1) {
+							break;
+						}
 						if (ans == 0) {
 							Classes one = new Classes(this);
 							number_department_positive.add(0);
@@ -346,6 +359,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 								break;
 							}
 							others.add(one);
+							i++;
 						}
 						addPeople(i);
 						break;
@@ -393,7 +407,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 						others.add(one);
 						i++;
 					}
-					//add of organisation method
 					break;
 				}
 			}
