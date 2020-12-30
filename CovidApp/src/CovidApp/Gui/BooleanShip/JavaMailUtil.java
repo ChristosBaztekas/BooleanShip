@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class JavaMailUtil extends JFrame {
     public static void sendMail(String usersMail,String subject,String mainText) throws MessagingException {
-        JOptionPane.showMessageDialog(null, "Preparing to send mail.");
+
         Properties properties = new Properties();
         properties.put("mail.smtp.auth","true");
         properties.put("mail.smtp.starttls.enable","true");
@@ -29,7 +29,6 @@ public class JavaMailUtil extends JFrame {
 
         Transport.send(message);
 
-        JOptionPane.showMessageDialog(null, "Message sent successfully!");
     }
 
     private static Message prepareMessage(Session session, String mail,String usersMail,String subject,String mainText) {
