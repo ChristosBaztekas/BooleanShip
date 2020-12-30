@@ -137,14 +137,7 @@ public class OrgMenu extends JFrame implements ActionListener {
         }else if (e.getSource() == emailAd) {
             JOptionPane.showMessageDialog(null, "Our mail is BooleanShip@gmail.com feel free to contact us!");
         }else if(e.getSource() == Problems){
-            try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/2WKC6MB"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
+            GuiClass.sendingProblem();
         }
 
     }
