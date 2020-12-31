@@ -21,6 +21,12 @@ public class GuiClass extends JFrame implements ActionListener {
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
     private JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
     private JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
+    private JMenuItem covidC = new JMenuItem("(COVID-19) Cases, Data, and Surveillance");
+    private JMenuItem nih = new JMenuItem("National Institutes of Health");
+    private JMenuItem nhs = new JMenuItem("Covid advices from NHS");
+    private JMenuItem cStats = new JMenuItem("Covid worldwide cases");
+
+
     private JMenuItem emailAd = new JMenuItem("Email address");
 
     private JMenu menu1 = new JMenu("Goverment Menu");
@@ -87,6 +93,10 @@ public class GuiClass extends JFrame implements ActionListener {
         help.add(Problems);
         useFullWebsitesAboutCovid.add(whoWebpage);
         useFullWebsitesAboutCovid.add(eodyWebpage);
+        useFullWebsitesAboutCovid.add(covidC);
+        useFullWebsitesAboutCovid.add(nih);
+        useFullWebsitesAboutCovid.add(nhs);
+        useFullWebsitesAboutCovid.add(cStats);
         contactUs.add(emailAd);
         mainApp.setSize(800, 800);
         allmenus.add(menu1);
@@ -131,11 +141,13 @@ public class GuiClass extends JFrame implements ActionListener {
         menu6.add(justExit);
         Exit.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
-
-
+        nih.addActionListener(this);
+        nhs.addActionListener(this);
+        cStats.addActionListener(this);
         Problems.addActionListener(this);
         contactUs.addActionListener(this);
         eodyWebpage.addActionListener(this);
+        covidC.addActionListener(this);
         whoWebpage.addActionListener(this);
         justExit.addActionListener(this);
         emailAd.addActionListener(this);
@@ -229,6 +241,14 @@ public class GuiClass extends JFrame implements ActionListener {
             GuiClass.sendingProblem();
         } else if (source == Exit) {
             GuiClass.exitMethod();
+        }else if (source == covidC) {
+            GuiClass.managingWebsitesByUrl("https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html");
+        }else if (source == nih) {
+            GuiClass.managingWebsitesByUrl("https://covid19.nih.gov/");
+        }else if (source == nhs) {
+            GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
+        }else if (source == cStats) {
+            GuiClass.managingWebsitesByUrl("https://news.google.com/covid19/map?hl=en-US&gl=US&ceid=US%3Aen");
         }
 
     }
