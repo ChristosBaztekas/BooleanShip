@@ -16,6 +16,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
     private int number_teachers_positive;
     private ArrayList<Integer> number_department_positive = new ArrayList<Integer>();
     private ArrayList<Integer> number_secreterariat_positive = new ArrayList<Integer>();
+    private ArrayList<Boolean> enclosed_teachers = new ArrayList<Boolean>();
     private int limit_per_department = 2;
     private int limit_per_secretariat = 0;
     private int total_limit = 15;
