@@ -170,37 +170,16 @@ public class GuiClass extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //JOptionPane.showMessageDialog(this, "Hi");
         Object source = e.getSource();
         if (source == justExit) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
 
         } else if (source == gmenu) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Surveillance login form");
             alreadyUserOption("Log in as a Surveillance User");
-        /*} else if (source == gmenu1) {
-        } else if (source == gmenu2) {
-        } else if (source == gmenu3) {
-        } else if (source == gmenu4) {*/
         } else if (source == gmenu5) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         } else if (source == lmenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for public services and companies authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == lmenu2) {
@@ -209,15 +188,7 @@ public class GuiClass extends JFrame implements ActionListener {
             alreadyUserOption("Log in as a Labor User.");
         } else if (source == lmenu3) {
         } else if (source == lmenu4) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         } else if (source == smenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for School authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == smenu2) {
@@ -226,15 +197,7 @@ public class GuiClass extends JFrame implements ActionListener {
             alreadyUserOption("Log in as a School User.");
         } else if (source == smenu3) {
         } else if (source == smenu4) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         } else if (source == umenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for university authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == umenu2) {
@@ -244,15 +207,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == umenu3) {
 
         } else if (source == umenu4) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         } else if (source == nmenu1) {
             JOptionPane.showMessageDialog(null, "This is menu for Nursing home authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
         } else if (source == nmenu2) {
@@ -261,67 +216,31 @@ public class GuiClass extends JFrame implements ActionListener {
             alreadyUserOption("Log in as a Nursing Home User.");
         } else if (source == nmenu3) {
         } else if (source == nmenu4) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         } else if (source == whoWebpage) {
-            try {
-                d.browse(new URI(
-                        "https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAiAoOz-BRBdEiwAyuvA6zFm_6xmeRNPWgGQNFVbY-QYvGsIiJp2f6AClAZZk5DVurBchs0KMxoCinsQAvD_BwE"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
+            GuiClass.managingWebsitesByUrl("https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAiAoOz-BRBdEiwAyuvA6zFm_6xmeRNPWgGQNFVbY-QYvGsIiJp2f6AClAZZk5DVurBchs0KMxoCinsQAvD_BwE");
         } else if (source == eodyWebpage) {
-
-            try {
-                d.browse(new URI(
-                        "https://eody.gov.gr/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
+            GuiClass.managingWebsitesByUrl("https://eody.gov.gr/");
         } else if (source == emailAd) {
-            JOptionPane.showMessageDialog(null, "Our mail is BooleanShip@gmail.com feel free to contact us!");
+            GuiClass.contactUs();
         } else if (source == helpUsBecomeBetter) {
-            try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
+            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c");
         } else if (source == Problems) {
-            String problemDescription = (String)JOptionPane.showInputDialog("Please describe your problem in order to fix it");
-            try {
-
-                JOptionPane.showMessageDialog(null, "Sending...");
-                JavaMailUtil.sendMail("booleanshipproblems@gmail.com","Problem",problemDescription);
-                JOptionPane.showMessageDialog(null, "Our team will do the best in order to solve your problem as soon as possible!");
-            } catch (MessagingException messagingException) {
-                JOptionPane.showMessageDialog(this, "An unexpected error occurred.Please try again.");
-            }
+            GuiClass.sendingProblem();
         } else if (source == Exit) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         }
 
+    }
+
+    public static void managingWebsitesByUrl(String url) {
+        try {
+            d.browse(new URI(url));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (URISyntaxException uriSyntaxException) {
+            uriSyntaxException.printStackTrace();
+        }
     }
 
     public static void alreadyUserOption(String anyString) {
@@ -333,16 +252,39 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
-    public static void sendingProblem(){
-        String problemDescription = (String)JOptionPane.showInputDialog("Please describe your problem in order to fix it");
+
+    public static void sendingProblem() {
+        String problemDescription = (String) JOptionPane.showInputDialog("Please describe your problem in order to fix it");
         try {
 
 
-            JavaMailUtil.sendMail("booleanshipproblems@gmail.com","Problem",problemDescription);
+            JavaMailUtil.sendMail("booleanshipproblems@gmail.com", "Problem", problemDescription);
             JOptionPane.showMessageDialog(null, "Our team will do the best in order to solve your problem as soon as possible!");
         } catch (MessagingException messagingException) {
             JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.");
         }
+    }
+
+    public static void contactUs() {
+        String contactDescription = (String) JOptionPane.showInputDialog("Please write us your message!");
+        String usersMail = (String) JOptionPane.showInputDialog("Please write your mail in order to receive our answer.");
+        try {
+            JavaMailUtil.sendMail(usersMail, "Message", "We received your message and we will reply as soon as possible!Thank you for using our app and stay safe.");
+            JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!");
+        } catch (MessagingException messagingException) {
+            JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.");
+        }
+        try {
+            JavaMailUtil.sendMail("booleanshipproblems@gmail.com", "ContactUsMessage", contactDescription);
+            JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!");
+        } catch (MessagingException messagingException) {
+            JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.");
+        }
+    }
+
+    public static void exitMethod() {
+        GuiClass.managingWebsitesByUrl("https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/");
+        System.exit(0);
     }
 
 }
