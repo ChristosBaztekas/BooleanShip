@@ -87,37 +87,13 @@ public class LaborMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == i6) {
 
         }  else if (e.getSource() == exit) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         } else if (e.getSource() == close) {
-            try {
-                d.browse(new URI(
-                        "https://www.greece-is.com/news/till-staysafe-marketing-greeces-campaign-hope/"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
-
+            GuiClass.exitMethod();
         }else if (e.getSource() == helpUsBecomeBetter) {
-            try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
+            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c");
         }else if (e.getSource() == emailAd) {
-            JOptionPane.showMessageDialog(null, "Our mail is BooleanShip@gmail.com feel free to contact us!");
+            GuiClass.contactUs();
         }else if(e.getSource() == Problems){
           GuiClass.sendingProblem();
         }
