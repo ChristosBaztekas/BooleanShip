@@ -153,15 +153,7 @@ public class LogOrg extends JFrame implements ActionListener {
             }
         }
         if(e.getSource() == exit){
-            try {
-                d.browse(new URI(
-                        "https://www.surveymonkey.com/r/2WKC6MB"));
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } catch (URISyntaxException uriSyntaxException) {
-                uriSyntaxException.printStackTrace();
-            }
-            System.exit(0);
+            GuiClass.exitMethod();
         }
 
 
