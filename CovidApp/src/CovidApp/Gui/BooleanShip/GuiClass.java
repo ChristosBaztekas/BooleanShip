@@ -14,7 +14,7 @@ public class GuiClass extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar mainApp = new JMenuBar();
     private JMenu allmenus = new JMenu("All Menus Available");
-    private JMenu useFullWebsitesAboutCovid = new JMenu("Usefull Websites about covid");
+    private JMenu useFullWebsitesAboutCovid = new JMenu("Useful Websites about covid");
     private JMenu help = new JMenu("Help");
     private JMenu contactUs = new JMenu("Contact us");
     private JMenu exitMenu = new JMenu("Exit");
@@ -70,18 +70,14 @@ public class GuiClass extends JFrame implements ActionListener {
 
 
     public GuiClass() {
+        setLayout(new BorderLayout());
+        setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid-19.png")));
         setLayout(new FlowLayout());
+
+
+
         setJMenuBar(mainApp);
-        //create image
-        JLabel background;
-        setSize(1200, 700);
-        setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon("covid.jpg");
-        background = new JLabel("", img, JLabel.CENTER);
-        background.setBounds(0, 0, 1200, 700);
-        mainApp.add(background);
-        background.setVisible(true);
+        mainApp.setBackground(Color.ORANGE);
         mainApp.add(allmenus);
         mainApp.add(useFullWebsitesAboutCovid);
         mainApp.add(help);
@@ -267,7 +263,6 @@ public class GuiClass extends JFrame implements ActionListener {
         LogOrg frame = new LogOrg();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
         frame.setVisible(true);
-
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
