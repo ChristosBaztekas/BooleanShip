@@ -36,8 +36,11 @@ public class UniversityMenu extends JFrame implements ActionListener {
     private JMenuItem exit = new JMenuItem("Exit");
     private JMenuItem close = new JMenuItem("Exit");
     public UniversityMenu(){
+        setLayout(new BorderLayout());
+        setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
         setJMenuBar(controluMenu);
+        controluMenu.setBackground(Color.ORANGE);
         controluMenu.add(mainMenuu);
         controluMenu.add(help);
         controluMenu.add(contactUs);
