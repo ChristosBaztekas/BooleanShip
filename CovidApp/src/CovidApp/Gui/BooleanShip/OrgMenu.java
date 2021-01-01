@@ -37,8 +37,11 @@ public class OrgMenu extends JFrame implements ActionListener {
     private JMenuItem close = new JMenuItem("Exit");
 
     public OrgMenu() {
+        setLayout(new BorderLayout());
+        setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
         setJMenuBar(controlGovMenu);
+        controlGovMenu.setBackground(Color.ORANGE);
         controlGovMenu.add(mainMenug);
         controlGovMenu.add(help);
         controlGovMenu.add(contactUs);
