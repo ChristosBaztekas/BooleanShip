@@ -13,7 +13,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar controlnMenu = new JMenuBar();
 
-    private JMenu mainMenun = new JMenu("Nursing Home user Menu.");
+    private JMenu mainMenun = new JMenu("Nursing Home user Menu");
     private JMenu help = new JMenu("Help");
     private JMenu contactUs = new JMenu("Contact us");
     private JMenu rateUs = new JMenu("Rate us");
@@ -36,8 +36,11 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private JMenuItem exit = new JMenuItem("Exit");
     private JMenuItem close = new JMenuItem("Exit");
     public NursingHomeMenu(){
+        setLayout(new BorderLayout());
+        setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
         setJMenuBar(controlnMenu);
+        controlnMenu.setBackground(Color.ORANGE);
         controlnMenu.add(mainMenun);
         controlnMenu.add(help);
         controlnMenu.add(contactUs);
