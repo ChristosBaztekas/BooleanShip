@@ -13,7 +13,7 @@ public class LaborMenu extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private JMenuBar controlsMenu = new JMenuBar();
 
-    private JMenu mainMenul = new JMenu("Labor user Menu.");
+    private JMenu mainMenul = new JMenu("Labor user Menu");
     private JMenu help = new JMenu("Help");
     private JMenu contactUs = new JMenu("Contact us");
     private JMenu rateUs = new JMenu("Rate us");
@@ -36,8 +36,11 @@ public class LaborMenu extends JFrame implements ActionListener {
     private JMenuItem exit = new JMenuItem("Exit");
     private JMenuItem close = new JMenuItem("Exit");
     public LaborMenu(){
+        setLayout(new BorderLayout());
+        setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
         setJMenuBar(controlsMenu);
+        controlsMenu.setBackground(Color.ORANGE);
         controlsMenu.add(mainMenul);
         controlsMenu.add(help);
         controlsMenu.add(contactUs);
