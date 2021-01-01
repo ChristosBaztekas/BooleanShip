@@ -36,8 +36,11 @@ public class SchoolMenu extends JFrame implements ActionListener {
     private JMenuItem exit = new JMenuItem("Exit");
     private JMenuItem close = new JMenuItem("Exit");
     public SchoolMenu(){
+        setLayout(new BorderLayout());
+        setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
         setJMenuBar(controlsMenu);
+        controlsMenu.setBackground(Color.ORANGE);
         controlsMenu.add(mainMenus);
         controlsMenu.add(help);
         controlsMenu.add(contactUs);
