@@ -12,14 +12,19 @@ public class Universities extends Organisations implements caseManagmentAndHuman
     private boolean status = false;//eody have smth changed
     private ArrayList<Human> changes = new ArrayList<Human>();
     private static final Scanner scanner = new Scanner(System.in);
-    private int number_others_positive;
-    private int number_teachers_positive;
+    private int number_others_positive = 0;
+    private int number_teachers_positive = 0;
+    private boolean lockdown = false;
     private ArrayList<Integer> number_department_positive = new ArrayList<Integer>();
+    private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
     private ArrayList<Integer> number_secreterariat_positive = new ArrayList<Integer>();
-    private ArrayList<Boolean> enclosed_teachers = new ArrayList<Boolean>();
+    private ArrayList<Boolean> lockdown_secretariat = new ArrayList<Boolean>();
     private static final int limit_per_department = 2;
     private static final int limit_per_secretariat = 0;
     private static final int total_limit = 15;
+    private static final int limit_others = 3;
+    private static final int limit_per_teachers = 3;
+    private static final int limit_decision = 1;
     private int id ;
     private static int count = 0;
     public Universities(String name, String area, int numbersOfPeople) {
@@ -216,39 +221,68 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         }
         Universities newOn = new Universities(name,area,teachers+students);
     }
-    public void autoMonitoring() {
+    public void autoMonitoring() {//to be changed
         int count = 0;
-        for (var c : department) {
-            int dep = c.covidCases();
-            if (dep > limit_per_department) {
-                //lockdown dep
-            }
-            count += dep;
+        if (number_teachers_positive > limit_per_teachers) {
+            lockdown = true;
+            return;
         }
-        for (var c : secretariat) {
-            int secr = c.covidCases();
-            count += secr;
+        if (number_others_positive > limit_others) {
+            lockdown = true;
+            return;
+        }
+        int sum1 = 0;
+        int sum2 = 0;
+        for (int i = 0; i < secretariat.size(); i++) {
+            int a = number_secreterariat_positive.get(i);
+            sum1 += a;
+            if (a > limit_per_department) {
+                lockdown_secretariat.set(i, true);
+            }
+        }
+        for (int i = 0 ; i < department.size(); i++) {
+            int secr = number_department_positive.get(i);
+            sum2 += secr;
             if (secr > limit_per_secretariat) {
-                //lockdown secr
+                lockdown_department.set(i, true);
             }
         }
-        int sum = 0;
+        int sum = number_others_positive + number_teachers_positive + sum1 + sum2;
+        if (sum > total_limit) {
+            lockdown = true;
+        }
+    }
+    public void findWhereBelongs(Human human) {
+        String look_for = human.getAfm();
         for (var c : teachers) {
-            if (c.seeStatus().equals("CONFIRMED")) {//check if it works
-                sum += 1;
+            if (c.getAfm().equals(look_for)) {
+                number_teachers_positive += 1;
+                break;
             }
         }
         for (var c : others) {
-            if (c.seeStatus().equals("CONFIRMED")) {//check if it works
-                sum += 1;
+            if (c.getAfm().equals(look_for)) {
+                number_others_positive += 1;
+                break;
             }
         }
-        if (sum > total_limit) {
-            //lockdown uni
+        for (int i = 0; i < department.size(); i++) {
+            Human one;
+            one = department.get(i).isSame(look_for);
+            if (one != null) {
+                number_department_positive.set(i,number_department_positive.get(i) + 1);
+                break;
+            }
         }
-    }
-    public void findWhereBelongs() {
-
+        for (int i = 0; i < secretariat.size(); i++) {
+            Human one;
+            one = department.get(i).isSame(look_for);
+            if (one != null) {
+                number_secreterariat_positive.set(i, number_secreterariat_positive.get(i) + 1);
+                break;
+            }
+        }
+        autoMonitoring();
     }
     public void declareCase(Human human) { //called by eody
         if (status) {
@@ -259,7 +293,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             status = true;
             changes.add(human);
         }
-        //maybe where belongs
+        findWhereBelongs(human);
     }
     public void declareCase() {//from user
         if (status) {
@@ -281,6 +315,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                     return;
                 } else {
                     oneHuman.bePositive();
+                    findWhereBelongs(oneHuman);
                     return;
                 }
             }
@@ -294,6 +329,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                     return;
                 } else {
                     oneHuman.bePositive();
+                    findWhereBelongs(oneHuman);
                     return;
                 }
             }
@@ -305,7 +341,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                 if (ans.equals("0")) {
                     return;
                 } else {
-
+                    c.bePositive();
+                    findWhereBelongs(c);
                     return;
                 }
             }
@@ -318,6 +355,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                     return;
                 } else {
                     c.bePositive();
+                    findWhereBelongs(c);
                     return;
                 }
             }
@@ -510,6 +548,20 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             System.out.println("New cases in your university have been occured\nGoing to monitoring menu");
             monitoring();
         }
+        int sum1 = 0;
+        int sum2 = 0;
+        for (var c : number_secreterariat_positive) {
+            sum1 += c;
+        }
+        for (var c : number_department_positive) {
+            sum2 += c;
+        }
+        int count = number_others_positive + number_teachers_positive + sum1 + sum2;
+        System.out.printf("Total Positive in your Universitat: %d", count);
+        System.out.printf("Total Positive Professors: %d", number_teachers_positive);
+        System.out.printf("Total Positive Secretariat member: %d", sum1);
+        System.out.printf("Total Positive of Other Employee: %d", number_others_positive);
+        System.out.printf("Total Positive Students: %d", sum2);
         System.out.println("Status of professors");
         for (var c : teachers) {
             System.out.printf("%s has status:%s\n", c.toString(), c.seeStatus());
@@ -527,6 +579,13 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         for (var c : department) {
             System.out.printf("    Status department:%s", c.getIdifier());
             c.printStatus();
+        }
+        if (count > limit_decision) {
+            System.out.println("Do you want to close your school?, 1 yes");//option if is serious
+            String ans = scanner.nextLine();
+            if (ans.equals("1")) {
+                lockdown = true;
+            }
         }
 
     }
