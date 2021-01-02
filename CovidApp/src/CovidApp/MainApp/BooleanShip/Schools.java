@@ -252,15 +252,17 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         System.out.println("Cannot find school member with ssn: " + input);
     }
     protected void findPerson(Human human) {
-        String look = human.toString();
+        String look = human.getAfm();
         for (var c : teachers) {
             if (c.getAfm().equals(look)) {
                 number_of_teachers_positive += 1;
+                break;
             }
         }
         for (var c : others) {
             if (c.getAfm().equals(look)) {
                 number_of_others_positive += 1;
+                break;
             }
         }
         for (int i = 0; i < departments.size(); i++) {
@@ -268,6 +270,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
             if (one != null) {
                 number_department_positive.set(i, number_department_positive.get(i) + 1) ;
                 number_of_students_positive += 1;
+                break;
             }
         }
         autoMonitoring();
