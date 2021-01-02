@@ -67,7 +67,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
             System.out.println("New cases in your school have been occured\nGoing to monitoring menu");
             monitoring();
         }
-        for (int i = 0; i < departments.size()) {
+        for (int i = 0; i < departments.size(); i++) {
             if (lockdown_department.get(i)) {
                 System.out.printf("Department %s is closed",departments.get(i).getIdifier());
             }

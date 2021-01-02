@@ -587,7 +587,6 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                 lockdown = true;
             }
         }
-
     }
     protected void modifyOthers() {
         while (true){

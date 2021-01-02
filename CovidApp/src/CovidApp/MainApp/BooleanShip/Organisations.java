@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class Organisations {
     private String name, area;
-    private final int id;
+    private int id;
     private static int count = 0;
     private int numbersOfPeople;
     private static final String EodyPassword = "78892GG";

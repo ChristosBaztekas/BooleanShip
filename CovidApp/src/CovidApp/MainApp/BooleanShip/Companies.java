@@ -23,7 +23,6 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
     public void autoMonitoring() {
         ArrayList<Classes> department = getDepartment();
         int count = 0;
-        int numbercases;
         for (var c : department) {
             count += c.size();
         }

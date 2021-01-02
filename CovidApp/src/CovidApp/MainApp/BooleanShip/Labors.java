@@ -25,9 +25,9 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
             changes.add(human);
         } else {
             changes.clear();
+            status = true;
             changes.add(human);
         }
-        //where belongs
         autoMonitoring();
     }
     protected ArrayList<Classes> getDepartment() {
@@ -112,6 +112,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
         } else {
             System.out.println("Everything is ok");
         }
+
     }
     public void printDetails(){}
     public void seeStatus() {
@@ -119,9 +120,40 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
             System.out.println("New cases in your Labor have been occured\nGoing to monitoring menu");
             monitoring();
         }
+        for (int i = 0; i < department.size(); i++) {
+            if (lockdown_department.get(i)) {
+                System.out.printf("Department: %s is closed", department.get(i).getIdifier());
+            } else {
+                System.out.printf("Department: %s is opened", department.get(i).getIdifier());
+            }
+        }
         for (var c : department) {
             System.out.println("Status of department: " + c.getIdifier());
             c.printStatus();
+        }
+        System.out.println("Would you like to lockdown your labor," +
+                " 1 yes, 2 for lockdown of department");
+        String ans = scanner.nextLine();
+        if (ans.equals("1")) {
+            lockdown = true;
+        }
+        if (ans.equals("2")) {
+            for (int i = 0; i < department.size(); i++) {
+                if (lockdown_department.get(i)) {
+                    System.out.printf("%s is closed", department.get(i).getIdifier());
+                } else {
+                    System.out.printf("%s is functioning, option %d to be lockdowned", department.get(i).getIdifier(), i+1);
+                }
+            }
+            scanner.nextLine();
+            if (scanner.hasNextInt()) {
+                int option = scanner.nextInt();
+                if (option < 1 || option > department.size()) {
+                    return;
+                } else {
+                    lockdown_department.set(option - 1, true);
+                }
+            }
         }
     }
     public void modifyDepartments() {
