@@ -72,7 +72,7 @@ public final class Human {
 
     @Override
     public String toString() {
-        return name + surname + afm;
+        return String.format("Name %s Surname %s afm %s", name, surname, afm);
     }
 
     public String seeStatus() {
@@ -251,7 +251,10 @@ public final class Human {
         int low = 0;
         int high = allHuman.size();
         int mid;
-        while (low <=high) {
+        if (high == 0) {
+            return -1;
+        }
+        while (low < high) {
             mid = (low + high) / 2;
             if (idGiven.compareTo(allHuman.get(mid).afm) < 0)  {
                 high = mid -1;
@@ -295,7 +298,7 @@ public final class Human {
                     email = sc.nextLine();
                     System.out.printf("Are these the correct datas %s %s %s %s;,0 for no \n", name, surname, gender, email);
                     String ans = sc.nextLine();
-                    if(!ans.equals("0")) {
+                    if(ans.equals("0")) {
                         System.out.println("The process of creating man is repeated");
                     } else {
                         break;
@@ -313,7 +316,7 @@ public final class Human {
 
             } else {
                 System.out.println("The person was found at the base");
-                System.out.printf("We continue the process with man:% s;\n 0 to exit: ", allHuman.get(pos).toString());
+                System.out.printf("We continue the process with man:%s;\n 0 to exit: ", allHuman.get(pos).toString());
                 int ans = sc.nextInt();
                 if (ans != 0) {
                     allHuman.get(pos).belongs.add(org);

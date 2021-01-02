@@ -48,8 +48,6 @@ public class Main {
             if (ans.equals("1")) {
                 signUp();
                 System.exit(0);
-            } else {
-                sc.nextLine();
             }
             System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
                     + "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell

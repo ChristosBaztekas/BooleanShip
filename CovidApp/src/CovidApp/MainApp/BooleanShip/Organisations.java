@@ -45,12 +45,14 @@ public class Organisations {
                     fields.put(input, pass1);
                     username = input;
                     password = pass1;
+                    break;
 
                 } else {
                     System.out.println("Does not match");
                     continue;
                 }
             }
+            break;
         }
     }
     protected void add(Organisations org) {

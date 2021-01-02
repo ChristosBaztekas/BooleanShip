@@ -241,6 +241,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 continue;
             }
             NursingHomes newOne = new NursingHomes(name, area, numberofCarenPeople + numberOfEmployees, enclosed);
+            break;
         }
 
     }
