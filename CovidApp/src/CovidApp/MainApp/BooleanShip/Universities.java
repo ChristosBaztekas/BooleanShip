@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class Universities extends Organisations implements caseManagmentAndHumanAddition{
-    private ArrayList<Classes> department = new ArrayList<Classes>();
-    private ArrayList<Classes> secretariat = new ArrayList<Classes>();
-    private ArrayList<Human> teachers = new ArrayList<Human>();
-    private ArrayList<Human> others = new ArrayList<Human>();
+    private final ArrayList<Classes> department = new ArrayList<Classes>();
+    private final ArrayList<Classes> secretariat = new ArrayList<Classes>();
+    private final ArrayList<Human> teachers = new ArrayList<Human>();
+    private final ArrayList<Human> others = new ArrayList<Human>();
     private boolean status = false;//eody have smth changed
     private ArrayList<Human> changes = new ArrayList<Human>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private int number_others_positive;
     private int number_teachers_positive;
     private ArrayList<Integer> number_department_positive = new ArrayList<Integer>();
     private ArrayList<Integer> number_secreterariat_positive = new ArrayList<Integer>();
     private ArrayList<Boolean> enclosed_teachers = new ArrayList<Boolean>();
-    private int limit_per_department = 2;
-    private int limit_per_secretariat = 0;
-    private int total_limit = 15;
+    private static final int limit_per_department = 2;
+    private static final int limit_per_secretariat = 0;
+    private static final int total_limit = 15;
     private int id ;
     private static int count = 0;
     public Universities(String name, String area, int numbersOfPeople) {

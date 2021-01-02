@@ -1,5 +1,7 @@
 package CovidApp.MainApp.BooleanShip;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -148,7 +150,7 @@ public final class Human {
         }
     }
 
-    protected static void quarantineMode(Human human) {
+    protected static void quarantineMode(@NotNull Human human) {
         System.out.println(human.toString() + "has been found with covid");
         human.status = Status.CONFIRMED;
         while (true) {
@@ -194,15 +196,11 @@ public final class Human {
                 continue;
             }
             int position = search(afmGiven);
-            Human ahuman;
-            if (position == -1) {
-                ahuman = createHuman(afmGiven);
-            }
             Human theHuman;
-            if (!(position < 0)) {
-                theHuman = allHuman.get(position);
+            if (position == -1) {
+                theHuman = createHuman(afmGiven);
             } else {
-                theHuman = ahuman;
+                theHuman = allHuman.get(position);
             }
             System.out.printf("Human registration %s with AFM: %s ;", theHuman.getName(), theHuman.getAfm());
             String confirmed = sc.nextLine();
