@@ -2,10 +2,13 @@ package CovidApp.MainApp.BooleanShip;
 
 import CovidApp.Gui.BooleanShip.GuiClass;
 
-import javax.mail.MessagingException;
 import javax.swing.*;
-
-public class Main {
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Scanner;
+/*public class Main {
     public static void main(String[] args) throws MessagingException {
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
@@ -15,15 +18,18 @@ public class Main {
 
 
     }
-}
-    /*import javax.swing.*;
-    public class Main {
-        /*static Scanner sc = new Scanner(System.in);
+}*/
+    //import javax.swing.*;
+
+
+public class Main {
+        static Scanner sc = new Scanner(System.in);
         private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
-        static int chance = 0;*/
-    /*public static void main(String[] args) throws Exception {
-        AutomaticMail test = new AutomaticMail();
+        static int chance = 0;
+    public static void main(String[] args) throws Exception {
+        /*AutomaticMail test = new AutomaticMail();
         test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
+         */
 
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
@@ -31,12 +37,20 @@ public class Main {
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         System.out.println("Welcome to the app of case detection and contact detection!"
                 + "\nThe application is designed to make it easier for all organisations to manage the pandemic."
                 + "\nData access and analysis will only be for the provision of statistical "
                 + "data and for the purpose of limiting the spread of.");
         for (; ; ) {
+            //continue
+            System.out.println("Press 1 for sign up menu");
+            String ans = sc.nextLine();
+            if (ans.equals("1")) {
+                signUp();
+                System.exit(0);
+            } else {
+                sc.nextLine();
+            }
             System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
                     + "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell
                     // them the option
@@ -217,15 +231,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                    System.out.println("Please enter your username in order to find your account.");
-                    //register proccess out =...
-                    int out = 0;
-                    if (out == -1) {
-                        System.exit(0);
-                    } else {
-                    }
-                    //must be created a method checking if the inputed name already exists
-                    //and give access as a specific user and can in case to give a positice test
+                    //changed directory
                     break;
                 case 3:
                     System.out.println(
@@ -271,13 +277,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                    System.out.println("Please enter your username in order to find your account.");
-                    //register progress out=...
-                    int out = -1;
-                    if (out == -1) {
-                        System.exit(0);
-                    } else {
-                    }
+                   //changed directory
                     break;
                 case 3:
                     System.out.println(
@@ -292,6 +292,7 @@ public class Main {
     public static void uMenu() throws URISyntaxException, IOException {
         int answer;
         while (true) {
+            //option to be deleted
             System.out.println("Welcome to the university user menu.");
             System.out.println("Type 1:if you are a new user." + "\n Type 2:if you are already registered. "
                     + "\n Type 3:if you want to exit.");
@@ -322,15 +323,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                    System.out.println("Please enter your username in order to find your account.");
-                    //must be created a method checking if the inputed name already exists
-                    //and give access as a specific user and can in case to give a positice test
-                    //register progress, out=...
-                    int output = 0;
-                    if (output == -1) {
-                        System.exit(0);
-                    } else {
-                    }
+                    //changed position to be made
                     break;
                 case 3:
                     System.out.println(
@@ -578,6 +571,5 @@ public class Main {
         } else {
             System.out.println("Not Organisation of our app");
         }
-*/
-//   }
-//}
+    }
+}
