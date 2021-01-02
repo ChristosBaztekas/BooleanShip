@@ -64,7 +64,7 @@ public class Organisations {
             String name = sc.nextLine();
             System.out.println("Give your password: ");
             String pass = sc.nextLine();
-            if (fields.get(name) == pass) {
+            if (fields.get(name).equals(pass)) {
                 System.out.print("The authication has procced");
                 return codes.get(name).subclass;//see if doesnot need subclass
             } else {
