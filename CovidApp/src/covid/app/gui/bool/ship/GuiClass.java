@@ -1,4 +1,4 @@
-package covid.app.gui.bool.ship;
+package CovidApp.Gui.BooleanShip;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
@@ -285,16 +285,16 @@ public class GuiClass extends JFrame implements ActionListener {
         String usersMail = (String) JOptionPane.showInputDialog("Please write your mail in order to receive our answer.");
         try {
             JavaMailUtil.sendMail(usersMail, "Message", "We received your message and we will reply as soon as possible!Thank you for using our app and stay safe.");
-            JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!");
+            try {
+                JavaMailUtil.sendMail("booleanshipproblems@gmail.com", "ContactUsMessage", contactDescription);
+                JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!");
+            } catch (MessagingException messagingException) {
+                JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.");
+            }
         } catch (MessagingException messagingException) {
             JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.");
         }
-        try {
-            JavaMailUtil.sendMail("booleanshipproblems@gmail.com", "ContactUsMessage", contactDescription);
-            JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!");
-        } catch (MessagingException messagingException) {
-            JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.");
-        }
+
     }
 
     public static void exitMethod() {
