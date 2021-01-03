@@ -113,10 +113,10 @@ public final class Human {
     public void beCase() {
         status = Status.CONFIRMED;
     }
-    public static void printAllRecordedCases(String password) {
+    public static void printAllRecordedCases() {
 
     }
-    public static void printAllRecordedContacts(String password) {
+    public static void printAllRecordedContacts() {
 
     }
 
@@ -184,7 +184,7 @@ public final class Human {
             }
         }
     }
-    public static void testResults(String password) {
+    public static void testResults() {
         for(;;) {
             System.out.println("Give AFM of the person that get tested, (-1 for break): ");
             String afmGiven = sc.nextLine();
