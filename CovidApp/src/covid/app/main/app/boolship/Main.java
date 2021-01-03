@@ -1,6 +1,6 @@
-package covid.app.main.app.boolship;
+package CovidApp.MainApp.BooleanShip;
 
-import covid.app.gui.bool.ship.GuiClass;
+import CovidApp.Gui.BooleanShip.GuiClass;
 
 import javax.swing.*;
 import java.awt.*;
@@ -132,21 +132,22 @@ public class Main {
             }
             switch (choice) {
                 case 1:
-                    Organisations.printAllOrganisations(EodyPassword);
+                    Organisations.printAllOrganisations();
                     break;
                 case 2:
                     break;
                 case 3:
-                    Human.printAllRecordedCases(EodyPassword);
+                    Human.printAllRecordedCases();
+                    break;
                     // i dont know if its posible now,we have to keep every case to a static member
                     // for (int i = 0; i < callMethods.contactsNames.size(); i++) {
                     // System.out.println(callMethods.contactsNames.toString());
                     // }
                 case 4:// when we import the api we will add the option
-                    Human.printAllRecordedContacts(EodyPassword);
+                    Human.printAllRecordedContacts();
                     break;
                 case 5:
-                    Human.testResults(EodyPassword);//we believe only Eody gives results
+                    Human.testResults();//we believe only Eody gives results
                     break;
                 case 6:
                     break;
@@ -229,7 +230,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                    //changed directory
+                    signUp();
                     break;
                 case 3:
                     System.out.println(
@@ -275,7 +276,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                   //changed directory
+                   signUp();
                     break;
                 case 3:
                     System.out.println(
@@ -321,7 +322,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                    //changed position to be made
+                    signUp();
                     break;
                 case 3:
                     System.out.println(
@@ -383,6 +384,7 @@ public class Main {
             System.out.println("Type anything else:if you want to exit.");
             String option = sc.next();
             if (option.equals("1")) {
+                signUp();
             } else if (option.equals("2")) {
                 System.out.println(
                         "After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
@@ -399,6 +401,7 @@ public class Main {
             System.out.println("Type anything else:if you want to exit.");
             String option = sc.next();
             if (option.equals("1")) {
+                signUp();
             } else if (option.equals("2")) {
                 System.out.println(
                         "After creating your org you will be redirected to the initial menu.Then you can insert pressing 1.");
@@ -460,6 +463,7 @@ public class Main {
                     break;
                 case 5:
                     u.modifyOthers();
+                    break;
                 case 6:
                     System.exit(0);
             }
@@ -504,6 +508,7 @@ public class Main {
                     break;
                 case 5:
                     school.modifyOthers();
+                    break;
                 case 6:
                     System.exit(0);
             }
@@ -544,6 +549,7 @@ public class Main {
                     break;
                 case 4:
                     nh.seeStatus();
+                    break;
                 case 5:
                     System.exit(0);
             }

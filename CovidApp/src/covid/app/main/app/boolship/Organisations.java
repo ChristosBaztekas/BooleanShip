@@ -1,4 +1,4 @@
-package covid.app.main.app.boolship;
+package CovidApp.MainApp.BooleanShip;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -173,13 +173,9 @@ public class Organisations {
     public String toString() {
         return "Name of organisation is: " + name + "\n Organisation Area is: " + area + "\n Number of employees: " + numbersOfPeople;
     }
-    public static void printAllOrganisations(String code) {
-        if (codes.equals(EodyPassword)) {
-            for (var c : allOrgs) {
-                System.out.println(c.toString());
-            }
-        } else {
-            System.out.println("You dont have access");
+    public static void printAllOrganisations() {
+        for (var c : allOrgs) {
+            System.out.println(c.toString());
         }
     }
 

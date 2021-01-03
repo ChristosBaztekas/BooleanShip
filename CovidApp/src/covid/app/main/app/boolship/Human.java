@@ -1,14 +1,15 @@
-package covid.app.main.app.boolship;
+package CovidApp.MainApp.BooleanShip;
 
-import java.util.ArrayList;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Comparator;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public final class Human {
     private static ArrayList<Human> allHuman = new ArrayList<Human>();
     private String name, surname, afm, gender, email;
-    private List<Organisations> belongs = new ArrayList<Organisations>();
+    private ArrayList<Organisations> belongs = new ArrayList<Organisations>();
     private final int id; // for our personal counting and faster dialing of items in what condition can
     //the state of the object is found
     private Status status = Status.NORMAL;// initialization of all people in a normal state
@@ -112,10 +113,10 @@ public final class Human {
     public void beCase() {
         status = Status.CONFIRMED;
     }
-    public static void printAllRecordedCases(String password) {
+    public static void printAllRecordedCases() {
 
     }
-    public static void printAllRecordedContacts(String password) {
+    public static void printAllRecordedContacts() {
 
     }
 
@@ -140,21 +141,16 @@ public final class Human {
     protected void bePositive() {
         status = Status.CONFIRMED;
     }
-    public void removeFromOrg(Organisations org) {
-        if(belongs.contains(org)){
-            belongs.remove(org);
+    protected void removeFromOrg(Organisations org) {
+        for (int i = 0; i < belongs.size(); i++) {
+            if (belongs.get(i) == org) {
+                belongs.remove(i);
+                break;
+            }
         }
-
-//        for (int i = 0; i < belongs.size(); i++) {
-//            if (belongs.get(i) == org) {
-//                belongs.remove(i);
-//                break;
-//            }
-//        }
     }
 
-    protected static void quarantineMode(//@NotNull
-                                                 Human human) {
+    protected static void quarantineMode(@NotNull Human human) {
         System.out.println(human.toString() + "has been found with covid");
         human.status = Status.CONFIRMED;
         while (true) {
@@ -188,7 +184,7 @@ public final class Human {
             }
         }
     }
-    public static void testResults(String password) {
+    public static void testResults() {
         for(;;) {
             System.out.println("Give AFM of the person that get tested, (-1 for break): ");
             String afmGiven = sc.nextLine();
