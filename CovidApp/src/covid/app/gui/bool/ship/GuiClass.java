@@ -1,5 +1,8 @@
 package CovidApp.Gui.BooleanShip;
 
+import covid.app.gui.bool.ship.JavaMailUtil;
+import covid.app.gui.bool.ship.LogOrg;
+
 import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +76,6 @@ public class GuiClass extends JFrame implements ActionListener {
         setLayout(new BorderLayout());
         setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid-19.png")));
         setLayout(new FlowLayout());
-
 
 
         setJMenuBar(mainApp);
@@ -237,13 +239,13 @@ public class GuiClass extends JFrame implements ActionListener {
             GuiClass.sendingProblem();
         } else if (source == Exit) {
             GuiClass.exitMethod();
-        }else if (source == covidC) {
+        } else if (source == covidC) {
             GuiClass.managingWebsitesByUrl("https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html");
-        }else if (source == nih) {
+        } else if (source == nih) {
             GuiClass.managingWebsitesByUrl("https://covid19.nih.gov/");
-        }else if (source == nhs) {
+        } else if (source == nhs) {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
-        }else if (source == cStats) {
+        } else if (source == cStats) {
             GuiClass.managingWebsitesByUrl("https://news.google.com/covid19/map?hl=en-US&gl=US&ceid=US%3Aen");
         }
 
@@ -302,6 +304,31 @@ public class GuiClass extends JFrame implements ActionListener {
         System.exit(0);
     }
 
+    //the afm validation will happen from here
+    public static void isValidAfm(String afm) {
+        int len = afm.length();
+
+        if (len != 9) {
+            JOptionPane.showMessageDialog(null, "The afm should contain 9 characters.Please try again.", "Invalid number of characters", JOptionPane.ERROR_MESSAGE);
+            // afm = JOptionPane.showInputDialog(null, "Hi");
+            //isValidAfm(afm);
+        } else {
+            for (int i = 0; i < 9; i++) {
+                if (afm.charAt(i) >= '0' && afm.charAt(i) <= '9') {
+                    continue;
+                } else {
+                    JOptionPane.showMessageDialog(null, "The afm should contain only numbers.Please try again.", "Invalid input", JOptionPane.ERROR_MESSAGE);
+                    //afm = JOptionPane.showInputDialog(null, "Hi");
+                    //isValidAfm(afm);
+                }
+            }
+        }
+    }
+    public static void isValidEmail(String email){
+     if(!email.contains("@")){
+         JOptionPane.showMessageDialog(null, "The email is not right.Please try again", "Invalid input", JOptionPane.ERROR_MESSAGE);
+     }
+    }
 }
 
 
