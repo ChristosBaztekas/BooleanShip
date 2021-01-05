@@ -30,7 +30,14 @@ public class Main {
         /*AutomaticMail test = new AutomaticMail();
         test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
          */
-
+        NursingHomes.createNH();
+        Universities.createU();
+        Schools.createS();
+        Companies.createP();
+        PublicServices.createP();
+        Organisations.print();
+        Human.exampleCreateHuman();
+        //Organisations.example();
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);
@@ -42,27 +49,21 @@ public class Main {
                 + "\nData access and analysis will only be for the provision of statistical "
                 + "data and for the purpose of limiting the spread of.");
         for (; ; ) {
-            //continue
-            System.out.println("Press 1 for sign up menu");
-            String ans = sc.nextLine();
-            if (ans.equals("1")) {
-                signUp();
-                System.exit(0);
-            }
             System.out.println("To get to the menu that's right for you, type in what kind of user you are:"
                     + "\n-Type 1 or G if you are the user responsible for surveillance. "// think about not even tell
                     // them the option
-                    + "\n-Type 2 or L if you are corporate user (e.g. business or public organisation). "
-                    + "\n-Type 3 or S if you belong to educational institution. "
-                    + "\n-Type 4 or U if you belong to university. " + "\n-Type 5 or N if you belong to nursing home. "
-                    + "\n-Type 6 or E if you wish exit. ");
+                    + "\n-Type 2 or L if you are corporate user (e.g. business or public organisation) and want to create org. "
+                    + "\n-Type 3 or S if you belong to educational institution and want to create org. "
+                    + "\n-Type 4 or U if you belong to university and want to create org. " + "\n-Type 5 or N if you belong to nursing home and want to create org. "
+                    + "\n-Type 6 or SU if you wish to sign up." + "\n-Type 7 or E if you wish exit.");
             String usersInput = null;
             try {
                 usersInput = sc.next();
                 while (!usersInput.equals("1") && !usersInput.equals("2") && !usersInput.equals("3")
-                        && !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("6")
+                        && !usersInput.equals("4") && !usersInput.equals("5") && !usersInput.equals("7")
                         && !usersInput.equals("G") && !usersInput.equals("L") && !usersInput.equals("S")
-                        && !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")) {
+                        && !usersInput.equals("U") && !usersInput.equals("N") && !usersInput.equals("E")
+                        && !usersInput.equals("6") && !usersInput.equals("SU")) {
                     System.out.println("Your input (" + usersInput + ") is invalid.Please try again.");
                     sc.nextLine();
                     usersInput = sc.next();
@@ -81,21 +82,31 @@ public class Main {
                         break;
                     case "2":
                     case "L":
-                        lMenu();
+                        System.out.println("1 for Public services creation, otherwise company creation");
+                        String out = sc.nextLine();
+                        if (out.equals("1")) {
+                            PublicServices.createOrg();
+                        } else {
+                            Companies.createOrg();
+                        }
                         break;
                     case "3":
                     case "S":
-                        sMenu();
+                        Schools.createOrg();
                         break;
                     case "4":
                     case "U":
-                        uMenu();
+                        Universities.createOrg();
                         break;
                     case "5":
                     case "N":
-                        nMenu();
+                        NursingHomes.createOrg();
                         break;
                     case "6":
+                    case "SU":
+                        signUp();
+                        break;
+                    case "7":
                     case "E":
                     default:
                         eMenu();
@@ -196,7 +207,7 @@ public class Main {
             System.err.println("There's an unexpected mistake.End of program.");
         }
     }
-    public static void nMenu() throws URISyntaxException, IOException {
+    public static void nMenu() throws URISyntaxException, IOException { //to be deleted
         int answer;
         while (true) {
             System.out.println("Welcome to the Nursing Homes user menu.");

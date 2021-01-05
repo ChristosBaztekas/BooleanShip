@@ -1,4 +1,4 @@
-package covid.app.main.app.boolship;
+package CovidApp.MainApp.BooleanShip;
 
 public interface caseManagmentAndHumanAddition {
 

@@ -18,6 +18,18 @@ public class Organisations {
     private Organisations subclass;//see if it doesnt need
     private static TreeMap<String, String> fields = new TreeMap<String, String>();
     private static TreeMap<String, Organisations> codes = new TreeMap<String, Organisations>();
+    public Organisations(String name, String area, int numbersOfPeople, String username, String password) {//for creating automatically
+        this.name = name;
+        this.area = area;
+        this.numbersOfPeople = numbersOfPeople;
+        fields.put(username, password);
+        codes.put(username,this);
+    }
+    public static void print() {
+        System.out.println("Username:  password ");
+        System.out.println(fields);
+    }
+
     public Organisations(String name, String area, int numbersOfPeople) {
         this.name = name;
         this.area = area;
@@ -27,6 +39,14 @@ public class Organisations {
         register();
         allOrgs.add(this);
         codes.put(username,this);
+    }
+    public void example() {
+        Organisations org = new Organisations("Veria", "Veria", 20);
+        org.subclass = this;
+        org.fields.put("leon", "leon");
+        org.codes.put("leon", this);//under consideration
+        //System.out.printf("The username is %s, password is %s",org.fields.get("leon"), org.codes.);
+
     }
     private void register() {
         while (true) {
