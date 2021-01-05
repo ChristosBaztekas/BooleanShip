@@ -1,4 +1,4 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -17,17 +17,6 @@ public class PublicServices extends Labors {
         add(this);
         id = count ++;
 
-    }
-    public static void createP() {
-        for (int i = 0; i < 10; i++) { //create 10
-            String user_pass = "P" + String.valueOf(i);
-            PublicServices n = new PublicServices(i, user_pass);
-        }
-    }
-    public PublicServices(int i, String a) {
-        super("name", "area", 20, a, a);
-        id = count ++;
-        add(this);
     }
     public void autoMonitoring() {
         ArrayList<Classes> department = getDepartment();

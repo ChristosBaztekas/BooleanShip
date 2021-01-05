@@ -1,10 +1,10 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Labors extends Organisations implements caseManagmentAndHumanAddition{
+public class Labors extends Organisations implements caseManagmentAndHumanAddition {
     private final int id;
     private static int count = 0;
     protected ArrayList<Classes> department = new ArrayList<Classes>();
@@ -13,16 +13,12 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
     private boolean status = false;//eody changes something
     private boolean lockdown = false;
     private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
     public Labors(String name, String area, int numbersOfPeople) {
         super(name, area, numbersOfPeople);
         id = count++;
         modifyDepartments();
         allLabors.add(this);
-    }
-    public Labors(String n, String a, int aa, String z, String e) {
-        super(n, a, aa, z, e);
-        id = count ++;
     }
     public void declareCase(Human human) {
         if (status) {
@@ -58,12 +54,12 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
             monitoring();
         }
         System.out.println("Give the ssn of the person that is positive");
-        String input = scanner.nextLine();
+        String input = sc.nextLine();
         for (var c : department) {
             Human one = c.isSame(input);
             if (one != null) {
                 System.out.printf("Want to report positive of employee: %s, 0 exit", one.toString());
-                String input1 = scanner.nextLine();
+                String input1 = sc.nextLine();
                 if (input1.equals("0")) {
                     return;
                 } else {
@@ -137,7 +133,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
         }
         System.out.println("Would you like to lockdown your labor," +
                 " 1 yes, 2 for lockdown of department");
-        String ans = scanner.nextLine();
+        String ans = sc.nextLine();
         if (ans.equals("1")) {
             lockdown = true;
         }
@@ -149,9 +145,9 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
                     System.out.printf("%s is functioning, option %d to be lockdowned", department.get(i).getIdifier(), i+1);
                 }
             }
-            scanner.nextLine();
-            if (scanner.hasNextInt()) {
-                int option = scanner.nextInt();
+            sc.nextLine();
+            if (sc.hasNextInt()) {
+                int option = sc.nextInt();
                 if (option < 1 || option > department.size()) {
                     return;
                 } else {
@@ -167,7 +163,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
                 int count = 0;
                 while (true) {
                     System.out.printf("Creating the %d department,for exit 0", count + 1);
-                    if (scanner.nextLine().equals("0")) {
+                    if (sc.nextLine().equals("0")) {
                         if (department.size() == 0){
                             System.out.println("Cant exit without creating one department");
                         }else {
@@ -190,7 +186,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
                             num++;
                         }
                         System.out.println("Press a number");
-                        ans = scanner.nextInt();
+                        ans = sc.nextInt();
                         if (ans < 0 && ans > department.size()) {
                             System.out.println("Invalid number, try again");
                             continue;
@@ -198,7 +194,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
                         break;
                     } catch (InputMismatchException e) {
                         System.err.println("That is not number, try again");
-                        scanner.nextLine();
+                        sc.nextLine();
                     }
                     //add or delete
                     department.get(ans).modify();

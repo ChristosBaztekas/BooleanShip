@@ -1,4 +1,4 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -51,8 +51,10 @@ public class Classes {
                 System.out.println("Please give afm of the person");
                 String checkAfm = scanner.nextLine();
                 boolean flag = true;
+
                 for (int i = 0; i < members.size(); i++) {
                     if (members.get(i).getAfm().equals(checkAfm)) {
+
                         members.get(i).removeFromOrg(organisation);
                         members.remove(i);
                         flag = false;

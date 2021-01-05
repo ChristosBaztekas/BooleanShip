@@ -1,4 +1,4 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
 
 
 
@@ -19,17 +19,6 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
         add(this);
         id = count++;
 
-    }
-    public static void createP() {
-        for (int i = 0; i < 10; i++) { //create 10
-            String user_pass = "C" + String.valueOf(i);
-            Companies n = new Companies(i, user_pass);
-        }
-    }
-    public Companies(int i, String a) {
-        super("name", "area", 20, a, a);
-        id = count ++;
-        add(this);
     }
     public void autoMonitoring() {
         ArrayList<Classes> department = getDepartment();
@@ -87,6 +76,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
         }
         Companies newOne = new Companies(name, area, employees);
     }
+
     public void printDetails() {
         System.out.println("Welcome.The" + getName() + "Companies of" + getArea()
                 + "will take drastic measures to stop spread of covid-19 in your companie.Please stay safe and we will call you soon. "

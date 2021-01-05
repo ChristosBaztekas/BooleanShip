@@ -358,16 +358,5 @@ public final class Human {
         }
         return one;
     }
-    public static void exampleCreateHuman() {
-        int afm_int = 100000000;
-        for (int i = 0; i < 50; i++) {
-            try {
-                Human one = new Human("name", "surname", String.valueOf(afm_int++), "email@.com", "gender", null);
-            } catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-
-        }
-    }
 }
 

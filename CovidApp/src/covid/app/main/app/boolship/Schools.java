@@ -1,4 +1,4 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -32,17 +32,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         modifyOthers();
         modifyDepartments();
         id = count++;
-    }
-    public static void createS() {
-        for (int i = 0; i < 10; i++) { //create 10
-            String user_pass = "S" + String.valueOf(i);
-            Schools n = new Schools(i, user_pass);
-        }
-    }
-    public Schools(int i, String a) {
-        super("name", "area", 20, a, a);
-        id = count ++;
-        add(this);
     }
     public void autoMonitoring() {
         int n = number_of_others_positive + number_of_teachers_positive + number_of_students_positive;
