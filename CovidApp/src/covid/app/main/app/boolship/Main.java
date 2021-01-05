@@ -2,7 +2,6 @@ package covid.app.main.app.boolship;
 
 
 import CovidApp.Gui.BooleanShip.GuiClass;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
