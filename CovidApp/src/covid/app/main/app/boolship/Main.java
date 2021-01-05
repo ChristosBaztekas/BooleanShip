@@ -1,4 +1,5 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
+
 
 import CovidApp.Gui.BooleanShip.GuiClass;
 
