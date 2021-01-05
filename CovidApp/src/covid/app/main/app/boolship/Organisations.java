@@ -1,4 +1,5 @@
-package CovidApp.MainApp.BooleanShip;
+package covid.app.main.app.boolship;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
