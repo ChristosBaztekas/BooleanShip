@@ -1,9 +1,9 @@
-package covid.app.main.app.boolship;
+package CovidApp.MainApp.BooleanShip;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition {
+public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<Human>();
     private ArrayList<Human> carenPeople = new ArrayList<Human>();
@@ -16,6 +16,17 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private boolean update = false;
     private final int id;
     private static int count = 0;
+    public static void createNH() {
+        for (int i = 0; i < 10; i++) { //create 10
+            String user_pass = "NH" + String.valueOf(i);
+            NursingHomes n = new NursingHomes(i, user_pass);
+        }
+    }
+    public NursingHomes(int i, String a) {
+        super("name", "area", 20, a, a);
+        id = count ++;
+        add(this);
+    }
 
     public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
         super(name, area, numberOfPeople);

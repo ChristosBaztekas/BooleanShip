@@ -1,10 +1,10 @@
-package covid.app.main.app.boolship;
+package CovidApp.MainApp.BooleanShip;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-public class Universities extends Organisations implements caseManagmentAndHumanAddition {
+public class Universities extends Organisations implements caseManagmentAndHumanAddition{
     private final ArrayList<Classes> department = new ArrayList<Classes>();
     private final ArrayList<Classes> secretariat = new ArrayList<Classes>();
     private final ArrayList<Human> teachers = new ArrayList<Human>();
@@ -36,6 +36,17 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         modifyDepartments();
         id = count++;
         setSize();
+    }
+    public static void createU() {
+        for (int i = 0; i < 10; i++) { //create 10
+            String user_pass = "U" + String.valueOf(i);
+            Universities n = new Universities(i, user_pass);
+        }
+    }
+    public Universities(int i, String a) {
+        super("name", "area", 20, a, a);
+        id = count ++;
+        add(this);
     }
     protected void setSize() {
         int count = 0;
@@ -221,8 +232,6 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         }
         Universities newOn = new Universities(name,area,teachers+students);
     }
-
-
     public void autoMonitoring() {//to be changed
         int count = 0;
         if (number_teachers_positive > limit_per_teachers) {
