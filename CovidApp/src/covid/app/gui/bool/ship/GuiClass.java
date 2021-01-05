@@ -2,6 +2,7 @@ package CovidApp.Gui.BooleanShip;
 
 import covid.app.gui.bool.ship.JavaMailUtil;
 import covid.app.gui.bool.ship.LogOrg;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
@@ -286,6 +287,7 @@ public class GuiClass extends JFrame implements ActionListener {
         String contactDescription = (String) JOptionPane.showInputDialog("Please write us your message!");
         String usersMail = (String) JOptionPane.showInputDialog("Please write your mail in order to receive our answer.");
         try {
+            isValidEmail(usersMail);
             JavaMailUtil.sendMail(usersMail, "Message", "We received your message and we will reply as soon as possible!Thank you for using our app and stay safe.");
             try {
                 JavaMailUtil.sendMail("booleanshipproblems@gmail.com", "ContactUsMessage", contactDescription);
@@ -325,9 +327,12 @@ public class GuiClass extends JFrame implements ActionListener {
         }
     }
     public static void isValidEmail(String email){
-     if(!email.contains("@")){
-         JOptionPane.showMessageDialog(null, "The email is not right.Please try again", "Invalid input", JOptionPane.ERROR_MESSAGE);
-     }
+        EmailValidator validator = EmailValidator.getInstance();
+        if(validator.isValid(email)){
+
+        }else{
+            JOptionPane.showMessageDialog(null, "The email is not right.Please try again", "Invalid input", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
 
