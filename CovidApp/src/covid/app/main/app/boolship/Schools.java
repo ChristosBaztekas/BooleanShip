@@ -88,17 +88,17 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         System.out.printf("Teachers with Covid: %d", number_of_teachers_positive);
         System.out.printf("Others with Covid: %d", number_of_others_positive);
         System.out.println("Status of teachers");
-        for (var c : teachers) {
-            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
+        for (int i = 0; i < teachers.size(); i++) {
+            System.out.printf("%s has status:%s", teachers.get(i).toString(), teachers.get(i).seeStatus());
         }
         System.out.println("Status of the department");
-        for (var c : departments) {
-            System.out.printf("    Status secretariat:%s", c.getIdifier());
-            c.printStatus();
+        for (int i = 0; i < departments.size(); i++) {
+            System.out.printf("    Status secretariat:%s", departments.get(i).getIdifier());
+            departments.get(i).printStatus();
         }
         System.out.println("Status of other employee");
-        for (var c : others) {
-            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
+        for (int i = 0; i < others.size(); i++) {
+            System.out.printf("%s has status:%s", others.get(i).toString(), others.get(i).seeStatus());
         }
 
         int total = number_of_others_positive + number_of_students_positive + number_of_teachers_positive;
@@ -221,8 +221,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
 		if (human == null) {
 		System.out.println("We dont have a member with");
 		}*/
-        for (var c : departments) {
-            Human oneHuman = c.isSame(input);
+        for (int i = 0; i < departments.size(); i++) {
+            Human oneHuman = departments.get(i).isSame(input);
             if (oneHuman != null) {
                 System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
                 String input1 = scanner.nextLine();
@@ -235,28 +235,28 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                 }
             }
         }
-        for (var c : teachers) {
-            if (c.toString().equals(input)) {
-                System.out.printf("Want to report of a member of teachers: %s, 0 for exit\n", c.toString());
+        for (int i = 0; i < teachers.size(); i ++) {
+            if (teachers.get(i).toString().equals(input)) {
+                System.out.printf("Want to report of a member of teachers: %s, 0 for exit\n", teachers.get(i).toString());
                 String ans = scanner.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.bePositive();
-                    findPerson(c);
+                    teachers.get(i).bePositive();
+                    findPerson(teachers.get(i));
                     return;
                 }
             }
         }
-        for (var c : others) {
-            if (c.toString().equals(input)) {
-                System.out.printf("Want to report of a member of other people: %s, 0 for exit\n", c.toString());
+        for (int i = 0; i < others.size(); i ++) {
+            if (others.get(i).toString().equals(input)) {
+                System.out.printf("Want to report of a member of other people: %s, 0 for exit\n", others.get(i).toString());
                 String ans = scanner.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.bePositive();
-                    findPerson(c);
+                    others.get(i).bePositive();
+                    findPerson(others.get(i));
                     return;
                 }
             }
@@ -265,14 +265,14 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
     }
     protected void findPerson(Human human) {
         String look = human.getAfm();
-        for (var c : teachers) {
-            if (c.getAfm().equals(look)) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getAfm().equals(look)) {
                 number_of_teachers_positive += 1;
                 break;
             }
         }
-        for (var c : others) {
-            if (c.getAfm().equals(look)) {
+        for (int i = 0; i < others.size(); i++) {
+            if (others.get(i).getAfm().equals(look)) {
                 number_of_others_positive += 1;
                 break;
             }
@@ -325,8 +325,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         System.out.println("Press 0 to create a new one");
                         System.out.println("Press -1 to exit");
                         int num = 1;
-                        for (var c : departments) {
-                            System.out.printf("%d for : %s", num, c.getIdifier());
+                        for (int i = 0; i < departments.size(); i++) {
+                            System.out.printf("%d for : %s", num, departments.get(i).getIdifier());
                             num++;
                         }
                         System.out.println("Press a number");
@@ -433,14 +433,14 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
             System.out.println("Some changes have been ocured");
             status = false;
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
-                System.out.printf("    The person: %s", c.toString());
+            for (int i = 0; i < changes.size(); i++) {
+                System.out.printf("    The person: %s", changes.get(i).toString());
             }
             System.out.println("Please say us who have to tested");
-            for (var c : changes) {
+            for (int i = 0; i < changes.size(); i++) {
                 int choice;
                 while (true) {
-                    System.out.println("Contacts of the" + c.toString());
+                    System.out.println("Contacts of the" + changes.get(i).toString());
                     System.out.println("0 for exit, 1 for teachers, 2 for departments, 3 other people related");
                     String input = scanner.nextLine();
                     if (input.equals("0")) {
@@ -449,8 +449,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         while (true) {
                             System.out.println("Give the number for each profesor");
                             System.out.println("0: Exit");
-                            for (int i = 0; i < teachers.size(); i++) {
-                                System.out.printf("%d: %s\n", i + 1, teachers.get(i).toString());
+                            for (int j = 0; i < teachers.size(); j++) {
+                                System.out.printf("%d: %s\n", i + 1, teachers.get(j).toString());
                             }
                             if (!sc.hasNextInt()) {
                                 String ans = sc.nextLine();
@@ -478,8 +478,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         while (true) {
                             System.out.println("Select one by one in which departent should students be tested");
                             System.out.println("0: Exit");
-                            for(int i = 0; i < departments.size(); i++) {
-                                System.out.printf("%d: %s", i + 1, departments.get(i).getIdifier());
+                            for(int j = 0; i < departments.size(); j++) {
+                                System.out.printf("%d: %s", i + 1, departments.get(j).getIdifier());
                             }
                             if (!sc.hasNextInt()) {
                                 String ans = sc.nextLine();
@@ -505,8 +505,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         while (true) {
                             System.out.println("Give the number for each other employee");
                             System.out.println("0: Exit");
-                            for (int i = 0; i < others.size(); i++) {
-                                System.out.printf("%d: %s\n", i + 1, others.get(i).toString());
+                            for (int j = 0; i < others.size(); j++) {
+                                System.out.printf("%d: %s\n", i + 1, others.get(j).toString());
                             }
                             if (!sc.hasNextInt()) {
                                 String ans = sc.nextLine();

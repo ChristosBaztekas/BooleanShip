@@ -60,8 +60,8 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
         }
         System.out.println("Give the ssn of the person that is positive");
         String input = scanner.nextLine();
-        for (var c : department) {
-            Human one = c.isSame(input);
+        for (int i = 0; i < department.size(); i++) {
+            Human one = department.get(i).isSame(input);
             if (one != null) {
                 System.out.printf("Want to report positive of employee: %s, 0 exit", one.toString());
                 String input1 = scanner.nextLine();
@@ -81,13 +81,14 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
             status = false;
             System.out.println("Some changes have been ocurred");
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
-                System.out.printf("    The person: %s", c.toString());
+            for (int i = 0; i < changes.size(); i++) {
+                System.out.printf("    The person: %s", changes.get(i).toString());
             }
             System.out.println("Please tell who is likely to be positive too");
-            for (var c :changes) {
+            for (int j = 0; j < changes.size(); j++) {
                 int choice;
                 while (true) {
+                    System.out.printf("Contacts of %s", changes.get(j));
                     System.out.println("Give the number for each department of your Labor");
                     System.out.println("0: Exit");
                     for (int i = 0; i < department.size(); i++) {
@@ -132,9 +133,9 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
                 System.out.printf("Department: %s is opened", department.get(i).getIdifier());
             }
         }
-        for (var c : department) {
-            System.out.println("Status of department: " + c.getIdifier());
-            c.printStatus();
+        for (int i = 0; i < department.size(); i++) {
+            System.out.println("Status of department: " + department.get(i).getIdifier());
+            department.get(i).printStatus();
         }
         System.out.println("Would you like to lockdown your labor," +
                 " 1 yes, 2 for lockdown of department");

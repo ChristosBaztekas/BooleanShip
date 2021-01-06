@@ -34,8 +34,8 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
     public void autoMonitoring() {
         ArrayList<Classes> department = getDepartment();
         int count = 0;
-        for (var c : department) {
-            count += c.size();
+        for (int i = 0; i < department.size(); i++) {
+            count += department.get(i).size();
         }
         if (count > total_limit_percentage) {
             int total_positive = 0;

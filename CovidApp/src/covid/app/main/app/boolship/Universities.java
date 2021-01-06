@@ -51,11 +51,11 @@ public class Universities extends Organisations implements caseManagmentAndHuman
     }
     protected void setSize() {
         int count = 0;
-        for (var c : department) {
-            count += c.size();
+        for (int i = 0; i < department.size(); i++) {
+            count += department.get(i).size();
         }
-        for (var c : secretariat) {
-            count += c.size();
+        for (int i = 0; i < secretariat.size(); i++) {
+            count += secretariat.get(i).size();
         }
         count += teachers.size();
         count += others.size();
@@ -76,14 +76,14 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             System.out.println("Some changes have been ocured");
             status = false;
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
-                System.out.printf("    The person: %s", c.toString());
+            for (int i = 0; i < changes.size(); i++) {
+                System.out.printf("    The person: %s", changes.get(i).toString());
             }
             System.out.println("Please say us who have to tested");
-            for (var c : changes) {
+            for (int j = 0; j < changes.size(); j++) {
                 int choice;
                 while (true) {
-                    System.out.println("Contacts of the" + c.toString());
+                    System.out.println("Contacts of the" + changes.get(j).toString());
                     System.out.println("0 for exit, 1 for profesors, 2 for secretariat, 3 other people related, 4 departments");
                     String input = scanner.nextLine();
                     if (input.equals("0")) {
@@ -266,14 +266,14 @@ public class Universities extends Organisations implements caseManagmentAndHuman
     }
     public void findWhereBelongs(Human human) {
         String look_for = human.getAfm();
-        for (var c : teachers) {
-            if (c.getAfm().equals(look_for)) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getAfm().equals(look_for)) {
                 number_teachers_positive += 1;
                 break;
             }
         }
-        for (var c : others) {
-            if (c.getAfm().equals(look_for)) {
+        for (int i = 0; i < others.size(); i++) {
+            if (others.get(i).getAfm().equals(look_for)) {
                 number_others_positive += 1;
                 break;
             }
@@ -318,8 +318,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		if (human == null) {
 		System.out.println("We dont have a member with");
 		}*/
-        for (var c : department) {
-            Human oneHuman = c.isSame(input);
+        for (int i = 0; i < department.size(); i++) {
+            Human oneHuman = department.get(i).isSame(input);
             if (oneHuman != null) {
                 System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
                 String input1 = scanner.nextLine();
@@ -332,8 +332,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                 }
             }
         }
-        for (var c : secretariat) {
-            Human oneHuman = c.isSame(input);
+        for (int i = 0; i < secretariat.size(); i++) {
+            Human oneHuman = secretariat.get(i).isSame(input);
             if (oneHuman != null) {
                 System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
                 String ans = scanner.nextLine();
@@ -346,28 +346,28 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                 }
             }
         }
-        for (var c : others) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", c.toString());
+        for (int i = 0; i < others.size(); i++) {
+            if (others.get(i).getAfm().equals(input)) {
+                System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", others.get(i).toString());
                 String ans = scanner.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.bePositive();
-                    findWhereBelongs(c);
+                    others.get(i).bePositive();
+                    findWhereBelongs(others.get(i));
                     return;
                 }
             }
         }
-        for (var c : teachers) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", c.toString());
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getAfm().equals(input)) {
+                System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", teachers.get(i).toString());
                 String ans = scanner.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.bePositive();
-                    findWhereBelongs(c);
+                    teachers.get(i).bePositive();
+                    findWhereBelongs(teachers.get(i));
                     return;
                 }
             }
@@ -562,11 +562,11 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         }
         int sum1 = 0;
         int sum2 = 0;
-        for (var c : number_secreterariat_positive) {
-            sum1 += c;
+        for (int i = 0; i < number_secreterariat_positive.size(); i++) {
+            sum1 += number_secreterariat_positive.get(i);
         }
-        for (var c : number_department_positive) {
-            sum2 += c;
+        for (int i = 0; i < number_department_positive.size(); i++) {
+            sum2 += number_department_positive.get(i);
         }
         int count = number_others_positive + number_teachers_positive + sum1 + sum2;
         System.out.printf("Total Positive in your Universitat: %d", count);
@@ -575,22 +575,22 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         System.out.printf("Total Positive of Other Employee: %d", number_others_positive);
         System.out.printf("Total Positive Students: %d", sum2);
         System.out.println("Status of professors");
-        for (var c : teachers) {
-            System.out.printf("%s has status:%s\n", c.toString(), c.seeStatus());
+        for (int i = 0; i < teachers.size(); i++) {
+            System.out.printf("%s has status:%s\n", teachers.get(i).toString(), teachers.get(i).seeStatus());
         }
         System.out.println("Status of secretariat");
-        for (var c : secretariat) {
-            System.out.printf("    Status secretariat:%s", c.getIdifier());
-            c.printStatus();
+        for (int i = 0; i < secretariat.size(); i++) {
+            System.out.printf("    Status secretariat:%s", secretariat.get(i).getIdifier());
+            secretariat.get(i).printStatus();
         }
         System.out.println("Status of other employee");
-        for (var c : others) {
-            System.out.printf("%s has status:%s\n", c.toString(), c.seeStatus());
+        for (int i = 0; i < others.size(); i++) {
+            System.out.printf("%s has status:%s\n", others.get(i).toString(), others.get(i).seeStatus());
         }
         System.out.println("Status of each department");
-        for (var c : department) {
-            System.out.printf("    Status department:%s", c.getIdifier());
-            c.printStatus();
+        for (int i = 0; i < department.size(); i++) {
+            System.out.printf("    Status department:%s", department.get(i).getIdifier());
+            department.get(i).printStatus();
         }
         if (count > limit_decision) {
             System.out.println("Do you want to close your school?, 1 yes");//option if is serious

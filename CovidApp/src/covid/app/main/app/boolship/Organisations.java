@@ -195,8 +195,8 @@ public class Organisations {
         return "Name of organisation is: " + name + "\n Organisation Area is: " + area + "\n Number of employees: " + numbersOfPeople;
     }
     public static void printAllOrganisations() {
-        for (var c : allOrgs) {
-            System.out.println(c.toString());
+        for (int i = 0; i < allOrgs.size(); i++) {
+            System.out.println(allOrgs.get(i).toString());
         }
     }
 

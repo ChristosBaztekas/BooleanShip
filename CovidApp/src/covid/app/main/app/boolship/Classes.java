@@ -113,14 +113,14 @@ public class Classes {
         }
     }
     public void printStatus() {
-        for (var c : members) {
-            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
+        for (int i = 0; i < members.size(); i++) {
+            System.out.printf("%s has status:%s", members.get(i).toString(), members.get(i).seeStatus());
         }
     }
     public Human isSame(String ssn) {
-        for (var c : members) {
-            if (c.getAfm().equals(ssn)) {
-                return c;
+        for (int i = 0; i < members.size(); i++) {
+            if (members.get(i).getAfm().equals(ssn)) {
+                return members.get(i);
             }
         }
         return null;
@@ -130,8 +130,8 @@ public class Classes {
     }
     protected int covidCases() {
         int count = 0;
-        for (var c : members) {
-            if (c.seeStatus().equals("CONFIRMED")) {//check if it works
+        for (int i = 0; i < members.size(); i++) {
+            if (members.get(i).seeStatus().equals("CONFIRMED")) {//check if it works
                 count += 1;
             }
         }

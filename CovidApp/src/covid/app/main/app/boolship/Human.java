@@ -1,7 +1,5 @@
 package covid.app.main.app.boolship;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -125,8 +123,8 @@ public final class Human {
         if (isValidAfm(a)) {
             int z = search(a);
             if (z > -1) {
-                for (var c : allHuman.get(z).belongs) {
-                    if (org == c) {
+                for (int i = 0; i < allHuman.get(z).belongs.size(); i++) {
+                    if (org == allHuman.get(z).belongs.get(i)) {
                         return allHuman.get(z);
                     }
                 }
@@ -150,7 +148,7 @@ public final class Human {
         }
     }
 
-    protected static void quarantineMode(@NotNull Human human) {
+    protected static void quarantineMode(Human human) {
         System.out.println(human.toString() + "has been found with covid");
         human.status = Status.CONFIRMED;
         while (true) {
@@ -178,7 +176,7 @@ public final class Human {
             } else {
                 Human a = allHuman.get(search);
                 //status and perhaps test
-                for (var c : a.belongs) {
+                for (int i = 0; i < a.belongs.size(); i++) {
                     //inform organisations where belongs
                 }
             }
@@ -220,7 +218,8 @@ public final class Human {
                             System.out.printf("The %s had to be tested and the Test is positive", theHuman.toString());
                         }
                         quarantineMode(theHuman);
-                        for (var org : theHuman.belongs){
+                        for (int i = 0; i < theHuman.belongs.size(); i++){
+                            Organisations org = theHuman.belongs.get(i);
                             if (org == null) {
                                 continue;
                             } else if (org instanceof Schools) {

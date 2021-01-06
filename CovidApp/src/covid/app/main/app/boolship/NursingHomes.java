@@ -131,8 +131,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             en_status = true;
             status_descr = "Enclosed";
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
-                System.out.printf("    The person: %s", c.toString());
+            for (int i = 0; i < changes.size(); i++) {
+                System.out.printf("    The person: %s", changes.get(i).toString());
             }
         }
     }
@@ -148,26 +148,27 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         if (input.equals("0")) {
             return;
         }
-        for (var c : carenPeople) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Elder people: %s must be tested?, 0 for exit\n", c.toString());
+        for (int i = 0; i < carenPeople.size(); i++) {
+            if (carenPeople.get(i).getAfm().equals(input)) {
+                System.out.printf("Elder people: %s must be tested?" +
+                        ", 0 for exit\n", carenPeople.get(i).toString());
                 String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.haveToBeTested();
+                    carenPeople.get(i).haveToBeTested();
                     return;
                 }
             }
         }
-        for (var c : employees) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Member of employee: %s must be tested?, 0 for exit\n", c.toString());
+        for (int i = 0; i < carenPeople.size(); i++) {
+            if (carenPeople.get(i).getAfm().equals(input)) {
+                System.out.printf("Member of employee: %s must be tested?, 0 for exit\n", carenPeople.get(i).toString());
                 String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.haveToBeTested();
+                    carenPeople.get(i).haveToBeTested();
                     return;
                 }
             }
@@ -180,28 +181,30 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         if (input.equals("0")) {
             return;
         }
-        for (var c : carenPeople) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Want to report of a member of elder people: %s, 0 for exit\n", c.toString());
+        for (int i = 0; i < carenPeople.size(); i++) {
+            if (carenPeople.get(i).getAfm().equals(input)) {
+                System.out.printf("Want to report of a member of elder people: %s" +
+                        ", 0 for exit\n", carenPeople.get(i).toString());
                 String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.bePositive();
-                    changeStatus(c);
+                    carenPeople.get(i).bePositive();
+                    changeStatus(carenPeople.get(i));
                     return;
                 }
             }
         }
-        for (var c : employees) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Want to report of a member of employee: %s, 0 for exit\n", c.toString());
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getAfm().equals(input)) {
+                System.out.printf("Want to report of a member of employee: %s" +
+                        ", 0 for exit\n", employees.get(i).toString());
                 String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    c.bePositive();
-                    changeStatus(c);
+                    employees.get(i).bePositive();
+                    changeStatus(employees.get(i));
                     return;
                 }
             }
@@ -209,16 +212,16 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         System.out.println("Cant find a member with ssn:" + input);
     }
     protected void changeStatus(Human human) {
-        for (var empl : employees) {
-            if (empl != human) {
-                empl.haveToBeTested();
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i) != human) {
+                employees.get(i).haveToBeTested();
             } else {
                 count_employees += 1;
             }
         }
-        for (var p : carenPeople) {
-            if (p != human) {
-                p.haveToBeTested();
+        for (int i = 0; i < carenPeople.size(); i++) {
+            if (carenPeople.get(i) != human) {
+                carenPeople.get(i).haveToBeTested();
             } else {
                 count_carenPeople += 1;
             }
@@ -359,8 +362,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             update = false;
             System.out.println("There have been changes");
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
-                System.out.printf("   The person: %s\n", c.toString());
+            for (int i = 0; i < changes.size(); i++) {
+                System.out.printf("   The person: %s\n", changes.get(i).toString());
             }
         }
         if (status) {
@@ -368,12 +371,12 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             System.out.printf("Employees positive:%d - Elder positive:%d", count_employees, count_carenPeople);
         }
         System.out.println("Status of your employees");
-        for (var c  : employees) {
-            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
+        for (int i = 0; i <employees.size(); i++) {
+            System.out.printf("%s has status:%s", employees.get(i).toString(), employees.get(i).seeStatus());
         }
         System.out.println("Status of your guesters");
-        for (var c : carenPeople) {
-            System.out.printf("%s has status:%s", c.toString(), c.seeStatus());
+        for (int i =0; i < carenPeople.size(); i++) {
+            System.out.printf("%s has status:%s", carenPeople.get(i).toString(), carenPeople.get(i).seeStatus());
         }
         if (status) {
             System.out.println("Your Nursing Home can not be visited");

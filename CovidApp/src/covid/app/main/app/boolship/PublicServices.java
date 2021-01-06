@@ -33,8 +33,8 @@ public class PublicServices extends Labors {
     public void autoMonitoring() {
         ArrayList<Classes> department = getDepartment();
         int total_number = 0;
-        for (var c : department) {
-            total_number += c.size();
+        for (int i = 0; i < department.size(); i++) {
+            total_number += department.get(i).size();
         }
         if (total_number > total_limit_percentage) {
             int total_number_positive = 0;
