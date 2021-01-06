@@ -2,6 +2,7 @@ package covid.app.main.app.boolship;
 
 
 import CovidApp.Gui.BooleanShip.GuiClass;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -19,13 +20,13 @@ import java.util.Scanner;
 
     }
 }*/
-    //import javax.swing.*;
+//import javax.swing.*;
 
 
 public class Main {
-        static Scanner sc = new Scanner(System.in);
-        private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
-        static int chance = 0;
+    static Scanner sc = new Scanner(System.in);
+    private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
+    static int chance = 0;
     public static void main(String[] args) throws Exception {
         /*AutomaticMail test = new AutomaticMail();
         test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
@@ -33,10 +34,10 @@ public class Main {
         NursingHomes.createNH();
         Universities.createU();
         Schools.createS();
-        Companies.createP();
+
         PublicServices.createP();
         Organisations.print();
-        Human.exampleCreateHuman();
+        covid.app.main.app.boolship.Human.exampleCreateHuman();
         //Organisations.example();
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
@@ -148,17 +149,17 @@ public class Main {
                 case 2:
                     break;
                 case 3:
-                    Human.printAllRecordedCases();
+                    covid.app.main.app.boolship.Human.printAllRecordedCases();
                     break;
-                    // i dont know if its posible now,we have to keep every case to a static member
-                    // for (int i = 0; i < callMethods.contactsNames.size(); i++) {
-                    // System.out.println(callMethods.contactsNames.toString());
-                    // }
+                // i dont know if its posible now,we have to keep every case to a static member
+                // for (int i = 0; i < callMethods.contactsNames.size(); i++) {
+                // System.out.println(callMethods.contactsNames.toString());
+                // }
                 case 4:// when we import the api we will add the option
-                    Human.printAllRecordedContacts();
+                    covid.app.main.app.boolship.Human.printAllRecordedContacts();
                     break;
                 case 5:
-                    Human.testResults();//we believe only Eody gives results
+                    covid.app.main.app.boolship.Human.testResults();//we believe only Eody gives results
                     break;
                 case 6:
                     break;
@@ -287,7 +288,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                   signUp();
+                    signUp();
                     break;
                 case 3:
                     System.out.println(
