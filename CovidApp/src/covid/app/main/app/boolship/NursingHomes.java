@@ -8,6 +8,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<Human>();
     private ArrayList<Human> carenPeople = new ArrayList<Human>();
+    static ArrayList<String> orgEmails = new ArrayList<>();
     private int count_employees = 0;
     private int count_carenPeople = 0;
     static Scanner sc = new Scanner(System.in);
@@ -29,12 +30,15 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         add(this);
     }
 
-    public NursingHomes(String name, String area, int numberOfPeople, boolean enclosed) {
+   public NursingHomes(String name, String area, int numberOfPeople, String emailAddress, boolean enclosed) {
         super(name, area, numberOfPeople);
         en_status = enclosed;
         status_descr = (enclosed ? "Enclosed" : "Free Access");
-        id = count ++;
+        id = count++;
+        orgEmails.add(emailAddress);
+
         add(this);
+
         modifyEmployees();
         modifyCarenPeople();
         setNumbersOfPeople(employees.size() + carenPeople.size());
