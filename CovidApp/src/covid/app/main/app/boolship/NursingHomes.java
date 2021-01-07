@@ -38,10 +38,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         orgEmails.add(emailAddress);
 
         add(this);
-
-        modifyEmployees();
-        modifyCarenPeople();
-        setNumbersOfPeople(employees.size() + carenPeople.size());
+        setNumbersOfPeople(employees.size() + carenPeople.size());//maybe doesnt need now
 
     }
     protected void modifyEmployees() {
@@ -127,6 +124,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         }
     }
     public void monitoring() {
+        if (carenPeople.size() == 0 || employees.size() == 0) {
+            return;
+        }
         if (status) {
             status = false;
             System.out.println("Some changes have been ocured");
@@ -147,6 +147,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     }
 
     protected void toBeTested(Human human) {
+        if (carenPeople.size() == 0 || employees.size() == 0) {
+            return;
+        }
         System.out.println("Give the people that have to be tested, 0 exit");
         String input = sc.nextLine();
         if (input.equals("0")) {
@@ -180,6 +183,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         System.out.println("Cant find a member with ssn:" + input);
     }
     public void declareCase() {
+        if (carenPeople.size() == 0 || employees.size() == 0) {
+            return;
+        }
         System.out.println("Give the afm of the person that have been found positive, 0 for exit");
         String input = sc.nextLine();
         if (input.equals("0")) {
@@ -216,6 +222,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         System.out.println("Cant find a member with ssn:" + input);
     }
     protected void changeStatus(Human human) {
+        if (carenPeople.size() == 0 || employees.size() == 0) {
+            return;
+        }
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i) != human) {
                 employees.get(i).haveToBeTested();
@@ -245,6 +254,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             int numberofCarenPeople = sc.nextInt();
             System.out.println("Is your organization open? 1for yes");
             String input = sc.next();
+            System.out.println("Give email");
+            String email = sc.nextLine();
             boolean enclosed;
             if(input.equals("1")){
                 enclosed = false;
@@ -259,7 +270,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             if (sc.nextLine().equals("0")) {
                 continue;
             }
-            NursingHomes newOne = new NursingHomes(name, area, numberofCarenPeople + numberOfEmployees, enclosed);
+            NursingHomes newOne = new NursingHomes(name, area, numberofCarenPeople + numberOfEmployees, email, enclosed);
             break;
         }
 
@@ -362,6 +373,9 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
     }
 
     public void seeStatus() {
+        if (carenPeople.size() == 0 || employees.size() == 0) {
+            return;
+        }
         if (update) {
             update = false;
             System.out.println("There have been changes");
