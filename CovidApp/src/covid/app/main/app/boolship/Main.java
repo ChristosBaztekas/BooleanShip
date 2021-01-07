@@ -32,17 +32,16 @@ public class Main {
     static int chance = 0;
     public static void main(String[] args) throws Exception {
     		// database connection
-    		String url="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433";
+        String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
+                "databaseName=DB38;user=G538;password=48534trh045;";
     		Connection connection;
-    		String usernameDB;
-    		String passwordDB;
     		try {
-    			connection = DriverManager.getConnection(url, usernameDB, passwordDB);
+    			connection = DriverManager.getConnection(url);
     		}
     		catch(SQLException e) {
     			System.out.println(e.getMessage());
     		}
-    	}
+
         /*AutomaticMail test = new AutomaticMail();
         test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
          */
