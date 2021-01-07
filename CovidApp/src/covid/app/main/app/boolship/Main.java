@@ -51,7 +51,7 @@ public class Main {
 
         PublicServices.createP();
         Organisations.print();
-        covid.app.main.app.boolship.Human.exampleCreateHuman();
+        Human.exampleCreateHuman();
         //Organisations.example();
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
@@ -163,17 +163,17 @@ public class Main {
                 case 2:
                     break;
                 case 3:
-                    covid.app.main.app.boolship.Human.printAllRecordedCases();
+                    Human.printAllRecordedCases();
                     break;
                 // i dont know if its posible now,we have to keep every case to a static member
                 // for (int i = 0; i < callMethods.contactsNames.size(); i++) {
                 // System.out.println(callMethods.contactsNames.toString());
                 // }
                 case 4:// when we import the api we will add the option
-                    covid.app.main.app.boolship.Human.printAllRecordedContacts();
+                    Human.printAllRecordedContacts();
                     break;
                 case 5:
-                    covid.app.main.app.boolship.Human.testResults();//we believe only Eody gives results
+                    Human.testResults();//we believe only Eody gives results
                     break;
                 case 6:
                     break;
