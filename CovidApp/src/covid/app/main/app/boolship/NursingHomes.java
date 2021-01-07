@@ -249,13 +249,13 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             String area = sc.next();
             System.out.println("How many employees does your organization have?");
             sc.nextLine();
+            System.out.println("Give email");
+            String email = sc.next();
             int numberOfEmployees = sc.nextInt();
             System.out.println("How many carenPeople does your organization have?");
             int numberofCarenPeople = sc.nextInt();
             System.out.println("Is your organization open? 1for yes");
             String input = sc.next();
-            System.out.println("Give email");
-            String email = sc.nextLine();
             boolean enclosed;
             if(input.equals("1")){
                 enclosed = false;
