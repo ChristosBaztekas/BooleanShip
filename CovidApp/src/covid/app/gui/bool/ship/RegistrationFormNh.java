@@ -1,23 +1,18 @@
 package covid.app.gui.bool.ship;
 
 import CovidApp.Gui.BooleanShip.GuiClass;
-import covid.app.main.app.boolship.Human;
-import covid.app.main.app.boolship.Main;
+import covid.app.main.app.boolship.NursingHomes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class RegistrationFormNh
         extends JFrame
         implements ActionListener {
+
     static boolean enclosedN = false;
     SpinnerNumberModel numberEmployees = new SpinnerNumberModel(
             new Integer(1), // value
@@ -31,8 +26,11 @@ public class RegistrationFormNh
             new Integer(400), // max
             new Integer(1) // step
     );
+    public static ArrayList<String> usernames = new ArrayList<>();
+    public static ArrayList<String> passwords = new ArrayList<>();
 
-    ArrayList<Human> usersList = new ArrayList<>();
+
+
     private Container c;
     private JLabel title;
 
@@ -218,6 +216,7 @@ public class RegistrationFormNh
     // by the user and act accordingly
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
+            boolean ok = false;
             String orgName = tname.getText();
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
@@ -227,39 +226,6 @@ public class RegistrationFormNh
             String username = tusername.getText();
             String password = tpassword.getText();
             String rpassword = trpassword.getText();
-            
-            //insert values to DB
-            String query = "insert into Org(orgName, orgMail, orgArea, numEmployees, numElderly, username, password, rpassword)values(?,?,?,?,?,?,?,?)";
-            // we have to create DB Org with this values otherwise we have to do with another way
-            
-            try {
-            	PreparedStatement pst = Main.connection.prepareStatement(query);
-                pst.setString(1, orgName);
-                pst.setString(2, orgMail);
-                pst.setString(3, orgArea);
-                pst.setInt(4, numEmployees);
-				pst.setInt(5, numElderly);
-				pst.setString(6, username);
-	            pst.setString(7, password);
-	            pst.setString(8, rpassword);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-            //if we want to show the username or whatever we use 
-            //Statement st1 = Main.connection.createStatement();
-            /*String query1 ="SELECT * FROM Org";
-            try {
-				Statement st = Main.connection.createStatement();
-				ResultSet rs = st.executeQuery(query1);
-				Human human;
-				human = new human(rs.getString(orgName));
-				and continue with the same way to get what you want
-				
-			} catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
-            */
             if (enclosed.isSelected()) {
                 enclosedN = true;
             } else {
@@ -286,12 +252,15 @@ public class RegistrationFormNh
             } else if (rpassword.length() < 6) {
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             } else {
-                //NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
+                usernames.add(username);
+                passwords.add(password);
+                NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
+                ok = true;
+            }
+            if(ok) {
                 dispose();
                 GuiClass.alreadyUserOption("Nursing Home menu log form");
             }
-
-
         } else if (e.getSource() == reset) {
             String def = "";
             tname.setText(def);
@@ -309,3 +278,18 @@ public class RegistrationFormNh
 
     }
 }
+//if we want to show the username or whatever we use 
+//Statement st1 = Main.connection.createStatement();
+            /*String query1 ="SELECT * FROM Org";
+            try {
+				Statement st = Main.connection.createStatement();
+				ResultSet rs = st.executeQuery(query1);
+				Human human;
+				human = new human(rs.getString(orgName));
+				and continue with the same way to get what you want
+				
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+            */
