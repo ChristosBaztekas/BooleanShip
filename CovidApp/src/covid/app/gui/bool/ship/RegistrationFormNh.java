@@ -1,11 +1,19 @@
 package covid.app.gui.bool.ship;
 
 import CovidApp.Gui.BooleanShip.GuiClass;
+import covid.app.main.app.boolship.Human;
+import covid.app.main.app.boolship.Main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class RegistrationFormNh
         extends JFrame
@@ -24,7 +32,7 @@ public class RegistrationFormNh
             new Integer(1) // step
     );
 
-
+    ArrayList<Human> usersList = new ArrayList<>();
     private Container c;
     private JLabel title;
 
@@ -219,6 +227,39 @@ public class RegistrationFormNh
             String username = tusername.getText();
             String password = tpassword.getText();
             String rpassword = trpassword.getText();
+            
+            //insert values to DB
+            String query = "insert into Org(orgName, orgMail, orgArea, numEmployees, numElderly, username, password, rpassword)values(?,?,?,?,?,?,?,?)";
+            // we have to create DB Org with this values otherwise we have to do with another way
+            
+            try {
+            	PreparedStatement pst = Main.connection.prepareStatement(query);
+                pst.setString(1, orgName);
+                pst.setString(2, orgMail);
+                pst.setString(3, orgArea);
+                pst.setInt(4, numEmployees);
+				pst.setInt(5, numElderly);
+				pst.setString(6, username);
+	            pst.setString(7, password);
+	            pst.setString(8, rpassword);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+            //if we want to show the username or whatever we use 
+            //Statement st1 = Main.connection.createStatement();
+            /*String query1 ="SELECT * FROM Org";
+            try {
+				Statement st = Main.connection.createStatement();
+				ResultSet rs = st.executeQuery(query1);
+				Human human;
+				human = new human(rs.getString(orgName));
+				and continue with the same way to get what you want
+				
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+            */
             if (enclosed.isSelected()) {
                 enclosedN = true;
             } else {
