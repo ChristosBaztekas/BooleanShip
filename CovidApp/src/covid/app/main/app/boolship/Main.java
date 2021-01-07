@@ -8,6 +8,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 /*public class Main {
     public static void main(String[] args) throws MessagingException {
@@ -28,6 +31,18 @@ public class Main {
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
     static int chance = 0;
     public static void main(String[] args) throws Exception {
+    		// database connection
+    		String url="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433";
+    		Connection connection;
+    		String usernameDB;
+    		String passwordDB;
+    		try {
+    			connection = DriverManager.getConnection(url, usernameDB, passwordDB);
+    		}
+    		catch(SQLException e) {
+    			System.out.println(e.getMessage());
+    		}
+    	}
         /*AutomaticMail test = new AutomaticMail();
         test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
          */
