@@ -1,5 +1,10 @@
 package covid.app.main.app.boolship;
 
+import CovidApp.Gui.BooleanShip.GuiClass;
+import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -123,8 +128,8 @@ public final class Human {
         if (isValidAfm(a)) {
             int z = search(a);
             if (z > -1) {
-                for (int i = 0; i < allHuman.get(z).belongs.size(); i++) {
-                    if (org == allHuman.get(z).belongs.get(i)) {
+                for (var c : allHuman.get(z).belongs) {
+                    if (org == c) {
                         return allHuman.get(z);
                     }
                 }
@@ -148,7 +153,7 @@ public final class Human {
         }
     }
 
-    protected static void quarantineMode(Human human) {
+    protected static void quarantineMode(@NotNull Human human) {
         System.out.println(human.toString() + "has been found with covid");
         human.status = Status.CONFIRMED;
         while (true) {
@@ -176,7 +181,7 @@ public final class Human {
             } else {
                 Human a = allHuman.get(search);
                 //status and perhaps test
-                for (int i = 0; i < a.belongs.size(); i++) {
+                for (var c : a.belongs) {
                     //inform organisations where belongs
                 }
             }
@@ -218,8 +223,7 @@ public final class Human {
                             System.out.printf("The %s had to be tested and the Test is positive", theHuman.toString());
                         }
                         quarantineMode(theHuman);
-                        for (int i = 0; i < theHuman.belongs.size(); i++){
-                            Organisations org = theHuman.belongs.get(i);
+                        for (var org : theHuman.belongs){
                             if (org == null) {
                                 continue;
                             } else if (org instanceof Schools) {
@@ -272,63 +276,74 @@ public final class Human {
         //called as Human.creteHuman(this);
         //RETURNS A HUMAN OR NULL FOR EXIT
         Human one = null;
-        for(;;) {
-            System.out.println("Give the AFM of the Person, 0 for exit");
-            String ans_afm = sc.nextLine();
-            if (ans_afm.equals("0")) {
-                break;
+
+        String ans_afm = (String) JOptionPane.showInputDialog("Please write the Employee's afm");
+
+        GuiClass.isValidAfm(ans_afm);
+
+        int pos = search(ans_afm);
+        if (pos == -1) {
+            String name, surname, gender, email;
+            JPanel panel = new JPanel(new GridLayout(4, 1));
+
+            JLabel lname = new JLabel("Name");
+            lname.setFont(new Font("Arial", Font.BOLD, 18));
+            JLabel lsurname = new JLabel("Surname");
+            lsurname.setFont(new Font("Arial", Font.BOLD, 18));
+            JLabel lgender = new JLabel("Gender");
+            lgender.setFont(new Font("Arial", Font.BOLD, 18));
+            JLabel lemail = new JLabel("Email");
+            lemail.setFont(new Font("Arial", Font.BOLD, 18));
+
+            JTextField tname = new JTextField();
+            JTextField tsurname = new JTextField();
+            JTextField tgender = new JTextField();
+            JTextField temail = new JTextField();
+
+            panel.add(lname);
+            panel.add(tname);
+            panel.add(lsurname);
+            panel.add(tsurname);
+            panel.add(lgender);
+            panel.add(tgender);
+            panel.add(lemail);
+            panel.add(temail);
+            JOptionPane.showMessageDialog(null, panel, "Employee additional info", JOptionPane.INFORMATION_MESSAGE);
+            name = tname.getText();
+            surname = tsurname.getText();
+            gender = tgender.getText();
+            email = temail.getText();
+            GuiClass.isValidEmail(email);
+            if (name == "" || surname == "" || gender == "" || email == "") {
+                JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
             }
-            if (!isValidAfm(ans_afm)) {
-                System.out.printf("The %s is not right afm try again", ans_afm);
-                continue;
-            }
-            int pos = search(ans_afm);
-            if (pos == -1) {
-                String name ,surname, gender, email;
-                System.out.printf("No human with Afm number: %s at base, human creations", ans_afm);
-                for(;;){
-                    System.out.println("Give the name: ");
-                    name = sc.nextLine();
-                    System.out.println("Give the surname: ");
-                    surname = sc.nextLine();
-                    System.out.println("Give the gender: ");
-                    gender = sc.nextLine();
-                    System.out.println("Give the email: ");
-                    email = sc.nextLine();
-                    System.out.printf("Are these the correct datas %s %s %s %s;,0 for no \n", name, surname, gender, email);
-                    String ans = sc.nextLine();
-                    if(ans.equals("0")) {
-                        System.out.println("The process of creating man is repeated");
-                    } else {
-                        break;
-                    }
-                }
-                try {
-                    one = new Human(name, surname, ans_afm, email, gender, org);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                    System.out.println("Something gone wrong, repeat this Progress please!");
-                    continue;
-                }
-                return one;
 
 
+            try {
+                one = new Human(name, surname, ans_afm, email, gender, org);
+            } catch (IllegalAccessException e) {
+                JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            return one;
+
+
+        } else {
+            System.out.println("The person was found at the base");
+            System.out.printf("We continue the process with man:%s;\n 0 to exit: ", allHuman.get(pos).toString());
+            int ans = sc.nextInt();
+            if (ans != 0) {
+                allHuman.get(pos).belongs.add(org);
+                return allHuman.get(pos);
             } else {
-                System.out.println("The person was found at the base");
-                System.out.printf("We continue the process with man:%s;\n 0 to exit: ", allHuman.get(pos).toString());
-                int ans = sc.nextInt();
-                if (ans != 0) {
-                    allHuman.get(pos).belongs.add(org);
-                    return allHuman.get(pos);
-                } else {
-                    System.out.println("The process for that person has stopped, it starts again for the next introduction");
-                }
-
+                System.out.println("The process for that person has stopped, it starts again for the next introduction");
             }
-
+         return null;
         }
-        return null;
     }
+
+        //return null;
+
     private static Human createHuman(String ssn) {
         Human one = null;
         String name ,surname, gender, email;
