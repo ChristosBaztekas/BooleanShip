@@ -11,13 +11,17 @@ public class Main1 {
 		System.out.println("option 2:search by afm");
 		//System.out.println("option 3:add human, please not same afm yet");
 		String input = new Scanner(System.in).nextLine();
+		System.out.println("give 0 to exit");
+		int input2 = new Scanner(System.in).nextInt();
+		do {
 		if (input.equals("1")) {
 			getHuman();
 		} else if (input.equals("2")) {
 			getHumanAfm();
-		} /*else if (input.equals("3")) {
+		} else if (input.equals("3")) {
 			getHumanexample();
-		}*/
+		}
+		}while(input2 == 0);
 
 
 	}
@@ -95,5 +99,35 @@ public class Main1 {
 				System.out.print("SQLException: ");
 				System.out.println(e.getMessage());
 			}
+	}
+	public static void getHumanexample() {
+		
+		String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
+                "databaseName=DB38;user=G538;password=48534trh045;";
+		Connection dbco = null;
+		try {
+		dbco = DriverManager.getConnection(url);
+		}
+		catch (SQLException e1) {
+			System.out.println(e1.getMessage());
+		}
+		String name = "Dimitris";
+		String surname = "Pappas";
+		String email = "Dpappas@fff.gr";
+		String gender = "Male";
+		int Afm = 25;
+				
+		String query = "insert into	giveHumans(name, surname, email, gender, Afm)values(?,?,?,?,?)";
+        
+        try {
+        	PreparedStatement pst = dbco.prepareStatement(query);
+            pst.setString(1, name);
+            pst.setString(2, surname);
+            pst.setString(3, email);
+            pst.setString(4, gender);
+			pst.setInt(5, Afm);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
