@@ -1,7 +1,7 @@
 package CovidApp.Gui.BooleanShip;
 
-import covid.app.gui.bool.ship.JavaMailUtil;
-import covid.app.gui.bool.ship.LogOrg;
+import covid.app.gui.bool.ship.*;
+import covid.app.main.app.boolship.Human;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.mail.MessagingException;
@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 
 public class GuiClass extends JFrame implements ActionListener {
@@ -198,6 +199,11 @@ public class GuiClass extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Redirecting to the Labor user login form");
             alreadyUserOption("Log in as a Labor User.");
         } else if (source == lmenu3) {
+            RegistrationFormL wsFrame = new RegistrationFormL();
+            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setTitle("Welcome to the Labor user register form");
+            wsFrame.setVisible(true);
+            wsFrame.setDefaultCloseOperation(3);
         } else if (source == lmenu4) {
             GuiClass.exitMethod();
         } else if (source == smenu1) {
@@ -207,6 +213,11 @@ public class GuiClass extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Redirecting to the School login form");
             alreadyUserOption("Log in as a School User.");
         } else if (source == smenu3) {
+            RegistrationFormS wsFrame = new RegistrationFormS();
+            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setTitle("Welcome to the School User registration form");
+            wsFrame.setVisible(true);
+            wsFrame.setDefaultCloseOperation(3);
         } else if (source == smenu4) {
             GuiClass.exitMethod();
         } else if (source == umenu1) {
@@ -216,7 +227,11 @@ public class GuiClass extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Redirecting to the University login form");
             alreadyUserOption("Log in as a University User.");
         } else if (source == umenu3) {
-
+            RegistrationFormU wsFrame = new RegistrationFormU();
+            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setTitle("Welcome to the University User registration form");
+            wsFrame.setVisible(true);
+            wsFrame.setDefaultCloseOperation(3);
         } else if (source == umenu4) {
             GuiClass.exitMethod();
         } else if (source == nmenu1) {
@@ -226,6 +241,12 @@ public class GuiClass extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home login form");
             alreadyUserOption("Log in as a Nursing Home User.");
         } else if (source == nmenu3) {
+            dispose();
+            RegistrationFormNh wsFrame = new RegistrationFormNh();
+            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setTitle("Welcome to the Nursing Home User registration form");
+            wsFrame.setVisible(true);
+            wsFrame.setDefaultCloseOperation(3);
         } else if (source == nmenu4) {
             GuiClass.exitMethod();
         } else if (source == whoWebpage) {
@@ -261,6 +282,7 @@ public class GuiClass extends JFrame implements ActionListener {
             uriSyntaxException.printStackTrace();
         }
     }
+
 
     public static void alreadyUserOption(String anyString) {
         LogOrg frame = new LogOrg();
@@ -307,11 +329,14 @@ public class GuiClass extends JFrame implements ActionListener {
     }
 
     //the afm validation will happen from here
-    public static void isValidAfm(String afm) {
+    public static Boolean isValidAfm(String afm) {
+
         int len = afm.length();
 
         if (len != 9) {
             JOptionPane.showMessageDialog(null, "The afm should contain 9 characters.Please try again.", "Invalid number of characters", JOptionPane.ERROR_MESSAGE);
+
+            return false;
             // afm = JOptionPane.showInputDialog(null, "Hi");
             //isValidAfm(afm);
         } else {
@@ -320,21 +345,90 @@ public class GuiClass extends JFrame implements ActionListener {
                     continue;
                 } else {
                     JOptionPane.showMessageDialog(null, "The afm should contain only numbers.Please try again.", "Invalid input", JOptionPane.ERROR_MESSAGE);
+                    return false;
                     //afm = JOptionPane.showInputDialog(null, "Hi");
                     //isValidAfm(afm);
                 }
             }
         }
+        return true;
     }
-    public static void isValidEmail(String email){
-        EmailValidator validator = EmailValidator.getInstance();
-        if(validator.isValid(email)){
 
-        }else{
+    public static Boolean isValidEmail(String email) {
+        EmailValidator validator = EmailValidator.getInstance();
+        if (validator.isValid(email)) {
+            return true;
+        } else {
             JOptionPane.showMessageDialog(null, "The email is not right.Please try again", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    public static void createHumans(String typeOfHuman, ArrayList<Human> allEmployees) {
+        Human one = null;
+
+        String ans_afm = (String) JOptionPane.showInputDialog("Please write the " + typeOfHuman + "'s afm");
+
+        if (GuiClass.isValidAfm(ans_afm)) {
+            int pos = Human.search(ans_afm);
+            if (pos == -1) {
+                String name, surname, gender, email;
+                JPanel panel = new JPanel(new GridLayout(4, 1));
+
+                JLabel lname = new JLabel("Name");
+                lname.setFont(new Font("Arial", Font.BOLD, 18));
+                JLabel lsurname = new JLabel("Surname");
+                lsurname.setFont(new Font("Arial", Font.BOLD, 18));
+                JLabel lgender = new JLabel("Gender");
+                lgender.setFont(new Font("Arial", Font.BOLD, 18));
+                JLabel lemail = new JLabel("Email");
+                lemail.setFont(new Font("Arial", Font.BOLD, 18));
+
+                JTextField tname = new JTextField();
+                JTextField tsurname = new JTextField();
+                JTextField tgender = new JTextField();
+                JTextField temail = new JTextField();
+
+                panel.add(lname);
+                panel.add(tname);
+                panel.add(lsurname);
+                panel.add(tsurname);
+                panel.add(lgender);
+                panel.add(tgender);
+                panel.add(lemail);
+                panel.add(temail);
+                JOptionPane.showMessageDialog(null, panel, typeOfHuman + " additional info", JOptionPane.INFORMATION_MESSAGE);
+                name = tname.getText();
+                surname = tsurname.getText();
+                gender = tgender.getText();
+                email = temail.getText();
+
+
+                if (name == "" || surname == "" || gender == "" || email == "") {
+                    JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
+                    GuiClass.createHumans(typeOfHuman, allEmployees);
+                } else {
+                    if (!GuiClass.isValidEmail(email)) {
+                        GuiClass.createHumans(typeOfHuman, allEmployees);
+                    } else {
+
+                        try {
+                            one = new Human(name, surname, ans_afm, email, gender, null);
+                            allEmployees.add(one);
+
+                        } catch (IllegalAccessException iAe) {
+                            JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "The afm already exists.Please Try again", "Already existed afm", JOptionPane.ERROR_MESSAGE);
+                GuiClass.createHumans(typeOfHuman, allEmployees);
+            }
         }
     }
 }
+
 
 
 
