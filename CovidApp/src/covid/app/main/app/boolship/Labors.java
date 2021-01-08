@@ -10,22 +10,22 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
     private static int count = 0;
     protected ArrayList<Classes> department = new ArrayList<Classes>();
     private static ArrayList<Labors> allLabors = new ArrayList<Labors>();//see if we needs
-    private ArrayList<Human> changes = new ArrayList<Human>();
+    private ArrayList<covid.app.main.app.boolship.Human> changes = new ArrayList<covid.app.main.app.boolship.Human>();
     private boolean status = false;//eody changes something
     private boolean lockdown = false;
     private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
     private static Scanner scanner = new Scanner(System.in);
-    public Labors(String name, String area, int numbersOfPeople) {
+    public Labors(String name, String area, int numbersOfPeople,String laborEmail) {
         super(name, area, numbersOfPeople);
         id = count++;
-        modifyDepartments();
+       // modifyDepartments();
         allLabors.add(this);
     }
     public Labors(String n, String a, int aa, String z, String e) {
         super(n, a, aa, z, e);
         id = count ++;
     }
-    public void declareCase(Human human) {
+    public void declareCase(covid.app.main.app.boolship.Human human) {
         if (status) {
             changes.add(human);
         } else {
@@ -60,8 +60,8 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
         }
         System.out.println("Give the ssn of the person that is positive");
         String input = scanner.nextLine();
-        for (int i = 0; i < department.size(); i++) {
-            Human one = department.get(i).isSame(input);
+        for (var c : department) {
+            covid.app.main.app.boolship.Human one = c.isSame(input);
             if (one != null) {
                 System.out.printf("Want to report positive of employee: %s, 0 exit", one.toString());
                 String input1 = scanner.nextLine();
@@ -81,14 +81,13 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
             status = false;
             System.out.println("Some changes have been ocurred");
             System.out.println("Positive have been found: ");
-            for (int i = 0; i < changes.size(); i++) {
-                System.out.printf("    The person: %s", changes.get(i).toString());
+            for (var c : changes) {
+                System.out.printf("    The person: %s", c.toString());
             }
             System.out.println("Please tell who is likely to be positive too");
-            for (int j = 0; j < changes.size(); j++) {
+            for (var c :changes) {
                 int choice;
                 while (true) {
-                    System.out.printf("Contacts of %s", changes.get(j));
                     System.out.println("Give the number for each department of your Labor");
                     System.out.println("0: Exit");
                     for (int i = 0; i < department.size(); i++) {
@@ -133,9 +132,9 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
                 System.out.printf("Department: %s is opened", department.get(i).getIdifier());
             }
         }
-        for (int i = 0; i < department.size(); i++) {
-            System.out.println("Status of department: " + department.get(i).getIdifier());
-            department.get(i).printStatus();
+        for (var c : department) {
+            System.out.println("Status of department: " + c.getIdifier());
+            c.printStatus();
         }
         System.out.println("Would you like to lockdown your labor," +
                 " 1 yes, 2 for lockdown of department");
