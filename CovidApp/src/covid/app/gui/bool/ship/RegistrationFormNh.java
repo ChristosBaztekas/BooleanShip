@@ -31,7 +31,7 @@ public class RegistrationFormNh
 
 
 
-    private Container c;
+    private Container c = getContentPane();
     private JLabel title;
 
     private JLabel name;
@@ -58,7 +58,7 @@ public class RegistrationFormNh
     private JLabel rpassword;
     private JPasswordField trpassword;
 
-    private JCheckBox showP;
+
     private JCheckBox term;
     private JCheckBox enclosed;
     private JButton submit;
@@ -68,146 +68,171 @@ public class RegistrationFormNh
     // constructor, to initialize the components
     // with default values.
     public RegistrationFormNh() {
-        setTitle("Registration Form");
-        setBounds(300, 90, 900, 500);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
 
-        c = getContentPane();
-        c.setLayout(null);
-
+        setLayout(new BorderLayout());
+        JLabel background = new JLabel(new ImageIcon("D:\\BooleanShipProjectJ\\CovidApp\\src\\covid\\app\\gui\\bool\\ship\\covidReg1.jpg"));
+        c.add(background);
         title = new JLabel("Nursing Home User Registration Form");
-        title.setFont(new Font("Arial", Font.PLAIN, 30));
-        title.setSize(550, 50);
-        title.setLocation(200, 30);
-        c.add(title);
+        title.setFont(new Font("Arial", Font.BOLD, 30));
+        title.setSize(650, 50);
+        title.setLocation(100, 30);
+        background.add(title);
 
         name = new JLabel("Organisation Name");
-        name.setFont(new Font("Arial", Font.PLAIN, 20));
+        name.setFont(new Font("Arial", Font.BOLD, 20));
         name.setSize(200, 20);
         name.setLocation(20, 100);
-        c.add(name);
+        background.add(name);
 
         tname = new JTextField();
-        tname.setFont(new Font("Arial", Font.PLAIN, 15));
+        tname.setFont(new Font("Arial", Font.BOLD, 15));
         tname.setSize(150, 20);
         tname.setLocation(200, 100);
-        c.add(tname);
+        background.add(tname);
 
         numOfEPeople = new JSpinner(numberOfElderlyResidents);
-        numOfEPeople.setFont(new Font("Arial", Font.PLAIN, 20));
-        numOfEPeople.setSize(50, 20);
-        numOfEPeople.setLocation(600, 100);
-        c.add(numOfEPeople);
+        numOfEPeople.setFont(new Font("Arial", Font.BOLD, 20));
+        numOfEPeople.setSize(30, 20);
+        numOfEPeople.setLocation(640, 100);
+        background.add(numOfEPeople);
 
         tnumOfEPeople = new JLabel("Number of Elderly Residents");
-        tnumOfEPeople.setFont(new Font("Arial", Font.PLAIN, 15));
+        tnumOfEPeople.setFont(new Font("Arial", Font.BOLD, 20));
         tnumOfEPeople.setSize(350, 20);
-        tnumOfEPeople.setLocation(400, 100);
-        c.add(tnumOfEPeople);
+        tnumOfEPeople.setLocation(370, 100);
+        background.add(tnumOfEPeople);
 
 
         mail = new JLabel("Organisations Email");//have to include the email validation
-        mail.setFont(new Font("Arial", Font.PLAIN, 20));
+        mail.setFont(new Font("Arial", Font.BOLD, 20));
         mail.setSize(350, 20);
-        mail.setLocation(15, 150);
-        c.add(mail);
+        mail.setLocation(3, 150);
+        background.add(mail);
 
         tmail = new JTextField();
-        tmail.setFont(new Font("Arial", Font.PLAIN, 15));
+        tmail.setFont(new Font("Arial", Font.BOLD, 15));
         tmail.setSize(150, 20);
         tmail.setLocation(200, 150);
-        c.add(tmail);
+        background.add(tmail);
 
         username = new JLabel("Set Username");
-        username.setFont(new Font("Arial", Font.PLAIN, 20));
+        username.setFont(new Font("Arial", Font.BOLD, 20));
         username.setSize(300, 20);
-        username.setLocation(470, 150);
-        c.add(username);
+        username.setLocation(420, 150);
+        background.add(username);
 
         tusername = new JTextField();
-        tusername.setFont(new Font("Arial", Font.PLAIN, 15));
+        tusername.setFont(new Font("Arial", Font.BOLD, 15));
         tusername.setSize(150, 20);
-        tusername.setLocation(600, 150);
-        c.add(tusername);
+        tusername.setLocation(580, 150);
+        background.add(tusername);
 
 
         area = new JLabel("Headquarters Area");
-        area.setFont(new Font("Arial", Font.PLAIN, 20));
+        area.setFont(new Font("Arial", Font.BOLD, 20));
         area.setSize(200, 20);
         area.setLocation(22, 200);
-        c.add(area);
+        background.add(area);
 
         tarea = new JTextField();
-        tarea.setFont(new Font("Arial", Font.PLAIN, 15));
+        tarea.setFont(new Font("Arial", Font.BOLD, 15));
         tarea.setSize(150, 20);
         tarea.setLocation(200, 200);
-        c.add(tarea);
+        background.add(tarea);
 
         password = new JLabel("Set Password");
-        password.setFont(new Font("Arial", Font.PLAIN, 20));
+        password.setFont(new Font("Arial", Font.BOLD, 20));
         password.setSize(300, 20);
-        password.setLocation(470, 200);
-        c.add(password);
+        password.setLocation(420, 200);
+        background.add(password);
 
         tpassword = new JPasswordField();
-        tpassword.setFont(new Font("Arial", Font.PLAIN, 15));
+        tpassword.setFont(new Font("Arial", Font.BOLD, 15));
         tpassword.setSize(150, 20);
-        tpassword.setLocation(600, 200);
-        c.add(tpassword);
+        tpassword.setLocation(580, 200);
+        background.add(tpassword);
 
         numOfPeople = new JSpinner(numberEmployees);
-        numOfPeople.setFont(new Font("Arial", Font.PLAIN, 20));
-        numOfPeople.setSize(50, 20);
-        numOfPeople.setLocation(225, 250);
-        c.add(numOfPeople);
+        numOfPeople.setFont(new Font("Arial", Font.BOLD, 20));
+        numOfPeople.setSize(30, 20);
+        numOfPeople.setLocation(230, 250);
+        background.add(numOfPeople);
 
         tnumOfPeople = new JLabel("Number of Employees");
-        tnumOfPeople.setFont(new Font("Arial", Font.PLAIN, 20));
+        tnumOfPeople.setFont(new Font("Arial", Font.BOLD, 20));
         tnumOfPeople.setSize(300, 20);
         tnumOfPeople.setLocation(20, 250);
-        c.add(tnumOfPeople);
+        background.add(tnumOfPeople);
 
         rpassword = new JLabel("Repeat Password");
-        rpassword.setFont(new Font("Arial", Font.PLAIN, 20));
+        rpassword.setFont(new Font("Arial", Font.BOLD, 20));
         rpassword.setSize(300, 20);
-        rpassword.setLocation(437, 250);
-        c.add(rpassword);
+        rpassword.setLocation(400, 250);
+        background.add(rpassword);
 
         trpassword = new JPasswordField();
-        trpassword.setFont(new Font("Arial", Font.PLAIN, 15));
+        trpassword.setFont(new Font("Arial", Font.BOLD, 15));
         trpassword.setSize(150, 20);
-        trpassword.setLocation(600, 250);
-        c.add(trpassword);
+        trpassword.setLocation(580, 250);
+        background.add(trpassword);
 
 
         term = new JCheckBox("Accept Terms And Conditions");
-        term.setFont(new Font("Arial", Font.PLAIN, 15));
+        term.setFont(new Font("Arial", Font.BOLD, 15));
         term.setSize(250, 20);
-        term.setLocation(300, 322);
-        c.add(term);
+        term.setLocation(250, 322);
+        background.add(term);
 
         enclosed = new JCheckBox("Select if Nursing Home is enclosed");
-        enclosed.setFont(new Font("Arial", Font.PLAIN, 15));
+        enclosed.setFont(new Font("Arial", Font.BOLD, 15));
         enclosed.setSize(350, 20);
-        enclosed.setLocation(300, 300);
-        c.add(enclosed);
+        enclosed.setLocation(250, 300);
+        background.add(enclosed);
 
         submit = new JButton("Submit");
-        submit.setFont(new Font("Arial", Font.PLAIN, 15));
+        submit.setFont(new Font("Arial", Font.BOLD, 15));
         submit.setSize(100, 20);
-        submit.setLocation(300, 350);
+        submit.setLocation(270, 350);
         submit.addActionListener(this);
-        c.add(submit);
+        background.add(submit);
 
+        tarea.setOpaque(false);
+        tname.setOpaque(false);
+
+        tmail.setOpaque(false);
+        tpassword.setOpaque(false);
+        trpassword.setOpaque(false);
+        tusername.setOpaque(false);
 
         reset = new JButton("Reset");
-        reset.setFont(new Font("Arial", Font.PLAIN, 15));
+        reset.setFont(new Font("Arial", Font.BOLD, 15));
         reset.setSize(100, 20);
-        reset.setLocation(420, 350);
+        reset.setLocation(380, 350);
         reset.addActionListener(this);
-        c.add(reset);
+        background.add(reset);
+        reset.setOpaque(false);
+        reset.setContentAreaFilled(false);
+        submit.setOpaque(false);
+        submit.setContentAreaFilled(false);
+        term.setOpaque(false);
+        term.setContentAreaFilled(false);
+        enclosed.setOpaque(false);
+        enclosed.setContentAreaFilled(false);
 
+        enclosed.setForeground(Color.WHITE);
+        term.setForeground(Color.WHITE);
+        submit.setForeground(Color.WHITE);
+        reset.setForeground(Color.WHITE);
+        name.setForeground(Color.WHITE);
+        mail.setForeground(Color.WHITE);
+        area.setForeground(Color.WHITE);
+        tnumOfPeople.setForeground(Color.WHITE);
+        tnumOfEPeople.setForeground(Color.WHITE);
+
+        username.setForeground(Color.WHITE);
+        password.setForeground(Color.WHITE);
+        rpassword.setForeground(Color.WHITE);
+        title.setForeground(Color.WHITE);
         setVisible(true);
     }
 
@@ -278,18 +303,3 @@ public class RegistrationFormNh
 
     }
 }
-//if we want to show the username or whatever we use 
-//Statement st1 = Main.connection.createStatement();
-            /*String query1 ="SELECT * FROM Org";
-            try {
-				Statement st = Main.connection.createStatement();
-				ResultSet rs = st.executeQuery(query1);
-				Human human;
-				human = new human(rs.getString(orgName));
-				and continue with the same way to get what you want
-				
-			} catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
-            */
