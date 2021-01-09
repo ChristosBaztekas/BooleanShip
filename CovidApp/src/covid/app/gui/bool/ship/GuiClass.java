@@ -188,62 +188,69 @@ public class GuiClass extends JFrame implements ActionListener {
 
         } else if (source == gmenu) {
             dispose();
-            JOptionPane.showMessageDialog(this, "Redirecting to the Surveillance login form");
+            JOptionPane.showMessageDialog(this, "Redirecting to the Surveillance login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             alreadyUserOption("Log in as a Surveillance User");
         } else if (source == gmenu5) {
             GuiClass.exitMethod();
         } else if (source == lmenu1) {
-            JOptionPane.showMessageDialog(null, "This is menu for public services and companies authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
+            JOptionPane.showMessageDialog(null, "This is menu for public services and companies authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.", "Info", JOptionPane.INFORMATION_MESSAGE);
         } else if (source == lmenu2) {
             dispose();
-            JOptionPane.showMessageDialog(this, "Redirecting to the Labor user login form");
+            JOptionPane.showMessageDialog(this, "Redirecting to the Labor user login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             alreadyUserOption("Log in as a Labor User.");
         } else if (source == lmenu3) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the Labor user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             RegistrationFormL wsFrame = new RegistrationFormL();
-            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the Labor user register form");
             wsFrame.setVisible(true);
             wsFrame.setDefaultCloseOperation(3);
         } else if (source == lmenu4) {
             GuiClass.exitMethod();
         } else if (source == smenu1) {
-            JOptionPane.showMessageDialog(null, "This is menu for School authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
+            JOptionPane.showMessageDialog(null, "This is menu for School authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.", "Info", JOptionPane.INFORMATION_MESSAGE);
         } else if (source == smenu2) {
             dispose();
-            JOptionPane.showMessageDialog(this, "Redirecting to the School login form");
+            JOptionPane.showMessageDialog(this, "Redirecting to the School login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             alreadyUserOption("Log in as a School User.");
         } else if (source == smenu3) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the School user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             RegistrationFormS wsFrame = new RegistrationFormS();
-            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the School User registration form");
             wsFrame.setVisible(true);
             wsFrame.setDefaultCloseOperation(3);
         } else if (source == smenu4) {
             GuiClass.exitMethod();
         } else if (source == umenu1) {
-            JOptionPane.showMessageDialog(null, "This is menu for university authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
+            JOptionPane.showMessageDialog(null, "This is menu for university authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.", "Info", JOptionPane.INFORMATION_MESSAGE);
         } else if (source == umenu2) {
             dispose();
-            JOptionPane.showMessageDialog(this, "Redirecting to the University login form");
+            JOptionPane.showMessageDialog(this, "Redirecting to the University login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             alreadyUserOption("Log in as a University User.");
         } else if (source == umenu3) {
+            dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the University user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             RegistrationFormU wsFrame = new RegistrationFormU();
-            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the University User registration form");
             wsFrame.setVisible(true);
             wsFrame.setDefaultCloseOperation(3);
         } else if (source == umenu4) {
             GuiClass.exitMethod();
         } else if (source == nmenu1) {
-            JOptionPane.showMessageDialog(null, "This is menu for Nursing home authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.");
+            JOptionPane.showMessageDialog(null, "This is menu for Nursing home authorized users.If you are a new user sign in and then log in with the name and password you inserted for more information about the usage of the app.", "Info", JOptionPane.INFORMATION_MESSAGE);
         } else if (source == nmenu2) {
             dispose();
-            JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home login form");
+            JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             alreadyUserOption("Log in as a Nursing Home User.");
         } else if (source == nmenu3) {
             dispose();
+            JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
             RegistrationFormNh wsFrame = new RegistrationFormNh();
-            wsFrame.setBounds(400, 100, 900, 700);
+            wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the Nursing Home User registration form");
             wsFrame.setVisible(true);
             wsFrame.setDefaultCloseOperation(3);
@@ -313,12 +320,12 @@ public class GuiClass extends JFrame implements ActionListener {
             JavaMailUtil.sendMail(usersMail, "Message", "We received your message and we will reply as soon as possible!Thank you for using our app and stay safe.");
             try {
                 JavaMailUtil.sendMail("booleanshipproblems@gmail.com", "ContactUsMessage", contactDescription);
-                JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!");
+                JOptionPane.showMessageDialog(null, "Our team received your message and will answer as soon as possible!", "Message received", JOptionPane.INFORMATION_MESSAGE);
             } catch (MessagingException messagingException) {
-                JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.");
+                JOptionPane.showMessageDialog(null, "An unexpected error occurred.Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (MessagingException messagingException) {
-            JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.");
+            JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Erroe", JOptionPane.ERROR_MESSAGE);
         }
 
     }
