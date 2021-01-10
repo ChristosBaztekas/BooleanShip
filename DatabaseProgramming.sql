@@ -25,13 +25,13 @@ CREATE TABLE Classes_members(
 							id_Classes int not null foreign key references Classes(id),
 							id_Human varchar(9) not null foreign key references Human(Afm)
 							)
+/*Aytoincreased!!!!!!!!*/
+/*be carefull of ISA need*/
 CREATE TABLE Organisations(
 						name varchar(80),
 						area varchar(60),
+						email varchar(80),
 						id int not null,
-						username varchar(100),
-						password varchar(100),
-						
 						constraint Organisations_pr Primary Key (id)
 						)
 CREATE TABLE NursingHomes(
@@ -89,6 +89,32 @@ CREATE TABLE Schools_changes(
 										lockdown bit
 										Primary Key(id_Schools, id_Schools_Department)
 										)*/
+CREATE TABLE Registation_Org(
+						password_org varchar(80) not null,
+						username_org varchar(80) not null primary key,
+						id_org int not null,--foreign key--
+						)
+--register
+insert Organisations values(?,?,?)
+--take id and make it foreign key
+--in this way find id
+--which org, make inserts too
+/*fe NH*/insert NursingHomes values(/*id_org*/,?,?,?)
+
+--sign in
+SELECT id_org--(1)
+FROM Registation_Org
+WHERE password_org = ? AND username_org  = ?
+--give data back
+SELECT name, area, email
+FROM Organisations
+WHERE id = (1)
+SELECT 
+FROM NursingHomes
+WHERE id = (1)
+SELECT 
+FROM Schools
+WHERE id = (1)
 
 
 
