@@ -263,7 +263,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == emailAd) {
             GuiClass.contactUs();
         } else if (source == helpUsBecomeBetter) {
-            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c");
+            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/KBZMGD7?fbclid=IwAR2rdWZjoMw8uVfKraFLN5LsOnM4pGDoRcf3FOkcWCghsKfEk-KdAVoYxNo");
         } else if (source == Problems) {
             GuiClass.sendingProblem();
         } else if (source == Exit) {
