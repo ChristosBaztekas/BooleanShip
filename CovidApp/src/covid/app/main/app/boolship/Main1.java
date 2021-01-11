@@ -75,10 +75,10 @@ public class Main1 {
 			String email;
 			String gender;
 			String afm;
-			String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
-			                   "databaseName=DB38;user=G538;password=48534trh045;";
-			Connection dbcon;
-			Statement stmt;
+		String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
+				"databaseName=DB38;user=G538;password=48534trh045;";
+		Connection dbcon;
+		Statement stmt;
 			ResultSet rs;
 			try {
 				dbcon = DriverManager.getConnection(url);
