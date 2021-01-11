@@ -57,7 +57,7 @@ CREATE TABLE NursingHomes_changes(
 								id_Human varchar(9) not null foreign key references Human(Afm)
 								)
 CREATE TABLE Schools(
-					id int not null,
+					id int not null foreign key Organisations(id),
 					number_of_students_positive int not null,
 					number_of_teachers_positive int not null,
 					number_of_others_positive int not null,
@@ -89,6 +89,56 @@ CREATE TABLE Schools_changes(
 										lockdown bit
 										Primary Key(id_Schools, id_Schools_Department)
 										)*/
+
+CREATE TABLE Universities(
+						id int not null foreign key Organisations(id),
+						status bit not null,
+						number_others_positive int not null,
+						number_teachers_positive int not null
+						)
+
+CREATE TABLE Universities_department(
+									id_Universities int not null foreign key Universities(id),
+									id_Classes int not null foreign key Classes(id),
+									number_department_positive int not null,
+									lockdown_department bit not null
+									)
+CREATE TABLE Universities_secretariat(
+									id_Universities int not null foreign key Universities(id),
+									id_Classes int not null foreign key Classes(id),
+									number_secreterariat_positive int not null,
+									lockdown_secretariat bit not null
+									)
+CREATE TABLE Universities_others(
+							id_Universities int not null foreign key references Universities(id),
+							id_Human varchar(9) not null foreign key references Human(Afm),
+							number_others_positive int not null
+							)
+CREATE TABLE Universities_teachers(
+							id_Schools int not null foreign key references Schools(id),
+							id_Human varchar(9) not null foreign key references Human(Afm),
+							number_teachers_positive int not null
+							)							
+CREATE TABLE Labors(
+				id_Labors int not null foreign key Organisations(id),
+				status not null bit,
+				lockdown not null bit,
+				)
+CREATE TABLE Labors_department(
+									id_Universities int not null foreign key Labors(id),
+									id_Classes int not null foreign key Classes(id),
+									number_department_positive int not null,
+									lockdown_department bit not null
+									)
+CREATE TABLE Public_Services(
+							id_Public_Services int not null foreign key Labors(id),
+							lockdown not null bit
+							)
+CREATE TABLE Companies(
+					id_Companies int not null foreign key Labors(id),
+					lockdown not null bit
+					)
+
 CREATE TABLE Registation_Org(
 						password_org varchar(80) not null,
 						username_org varchar(80) not null primary key,
@@ -98,7 +148,7 @@ CREATE TABLE Registation_Org(
 -- need to be checked if username already exists
 DECLARE @everythink_ok int
 DECLARE @flag int
-SELECT @flag = id_org
+SELECT @flag = id_org 
 FROM Registation_Org
 WHERE username_org = ?
 if @flag is null
@@ -107,11 +157,11 @@ if @flag is null
 	--in this way find id
 	--which org, make inserts too
 	/*fe NH*/insert NursingHomes values(/*id_org*/,?,?,?)
-	@everythink_ok = 0
+	select @everythink_ok = 0--does it return?
 else
-	@everythink_ok = -1
-
-
+	select @everythink_ok = -1 --does it return?
+	
+	
 
 
 --sign in
@@ -129,7 +179,30 @@ WHERE id = @id_org
 SELECT S.status
 FROM Schools as S
 WHERE id = @id_org
+SELECT 
+FROM  as 
+WHERE id = @id_org
 
 
+--take email Organisations
+SELECT O.email
+FROM Organisations AS O
 
+--printDetails method
+SELECT O.name, O.area
+FROM Organisations AS O
+WHERE O.id = ?
+
+--NursingHomes methods
+--seeStatus method
+SELECT NH.status, NH.count_employees, NH.count_carenPeople
+FROM NursingHomes AS NH
+WHERE NH.id = ?
+
+SELECT H.name, H.surname, H.Afm /* LIKE toString() Human*/
+FROM NursingHomes_employees AS E, Human AS H
+WHERE E.id_Human = H.id
+SELECT H.name, H.surname, H.Afm /* LIKE toString() Human*/
+FROM NursingHomes_carenPeople AS C, Human AS H
+WHERE C.id_Human = H.id
 
