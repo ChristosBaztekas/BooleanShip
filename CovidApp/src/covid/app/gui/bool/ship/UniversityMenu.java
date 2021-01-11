@@ -90,7 +90,7 @@ public class UniversityMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == close) {
             GuiClass.exitMethod();
         }else if (e.getSource() == helpUsBecomeBetter) {
-            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c");
+            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/KB3FYGX?fbclid=IwAR0JCQaOG14esMC41xuWjlMF0sckpC6TaPpSYRQnLmpJbAtNgIxDtBXM6I8");
         }else if (e.getSource() == emailAd) {
             GuiClass.contactUs();
         }else if(e.getSource() == Problems){
