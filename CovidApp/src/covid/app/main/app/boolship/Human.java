@@ -124,11 +124,12 @@ public final class Human {
     }
 
     //true is org member a human
+    //modifying
     static Human checkIfCovid(String a, Organisations org) {
         if (isValidAfm(a)) {
             int z = search(a);
             if (z > -1) {
-                for (var c : allHuman.get(z).belongs) {
+                for (Organisations c : allHuman.get(z).belongs) {
                     if (org == c) {
                         return allHuman.get(z);
                     }
@@ -181,7 +182,7 @@ public final class Human {
             } else {
                 Human a = allHuman.get(search);
                 //status and perhaps test
-                for (var c : a.belongs) {
+                for (Organisations c : a.belongs) {
                     //inform organisations where belongs
                 }
             }
