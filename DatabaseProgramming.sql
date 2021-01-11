@@ -102,19 +102,20 @@ insert Organisations values(?,?,?)
 /*fe NH*/insert NursingHomes values(/*id_org*/,?,?,?)
 
 --sign in
-SELECT id_org--(1)
+DECLARE @id_org int
+SELECT @id_org = id_org --(1)
 FROM Registation_Org
 WHERE password_org = ? AND username_org  = ?
 --give data back
 SELECT name, area, email
 FROM Organisations
-WHERE id = (1)
-SELECT 
-FROM NursingHomes
-WHERE id = (1)
-SELECT 
-FROM Schools
-WHERE id = (1)
+WHERE id = @id_org
+SELECT NH.count_carenPeople
+FROM NursingHomes as NH
+WHERE id = @id_org
+SELECT S.status
+FROM Schools as S
+WHERE id = @id_org
 
 
 
