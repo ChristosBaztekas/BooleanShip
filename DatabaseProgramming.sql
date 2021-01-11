@@ -95,11 +95,24 @@ CREATE TABLE Registation_Org(
 						id_org int not null,--foreign key--
 						)
 --register
-insert Organisations values(?,?,?)
---take id and make it foreign key
---in this way find id
---which org, make inserts too
-/*fe NH*/insert NursingHomes values(/*id_org*/,?,?,?)
+-- need to be checked if username already exists
+DECLARE @everythink_ok int
+DECLARE @flag int
+SELECT @flag = id_org
+FROM Registation_Org
+WHERE username_org = ?
+if @flag is null
+	insert Organisations values(?,?,?)
+	--take id and make it foreign key
+	--in this way find id
+	--which org, make inserts too
+	/*fe NH*/insert NursingHomes values(/*id_org*/,?,?,?)
+	@everythink_ok = 0
+else
+	@everythink_ok = -1
+
+
+
 
 --sign in
 DECLARE @id_org int
