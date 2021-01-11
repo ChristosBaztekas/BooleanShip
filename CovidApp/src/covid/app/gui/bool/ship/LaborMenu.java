@@ -90,7 +90,7 @@ public class LaborMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == close) {
             GuiClass.exitMethod();
         }else if (e.getSource() == helpUsBecomeBetter) {
-            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c");
+            GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/KN73HPZ?fbclid=IwAR2uWvOaf0kikNlN0oJ0vzydLIKR4AOQ26DUtK0vrb8lvfTjfQdAhc20RUw");
         }else if (e.getSource() == emailAd) {
             GuiClass.contactUs();
         }else if(e.getSource() == Problems){
