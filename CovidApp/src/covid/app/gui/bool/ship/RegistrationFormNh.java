@@ -3,6 +3,7 @@ package covid.app.gui.bool.ship;
 import CovidApp.Gui.BooleanShip.GuiClass;
 import covid.app.main.app.boolship.NursingHomes;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -245,7 +246,10 @@ public class RegistrationFormNh
             String orgName = tname.getText();
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
-            GuiClass.isValidEmail(orgMail);
+
+
+
+
             int numEmployees = (int) numOfEPeople.getValue();
             int numElderly = (int) numOfPeople.getValue();
             String username = tusername.getText();
@@ -276,10 +280,19 @@ public class RegistrationFormNh
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (rpassword.length() < 6) {
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
-            } else {
+            }else if(!GuiClass.isValidEmail(orgMail)){
+                tmail.setText("");
+            }
+            else {
+
                 usernames.add(username);
                 passwords.add(password);
                 NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
+                try {
+                    JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
+                } catch (MessagingException messagingException) {
+                    JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 ok = true;
             }
             if(ok) {
