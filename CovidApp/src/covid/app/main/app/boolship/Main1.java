@@ -1,11 +1,16 @@
 package covid.app.main.app.boolship;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.text.*;
+import java.util.ArrayList;
 import java.util.*;
 import java.sql.*;
 
 public class Main1 {
+	static String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
+			"databaseName=DB38;user=G538;password=48534trh045;";
+
 	public static void main(String[] args) {
 		System.out.println("option 1:see all human");
 		System.out.println("option 2:search by afm");
@@ -14,17 +19,155 @@ public class Main1 {
 		System.out.println("give 0 to exit");
 		int input2 = new Scanner(System.in).nextInt();
 		do {
-		if (input.equals("1")) {
-			getHuman();
-		} else if (input.equals("2")) {
-			getHumanAfm();
-		} else if (input.equals("3")) {
-			getHumanexample();
-		}
-		}while(input2 == 0);
+			if (input.equals("1")) {
+				getHuman();
+			} else if (input.equals("2")) {
+				getHumanAfm();
+			} else if (input.equals("3")) {
+				getHumanexample();
+			}
+		} while (input2 == 0);
 
 
 	}
+
+	public static ArrayList<String> getEmails() {
+		String query = "SELECT O.email AS E \n" +
+				"FROM Organisations AS O";
+		ArrayList<String> arrayList = new ArrayList<>();
+		Connection connection;
+		Statement statement;
+		ResultSet resultSet;
+		boolean flag = true;//to know if connection goes false
+		try {
+			connection = DriverManager.getConnection(url);
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				arrayList.add(resultSet.getString("E"));
+			}
+			flag = false;
+			connection.close();
+			statement.close();
+			resultSet.close();
+		} catch (SQLException sqlException) {
+			System.out.println("Something has occured\nPlease try again!");
+			System.out.println(sqlException.getMessage());
+		}
+		if (flag) {
+			System.out.println("The process has not go well");//message for us and maybe to repeat
+		}
+		return arrayList;
+	}
+
+	public static String[] getDetails(int id) {
+		String[] array = new String[2];
+		String query = "SELECT O.name, O.area\n" +
+				"FROM Organisations AS O\n" +
+				"WHERE O.id = ?";
+		Connection connection;
+		ResultSet resultSet;
+		try {
+			connection = DriverManager.getConnection(url);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			String name;
+			String area;
+			while (resultSet.next()) {
+				name = resultSet.getString("name");
+				area = resultSet.getString("area");
+				array[0] = name;
+				array[1] = area;
+			}
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException sqlException) {
+			System.out.println("Something has occured\n" + sqlException.getMessage());
+		}
+		return array;
+	}
+	//Schools methods
+	public static ArrayList<String> displayTeachers(int id) {
+		String query = "SELECT H.name, H.surname, H.Afm \n" +
+				"FROM Schools_teachers AS T, Human AS H\n" +
+				"WHERE T.id_Human = H.id AND T.id_NursingHomes = ?";
+		return display(id, query);
+	}
+	public static ArrayList<String> displayOthers(int id) {
+		String query = "SELECT H.name, H.surname, H.Afm \n" +
+				"FROM Schools_others AS O, Human AS H\n" +
+				"WHERE O.id_Human = H.id AND O.id_NursingHomes = ?";
+		return display(id, query);
+	}
+	//TODO
+	public static ArrayList<String> displayDepartments(int id) {
+
+	}
+	//NursingHomes methods
+	public static int[] seeStatusfirst(int id) {
+		int[] array = new int[3];
+		String query = "SELECT NH.status, NH.count_employees, NH.count_carenPeople\n" +
+				"FROM NursingHomes AS NH\n" +
+				"WHERE NH.id = ?";
+		Connection connection;
+		ResultSet resultSet;
+		try {
+			connection = DriverManager.getConnection(url);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				array[0] = resultSet.getInt("status");
+				array[1] = resultSet.getInt("count_employees");
+				array[2] = resultSet.getInt("count_carenPeople");
+
+			}
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException sqlException) {
+			System.out.println("Something has occured\n" + sqlException.getMessage());
+		}
+		return array;
+
+	}
+
+	public static ArrayList<String> displayEmployess(int id) {
+		String query = "SELECT H.name, H.surname, H.Afm \n" +
+				"FROM NursingHomes_employees AS E, Human AS H\n" +
+				"WHERE E.id_Human = H.id AND E.id_NursingHomes = ?";
+		return display(id, query);
+	}
+	public static ArrayList<String> displayCarenPeople(int id) {
+		String query = "SELECT H.name, H.surname, H.Afm\n" +
+				"FROM NursingHomes_carenPeople AS C, Human AS H\n" +
+				"WHERE C.id_Human = H.id AND E.id_NursingHomes = ?";
+		return display(id, query);
+	}
+
+	private static ArrayList<String> display(int id, String query) {
+		ArrayList<String> arrayList = new ArrayList<>();
+		Connection connection;
+		ResultSet resultSet;
+		try {
+			connection = DriverManager.getConnection(url);
+			PreparedStatement preparedStatement1 = connection.prepareStatement(query);
+			preparedStatement1.setInt(1, id);
+			resultSet = preparedStatement1.executeQuery();
+			while (resultSet.next()) {
+				arrayList.add(resultSet.getString("name"));
+				arrayList.add(resultSet.getString("surname"));
+				arrayList.add(resultSet.getString("Afm"));
+			}
+		} catch (SQLException sqlException) {
+			System.out.println("Something has occured\n" + sqlException.getMessage());
+		}
+		return arrayList;
+	}
+
+
 	public static void getHumanAfm() {
 		String name;
 		String surname;
