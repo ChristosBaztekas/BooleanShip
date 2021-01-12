@@ -234,7 +234,6 @@ public class RegistrationFormS
             String orgName = tname.getText();
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
-            GuiClass.isValidEmail(orgMail);
             int numTe = (int) numT.getValue();
             int numSt = (int) numS.getValue();
             String username = tusername.getText();
@@ -261,6 +260,8 @@ public class RegistrationFormS
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (rpassword.length() < 6) {
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
+            }else if(!GuiClass.isValidEmail(orgMail)){
+                tmail.setText("");
             } else {
                 usernames.add(username);
                 passwords.add(password);
