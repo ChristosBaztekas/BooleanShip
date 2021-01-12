@@ -1,3 +1,4 @@
+--better for java the status to be int 0-1 so to can return all together
 CREATE TABLE Human(
 				name varchar(80),
 				surname varchar(80),
@@ -201,7 +202,7 @@ WHERE NH.id = ?
 
 SELECT H.name, H.surname, H.Afm /* LIKE toString() Human*/
 FROM NursingHomes_employees AS E, Human AS H
-WHERE E.id_Human = H.id
+WHERE E.id_Human = H.id AND E.id_NursingHomes = ?
 SELECT H.name, H.surname, H.Afm /* LIKE toString() Human*/
 FROM NursingHomes_carenPeople AS C, Human AS H
 WHERE C.id_Human = H.id
