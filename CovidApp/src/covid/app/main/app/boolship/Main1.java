@@ -148,10 +148,57 @@ public class Main1 {
 				"WHERE O.id_Human = H.id AND O.id_NursingHomes = ?";
 		return display(id, query);
 	}
-	//TODO
-	public static ArrayList<String> displayDepartments(int id) {
 
+	public static String getIdifier(int id) {
+		String query = "SELECT idifier as i " +
+				"FROM Classes as C" +
+				"WHERE C.id_Organisations = ?";
+		String idifier;
+		Connection connection;
+		ResultSet resultSet;
+		try {
+			connection = DriverManager.getConnection(url);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				idifier = resultSet.getString("i");
+			}
+		} catch (SQLException sqlException) {
+			System.out.println("Something occured" + sqlException.getMessage());
 		}
+		return idifier;
+	}
+	public static ArrayList<String> displayDepartments(int id) {
+		/**
+		 * display ALL the people of all Classes
+		 * returns an arraylist of strings
+		 * Every 4th element of this list is the idifier of the class that belongs
+		 * and in that way can understand the different
+		 */
+		String query = "SELECT H.name, H.surname, H.Afm, C.idifier \n" +
+				"FROM Classes_member as M, Classes as C, Human as H\n" +
+				"WHERE M.id_Classes = C.id AND C.id_Organisations = ? AND H.Afm = M.id_Human\n" +
+				"ORDER BY C.id";
+		ArrayList<String> arrayList = ArrayList<String>();
+		Connection connection;
+		ResultSet resultSet;
+		try {
+			connection = DriverManager.getConnection(url);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				arrayList.add(resultSet.getString("name"));
+				arrayList.add(resultSet.getString("surname"));
+				arrayList.add(resultSet.getString("Afm"));
+				arrayList.add(resultSet.getInt("id"));
+			}
+		} catch (SQLException sqlException) {
+			System.out.println("Something occured" + sqlException.getMessage());
+		}
+		return arrayList;
+	}
 	//NursingHomes methods
 	public static int[] seeStatusfirst(int id) {
 		int[] array = new int[3];
@@ -195,6 +242,9 @@ public class Main1 {
 	}
 
 	private static ArrayList<String> display(int id, String query) {
+		/**
+		 * display name, surname and afm of an org that have list of human
+		 */
 		ArrayList<String> arrayList = new ArrayList<>();
 		Connection connection;
 		ResultSet resultSet;
@@ -213,87 +263,21 @@ public class Main1 {
 		}
 		return arrayList;
 	}
-
-
-	public static void getHumanAfm() {
-		String name;
-		String surname;
-		String email;
-		String gender;
-		String afm;
-		boolean flag = true;
-		String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
-		                   "databaseName=DB38;user=G538;password=48534trh045;";
-		Connection dbcon;
-		Statement stmt;
-		ResultSet rs;
-		System.out.println("Give afm");
-		Scanner sc = new Scanner(System.in);
-		String input = sc.nextLine();
-		try {
-			dbcon = DriverManager.getConnection(url);
-			stmt = dbcon.createStatement();
-			rs = stmt.executeQuery("EXECUTE giveHumans");
-			while(rs.next()) {
-				name = rs.getString("name");
-				surname = rs.getString("surname");
-				email = rs.getString("email");
-				gender = rs.getString("gender");
-				afm = rs.getString("Afm");
-				if(afm.equals(input)) {
-					System.out.print("The person has been found: ");
-					System.out.printf("Name:%s, Surname:%s, email:%s, gender:%s", name, surname, email, gender);
-					flag = false;
-					break;
-				}
-
-			}
-			if (flag) {
-				System.out.printf("Cant find person with afm:%s", input);
-			}
-			rs.close();
-			stmt.close();
-			dbcon.close();
-		} catch (SQLException e) {
-			System.out.print("SQLException: ");
-			System.out.println(e.getMessage());
-		}
+	//universities methods
+	public static ArrayList<String> displayothers(int id) {
+		String query = "SELECT H.name, H.surname, H.Afm \n" +
+				"FROM Universities_others AS O, Human AS H\n" +
+				"WHERE O.id_Human = H.id AND O.id_NursingHomes = ?";
+		return display(id, query);
 	}
-	public static void getHuman() {
-			String name;
-			String surname;
-			String email;
-			String gender;
-			String afm;
-		String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
-				"databaseName=DB38;user=G538;password=48534trh045;";
-		Connection dbcon;
-		Statement stmt;
-			ResultSet rs;
-			try {
-				dbcon = DriverManager.getConnection(url);
-				stmt = dbcon.createStatement();
-				rs = stmt.executeQuery("EXECUTE giveHumans");
-				while(rs.next()) {
-					name = rs.getString("name");
-					surname = rs.getString("surname");
-					email = rs.getString("email");
-					gender = rs.getString("gender");
-					afm = rs.getString("Afm");
-					System.out.printf("Name:%s, Surname:%s, email:%s, gender:%s\n", name, surname, email, gender);
-				}
-				rs.close();
-				stmt.close();
-				dbcon.close();
-			} catch (SQLException e) {
-				System.out.print("SQLException: ");
-				System.out.println(e.getMessage());
-			}
+	public static ArrayList<String> displayteachers(int id) {
+		String query = "SELECT H.name, H.surname, H.Afm \n" +
+				"FROM Universities_teachers AS T, Human AS H\n" +
+				"WHERE T.id_Human = H.id AND T.id_NursingHomes = ?";
+		return display(id, query);
 	}
-	public static void getHumanexample() {
-		
-		String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
-                "databaseName=DB38;user=G538;password=48534trh045;";
+	public static void createHuman(String name, String surname, String email, String gender, String afm) {
+
 		Connection dbco = null;
 		try {
 		dbco = DriverManager.getConnection(url);
@@ -301,13 +285,8 @@ public class Main1 {
 		catch (SQLException e1) {
 			System.out.println(e1.getMessage());
 		}
-		String name = "Dimitris";
-		String surname = "Pappas";
-		String email = "Dpappas@fff.gr";
-		String gender = "Male";
-		int Afm = 25;
 				
-		String query = "insert into	giveHumans(name, surname, email, gender, Afm)values(?,?,?,?,?)";
+		String query = "insert into	Human(name, surname, email, gender, Afm)values(?,?,?,?,?)";
         
         try {
         	PreparedStatement pst = dbco.prepareStatement(query);
@@ -315,9 +294,34 @@ public class Main1 {
             pst.setString(2, surname);
             pst.setString(3, email);
             pst.setString(4, gender);
-			pst.setInt(5, Afm);
+			pst.setString(5, afm);
+			pst.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+	}
+	public static boolean findHuman(String afm) {
+		String query = "SELECT H.id\n" +
+				"FROM Human AS H\n" +
+				"WHERE Afm = ?";
+		Connection connection;
+		ResultSet resultSet;
+		PreparedStatement preparedStatement;
+		boolean flag = false;
+		try {
+			connection = DriverManager.getConnection(url);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, afm);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				String ans = resultSet.getString(1);
+				if (ans != null) {
+					flag = true;
+				}
+			}
+		} catch (SQLException sqlException) {
+			System.out.println("Something occures" + sqlException.getMessage());
+		}
+		return flag;
 	}
 }

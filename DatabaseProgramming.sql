@@ -1,5 +1,5 @@
 --better for java the status to be int 0-1 so to can return all together
-use db382
+use db38
 CREATE TABLE Human(
                       name varchar(80),
                       surname varchar(80),
@@ -29,7 +29,7 @@ CREATE TABLE Human_waitTest(
 CREATE TABLE Classes(
                         idifier varchar(80) not null,
                         id_Organisations int not null,/*see what to be made for inherabation*/
-                        id int not null,
+                        id int not null IDENTITY(0,1),
                         Primary Key(id)
 )
 CREATE TABLE Classes_members(
@@ -204,4 +204,3 @@ WHERE E.id_Human = H.id AND E.id_NursingHomes = ?
 SELECT H.name, H.surname, H.Afm /* LIKE toString() Human*/
 FROM NursingHomes_carenPeople AS C, Human AS H
 WHERE C.id_Human = H.id
-
