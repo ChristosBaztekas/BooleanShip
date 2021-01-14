@@ -10,8 +10,8 @@ import java.sql.*;
 public class Main1 {
 	static String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
 			"databaseName=DB38;user=G538;password=48534trh045;";
-
-	public static void main(String[] args) {
+	static Scanner scanner = new Scanner(System.in);
+	/*public static void main(String[] args) {
 		System.out.println("option 1:see all human");
 		System.out.println("option 2:search by afm");
 		//System.out.println("option 3:add human, please not same afm yet");
@@ -27,10 +27,57 @@ public class Main1 {
 				getHumanexample();
 			}
 		} while (input2 == 0);
-
-
+	}*/
+	public static void main(String[] args) {
+		System.out.println("1:show all email");
+		String string = scanner.nextLine();
+		if (string.equals("1")) {
+			ArrayList<String> emails = getEmails();
+		} else if (string.equals("2")) {
+			register();
+		}
 	}
-
+	public static void register() {
+		System.out.println("Give user,name,area,email");
+		String query = "DECLARE @flag int\n" +
+				"SELECT @flag = id_org \n" +
+				"FROM Registation_Org\n" +
+				"WHERE username_org = ?\n" +
+				"if @flag is null\n" +
+				"\tinsert Organisations values(?,?,?)\n" +
+				"\t--take id and make it foreign key\n" +
+				"\t--in this way find id\n" +
+				"\t--which org, make inserts too\n" +
+				"\t/*fe NH*/insert NursingHomes values(/*id_org*/,?,?,?)\n" +
+				"\tselect @everythink_ok = 0--does it return?\n" +
+				"else\n" +
+				"\tselect @everythink_ok = -1 --does it return?\"";
+		String username = scanner.nextLine();
+		String name = scanner.nextLine();
+		String area = scanner.nextLine();
+		String email = scanner.nextLine();
+		Connection connection;
+		ResultSet resultSet;
+		try {
+			connection = DriverManager.getConnection(url);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, area);
+			preparedStatement.setString(4, email);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				int output = resultSet.getInt(1);
+				if (output == 0) {
+					System.out.println("Everythink ok");
+				} else if (output == -1) {
+					System.out.println("There is already this username ");
+				}
+			}
+		} catch (SQLException sqlException) {
+			System.out.println("Something occured" + sqlException.getMessage());
+		}
+	}
 	public static ArrayList<String> getEmails() {
 		String query = "SELECT O.email AS E \n" +
 				"FROM Organisations AS O";
@@ -104,7 +151,7 @@ public class Main1 {
 	//TODO
 	public static ArrayList<String> displayDepartments(int id) {
 
-	}
+		}
 	//NursingHomes methods
 	public static int[] seeStatusfirst(int id) {
 		int[] array = new int[3];
