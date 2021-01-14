@@ -148,12 +148,33 @@ public class Main1 {
 				"WHERE O.id_Human = H.id AND O.id_NursingHomes = ?";
 		return display(id, query);
 	}
-
+	public static boolean removeFromOrg(String afm, int id) {
+		String query = "DELETE\n" +
+				"FROM Human_belongs AS B" +
+				"WHERE B.id_Human = ? AND id_Organisations = ?";
+		Connection connection;
+		PreparedStatement preparedStatement;
+		int output = 0;
+		try {
+			connection = DriverManager.getConnection(url);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, afm);
+			preparedStatement.setInt(2, id);
+			output = preparedStatement.executeUpdate();
+		} catch (SQLException sqlException) {
+			System.out.println("Something occured" + sqlException.getMessage());
+		}
+		if (output > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	public static String getIdifier(int id) {
 		String query = "SELECT idifier as i " +
 				"FROM Classes as C" +
 				"WHERE C.id_Organisations = ?";
-		String idifier;
+		String idifier = null;
 		Connection connection;
 		ResultSet resultSet;
 		try {
@@ -180,7 +201,7 @@ public class Main1 {
 				"FROM Classes_member as M, Classes as C, Human as H\n" +
 				"WHERE M.id_Classes = C.id AND C.id_Organisations = ? AND H.Afm = M.id_Human\n" +
 				"ORDER BY C.id";
-		ArrayList<String> arrayList = ArrayList<String>();
+		ArrayList<String> arrayList = new ArrayList<String>();
 		Connection connection;
 		ResultSet resultSet;
 		try {
@@ -192,7 +213,7 @@ public class Main1 {
 				arrayList.add(resultSet.getString("name"));
 				arrayList.add(resultSet.getString("surname"));
 				arrayList.add(resultSet.getString("Afm"));
-				arrayList.add(resultSet.getInt("id"));
+				arrayList.add(resultSet.getString("id"));
 			}
 		} catch (SQLException sqlException) {
 			System.out.println("Something occured" + sqlException.getMessage());
