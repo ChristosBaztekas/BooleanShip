@@ -1,9 +1,8 @@
 package covid.app.gui.bool.ship;
 
-import CovidApp.Gui.BooleanShip.GuiClass;
+
 import covid.app.main.app.boolship.NursingHomes;
 
-import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,54 +15,44 @@ public class RegistrationFormNh
 
     static boolean enclosedN = false;
     SpinnerNumberModel numberEmployees = new SpinnerNumberModel(
-            new Integer(1), // value
-            new Integer(1), // min
-            new Integer(400), // max
-            new Integer(1) // step
+            Integer.valueOf(1), // value
+            Integer.valueOf(1), // min
+            Integer.valueOf(400), // max
+            Integer.valueOf(1) // step
     );
     SpinnerNumberModel numberOfElderlyResidents = new SpinnerNumberModel(
-            new Integer(1), // value
-            new Integer(1), // min
-            new Integer(400), // max
-            new Integer(1) // step
+            Integer.valueOf(1), // value
+            Integer.valueOf(1), // min
+            Integer.valueOf(400), // max
+            Integer.valueOf(1) // step
     );
     public static ArrayList<String> usernames = new ArrayList<>();
     public static ArrayList<String> passwords = new ArrayList<>();
 
 
+    private final JTextField tname;
 
-    private Container c = getContentPane();
-    private JLabel title;
+    private final JTextField tmail;
 
-    private JLabel name;
-    private JTextField tname;
+    private final JTextField tarea;
 
-    private JLabel mail;
-    private JTextField tmail;
+    private final JSpinner numOfPeople;
 
-    private JLabel area;
-    private JTextField tarea;
+    private final JSpinner numOfEPeople;
+    private final JLabel tnumOfEPeople;
 
-    private JSpinner numOfPeople;
-    private JLabel tnumOfPeople;
+    private final JLabel username;
+    private final JTextField tusername;
 
-    private JSpinner numOfEPeople;
-    private JLabel tnumOfEPeople;
+    private final JPasswordField tpassword;
 
-    private JLabel username;
-    private JTextField tusername;
-
-    private JLabel password;
-    private JPasswordField tpassword;
-
-    private JLabel rpassword;
-    private JPasswordField trpassword;
+    private final JPasswordField trpassword;
 
 
-    private JCheckBox term;
-    private JCheckBox enclosed;
-    private JButton submit;
-    private JButton reset;
+    private final JCheckBox term;
+    private final JCheckBox enclosed;
+    private final JButton submit;
+    private final JButton reset;
 
 
     // constructor, to initialize the components
@@ -72,14 +61,15 @@ public class RegistrationFormNh
 
         setLayout(new BorderLayout());
         JLabel background = new JLabel(new ImageIcon("D:\\BooleanShipProjectJ\\CovidApp\\src\\covid\\app\\gui\\bool\\ship\\covidReg1.jpg"));
+        Container c = getContentPane();
         c.add(background);
-        title = new JLabel("Nursing Home User Registration Form");
+        JLabel title = new JLabel("Nursing Home User Registration Form");
         title.setFont(new Font("Arial", Font.BOLD, 30));
         title.setSize(650, 50);
         title.setLocation(100, 30);
         background.add(title);
 
-        name = new JLabel("Organisation Name");
+        JLabel name = new JLabel("Organisation Name");
         name.setFont(new Font("Arial", Font.BOLD, 20));
         name.setSize(200, 20);
         name.setLocation(20, 100);
@@ -104,7 +94,7 @@ public class RegistrationFormNh
         background.add(tnumOfEPeople);
 
 
-        mail = new JLabel("Organisations Email");//have to include the email validation
+        JLabel mail = new JLabel("Organisations Email");//have to include the email validation
         mail.setFont(new Font("Arial", Font.BOLD, 20));
         mail.setSize(350, 20);
         mail.setLocation(3, 150);
@@ -129,7 +119,7 @@ public class RegistrationFormNh
         background.add(tusername);
 
 
-        area = new JLabel("Headquarters Area");
+        JLabel area = new JLabel("Headquarters Area");
         area.setFont(new Font("Arial", Font.BOLD, 20));
         area.setSize(200, 20);
         area.setLocation(22, 200);
@@ -141,7 +131,7 @@ public class RegistrationFormNh
         tarea.setLocation(200, 200);
         background.add(tarea);
 
-        password = new JLabel("Set Password");
+        JLabel password = new JLabel("Set Password");
         password.setFont(new Font("Arial", Font.BOLD, 20));
         password.setSize(300, 20);
         password.setLocation(420, 200);
@@ -159,13 +149,13 @@ public class RegistrationFormNh
         numOfPeople.setLocation(230, 250);
         background.add(numOfPeople);
 
-        tnumOfPeople = new JLabel("Number of Employees");
+        JLabel tnumOfPeople = new JLabel("Number of Employees");
         tnumOfPeople.setFont(new Font("Arial", Font.BOLD, 20));
         tnumOfPeople.setSize(300, 20);
         tnumOfPeople.setLocation(20, 250);
         background.add(tnumOfPeople);
 
-        rpassword = new JLabel("Repeat Password");
+        JLabel rpassword = new JLabel("Repeat Password");
         rpassword.setFont(new Font("Arial", Font.BOLD, 20));
         rpassword.setSize(300, 20);
         rpassword.setLocation(400, 250);
@@ -237,17 +227,12 @@ public class RegistrationFormNh
         setVisible(true);
     }
 
-    // method actionPerformed()
-    // to get the action performed
-    // by the user and act accordingly
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
-            boolean ok = false;
+
             String orgName = tname.getText();
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
-
-
 
 
             int numEmployees = (int) numOfEPeople.getValue();
@@ -255,11 +240,7 @@ public class RegistrationFormNh
             String username = tusername.getText();
             String password = tpassword.getText();
             String rpassword = trpassword.getText();
-            if (enclosed.isSelected()) {
-                enclosedN = true;
-            } else {
-                enclosedN = false;
-            }
+            enclosedN = enclosed.isSelected();
             if (!term.isSelected()) {
                 JOptionPane.showMessageDialog(null, "You have to accept the terms before registering", "Term Field", JOptionPane.ERROR_MESSAGE);
             } else if (!password.equals(rpassword)) {
@@ -272,33 +253,26 @@ public class RegistrationFormNh
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Area", JOptionPane.ERROR_MESSAGE);
             } else if (password.equals("")) {
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Password", JOptionPane.ERROR_MESSAGE);
-            } else if (rpassword.equals("")) {
-                JOptionPane.showMessageDialog(null, "This section can not be empty", "Repeat Password", JOptionPane.ERROR_MESSAGE);
-            } else if (rpassword.equals("")) {
-                JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (username.equals("")) {
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (rpassword.length() < 6) {
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
-            }else if(!GuiClass.isValidEmail(orgMail)){
+            } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
-            }
-            else {
+            } else {
 
                 usernames.add(username);
                 passwords.add(password);
                 NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
-                try {
-                    JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
-                } catch (MessagingException messagingException) {
-                    JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                ok = true;
-            }
-            if(ok) {
+                // try {
+                //   JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
+                //} catch (MessagingException messagingException) {
+                //  JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
+                //}
                 dispose();
                 GuiClass.alreadyUserOption("Nursing Home menu log form");
             }
+
         } else if (e.getSource() == reset) {
             String def = "";
             tname.setText(def);
