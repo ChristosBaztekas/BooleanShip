@@ -1,19 +1,11 @@
 package covid.app.main.app.boolship;
 
 
-import CovidApp.Gui.BooleanShip.GuiClass;
+import covid.app.gui.bool.ship.GuiClass;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Scanner;
-/*public class Main {
-    public static void main(String[] args) throws MessagingException {
+public class Main {
+    public static void main(String[] args) {
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);
@@ -22,7 +14,7 @@ import java.util.Scanner;
 
 
     }
-}*/
+}/*
 //import javax.swing.*;
 
 
@@ -42,17 +34,6 @@ public class Main {
     			System.out.println(e.getMessage());
     		}
 
-        /*AutomaticMail test = new AutomaticMail();
-        test.sendMail("christosBaztekas@gmail.com");//will send automatic mail to any gmail or hotmail.com
-         */
-        NursingHomes.createNH();
-        Universities.createU();
-        Schools.createS();
-
-        PublicServices.createP();
-        Organisations.print();
-        Human.exampleCreateHuman();
-        //Organisations.example();
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);
@@ -603,3 +584,4 @@ public class Main {
         }
     }
 }
+*/
