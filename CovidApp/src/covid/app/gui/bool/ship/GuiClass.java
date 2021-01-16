@@ -1,6 +1,5 @@
-package CovidApp.Gui.BooleanShip;
+package covid.app.gui.bool.ship;
 
-import covid.app.gui.bool.ship.*;
 import covid.app.main.app.boolship.Human;
 import org.apache.commons.validator.routines.EmailValidator;
 
