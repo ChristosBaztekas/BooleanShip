@@ -147,7 +147,7 @@ CREATE TABLE Companies(
 
 --register
 -- need to be checked if username already exists
-DECLARE @everythink_ok int, @dfgh int
+DECLARE @everythink_ok int
 DECLARE @flag int
 if (SELECT @flag = id
     FROM Organisations
