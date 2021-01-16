@@ -11,42 +11,39 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class NursingHomeMenu extends JFrame implements ActionListener {
-    static Desktop d = Desktop.getDesktop();
-    private JMenuBar controlnMenu = new JMenuBar();
 
-    private JMenu mainMenun = new JMenu("Nursing Home user Menu");
-    private JMenu help = new JMenu("Help");
-    private JMenu contactUs = new JMenu("Contact us");
-    private JMenu rateUs = new JMenu("Rate us");
-    private JMenu exitm = new JMenu("Close Program");
-private static ArrayList<Human> allNemployees = new ArrayList<Human>();
-    private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
+    private static final ArrayList<Human> allNemployees = new ArrayList<>();
 
-    private JMenuItem phone = new JMenuItem("Phone number for emergency");
-    private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
-    private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
-    private JMenuItem emailAd = new JMenuItem("Email address");
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
+    private final JMenuItem emailAd = new JMenuItem("Email address");
 
-    private JMenuItem i1 = new JMenuItem("Modify employees");
-    private JMenuItem i2 = new JMenuItem("Modify the list of guests");
-    private JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
-    private JMenuItem i4 = new JMenuItem("Status of your NursingHome");
+    private final JMenuItem i1 = new JMenuItem("Modify employees");
+    private final JMenuItem i2 = new JMenuItem("Modify the list of guests");
+    private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
+    private final JMenuItem i4 = new JMenuItem("Status of your NursingHome");
     //private JMenuItem i5 = new JMenuItem("Modify other connected with your org people");
     // backend does not support i5 option
-    private JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
-    private JMenuItem exit = new JMenuItem("Exit");
-    private JMenuItem close = new JMenuItem("Exit");
+    private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem exit = new JMenuItem("Exit");
+    private final JMenuItem close = new JMenuItem("Exit");
 
     public NursingHomeMenu() {
         setLayout(new BorderLayout());
         setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
+        JMenuBar controlnMenu = new JMenuBar();
         setJMenuBar(controlnMenu);
         controlnMenu.setBackground(Color.ORANGE);
+        JMenu mainMenun = new JMenu("Nursing Home user Menu");
         controlnMenu.add(mainMenun);
+        JMenu help = new JMenu("Help");
         controlnMenu.add(help);
+        JMenu contactUs = new JMenu("Contact us");
         controlnMenu.add(contactUs);
+        JMenu rateUs = new JMenu("Rate us");
         controlnMenu.add(rateUs);
+        JMenu exitm = new JMenu("Close Program");
         controlnMenu.add(exitm);
         exitm.add(close);
         mainMenun.add(i1);
@@ -57,6 +54,7 @@ private static ArrayList<Human> allNemployees = new ArrayList<Human>();
         mainMenun.add(i6);
 
         mainMenun.add(exit);
+        JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
         help.add(Problems);
         rateUs.add(helpUsBecomeBetter);
@@ -64,6 +62,7 @@ private static ArrayList<Human> allNemployees = new ArrayList<Human>();
 
 
         Problems.addActionListener(this);
+        JMenuItem phone = new JMenuItem("Phone number for emergency");
         phone.addActionListener(this);
         emailAd.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
