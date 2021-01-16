@@ -7,42 +7,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrgMenu extends JFrame implements ActionListener {
-    static Desktop d = Desktop.getDesktop();
-    private JMenuBar controlGovMenu = new JMenuBar();
 
-    private JMenu mainMenug = new JMenu("User Surveillance Menu.");
-    private JMenu help = new JMenu("Help");
-    private JMenu contactUs = new JMenu("Contact us");
-    private JMenu rateUs = new JMenu("Rate us");
-    private JMenu exitm = new JMenu("Close Program");
-    private JMenu emergencyContact = new JMenu("Emergency contact");
-    private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
+    private final JMenuItem phone = new JMenuItem("Phone number for emergency");
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
+    private final JMenuItem emailAd = new JMenuItem("Email address");
 
-    private JMenuItem phone = new JMenuItem("Phone number for emergency");
-    private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
-    private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
-    private JMenuItem emailAd = new JMenuItem("Email address");
-
-    private JMenuItem i1 = new JMenuItem("All registered organizations");
-    private JMenuItem i2 = new JMenuItem("Latest statistics on the pandemic");
-    private JMenuItem i3 = new JMenuItem("All recorded case");
-    private JMenuItem i4 = new JMenuItem("All Contacts recorder");
-    private JMenuItem i5 = new JMenuItem("All test Results");
-    private JMenuItem i6 = new JMenuItem("Cases by regions");
-    private JMenuItem i7 = new JMenuItem("Send email to all registered Organisations");
-    private JMenuItem exit = new JMenuItem("Exit");
-    private JMenuItem close = new JMenuItem("Exit");
+    private final JMenuItem i1 = new JMenuItem("All registered organizations");
+    private final JMenuItem i2 = new JMenuItem("Latest statistics on the pandemic");
+    private final JMenuItem i3 = new JMenuItem("All recorded case");
+    private final JMenuItem i4 = new JMenuItem("All Contacts recorder");
+    private final JMenuItem i5 = new JMenuItem("All test Results");
+    private final JMenuItem i6 = new JMenuItem("Cases by regions");
+    private final JMenuItem i7 = new JMenuItem("Send email to all registered Organisations");
+    private final JMenuItem exit = new JMenuItem("Exit");
+    private final JMenuItem close = new JMenuItem("Exit");
 
     public OrgMenu() {
         setLayout(new BorderLayout());
         setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
+        JMenuBar controlGovMenu = new JMenuBar();
         setJMenuBar(controlGovMenu);
         controlGovMenu.setBackground(Color.ORANGE);
+        JMenu mainMenug = new JMenu("User Surveillance Menu.");
         controlGovMenu.add(mainMenug);
+        JMenu help = new JMenu("Help");
         controlGovMenu.add(help);
+        JMenu contactUs = new JMenu("Contact us");
         controlGovMenu.add(contactUs);
+        JMenu rateUs = new JMenu("Rate us");
         controlGovMenu.add(rateUs);
+        JMenu exitm = new JMenu("Close Program");
         controlGovMenu.add(exitm);
         exitm.add(close);
         mainMenug.add(i1);
@@ -56,10 +52,12 @@ public class OrgMenu extends JFrame implements ActionListener {
 
 
         mainMenug.add(exit);
+        JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
         help.add(Problems);
         rateUs.add(helpUsBecomeBetter);
         contactUs.add(emailAd);
+        JMenu emergencyContact = new JMenu("Emergency contact");
         contactUs.add(emergencyContact);
         emergencyContact.add(phone);
 
@@ -93,9 +91,9 @@ public class OrgMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == i6) {
 
         }else if (e.getSource() == i7) {
-            String emailAddress = (String)JOptionPane.showInputDialog("Input the recipient's email address");
-            String subject = (String)JOptionPane.showInputDialog("Input subject");
-            String mainText = (String)JOptionPane.showInputDialog("Input main text");
+            String emailAddress = JOptionPane.showInputDialog("Input the recipient's email address");
+            String subject = JOptionPane.showInputDialog("Input subject");
+            String mainText = JOptionPane.showInputDialog("Input main text");
             try {
                 JavaMailUtil.sendMail(emailAddress,subject,mainText);
             } catch (MessagingException messagingException) {
