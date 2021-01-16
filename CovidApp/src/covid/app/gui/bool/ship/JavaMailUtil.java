@@ -6,6 +6,8 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 import java.util.Properties;
 
+import static java.util.Objects.requireNonNull;
+
 public class JavaMailUtil extends JFrame {
     public static void sendMail(String usersMail,String subject,String mainText) throws MessagingException {
 
@@ -27,7 +29,7 @@ public class JavaMailUtil extends JFrame {
 
         Message message = prepareMessage(session,mail,usersMail,subject,mainText);
 
-        Transport.send(message);
+        Transport.send(requireNonNull(message));
 
     }
 
