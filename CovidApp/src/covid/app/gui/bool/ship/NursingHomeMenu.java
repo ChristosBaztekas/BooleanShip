@@ -1,11 +1,14 @@
 package covid.app.gui.bool.ship;
 
-import CovidApp.Gui.BooleanShip.GuiClass;
+
+
+import covid.app.main.app.boolship.Human;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class NursingHomeMenu extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
@@ -16,7 +19,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private JMenu contactUs = new JMenu("Contact us");
     private JMenu rateUs = new JMenu("Rate us");
     private JMenu exitm = new JMenu("Close Program");
-
+private static ArrayList<Human> allNemployees = new ArrayList<Human>();
     private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
 
     private JMenuItem phone = new JMenuItem("Phone number for emergency");
@@ -78,7 +81,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == i1) {
-            JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
+            GuiClass.createHumans("Employee",allNemployees);
         } else if (e.getSource() == i2) {
 
         } else if (e.getSource() == i3) {
