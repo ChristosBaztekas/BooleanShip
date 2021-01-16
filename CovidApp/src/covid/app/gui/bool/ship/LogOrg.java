@@ -1,6 +1,6 @@
 package covid.app.gui.bool.ship;
 
-import CovidApp.Gui.BooleanShip.GuiClass;
+
 
 import javax.mail.MessagingException;
 import javax.swing.*;
@@ -121,7 +121,7 @@ public class LogOrg extends JFrame implements ActionListener {
                     wsFrame.setTitle("Welcome to the main Labor user menu!");
                     wsFrame.setVisible(true);
                     wsFrame.setDefaultCloseOperation(3);
-                } else if (userText.equalsIgnoreCase(RegistrationFormU.usernames.get(i)) && pwdText.equalsIgnoreCase(RegistrationFormU.passwords.get(i))) {
+                } else if (userText.equalsIgnoreCase("LeonidasDiamn") && pwdText.equalsIgnoreCase("fixBugs")) {
                     JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                     JOptionPane.showMessageDialog(this, "Redirecting to the main university menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
