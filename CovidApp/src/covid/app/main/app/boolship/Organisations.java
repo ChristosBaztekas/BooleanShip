@@ -37,9 +37,7 @@ public class Organisations {
         this.numbersOfPeople = numbersOfPeople;
         count++;
         this.id = count++;
-        register();
         allOrgs.add(this);
-        codes.put(username,this);
     }
     public void example() {
         Organisations org = new Organisations("Veria", "Veria", 20);
@@ -201,4 +199,3 @@ public class Organisations {
     }
 
 }
-
