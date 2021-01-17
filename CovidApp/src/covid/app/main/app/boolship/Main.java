@@ -5,12 +5,14 @@ import covid.app.gui.bool.ship.GuiClass;
 
 import javax.swing.*;
 public class Main {
+	public static String[] a;// we need this for the piechart
     public static void main(String[] args) {
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        a = args;// we need this for the piechart
 
 
     }

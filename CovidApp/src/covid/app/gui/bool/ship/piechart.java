@@ -9,7 +9,6 @@ import javafx.scene.chart.*;
 import javafx.scene.Group;
  
 public class piechart extends Application {
-	
 	// we will insert to this variables the total number of
 	//cases per Organization
 	private int nhcases = 55;

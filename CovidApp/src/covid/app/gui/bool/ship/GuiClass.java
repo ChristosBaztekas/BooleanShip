@@ -275,6 +275,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nhs) {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
+        	//create piechart
         	piechart pie = new piechart();
         	pie.launch(covid.app.main.app.boolship.Main.a);
         	GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
