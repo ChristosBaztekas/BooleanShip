@@ -18,61 +18,46 @@ import java.util.ArrayList;
 
 public class GuiClass extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
-    private JMenuBar mainApp = new JMenuBar();
-    private JMenu allmenus = new JMenu("All Menus Available");
-    private JMenu useFullWebsitesAboutCovid = new JMenu("Useful Websites about covid");
-    private JMenu help = new JMenu("Help");
-    private JMenu contactUs = new JMenu("Contact us");
-    private JMenu exitMenu = new JMenu("Exit");
-    private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
-    private JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
-    private JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
-    private JMenuItem covidC = new JMenuItem("(COVID-19) Cases, Data, and Surveillance");
-    private JMenuItem nih = new JMenuItem("National Institutes of Health");
-    private JMenuItem nhs = new JMenuItem("Covid advices from NHS");
-    private JMenuItem cStats = new JMenuItem("Covid worldwide cases");
+    private final JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
+    private final JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
+    private final JMenuItem covidC = new JMenuItem("(COVID-19) Cases, Data, and Surveillance");
+    private final JMenuItem nih = new JMenuItem("National Institutes of Health");
+    private final JMenuItem nhs = new JMenuItem("Covid advices from NHS");
+    private final JMenuItem cStats = new JMenuItem("Covid worldwide cases");
 
 
-    private JMenuItem emailAd = new JMenuItem("Email address");
+    private final JMenuItem emailAd = new JMenuItem("Email address");
 
-    private JMenu menu1 = new JMenu("Goverment Menu");
-    private JMenu menu2 = new JMenu("Labor Menu");
-    private JMenu menu3 = new JMenu("School Menu");
-    private JMenu menu4 = new JMenu("University Menu");
-    private JMenu menu5 = new JMenu("Nursing home Menu");
-    private JMenu menu6 = new JMenu("Exit");
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
 
-    private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
-    private JMenu rateUs = new JMenu("Rate us");
-
-    private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
+    private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
 
 
-    private JMenuItem Exit = new JMenuItem("Close Program");
-    private JMenuItem justExit = new JMenuItem("Exit");
-    private JMenuItem gmenu = new JMenuItem("Menu and info are not available for not authorized users");
+    private final JMenuItem Exit = new JMenuItem("Close Program");
+    private final JMenuItem justExit = new JMenuItem("Exit");
+    private final JMenuItem gmenu = new JMenuItem("Menu and info are not available for not authorized users");
 
-    private JMenuItem gmenu5 = new JMenuItem("Exit");
+    private final JMenuItem gmenu5 = new JMenuItem("Exit");
 
-    private JMenuItem nmenu1 = new JMenuItem("Info about this menu");
-    private JMenuItem nmenu2 = new JMenuItem("User menu");
-    private JMenuItem nmenu3 = new JMenuItem("Sign up");
-    private JMenuItem nmenu4 = new JMenuItem("Exit");
+    private final JMenuItem nmenu1 = new JMenuItem("Info about this menu");
+    private final JMenuItem nmenu2 = new JMenuItem("User menu");
+    private final JMenuItem nmenu3 = new JMenuItem("Sign up");
+    private final JMenuItem nmenu4 = new JMenuItem("Exit");
 
-    private JMenuItem smenu1 = new JMenuItem("Info about this menu");
-    private JMenuItem smenu2 = new JMenuItem("User menu");
-    private JMenuItem smenu3 = new JMenuItem("Sign up");
-    private JMenuItem smenu4 = new JMenuItem("Exit");
+    private final JMenuItem smenu1 = new JMenuItem("Info about this menu");
+    private final JMenuItem smenu2 = new JMenuItem("User menu");
+    private final JMenuItem smenu3 = new JMenuItem("Sign up");
+    private final JMenuItem smenu4 = new JMenuItem("Exit");
 
-    private JMenuItem umenu1 = new JMenuItem("Info about this menu");
-    private JMenuItem umenu2 = new JMenuItem("User menu");
-    private JMenuItem umenu3 = new JMenuItem("Sign up");
-    private JMenuItem umenu4 = new JMenuItem("Exit");
+    private final JMenuItem umenu1 = new JMenuItem("Info about this menu");
+    private final JMenuItem umenu2 = new JMenuItem("User menu");
+    private final JMenuItem umenu3 = new JMenuItem("Sign up");
+    private final JMenuItem umenu4 = new JMenuItem("Exit");
 
-    private JMenuItem lmenu1 = new JMenuItem("Info about this menu");
-    private JMenuItem lmenu2 = new JMenuItem("User menu");
-    private JMenuItem lmenu3 = new JMenuItem("Sign up");
-    private JMenuItem lmenu4 = new JMenuItem("Exit");
+    private final JMenuItem lmenu1 = new JMenuItem("Info about this menu");
+    private final JMenuItem lmenu2 = new JMenuItem("User menu");
+    private final JMenuItem lmenu3 = new JMenuItem("Sign up");
+    private final JMenuItem lmenu4 = new JMenuItem("Exit");
 
 
     public GuiClass() {
@@ -81,14 +66,21 @@ public class GuiClass extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
 
 
+        JMenuBar mainApp = new JMenuBar();
         setJMenuBar(mainApp);
         mainApp.setBackground(Color.ORANGE);
+        JMenu allmenus = new JMenu("All Menus Available");
         mainApp.add(allmenus);
+        JMenu useFullWebsitesAboutCovid = new JMenu("Useful Websites about covid");
         mainApp.add(useFullWebsitesAboutCovid);
+        JMenu help = new JMenu("Help");
         mainApp.add(help);
+        JMenu contactUs = new JMenu("Contact us");
         mainApp.add(contactUs);
         mainApp.add(justExit);
+        JMenu rateUs = new JMenu("Rate us");
         mainApp.add(rateUs);
+        JMenu exitMenu = new JMenu("Exit");
         mainApp.add(exitMenu);
         exitMenu.add(Exit);
         help.add(Problems);
@@ -100,13 +92,20 @@ public class GuiClass extends JFrame implements ActionListener {
         useFullWebsitesAboutCovid.add(cStats);
         contactUs.add(emailAd);
         mainApp.setSize(800, 800);
+        JMenu menu1 = new JMenu("Goverment Menu");
         allmenus.add(menu1);
+        JMenu menu2 = new JMenu("Labor Menu");
         allmenus.add(menu2);
+        JMenu menu3 = new JMenu("School Menu");
         allmenus.add(menu3);
+        JMenu menu4 = new JMenu("University Menu");
         allmenus.add(menu4);
+        JMenu menu5 = new JMenu("Nursing home Menu");
         allmenus.add(menu5);
+        JMenu menu6 = new JMenu("Exit");
         allmenus.add(menu6);
         rateUs.add(helpUsBecomeBetter);
+        JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
         menu2.add(lmenu1);
         menu2.add(lmenu2);
@@ -206,7 +205,7 @@ public class GuiClass extends JFrame implements ActionListener {
             wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the Labor user register form");
             wsFrame.setVisible(true);
-            wsFrame.setDefaultCloseOperation(3);
+            wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         } else if (source == lmenu4) {
             GuiClass.exitMethod();
         } else if (source == smenu1) {
@@ -222,7 +221,7 @@ public class GuiClass extends JFrame implements ActionListener {
             wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the School User registration form");
             wsFrame.setVisible(true);
-            wsFrame.setDefaultCloseOperation(3);
+            wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         } else if (source == smenu4) {
             GuiClass.exitMethod();
         } else if (source == umenu1) {
@@ -238,7 +237,7 @@ public class GuiClass extends JFrame implements ActionListener {
             wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the University User registration form");
             wsFrame.setVisible(true);
-            wsFrame.setDefaultCloseOperation(3);
+            wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         } else if (source == umenu4) {
             GuiClass.exitMethod();
         } else if (source == nmenu1) {
@@ -254,7 +253,7 @@ public class GuiClass extends JFrame implements ActionListener {
             wsFrame.setBounds(400, 100, 800, 450);
             wsFrame.setTitle("Welcome to the Nursing Home User registration form");
             wsFrame.setVisible(true);
-            wsFrame.setDefaultCloseOperation(3);
+            wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         } else if (source == nmenu4) {
             GuiClass.exitMethod();
         } else if (source == whoWebpage) {
@@ -286,10 +285,8 @@ public class GuiClass extends JFrame implements ActionListener {
     public static void managingWebsitesByUrl(String url) {
         try {
             d.browse(new URI(url));
-        } catch (IOException ioException) {
+        } catch (IOException | URISyntaxException ioException) {
             ioException.printStackTrace();
-        } catch (URISyntaxException uriSyntaxException) {
-            uriSyntaxException.printStackTrace();
         }
     }
 
@@ -304,7 +301,7 @@ public class GuiClass extends JFrame implements ActionListener {
     }
 
     public static void sendingProblem() {
-        String problemDescription = (String) JOptionPane.showInputDialog("Please describe your problem in order to fix it");
+        String problemDescription = JOptionPane.showInputDialog("Please describe your problem in order to fix it");
         try {
 
 
@@ -316,8 +313,8 @@ public class GuiClass extends JFrame implements ActionListener {
     }
 
     public static void contactUs() {
-        String contactDescription = (String) JOptionPane.showInputDialog("Please write us your message!");
-        String usersMail = (String) JOptionPane.showInputDialog("Please write your mail in order to receive our answer.");
+        String contactDescription = JOptionPane.showInputDialog("Please write us your message!");
+        String usersMail = JOptionPane.showInputDialog("Please write your mail in order to receive our answer.");
         try {
             isValidEmail(usersMail);
             JavaMailUtil.sendMail(usersMail, "Message", "We received your message and we will reply as soon as possible!Thank you for using our app and stay safe.");
@@ -351,13 +348,9 @@ public class GuiClass extends JFrame implements ActionListener {
             //isValidAfm(afm);
         } else {
             for (int i = 0; i < 9; i++) {
-                if (afm.charAt(i) >= '0' && afm.charAt(i) <= '9') {
-                    continue;
-                } else {
+                if (afm.charAt(i) < '0' || afm.charAt(i) > '9') {
                     JOptionPane.showMessageDialog(null, "The afm should contain only numbers.Please try again.", "Invalid input", JOptionPane.ERROR_MESSAGE);
                     return false;
-                    //afm = JOptionPane.showInputDialog(null, "Hi");
-                    //isValidAfm(afm);
                 }
             }
         }
@@ -375,9 +368,9 @@ public class GuiClass extends JFrame implements ActionListener {
     }
 
     public static void createHumans(String typeOfHuman, ArrayList<Human> allEmployees) {
-        Human one = null;
+        Human one;
 
-        String ans_afm = (String) JOptionPane.showInputDialog("Please write the " + typeOfHuman + "'s afm");
+        String ans_afm = JOptionPane.showInputDialog("Please write the " + typeOfHuman + "'s afm");
 
         if (GuiClass.isValidAfm(ans_afm)) {
             int pos = Human.search(ans_afm);
@@ -414,7 +407,7 @@ public class GuiClass extends JFrame implements ActionListener {
                 email = temail.getText();
 
 
-                if (name == "" || surname == "" || gender == "" || email == "") {
+                if (name.equals("") || surname.equals("") || gender.equals("") || email.equals("")) {
                     JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
                     GuiClass.createHumans(typeOfHuman, allEmployees);
                 } else {

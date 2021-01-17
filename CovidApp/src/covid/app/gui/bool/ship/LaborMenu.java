@@ -6,41 +6,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LaborMenu extends JFrame implements ActionListener {
-    static Desktop d = Desktop.getDesktop();
-    private JMenuBar controlsMenu = new JMenuBar();
 
-    private JMenu mainMenul = new JMenu("Labor user Menu");
-    private JMenu help = new JMenu("Help");
-    private JMenu contactUs = new JMenu("Contact us");
-    private JMenu rateUs = new JMenu("Rate us");
-    private JMenu exitm = new JMenu("Close Program");
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
+    private final JMenuItem emailAd = new JMenuItem("Email address");
 
-    private JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
+    private final JMenuItem i1 = new JMenuItem("Modify deparments");
+    private final JMenuItem i2 = new JMenuItem("Modify employees");
+    private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
+    private final JMenuItem i4 = new JMenuItem("Status of your Labor");
+    private final JMenuItem i5 = new JMenuItem("Modify other related people");
 
-    private JMenuItem phone = new JMenuItem("Phone number for emergency");
-    private JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
-    private JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
-    private JMenuItem emailAd = new JMenuItem("Email address");
-
-    private JMenuItem i1 = new JMenuItem("Modify deparments");
-    private JMenuItem i2 = new JMenuItem("Modify employees");
-    private JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
-    private JMenuItem i4 = new JMenuItem("Status of your Labor");
-    private JMenuItem i5 = new JMenuItem("Modify other related people");
-
-    private JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
-    private JMenuItem exit = new JMenuItem("Exit");
-    private JMenuItem close = new JMenuItem("Exit");
+    private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem exit = new JMenuItem("Exit");
+    private final JMenuItem close = new JMenuItem("Exit");
     public LaborMenu(){
         setLayout(new BorderLayout());
         setContentPane(new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\covid.jpg")));
         setLayout(new FlowLayout());
+        JMenuBar controlsMenu = new JMenuBar();
         setJMenuBar(controlsMenu);
         controlsMenu.setBackground(Color.ORANGE);
+        JMenu mainMenul = new JMenu("Labor user Menu");
         controlsMenu.add(mainMenul);
+        JMenu help = new JMenu("Help");
         controlsMenu.add(help);
+        JMenu contactUs = new JMenu("Contact us");
         controlsMenu.add(contactUs);
+        JMenu rateUs = new JMenu("Rate us");
         controlsMenu.add(rateUs);
+        JMenu exitm = new JMenu("Close Program");
         controlsMenu.add(exitm);
         exitm.add(close);
         mainMenul.add(i1);
@@ -51,6 +46,7 @@ public class LaborMenu extends JFrame implements ActionListener {
         mainMenul.add(i6);
 
         mainMenul.add(exit);
+        JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
         help.add(Problems);
         rateUs.add(helpUsBecomeBetter);
@@ -58,6 +54,7 @@ public class LaborMenu extends JFrame implements ActionListener {
 
 
         Problems.addActionListener(this);
+        JMenuItem phone = new JMenuItem("Phone number for emergency");
         phone.addActionListener(this);
         emailAd.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);

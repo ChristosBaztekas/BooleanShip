@@ -6,21 +6,21 @@ import java.util.ArrayList;
 
 public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
     private String status_descr;
-    private ArrayList<Human> employees = new ArrayList<Human>();
-    private ArrayList<Human> carenPeople = new ArrayList<Human>();
+    private final ArrayList<Human> employees = new ArrayList<>();
+    private final ArrayList<Human> carenPeople = new ArrayList<>();
     static ArrayList<String> orgEmails = new ArrayList<>();
     private int count_employees = 0;
     private int count_carenPeople = 0;
     static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
     private boolean status = false;//has covid if trues
-    private ArrayList<Human> changes = new ArrayList<Human>();
+    private final ArrayList<Human> changes = new ArrayList<>();
     private boolean update = false;
     private final int id;
     private static int count = 0;
-    public static void createNH() {
+    /*public static void createNH() {
         for (int i = 0; i < 10; i++) { //create 10
-            String user_pass = "NH" + String.valueOf(i);
+            String user_pass = "NH" + i;
             NursingHomes n = new NursingHomes(i, user_pass);
         }
     }
@@ -28,7 +28,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         super("name", "area", 20, a, a);
         id = count ++;
         add(this);
-    }
+    }*/
 
    public NursingHomes(String name, String area, int numberOfPeople, String emailAddress, boolean enclosed) {
         super(name, area, numberOfPeople);
@@ -41,7 +41,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         setNumbersOfPeople(employees.size() + carenPeople.size());//maybe doesnt need now
 
     }
-    protected void modifyEmployees() {
+    /*protected void modifyEmployees() {
         while (true){
             if(employees.size() != 0) {
                 System.out.printf("There are %d Employee(s), would you like to add new?\n" +
@@ -122,7 +122,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 break;
             }
         }
-    }
+    }*/
     public void monitoring() {
         if (carenPeople.size() == 0 || employees.size() == 0) {
             return;
@@ -135,8 +135,8 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             en_status = true;
             status_descr = "Enclosed";
             System.out.println("Positive have been found: ");
-            for (int i = 0; i < changes.size(); i++) {
-                System.out.printf("    The person: %s", changes.get(i).toString());
+            for (Human change : changes) {
+                System.out.printf("    The person: %s", change.toString());
             }
         }
     }
@@ -146,7 +146,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
 
     }
 
-    protected void toBeTested(Human human) {
+    /*protected void toBeTested(Human human) {
         if (carenPeople.size() == 0 || employees.size() == 0) {
             return;
         }
@@ -181,7 +181,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             }
         }
         System.out.println("Cant find a member with ssn:" + input);
-    }
+    }*/
     public void declareCase() {
         if (carenPeople.size() == 0 || employees.size() == 0) {
             return;
@@ -191,30 +191,30 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         if (input.equals("0")) {
             return;
         }
-        for (int i = 0; i < carenPeople.size(); i++) {
-            if (carenPeople.get(i).getAfm().equals(input)) {
+        for (Human carenPerson : carenPeople) {
+            if (carenPerson.getAfm().equals(input)) {
                 System.out.printf("Want to report of a member of elder people: %s" +
-                        ", 0 for exit\n", carenPeople.get(i).toString());
+                        ", 0 for exit\n", carenPerson.toString());
                 String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    carenPeople.get(i).bePositive();
-                    changeStatus(carenPeople.get(i));
+                    carenPerson.bePositive();
+                    changeStatus(carenPerson);
                     return;
                 }
             }
         }
-        for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getAfm().equals(input)) {
+        for (Human employee : employees) {
+            if (employee.getAfm().equals(input)) {
                 System.out.printf("Want to report of a member of employee: %s" +
-                        ", 0 for exit\n", employees.get(i).toString());
+                        ", 0 for exit\n", employee.toString());
                 String ans = sc.nextLine();
                 if (ans.equals("0")) {
                     return;
                 } else {
-                    employees.get(i).bePositive();
-                    changeStatus(employees.get(i));
+                    employee.bePositive();
+                    changeStatus(employee);
                     return;
                 }
             }
@@ -225,23 +225,23 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         if (carenPeople.size() == 0 || employees.size() == 0) {
             return;
         }
-        for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i) != human) {
-                employees.get(i).haveToBeTested();
+        for (Human employee : employees) {
+            if (employee != human) {
+                employee.haveToBeTested();
             } else {
                 count_employees += 1;
             }
         }
-        for (int i = 0; i < carenPeople.size(); i++) {
-            if (carenPeople.get(i) != human) {
-                carenPeople.get(i).haveToBeTested();
+        for (Human carenPerson : carenPeople) {
+            if (carenPerson != human) {
+                carenPerson.haveToBeTested();
             } else {
                 count_carenPeople += 1;
             }
         }
     }
 
-    public static void createOrg() {
+    /*public static void createOrg() {
         while (true) {
             System.out.println("What is the name of the NursingHome?/nWrite the name without spaces!");
             String name = sc.next();
@@ -257,11 +257,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             System.out.println("Is your organization open? 1for yes");
             String input = sc.next();
             boolean enclosed;
-            if(input.equals("1")){
-                enclosed = false;
-            }else {
-                enclosed = true;
-            }
+            enclosed = !input.equals("1");
             System.out.printf("Name NursingHome: %s, Area: %s, Total People(Employees plus CarenPeople): %d." +
                     "Is that correct? 0 for no", name, area, numberofCarenPeople + numberOfEmployees);
             if (sc.hasNext()) {
@@ -274,7 +270,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             break;
         }
 
-    }
+    }*/
 
     public void declareCase(Human human) {
         if (!update) {
@@ -294,7 +290,7 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
                 "Please stay safe and we will call you soon.Always our first priority was the safety of our beloved people!" +
                 "Thanks for understanding in these difficult times.");
     }
-    public void modifyCarenPeople() {
+    /*public void modifyCarenPeople() {
         while (true){
             if(carenPeople.size() != 0) {
                 System.out.printf("There are %d carenPeople, would you like to add new?\n" +
@@ -402,6 +398,43 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
             System.out.println("You are able to have visitors, but all " +
                     "have to respect the measures for covid");
         }
+    }*/
+
+    public String getStatus_descr() {
+        return status_descr;
+    }
+
+    public void setStatus_descr(String status_descr) {
+        this.status_descr = status_descr;
+    }
+
+    public boolean isEn_status() {
+        return en_status;
+    }
+
+    public void setEn_status(boolean en_status) {
+        this.en_status = en_status;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public int getCount_employees() {
+        return count_employees;
+    }
+
+    public void setCount_employees(int count_employees) {
+        this.count_employees = count_employees;
+    }
+
+    public int getCount_carenPeople() {
+        return count_carenPeople;
+    }
+
+    public void setCount_carenPeople(int count_carenPeople) {
+        this.count_carenPeople = count_carenPeople;
     }
 }
 
