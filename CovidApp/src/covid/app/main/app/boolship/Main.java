@@ -30,7 +30,9 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     private static final String EodyPassword = "78892GG";// the password of National organization of Public Health
     static int chance = 0;
+	public static String[] a;// we need this for the piechart
     public static void main(String[] args) throws Exception {
+    	a = args;// we need this for the piechart
     		// database connection
         String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
                 "databaseName=DB38;user=G538;password=48534trh045;";

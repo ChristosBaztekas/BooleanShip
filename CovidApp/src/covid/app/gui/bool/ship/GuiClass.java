@@ -1,6 +1,8 @@
 package covid.app.gui.bool.ship;
 
 import covid.app.main.app.boolship.Human;
+import javafx.scene.chart.PieChart;
+
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.mail.MessagingException;
@@ -274,7 +276,9 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nhs) {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
-            GuiClass.managingWebsitesByUrl("https://news.google.com/covid19/map?hl=en-US&gl=US&ceid=US%3Aen");
+        	piechart pie = new piechart();
+        	pie.launch(covid.app.main.app.boolship.Main.a);
+        	GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
         }
 
     }
