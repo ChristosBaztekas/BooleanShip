@@ -8,6 +8,7 @@ import java.util.TreeMap;
 public class Organisations {
     private String name, area;
     private int id;
+    private String email;
     private static int count = 0;
     private int numbersOfPeople;
     private static final String EodyPassword = "78892GG";
@@ -26,18 +27,23 @@ public class Organisations {
         fields.put(username, password);
         codes.put(username,this);
     }
+
     public static void print() {
         System.out.println("Username:  password ");
         System.out.println(fields);
     }
-
+    public Organisations(String name, String area, String email) {
+        this.name = name;
+        this.area = area;
+        this.email = email;
+    }
     public Organisations(String name, String area, int numbersOfPeople) {
         this.name = name;
         this.area = area;
         this.numbersOfPeople = numbersOfPeople;
         count++;
         this.id = count++;
-        allOrgs.add(this);
+        allOrgs.add(this);//to be removed
     }
     public void example() {
         Organisations org = new Organisations("Veria", "Veria", 20);

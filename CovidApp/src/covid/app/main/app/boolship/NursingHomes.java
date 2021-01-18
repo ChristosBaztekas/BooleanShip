@@ -6,18 +6,16 @@ import java.util.ArrayList;
 
 public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
     private String status_descr;
-    private final ArrayList<Human> employees = new ArrayList<>();
-    private final ArrayList<Human> carenPeople = new ArrayList<>();
+    private ArrayList<Human> employees = new ArrayList<>();
+    private ArrayList<Human> carenPeople = new ArrayList<>();
     static ArrayList<String> orgEmails = new ArrayList<>();
     private int count_employees = 0;
     private int count_carenPeople = 0;
     static Scanner sc = new Scanner(System.in);
     private boolean en_status; //true means enclosed and false free access
     private boolean status = false;//has covid if trues
-    private final ArrayList<Human> changes = new ArrayList<>();
+    private ArrayList<Human> changes = new ArrayList<>();
     private boolean update = false;
-    private final int id;
-    private static int count = 0;
     /*public static void createNH() {
         for (int i = 0; i < 10; i++) { //create 10
             String user_pass = "NH" + i;
@@ -34,13 +32,39 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         super(name, area, numberOfPeople);
         en_status = enclosed;
         status_descr = (enclosed ? "Enclosed" : "Free Access");
-        id = count++;
         orgEmails.add(emailAddress);
 
         add(this);
         setNumbersOfPeople(employees.size() + carenPeople.size());//maybe doesnt need now
 
     }
+
+    public NursingHomes(String name,
+                        String area,
+                        String email,
+                        String status_descr,
+                        int count_employees,
+                        int count_carenPeople,
+                        boolean en_status,
+                        boolean status) {
+       super(name, area, email);
+       this.status_descr = status_descr;
+       this.status = status;
+       this.en_status = en_status;
+       this.count_employees = count_employees;
+       this.count_carenPeople = count_carenPeople;
+    }
+   public void setEmployess(ArrayList<Human> employees1) {
+       employees = employees1;
+   }
+   public void setCarenPeople(ArrayList<Human> caren) {
+       carenPeople = caren;
+   }
+   public void setChanges(ArrayList<Human> changes) {
+       this.changes = changes;
+   }
+
+
     /*protected void modifyEmployees() {
         while (true){
             if(employees.size() != 0) {
@@ -416,10 +440,10 @@ public class NursingHomes extends Organisations implements caseManagmentAndHuman
         this.en_status = en_status;
     }
 
-    @Override
+    /*@Override
     public int getId() {
         return id;
-    }
+    }*/
 
     public int getCount_employees() {
         return count_employees;

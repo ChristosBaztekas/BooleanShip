@@ -9,6 +9,7 @@ public class Classes {
     private String idifier;
 
     private Organisations organisation;
+    private int orgId ;
     private ArrayList<Human> members = new ArrayList<Human>();
     private static int count = 0;
 
@@ -34,6 +35,11 @@ public class Classes {
                 }
             }
         }
+    }
+    public Classes(String idifier, int orgId, ArrayList<Human> humans) {
+        this.idifier = idifier;
+        this.orgId = orgId;
+        members = humans;
     }
     public String getIdifier() {
         return idifier;

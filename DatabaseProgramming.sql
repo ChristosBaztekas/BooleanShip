@@ -15,6 +15,7 @@ CREATE TABLE Organisations(
                               email varchar(80),
                               username varchar(80),
                               password varchar(80),
+                              numberPeople int,!!!
                               id int not null IDENTITY(0,1),
                               constraint Organisations_pr Primary Key (id)
 )

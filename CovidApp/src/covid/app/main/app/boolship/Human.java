@@ -40,10 +40,17 @@ public final class Human {
         allHuman.add(this);
         sort();
     }
+    public Human(String name, String surname, String afm, String email, String gender) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.afm = afm;
+        this.gender = gender;
+    }
+
     enum Status {
         NORMAL, SUSPECT, PRESUMPTIVE, CONFIRMED, QUARANTINE
     }
-
 
     //helps for sort
     private static class SortByAfm implements Comparator<Human> {

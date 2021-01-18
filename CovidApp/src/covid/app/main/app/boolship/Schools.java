@@ -34,6 +34,29 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         modifyDepartments();
         id = count++;
     }
+
+    public Schools(String name, String area, String email,
+                   int number_of_students_positive, int number_of_teachers_positive,
+                   int number_of_others_positive, boolean lockdown, boolean status) {
+        super(name, area, email);
+        this.number_of_teachers_positive = number_of_teachers_positive;
+        this.number_of_others_positive = number_of_others_positive;
+        this.number_of_students_positive = number_of_students_positive;
+        this.lockdown = lockdown;
+        this.status = status;
+    }
+    public void setTeachers(ArrayList<Human> humans) {
+        teachers = humans;
+    }
+    public void setOthers(ArrayList<Human> humans) {
+        others = humans;
+    }
+    public void setChanges(ArrayList<Human> humans) {
+        changes = humans;
+    }
+    public void setDepartments(ArrayList<Classes> classes) {
+        departments = classes;
+    }
     public static void createS() {
         for (int i = 0; i < 10; i++) { //create 10
             String user_pass = "S" + String.valueOf(i);
