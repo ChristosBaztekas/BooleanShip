@@ -2,6 +2,8 @@ package covid.app.main.app.boolship;
 
 
 import covid.app.gui.bool.ship.GuiClass;
+import covid.app.gui.bool.ship.piechart;
+import javafx.application.Application;
 
 import javax.swing.*;
 public class Main {
@@ -13,6 +15,7 @@ public class Main {
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         a = args;// we need this for the piechart
+
 
 
     }

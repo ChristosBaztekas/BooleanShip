@@ -1,8 +1,7 @@
 package covid.app.gui.bool.ship;
 
 import covid.app.main.app.boolship.Human;
-import javafx.scene.chart.PieChart;
-
+import javafx.application.Application;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.mail.MessagingException;
@@ -276,8 +275,8 @@ public class GuiClass extends JFrame implements ActionListener {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
         	//create piechart
-        	piechart pie = new piechart();
-        	pie.launch(covid.app.main.app.boolship.Main.a);
+            piechart pie = new piechart();
+            pie.launch(covid.app.main.app.boolship.Main.a);
         	GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
         }
 
@@ -429,6 +428,13 @@ public class GuiClass extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "The afm already exists.Please Try again", "Already existed afm", JOptionPane.ERROR_MESSAGE);
                 GuiClass.createHumans(typeOfHuman, allEmployees);
             }
+        }
+    }
+    public static void registrationAutomatedMail(String orgMail){
+        try {
+            JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
+        } catch (MessagingException messagingException) {
+            JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

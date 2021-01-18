@@ -58,7 +58,7 @@ public class RegistrationFormNh
     // constructor, to initialize the components
     // with default values.
     public RegistrationFormNh() {
-
+        Color col = new Color(255, 255, 255);
         setLayout(new BorderLayout());
         JLabel background = new JLabel(new ImageIcon("D:\\BooleanShipProjectJ\\CovidApp\\src\\covid\\app\\gui\\bool\\ship\\covidReg1.jpg"));
         Container c = getContentPane();
@@ -72,10 +72,13 @@ public class RegistrationFormNh
         JLabel name = new JLabel("Organisation Name");
         name.setFont(new Font("Arial", Font.BOLD, 20));
         name.setSize(200, 20);
-        name.setLocation(20, 100);
+        name.setLocation(10, 100);
         background.add(name);
 
         tname = new JTextField();
+
+        tname.setForeground(col);
+
         tname.setFont(new Font("Arial", Font.BOLD, 15));
         tname.setSize(150, 20);
         tname.setLocation(200, 100);
@@ -101,6 +104,7 @@ public class RegistrationFormNh
         background.add(mail);
 
         tmail = new JTextField();
+        tmail.setForeground(col);
         tmail.setFont(new Font("Arial", Font.BOLD, 15));
         tmail.setSize(150, 20);
         tmail.setLocation(200, 150);
@@ -113,6 +117,7 @@ public class RegistrationFormNh
         background.add(username);
 
         tusername = new JTextField();
+        tusername.setForeground(col);
         tusername.setFont(new Font("Arial", Font.BOLD, 15));
         tusername.setSize(150, 20);
         tusername.setLocation(580, 150);
@@ -126,6 +131,7 @@ public class RegistrationFormNh
         background.add(area);
 
         tarea = new JTextField();
+        tarea.setForeground(col);
         tarea.setFont(new Font("Arial", Font.BOLD, 15));
         tarea.setSize(150, 20);
         tarea.setLocation(200, 200);
@@ -162,6 +168,7 @@ public class RegistrationFormNh
         background.add(rpassword);
 
         trpassword = new JPasswordField();
+        trpassword.setForeground(col);
         trpassword.setFont(new Font("Arial", Font.BOLD, 15));
         trpassword.setSize(150, 20);
         trpassword.setLocation(580, 250);
@@ -173,7 +180,7 @@ public class RegistrationFormNh
         term.setSize(250, 20);
         term.setLocation(250, 322);
         background.add(term);
-
+        tpassword.setForeground(col);
         enclosed = new JCheckBox("Select if Nursing Home is enclosed");
         enclosed.setFont(new Font("Arial", Font.BOLD, 15));
         enclosed.setSize(350, 20);
@@ -264,11 +271,7 @@ public class RegistrationFormNh
                 usernames.add(username);
                 passwords.add(password);
                 NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
-                // try {
-                //   JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
-                //} catch (MessagingException messagingException) {
-                //  JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
-                //}
+                GuiClass.registrationAutomatedMail(orgMail);
                 dispose();
                 GuiClass.alreadyUserOption("Nursing Home menu log form");
             }

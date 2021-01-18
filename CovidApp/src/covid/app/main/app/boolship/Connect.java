@@ -36,7 +36,6 @@ public class Connect {
         Connection connection;
         int id = Integer.MIN_VALUE;
         PreparedStatement preparedStatement;
-        Scanner scanner = new Scanner(System.in);
         String query1 = "INSERT into Organisations values(?,?,?,?,?)";
         try {
             connection = DriverManager.getConnection(url);

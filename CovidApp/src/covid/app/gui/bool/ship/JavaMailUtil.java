@@ -23,7 +23,7 @@ public class JavaMailUtil extends JFrame {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication("booleanship@gmail.com","fixBugs1");
+                return new PasswordAuthentication("booleanship@gmail.com",passwordB);
             }
         });
 

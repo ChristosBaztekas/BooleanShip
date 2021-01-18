@@ -14,53 +14,42 @@ public class RegistrationFormS
         implements ActionListener {
 
     SpinnerNumberModel numberT = new SpinnerNumberModel(
-            new Integer(1), // value
-            new Integer(1), // min
-            new Integer(400), // max
-            new Integer(1) // step
+            Integer.valueOf(1), // value
+            Integer.valueOf(1), // min
+            Integer.valueOf(400), // max
+            Integer.valueOf(1) // step
     );
     SpinnerNumberModel numberS = new SpinnerNumberModel(
-            new Integer(1), // value
-            new Integer(1), // min
-            new Integer(400), // max
-            new Integer(1) // step
+            Integer.valueOf(1), // value
+            Integer.valueOf(1), // min
+            Integer.valueOf(400), // max
+            Integer.valueOf(1) // step
     );
     public static ArrayList<String> usernames = new ArrayList<>();
     public static ArrayList<String> passwords = new ArrayList<>();
 
 
+    private final JTextField tname;
 
-    private Container c = getContentPane();
-    private JLabel title;
+    private final JTextField tmail;
 
-    private JLabel name;
-    private JTextField tname;
+    private final JTextField tarea;
 
-    private JLabel mail;
-    private JTextField tmail;
+    private final JSpinner numT;
 
-    private JLabel area;
-    private JTextField tarea;
+    private final JSpinner numS;
 
-    private JSpinner numT;
-    private JLabel tnumT;
+    private final JLabel username;
+    private final JTextField tusername;
 
-    private JSpinner numS;
-    private JLabel tnumS;
+    private final JPasswordField tpassword;
 
-    private JLabel username;
-    private JTextField tusername;
-
-    private JLabel password;
-    private JPasswordField tpassword;
-
-    private JLabel rpassword;
-    private JPasswordField trpassword;
+    private final JPasswordField trpassword;
 
 
-    private JCheckBox term;
-    private JButton submit;
-    private JButton reset;
+    private final JCheckBox term;
+    private final JButton submit;
+    private final JButton reset;
 
 
     // constructor, to initialize the components
@@ -69,16 +58,17 @@ public class RegistrationFormS
 
         setLayout(new BorderLayout());
         JLabel background = new JLabel(new ImageIcon("D:\\BooleanShipProjectJ\\CovidApp\\src\\covid\\app\\gui\\bool\\ship\\regi2.png"));
+        Container c = getContentPane();
         c.add(background);
 
-        title = new JLabel("School User Registration Form");
+        JLabel title = new JLabel("School User Registration Form");
         title.setFont(new Font("Arial", Font.BOLD, 30));
         title.setSize(650, 50);
         title.setLocation(196, 30);
         title.setForeground(Color.WHITE);
         background.add(title);
 
-        name = new JLabel("Organisation Name");
+        JLabel name = new JLabel("Organisation Name");
         name.setFont(new Font("Arial", Font.BOLD, 20));
         name.setSize(200, 30);
         name.setLocation(15, 96);
@@ -97,7 +87,7 @@ public class RegistrationFormS
         numS.setLocation(600, 100);
         background.add(numS);
 
-        tnumS = new JLabel("Number of Students");
+        JLabel tnumS = new JLabel("Number of Students");
         tnumS.setFont(new Font("Arial", Font.BOLD, 20));
         tnumS.setSize(350, 20);
         tnumS.setLocation(420, 100);
@@ -105,7 +95,7 @@ public class RegistrationFormS
         background.add(tnumS);
 
 
-        mail = new JLabel("Organisations Email");//have to include the email validation
+        JLabel mail = new JLabel("Organisations Email");//have to include the email validation
         mail.setFont(new Font("Arial", Font.BOLD, 20));
         mail.setSize(350, 20);
         mail.setLocation(5, 150);
@@ -132,7 +122,7 @@ public class RegistrationFormS
         background.add(tusername);
 
 
-        area = new JLabel("School's Area");
+        JLabel area = new JLabel("School's Area");
         area.setFont(new Font("Arial", Font.BOLD, 20));
         area.setSize(200, 20);
         area.setLocation(64, 200);
@@ -145,7 +135,7 @@ public class RegistrationFormS
         tarea.setLocation(200, 200);
         background.add(tarea);
 
-        password = new JLabel("Set Password");
+        JLabel password = new JLabel("Set Password");
         password.setFont(new Font("Arial", Font.BOLD, 20));
         password.setSize(300, 20);
         password.setLocation(467, 200);
@@ -164,14 +154,14 @@ public class RegistrationFormS
         numT.setLocation(225, 250);
         background.add(numT);
 
-        tnumT = new JLabel("Number of Professors");
+        JLabel tnumT = new JLabel("Number of Professors");
         tnumT.setFont(new Font("Arial", Font.BOLD, 20));
         tnumT.setSize(300, 20);
         tnumT.setLocation(14, 250);
         tnumT.setForeground(Color.WHITE);
         background.add(tnumT);
 
-        rpassword = new JLabel("Repeat Password");
+        JLabel rpassword = new JLabel("Repeat Password");
         rpassword.setFont(new Font("Arial", Font.BOLD, 20));
         rpassword.setSize(300, 20);
         rpassword.setLocation(430, 250);
@@ -252,10 +242,6 @@ public class RegistrationFormS
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Area", JOptionPane.ERROR_MESSAGE);
             } else if (password.equals("")) {
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Password", JOptionPane.ERROR_MESSAGE);
-            } else if (rpassword.equals("")) {
-                JOptionPane.showMessageDialog(null, "This section can not be empty", "Repeat Password", JOptionPane.ERROR_MESSAGE);
-            } else if (rpassword.equals("")) {
-                JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (username.equals("")) {
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (rpassword.length() < 6) {
@@ -266,6 +252,7 @@ public class RegistrationFormS
                 usernames.add(username);
                 passwords.add(password);
                 Universities u = new Universities(orgName,orgArea,(numTe+numSt),orgMail);
+                GuiClass.registrationAutomatedMail(orgMail);
                 ok = true;
             }
             if(ok) {
