@@ -15,7 +15,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
     private boolean lockdown = false;
     private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
     private static Scanner scanner = new Scanner(System.in);
-    public Labors(String name, String area, int numbersOfPeople,String laborEmail) {
+    public Labors(String name, String area, int numbersOfPeople, String orgMail) {
         super(name, area, numbersOfPeople);
         id = count++;
        // modifyDepartments();

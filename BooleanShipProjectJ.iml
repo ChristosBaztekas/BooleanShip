@@ -8,5 +8,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="javax.mail" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="commons-validator-1.7" level="project" />
+    <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="additionnal" level="project" />
+    <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="javax.mail1" level="project" />
   </component>
 </module>

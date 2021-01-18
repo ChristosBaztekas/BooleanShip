@@ -14,8 +14,8 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
     private int limit_total_number_small = 5;
     private double limit_percentage = 0.85;
     private int total_limit_percentage = 60;
-    public Companies(String name, String area, int numbersOfPeople) {
-        super(name, area, numbersOfPeople);
+    public Companies(String name, String area, int numbersOfPeople,String orgMail) {
+        super(name, area, numbersOfPeople, orgMail);
         add(this);
         id = count++;
 
@@ -85,7 +85,7 @@ public class Companies extends Labors implements caseManagmentAndHumanAddition {
                 break;
             }
         }
-        Companies newOne = new Companies(name, area, employees);
+        Companies newOne = new Companies(name, area, employees,"");
     }
     public void printDetails() {
         System.out.println("Welcome.The" + getName() + "Companies of" + getArea()

@@ -1,7 +1,8 @@
 package covid.app.main.app.boolship;
 
-import CovidApp.Gui.BooleanShip.GuiClass;
-import org.jetbrains.annotations.NotNull;
+
+
+import covid.app.gui.bool.ship.GuiClass;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public final class Human {
     private static ArrayList<Human> allHuman = new ArrayList<Human>();
     private String name, surname, afm, gender, email;
     private ArrayList<Organisations> belongs = new ArrayList<Organisations>();
-    private final int id; // for our personal counting and faster dialing of items in what condition can
+    private int id; // for our personal counting and faster dialing of items in what condition can
     //the state of the object is found
     private Status status = Status.NORMAL;// initialization of all people in a normal state
     private static int count = 0;
@@ -161,7 +162,7 @@ public final class Human {
         }
     }
 
-    protected static void quarantineMode(@NotNull Human human) {
+    protected static void quarantineMode( Human human) {
         System.out.println(human.toString() + "has been found with covid");
         human.status = Status.CONFIRMED;
         while (true) {
@@ -258,7 +259,7 @@ public final class Human {
     }
     // finds if the human exists in allHuman
     // if yes, returns its position, otherwise -1
-    private static int search(String idGiven) {
+    public static int search(String idGiven) {
         int low = 0;
         int high = allHuman.size();
         int mid;

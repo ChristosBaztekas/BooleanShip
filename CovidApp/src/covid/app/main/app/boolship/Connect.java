@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Connect {
     static String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
             "databaseName=DB38;user=G538;password=48534trh045;";
+
     public static boolean existsUsername(String username) {
         Connection connection;
         PreparedStatement preparedStatement;
@@ -16,7 +17,7 @@ public class Connect {
         try {
             connection = DriverManager.getConnection(url);
             preparedStatement = connection.prepareStatement(query1);
-            preparedStatement.setString(1,username);
+            preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 return true;
@@ -26,6 +27,7 @@ public class Connect {
         }
         return false;
     }
+
     public static int createOrg(String name,
                                 String area,
                                 String email,
@@ -58,6 +60,7 @@ public class Connect {
         }
         return id;
     }
+
     public static void createNH(int idOrg, String desc, int status) {
         Connection connection;
         String query = "INSERT INTO NursingHomes values(?,?,0,0,?,0)";
@@ -72,6 +75,7 @@ public class Connect {
             System.out.println(sqlException.getMessage());
         }
     }
+
     public static void createSchool(int idOrg) {
         Connection connection;
         String query = "INSERT INTO Schools VALUES(?,0,0,0,0,0)";
@@ -84,6 +88,7 @@ public class Connect {
             System.out.println(sqlException.getMessage());
         }
     }
+
     public static void createUni(int idOrg) {
         Connection connection;
         String query = "INSERT INTO Universities VALUES(?,0,0,0)";
@@ -96,6 +101,7 @@ public class Connect {
             System.out.println(sqlException.getMessage());
         }
     }
+
     //option 0 means PublicServices otherwise Companies
     public static void createL(int idOrg, int option) {
         Connection connection;
@@ -120,6 +126,7 @@ public class Connect {
             System.out.println(sqlException.getMessage());
         }
     }
+
     public static void register(int org, ArrayList<String> valuesString, ArrayList<Integer> valuesInteger) {
         System.out.println("Give name, area, email, username, password");
         Scanner scanner = new Scanner(System.in);
@@ -150,6 +157,7 @@ public class Connect {
             }
         }
     }
+
     //return min Integer if not right, otherwise id org
     public static int giveOrg(String username, String password) {
         Connection connection;
@@ -172,6 +180,7 @@ public class Connect {
         }
         return id;
     }
+
     public static Organisations findOrg(String username, String password) {
         int idOrg = giveOrg(username, password);
         if (idOrg == Integer.MIN_VALUE) {
@@ -204,24 +213,26 @@ public class Connect {
             preparedStatement.setInt(1, idOrg);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                return;
+                return null;
             }
             preparedStatement = connection.prepareStatement(query4);
             preparedStatement.setInt(1, idOrg);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                return;
+                return null;
             }
             preparedStatement = connection.prepareStatement(query5);
             preparedStatement.setInt(1, idOrg);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                return;
+                return null;
             }
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
+        return null;
     }
+
     public static NursingHomes giveNH(int idOrg) {
         String name = null;
         String area = null;
@@ -298,12 +309,13 @@ public class Connect {
             nh.setEmployess(employees);
             nh.setCarenPeople(carenPeople);
             nh.setChanges(changes);
-            return  nh;
+            return nh;
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
         return null;
     }
+
     public static Schools giveSchool(int idOrg) {
         String name = null;
         String area = null;
@@ -416,7 +428,7 @@ public class Connect {
             }
 
             Schools s = new Schools(name, area, email, number_of_students_positive,
-                    number_of_teachers_positive, number_of_others_positive, lockdown,status);
+                    number_of_teachers_positive, number_of_others_positive, lockdown, status);
             s.setTeachers(employees);
             s.setOthers(others);
             s.setChanges(changes);
@@ -427,11 +439,12 @@ public class Connect {
         }
         return null;
     }
+
     public static void main(String[] args) {
         ArrayList<String> a = new ArrayList<>();
         ArrayList<Integer> b = new ArrayList<>();
         a.add("1st try");
         b.add(0);
-        register(1, a,b);
+        register(1, a, b);
     }
 }

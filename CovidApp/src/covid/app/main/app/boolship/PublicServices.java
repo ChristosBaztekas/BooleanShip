@@ -13,8 +13,8 @@ public class PublicServices extends Labors {
     private int limit_total_number_small = 3;
     private double limit_percentage = 0.1;
     private int total_limit_percentage = 30;
-    public PublicServices(String name, String area, int numbersOfPeople) {
-        super(name, area, numbersOfPeople);
+    public PublicServices(String name, String area, int numbersOfPeople,String orgMail) {
+        super(name, area, numbersOfPeople, orgMail);
         add(this);
         id = count ++;
 
@@ -83,7 +83,7 @@ public class PublicServices extends Labors {
                 break;
             }
         }
-        PublicServices newOne = new PublicServices(name, area, employees);
+        PublicServices newOne = new PublicServices(name, area, employees,"");
     }
     public void printDetails() {
         System.out.println("Welcome.The" + getName() + "Companies of" + getArea() +

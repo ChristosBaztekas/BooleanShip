@@ -1,6 +1,6 @@
 package covid.app.gui.bool.ship;
 
-import CovidApp.Gui.BooleanShip.GuiClass;
+
 import covid.app.main.app.boolship.Universities;
 
 import javax.swing.*;
