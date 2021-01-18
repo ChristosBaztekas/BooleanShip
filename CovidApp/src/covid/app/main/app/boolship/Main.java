@@ -6,9 +6,14 @@ import covid.app.gui.bool.ship.piechart;
 import javafx.application.Application;
 
 import javax.swing.*;
+import java.util.ArrayList;
+
 public class Main {
+    private static ArrayList<Human> all;
+
 	public static String[] a;// we need this for the piechart
     public static void main(String[] args) {
+
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);

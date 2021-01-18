@@ -255,6 +255,7 @@ public class RegistrationFormL
                 passwords.add(password);
 
                 Labors newOne = new Labors(orgName, orgArea, numEmployees, orgMail);
+                JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);
                 ok = true;
             }

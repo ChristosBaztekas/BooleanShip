@@ -252,6 +252,7 @@ public class RegistrationFormS
                 usernames.add(username);
                 passwords.add(password);
                 Universities u = new Universities(orgName,orgArea,(numTe+numSt),orgMail);
+                JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);
                 ok = true;
             }

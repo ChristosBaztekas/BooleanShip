@@ -271,6 +271,7 @@ public class RegistrationFormNh
                 usernames.add(username);
                 passwords.add(password);
                 NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
+                JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);
                 dispose();
                 GuiClass.alreadyUserOption("Nursing Home menu log form");

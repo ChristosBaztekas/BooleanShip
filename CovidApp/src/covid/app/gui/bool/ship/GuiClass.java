@@ -1,7 +1,6 @@
 package covid.app.gui.bool.ship;
 
 import covid.app.main.app.boolship.Human;
-import javafx.application.Application;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.mail.MessagingException;
@@ -91,7 +90,7 @@ public class GuiClass extends JFrame implements ActionListener {
         useFullWebsitesAboutCovid.add(cStats);
         contactUs.add(emailAd);
         mainApp.setSize(800, 800);
-        JMenu menu1 = new JMenu("Goverment Menu");
+        JMenu menu1 = new JMenu("Government Menu");
         allmenus.add(menu1);
         JMenu menu2 = new JMenu("Labor Menu");
         allmenus.add(menu2);
@@ -274,10 +273,10 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nhs) {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
-        	//create piechart
+            //create piechart
             piechart pie = new piechart();
             pie.launch(covid.app.main.app.boolship.Main.a);
-        	GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
+            GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
         }
 
     }
@@ -375,39 +374,47 @@ public class GuiClass extends JFrame implements ActionListener {
         if (GuiClass.isValidAfm(ans_afm)) {
             int pos = Human.search(ans_afm);
             if (pos == -1) {
-                String name, surname, gender, email;
+                String name, surname, email;
                 JPanel panel = new JPanel(new GridLayout(4, 1));
-
                 JLabel lname = new JLabel("Name");
                 lname.setFont(new Font("Arial", Font.BOLD, 18));
                 JLabel lsurname = new JLabel("Surname");
                 lsurname.setFont(new Font("Arial", Font.BOLD, 18));
-                JLabel lgender = new JLabel("Gender");
-                lgender.setFont(new Font("Arial", Font.BOLD, 18));
+
                 JLabel lemail = new JLabel("Email");
                 lemail.setFont(new Font("Arial", Font.BOLD, 18));
 
                 JTextField tname = new JTextField();
-                JTextField tsurname = new JTextField();
-                JTextField tgender = new JTextField();
-                JTextField temail = new JTextField();
 
+                JTextField tsurname = new JTextField();
+
+
+                JRadioButton male = new JRadioButton("male");
+                JRadioButton female = new JRadioButton("female");
+
+
+                JTextField temail = new JTextField();
+                temail.setSize(0,0);
+                tname.setSize(0,0);
+                tsurname.setSize(0,0);
                 panel.add(lname);
                 panel.add(tname);
                 panel.add(lsurname);
                 panel.add(tsurname);
-                panel.add(lgender);
-                panel.add(tgender);
+
                 panel.add(lemail);
                 panel.add(temail);
-                JOptionPane.showMessageDialog(null, panel, typeOfHuman + " additional info", JOptionPane.INFORMATION_MESSAGE);
+                panel.add(male);
+                panel.add(female);
+
+
+                JOptionPane.showMessageDialog(null, panel, typeOfHuman + " additional info", JOptionPane.PLAIN_MESSAGE);
                 name = tname.getText();
                 surname = tsurname.getText();
-                gender = tgender.getText();
                 email = temail.getText();
 
 
-                if (name.equals("") || surname.equals("") || gender.equals("") || email.equals("")) {
+                if (name.equals("") || surname.equals("") || email.equals("")) {
                     JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
                     GuiClass.createHumans(typeOfHuman, allEmployees);
                 } else {
@@ -416,9 +423,15 @@ public class GuiClass extends JFrame implements ActionListener {
                     } else {
 
                         try {
-                            one = new Human(name, surname, ans_afm, email, gender, null);
-                            GuiClass.registrationEmployeeAutomatedMail(email);
-                            allEmployees.add(one);
+                            if (male.isSelected()) {
+                                one = new Human(name, surname, ans_afm, email, "male", null);
+                                GuiClass.registrationEmployeeAutomatedMail(email);
+                                allEmployees.add(one);
+                            } else if (female.isSelected()) {
+                                one = new Human(name, surname, ans_afm, email, "female", null);
+                                GuiClass.registrationEmployeeAutomatedMail(email);
+                                allEmployees.add(one);
+                            }
 
 
                         } catch (IllegalAccessException iAe) {
@@ -432,17 +445,18 @@ public class GuiClass extends JFrame implements ActionListener {
             }
         }
     }
-    public static void registrationAutomatedMail(String orgMail){
+
+    public static void registrationAutomatedMail(String orgMail) {
         try {
-            JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
+            JavaMailUtil.sendMail(orgMail, "Welcome", "Thank you for registering on our app.If you have any problem feel free to contact us. ");
         } catch (MessagingException messagingException) {
             JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public static void registrationEmployeeAutomatedMail(String mail){
+    public static void registrationEmployeeAutomatedMail(String mail) {
         try {
-            JavaMailUtil.sendMail(mail,"Welcome","We will like to inform you that the organisation you belong just registered you as a member.We will help you if you encounter any covid related problem.If you have any problem feel free to contact us. ");
+            JavaMailUtil.sendMail(mail, "Welcome", "We will like to inform you that the organisation you belong just registered you as a member.We will help you if you encounter any covid related problem.If you have any problem feel free to contact us. ");
         } catch (MessagingException messagingException) {
             JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
         }
