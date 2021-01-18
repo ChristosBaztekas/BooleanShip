@@ -417,7 +417,9 @@ public class GuiClass extends JFrame implements ActionListener {
 
                         try {
                             one = new Human(name, surname, ans_afm, email, gender, null);
+                            GuiClass.registrationEmployeeAutomatedMail(email);
                             allEmployees.add(one);
+
 
                         } catch (IllegalAccessException iAe) {
                             JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
@@ -433,6 +435,14 @@ public class GuiClass extends JFrame implements ActionListener {
     public static void registrationAutomatedMail(String orgMail){
         try {
             JavaMailUtil.sendMail(orgMail,"Welcome","Thank you for registering on our app.If you have any problem feel free to contact us. ");
+        } catch (MessagingException messagingException) {
+            JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static void registrationEmployeeAutomatedMail(String mail){
+        try {
+            JavaMailUtil.sendMail(mail,"Welcome","We will like to inform you that the organisation you belong just registered you as a member.We will help you if you encounter any covid related problem.If you have any problem feel free to contact us. ");
         } catch (MessagingException messagingException) {
             JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
         }
