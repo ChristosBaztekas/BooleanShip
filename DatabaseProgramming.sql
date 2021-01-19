@@ -66,7 +66,7 @@ CREATE TABLE Schools(
                         number_of_others_positive int not null,
                         lockdown int not null,/*0 means no, 1 yes*/
                         status int not null
-                            Primary Key(id)
+                        Primary Key(id)
 )
 CREATE TABLE Schools_teachers(
                                  id_Schools int not null foreign key references Schools(id),
@@ -126,7 +126,7 @@ CREATE TABLE Universities_teachers(
 )
 CREATE TABLE Universities_changes(
                                      id_Universities int not null foreign key references Universities(id),
-                                     id_Human varchar(9) not null foreign key references Human(Afm)
+                                id_Human varchar(9) not null foreign key references Human(Afm)
 )
 CREATE TABLE Labors(
                        id int not null foreign key references Organisations(id),
@@ -135,8 +135,8 @@ CREATE TABLE Labors(
                        primary key(id)
 )
 CREATE TABLE Labors_changes(
-                               id_Labors int not null foreign key references Labors(id),
-                               id_Human varchar(9) not null foreign key references Human(Afm)
+                                     id_Labors int not null foreign key references Labors(id),
+                                     id_Human varchar(9) not null foreign key references Human(Afm)
 )
 CREATE TABLE Labors_department(
                                   id_Universities int not null foreign key references Labors(id),
@@ -163,15 +163,15 @@ if (SELECT @flag = id
     FROM Organisations
     WHERE username = ?) is null
     begin
-        insert Organisations values(?,?,?)
-        insert NursingHomes values(?,?,?)
-        select @everythink_ok = 0
+    insert Organisations values(?,?,?)
+    insert NursingHomes values(?,?,?)
+    select @everythink_ok = 0
     end
 else
     begin
-        select @everythink_ok = -1 --does it return?
+    select @everythink_ok = -1 --does it return?
     end
---does it return?
+    --does it return?
 --sign in
 DECLARE @id_org int
 SELECT @id_org = id --(1)

@@ -552,9 +552,9 @@ public class Connect {
             preparedStatement = connection.prepareStatement(query7);
             preparedStatement.setInt(1, idOrg);
             resultSet = preparedStatement.executeQuery();
-//            ArrayList<Classes> departents = new ArrayList<>();
-//            int change_class = Integer.MIN_VALUE;
-//            ArrayList<Human> humans = new ArrayList<>();
+            ArrayList<Classes> departents = new ArrayList<>();
+            int change_class = Integer.MIN_VALUE;
+            ArrayList<Human> humans = new ArrayList<>();
             while (resultSet.next()) {
                 int classesId = resultSet.getInt(1);
                 String idifier = resultSet.getString(2);
@@ -581,13 +581,13 @@ public class Connect {
                     humans.add(h);
                 }
             }
-//            Schools s = new Schools(name, area, email, number_of_students_positive,
-//                    number_of_teachers_positive, number_of_others_positive, lockdown, status);
-//            //s.setTeachers(employees);
-//            s.setOthers(others);
-//            s.setChanges(changes);
-//            s.setDepartments(departents);
-//            return s;
+            Schools s = new Schools(name, area, email, number_of_students_positive,
+                    number_of_teachers_positive, number_of_others_positive, lockdown, status);
+            s.setTeachers(employees);
+            s.setOthers(others);
+            s.setChanges(changes);
+            s.setDepartments(departents);
+            return s;
         } catch (SQLException sqlException) {
             System.out.println(sqlException.getMessage());
         }
