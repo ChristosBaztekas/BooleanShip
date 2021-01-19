@@ -1,8 +1,11 @@
 package covid.app.main.app.boolship;
 
 
+import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.model.User;
 import covid.app.gui.bool.ship.GuiClass;
 import covid.app.gui.bool.ship.piechart;
+import covid.app.manager.DBConnectionManager;
 import javafx.application.Application;
 
 import javax.swing.*;
@@ -13,7 +16,11 @@ public class Main {
 
 	public static String[] a;// we need this for the piechart
     public static void main(String[] args) {
-
+        //this is how the create user will work
+//        User leonidas =  new User("","123457","leonidasdiam2013@gmail.com","LeoDiamantopoulos");
+//        DBConnectionManager manager = new DBConnectionManager();
+//        UserDaoImpl impl = new UserDaoImpl(manager);
+//        impl.insertUser(leonidas);
         GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);
