@@ -392,7 +392,7 @@ public class Connect {
             }
             String query6 = "SELECT C.id, C.idifier, H.name, H.surname, H.Afm, H.email, H.gender " +
                     "FROM Schools_departments AS D, Classes AS C, Classes_members AS M, Human as H" +
-                    "WHERE C.id = M.id_Classes AND C.id_Organisations = ? AND H.ID = M.id_Human";
+                    "WHERE C.id = M.id_Classes AND C.id_Organisations = ? AND H.ID = M. AND D.";
             preparedStatement = connection.prepareStatement(query6);
             preparedStatement.setInt(1, idOrg);
             resultSet = preparedStatement.executeQuery();
@@ -426,6 +426,161 @@ public class Connect {
                 }
             }
 
+            Schools s = new Schools(name, area, email, number_of_students_positive,
+                    number_of_teachers_positive, number_of_others_positive, lockdown,status);
+            s.setTeachers(employees);
+            s.setOthers(others);
+            s.setChanges(changes);
+            s.setDepartments(departents);
+            return s;
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return null;
+    }
+    public static Universities giveUni(int idOrg) {
+        String name = null;
+        String area = null;
+        String email = null;
+        int number_of_teachers_positive = Integer.MIN_VALUE;
+        int number_of_others_positive = Integer.MIN_VALUE;
+        boolean lockdown = false;
+        boolean status = false;
+        try {
+            Connection connection = DriverManager.getConnection(url);
+            String query = "SELECT name, area, email FROM Organisations as O WHERE O.id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, idOrg);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                name = resultSet.getString(1);
+                area = resultSet.getString(2);
+                email = resultSet.getString(3);
+            }
+            String query2 = "SELECT number_of_teachers_positive, " +
+                    "number_of_others_positive, lockdown, status\n"
+                    + "FROM Universities as S WHERE S.id = ?";
+            preparedStatement = connection.prepareStatement(query2);
+            preparedStatement.setInt(1, idOrg);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                number_of_teachers_positive = resultSet.getInt(1);
+                number_of_others_positive = resultSet.getInt(2);
+                lockdown = (resultSet.getInt(3) == 0 ? false : true);
+                status = (resultSet.getInt(4) == 0 ? false : true);
+            }
+            String query3 = "SELECT name, surname, Afm, email, gender FROM Universities_teachers AS E, Human as H\n" +
+                    "WHERE E.id_Universities = ? AND E.id_Human = Afm";
+            preparedStatement = connection.prepareStatement(query3);
+            preparedStatement.setInt(1, idOrg);
+            resultSet = preparedStatement.executeQuery();
+            ArrayList<Human> teachers = new ArrayList<Human>();
+            while (resultSet.next()) {
+                Human h = new Human(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
+                teachers.add(h);
+            }
+            String query4 = "SELECT name, surname, Afm, email, gender FROM Universities_changes AS E, Human as H\n" +
+                    "WHERE E.id_Universities = ? AND E.id_Human = Afm";
+            preparedStatement = connection.prepareStatement(query4);
+            preparedStatement.setInt(1, idOrg);
+            resultSet = preparedStatement.executeQuery();
+            ArrayList<Human> changes = new ArrayList<Human>();
+            while (resultSet.next()) {
+                Human h = new Human(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
+                changes.add(h);
+            }
+            String query5 = "SELECT name, surname, Afm, email, gender FROM Universities_others AS E, Human as H\n" +
+                    "WHERE E.id_Universities = ? AND E.id_Human = Afm";
+            preparedStatement = connection.prepareStatement(query5);
+            preparedStatement.setInt(1, idOrg);
+            resultSet = preparedStatement.executeQuery();
+            ArrayList<Human> others = new ArrayList<Human>();
+            while (resultSet.next()) {
+                Human h = new Human(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
+                others.add(h);
+            }
+            String query6 = "SELECT C.id, C.idifier, H.name, H.surname, H.Afm, H.email, H.gender " +
+                    "FROM Universities_departments AS D, Classes AS C, Classes_members AS M, Human as H" +
+                    "WHERE C.id = M.id_Classes AND C.id_Organisations = ? AND H.ID = M.id_Human";
+            preparedStatement = connection.prepareStatement(query6);
+            preparedStatement.setInt(1, idOrg);
+            resultSet = preparedStatement.executeQuery();
+            ArrayList<Classes> departents = new ArrayList<>();
+            int change_class = Integer.MIN_VALUE;
+            ArrayList<Human> humans = new ArrayList<>();
+            while (resultSet.next()) {
+                int classesId = resultSet.getInt(1);
+                String idifier = resultSet.getString(2);
+                if (classesId == change_class) {
+                    Human h = new Human(resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6),
+                            resultSet.getString(7));
+                    humans.add(h);
+                } else {
+                    change_class = classesId;
+                    if (humans.size() == 0) {
+                        continue;
+                    }
+                    Classes classes = new Classes(idifier, idOrg, humans);
+                    departents.add(classes);
+                    humans.clear();
+                    Human h = new Human(resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6),
+                            resultSet.getString(7));
+                    humans.add(h);
+                }
+            }
+            String query7 = "SELECT C.id, C.idifier, H.name, H.surname, H.Afm, H.email, H.gender " +
+                    "FROM Schools_departments AS D, Classes AS C, Classes_members AS M, Human as H" +
+                    "WHERE C.id = M.id_Classes AND C.id_Organisations = ? AND H.ID = M.id_Human";
+            preparedStatement = connection.prepareStatement(query7);
+            preparedStatement.setInt(1, idOrg);
+            resultSet = preparedStatement.executeQuery();
+            ArrayList<Classes> departents = new ArrayList<>();
+            int change_class = Integer.MIN_VALUE;
+            ArrayList<Human> humans = new ArrayList<>();
+            while (resultSet.next()) {
+                int classesId = resultSet.getInt(1);
+                String idifier = resultSet.getString(2);
+                if (classesId == change_class) {
+                    Human h = new Human(resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6),
+                            resultSet.getString(7));
+                    humans.add(h);
+                } else {
+                    change_class = classesId;
+                    if (humans.size() == 0) {
+                        continue;
+                    }
+                    Classes classes = new Classes(idifier, idOrg, humans);
+                    departents.add(classes);
+                    humans.clear();
+                    Human h = new Human(resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6),
+                            resultSet.getString(7));
+                    humans.add(h);
+                }
+            }
             Schools s = new Schools(name, area, email, number_of_students_positive,
                     number_of_teachers_positive, number_of_others_positive, lockdown, status);
             s.setTeachers(employees);

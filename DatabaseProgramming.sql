@@ -15,7 +15,7 @@ CREATE TABLE Organisations(
                               email varchar(80),
                               username varchar(80),
                               password varchar(80),
-                              numberPeople int,!!!
+                              numberPeople int,--would we like that?
                               id int not null IDENTITY(0,1),
                               constraint Organisations_pr Primary Key (id)
 )
@@ -24,12 +24,12 @@ CREATE TABLE Human_belongs(
                               id_Organisations int not null foreign key references Organisations(id)
 )
 CREATE TABLE Human_waitTest(
-                               id_Human int not null foreign key references Human(id) ,
+                               id_Human int not null foreign key references Human(id),
                                date_insert date/*idea*/
 )
 CREATE TABLE Classes(
                         idifier varchar(80) not null,
-                        id_Organisations int not null,/*see what to be made for inherabation*/
+                        id_Organisations int not null,
                         id int not null IDENTITY(0,1),
                         Primary Key(id)
 )
@@ -38,7 +38,6 @@ CREATE TABLE Classes_members(
                                 id_Human varchar(9) not null foreign key references Human(Afm)
 )
 
-/*be carefull of ISA need*/
 CREATE TABLE NursingHomes(
                              id int not null foreign key references Organisations(id),
                              status_descr varchar(80),
@@ -67,7 +66,7 @@ CREATE TABLE Schools(
                         number_of_others_positive int not null,
                         lockdown int not null,/*0 means no, 1 yes*/
                         status int not null
-                            Primary Key(id)
+                        Primary Key(id)
 )
 CREATE TABLE Schools_teachers(
                                  id_Schools int not null foreign key references Schools(id),
@@ -99,6 +98,8 @@ CREATE TABLE Universities(
                              status int not null,
                              number_others_positive int not null,
                              number_teachers_positive int not null,
+                             lockdown int not null,--to be added to sql
+                             status int not null, --to be added to sql
                              primary key(id)
 )
 CREATE TABLE Universities_department(
@@ -123,11 +124,19 @@ CREATE TABLE Universities_teachers(
                                       id_Human varchar(9) not null foreign key references Human(Afm),
                                       number_teachers_positive int not null
 )
+CREATE TABLE Universities_changes(
+                                     id_Universities int not null foreign key references Universities(id),
+                                id_Human varchar(9) not null foreign key references Human(Afm)
+)
 CREATE TABLE Labors(
                        id int not null foreign key references Organisations(id),
                        status int not null,
                        lockdown int not null,
                        primary key(id)
+)
+CREATE TABLE Labors_changes(
+                                     id_Labors int not null foreign key references Labors(id),
+                                     id_Human varchar(9) not null foreign key references Human(Afm)
 )
 CREATE TABLE Labors_department(
                                   id_Universities int not null foreign key references Labors(id),
