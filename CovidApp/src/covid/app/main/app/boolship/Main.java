@@ -17,7 +17,7 @@ public class Main {
 	public static String[] a;// we need this for the piechart
     public static void main(String[] args) {
         //this is how the create user will work
-//        User leonidas =  new User("","123457","leonidasdiam2013@gmail.com","LeoDiamantopoulos");
+//        User leonidas =  new User("","123467","leonidasdiam2001@gmail.com","Leonidas Diamantopoulos");
 //        DBConnectionManager manager = new DBConnectionManager();
 //        UserDaoImpl impl = new UserDaoImpl(manager);
 //        impl.insertUser(leonidas);
