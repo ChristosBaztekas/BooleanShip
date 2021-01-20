@@ -1,7 +1,10 @@
 package covid.app.gui.bool.ship;
 
 
+import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.model.User;
 import covid.app.main.app.boolship.Labors;
+import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -251,10 +254,16 @@ public class RegistrationFormL
             } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
             } else {
-                usernames.add(username);
-                passwords.add(password);
 
+                String activity = "The situation for labors is unstable";
                 Labors newOne = new Labors(orgName, orgArea, numEmployees, orgMail);
+                User leonidas = new User("", password, orgMail, username, "Labor");
+                DBConnectionManager manager = new DBConnectionManager();
+                UserDaoImpl impl = new UserDaoImpl(manager);
+                impl.insertUser(leonidas);
+                DBConnectionManager manager2 = new DBConnectionManager();
+                UserDaoImpl impl2 = new UserDaoImpl(manager2);
+                impl2.insertOrganisation("", "Labor", orgName, orgArea, numEmployees, username, activity);
                 JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);
                 ok = true;

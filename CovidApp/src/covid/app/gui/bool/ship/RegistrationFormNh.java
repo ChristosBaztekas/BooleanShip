@@ -1,7 +1,10 @@
 package covid.app.gui.bool.ship;
 
 
+import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.model.User;
 import covid.app.main.app.boolship.NursingHomes;
+import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -267,10 +270,19 @@ public class RegistrationFormNh
             } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
             } else {
-
-                usernames.add(username);
-                passwords.add(password);
+                String activity = "Open for guests";
+                // passwords.add(password); usernames.add(username);
+                if (enclosedN) {
+                    activity = "Closed for guests";
+                }
                 NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
+                User leonidas = new User("", password, orgMail, username, "NursingHome");
+                DBConnectionManager manager = new DBConnectionManager();
+                UserDaoImpl impl = new UserDaoImpl(manager);
+                impl.insertUser(leonidas);
+                DBConnectionManager manager2 = new DBConnectionManager();
+                UserDaoImpl impl2 = new UserDaoImpl(manager2);
+                impl2.insertOrganisation("", "NursingHome", orgName, orgArea, (numElderly + numEmployees), username, activity);
                 JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);
                 dispose();
