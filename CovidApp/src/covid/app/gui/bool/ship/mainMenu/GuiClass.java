@@ -1,5 +1,6 @@
 package covid.app.gui.bool.ship.mainMenu;
 
+import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.login.*;
 import covid.app.gui.bool.ship.menus.NursingHomeMenu;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormL;
@@ -8,6 +9,7 @@ import covid.app.gui.bool.ship.registrationForms.RegistrationFormS;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormU;
 import covid.app.gui.bool.ship.resources.piechart;
 import covid.app.main.app.boolship.Human;
+import covid.app.manager.DBConnectionManager;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.mail.MessagingException;
@@ -404,7 +406,7 @@ public class GuiClass extends JFrame implements ActionListener {
         }
     }
 
-    public static void createHumans(String typeOfHuman, ArrayList<Human> allEmployees,String orgType,String role) {
+    public static void createHumans(String typeOfHuman,String orgType,String role,String orgUsername) {
         Human one;
 
         String ans_afm = JOptionPane.showInputDialog("Please write the " + typeOfHuman + "'s afm");
@@ -454,21 +456,26 @@ public class GuiClass extends JFrame implements ActionListener {
 
                 if (name.equals("") || surname.equals("") || email.equals("")) {
                     JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
-                    GuiClass.createHumans(typeOfHuman, allEmployees,orgType,role);
+                    GuiClass.createHumans(typeOfHuman,orgType,role,orgUsername);
                 } else {
                     if (!GuiClass.isValidEmail(email)) {
-                        GuiClass.createHumans(typeOfHuman, allEmployees,orgType,role);
+                        GuiClass.createHumans(typeOfHuman,orgType,role,orgUsername);
                     } else {
 
                         try {
                             if (male.isSelected()) {
                                 one = new Human(name, surname, ans_afm, email, "male", orgType,role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
-                                allEmployees.add(one);
+                                DBConnectionManager manager = new DBConnectionManager();
+                                UserDaoImpl impl = new UserDaoImpl(manager);
+                                impl.insertHuman(one,orgUsername);
                             } else if (female.isSelected()) {
                                 one = new Human(name, surname, ans_afm, email, "female", orgType,role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
-                                allEmployees.add(one);
+                                DBConnectionManager manager = new DBConnectionManager();
+                                UserDaoImpl impl = new UserDaoImpl(manager);
+                                impl.insertHuman(one,orgUsername);
+
                             }
 
 
@@ -479,7 +486,7 @@ public class GuiClass extends JFrame implements ActionListener {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "The afm already exists.Please Try again", "Already existed afm", JOptionPane.ERROR_MESSAGE);
-                GuiClass.createHumans(typeOfHuman, allEmployees,orgType,role);
+                GuiClass.createHumans(typeOfHuman,orgType,role,orgUsername);
             }
         }
     }

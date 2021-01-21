@@ -2,18 +2,14 @@ package covid.app.gui.bool.ship.menus;
 
 
 
+import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.main.app.boolship.Human;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class NursingHomeMenu extends JFrame implements ActionListener {
-
-    private static final ArrayList<Human> allNemployees = new ArrayList<>();
 
     private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
@@ -78,9 +74,9 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == i1) {
-            GuiClass.createHumans("Employee",allNemployees,"Nursing Home","Employees");
+            GuiClass.createHumans("Employee","Nursing Home","Employee", LogNursingHome.getOrgname());
         } else if (e.getSource() == i2) {
-            GuiClass.createHumans("Employee",allNemployees,"Nursing Home","Elder Resident");
+            GuiClass.createHumans("Elder Resident","Nursing Home","Elder Resident",LogNursingHome.getOrgname());
         } else if (e.getSource() == i3) {
 
         } else if (e.getSource() == i4) {

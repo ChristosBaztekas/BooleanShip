@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LogSchool extends JFrame implements ActionListener {
+    static String orgname = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -102,6 +103,10 @@ public class LogSchool extends JFrame implements ActionListener {
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Redirecting to the main School menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                String orgUsername = userText;
+                DBConnectionManager manager = new DBConnectionManager();
+                UserDaoImpl impl = new UserDaoImpl(manager);
+                orgname = impl.findOrgname(orgUsername);
                 dispose();
                 SchoolMenu wsFrame = new SchoolMenu();
                 wsFrame.setBounds(400, 100, 900, 700);
@@ -144,4 +149,11 @@ public class LogSchool extends JFrame implements ActionListener {
 
     }
 
+    public static String getOrgname() {
+        return orgname;
+    }
+
+    public static void setOrgname(String orgname) {
+        LogSchool.orgname = orgname;
+    }
 }

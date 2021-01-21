@@ -1,5 +1,6 @@
 package covid.app.gui.bool.ship.menus;
 
+import covid.app.gui.bool.ship.login.LogSchool;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 
 import javax.swing.*;
@@ -13,13 +14,13 @@ public class LaborMenu extends JFrame implements ActionListener {
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
 
-    private final JMenuItem i1 = new JMenuItem("Modify deparments");
-    private final JMenuItem i2 = new JMenuItem("Modify employees");
-    private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
-    private final JMenuItem i4 = new JMenuItem("Status of your Labor");
-    private final JMenuItem i5 = new JMenuItem("Modify other related people");
 
-    private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem i1 = new JMenuItem("Modify employees");
+    private final JMenuItem i2 = new JMenuItem("Declare a Case of Covid-19");
+    private final JMenuItem i3 = new JMenuItem("Status of your Labor");
+
+
+    private final JMenuItem i4 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
     public LaborMenu(){
@@ -40,12 +41,12 @@ public class LaborMenu extends JFrame implements ActionListener {
         JMenu exitm = new JMenu("Close Program");
         controlsMenu.add(exitm);
         exitm.add(close);
+
         mainMenul.add(i1);
         mainMenul.add(i2);
         mainMenul.add(i3);
+
         mainMenul.add(i4);
-        mainMenul.add(i5);
-        mainMenul.add(i6);
 
         mainMenul.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -61,28 +62,24 @@ public class LaborMenu extends JFrame implements ActionListener {
         emailAd.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
         close.addActionListener(this);
+
         i1.addActionListener(this);
         i2.addActionListener(this);
         i3.addActionListener(this);
+
         i4.addActionListener(this);
-        i5.addActionListener(this);
-        i6.addActionListener(this);
         exit.addActionListener(this);
 
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == i1) {
-            JOptionPane.showMessageDialog(this, "Read the code it is easy!!");
+       if (e.getSource() == i1) {
+           GuiClass.createHumans("Employee","Labor","Employee", LogSchool.getOrgname());
         } else if (e.getSource() == i2) {
 
         } else if (e.getSource() == i3) {
 
-        } else if (e.getSource() == i4) {
-
-        } else if (e.getSource() == i5) {
-
-        } else if (e.getSource() == i6) {
+        }  else if (e.getSource() == i4) {
 
         }  else if (e.getSource() == exit) {
             GuiClass.exitMethod();

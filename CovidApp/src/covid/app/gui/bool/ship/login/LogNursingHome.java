@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LogNursingHome extends JFrame implements ActionListener {
+    static String orgname = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -99,6 +100,10 @@ public class LogNursingHome extends JFrame implements ActionListener {
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                String orgUsername = userText;
+                DBConnectionManager manager = new DBConnectionManager();
+                UserDaoImpl impl = new UserDaoImpl(manager);
+                 orgname = impl.findOrgname(orgUsername);
                 dispose();
                 NursingHomeMenu wsFrame = new NursingHomeMenu();
                 wsFrame.setBounds(400, 100, 900, 700);
@@ -141,4 +146,11 @@ public class LogNursingHome extends JFrame implements ActionListener {
 
     }
 
+    public static String getOrgname() {
+        return orgname;
+    }
+
+    public static void setOrgname(String orgname) {
+        LogNursingHome.orgname = orgname;
+    }
 }
