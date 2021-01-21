@@ -6,22 +6,6 @@ import java.sql.SQLException;
 
 public class DbConnectionUtils {
 
-//    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=BooleanShip2;user=leoni;password=6975LeoDiam;";
-
-//    jdbc:sqlserver://dbHost\sqlexpress;user=sa;password=secret
-
-//2109885125
-
-//    String url = "jdbc:postgresql://localhost/test";
-//    Properties props = new Properties();
-//props.setProperty("user","fred");
-//props.setProperty("password","secret");
-//props.setProperty("ssl","true");
-//    Connection conn = DriverManager.getConnection(url, props);
-//
-//    String url = "jdbc:postgresql://localhost/test?user=fred&password=secret&ssl=true";
-//    Connection conn = DriverManager.getConnection(url);
-
 
     private static String url = "jdbc:postgresql://localhost:5432/booleanship";
     private static String user = "postgres";

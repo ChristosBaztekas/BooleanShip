@@ -1,5 +1,12 @@
-package covid.app.gui.bool.ship;
+package covid.app.gui.bool.ship.mainMenu;
 
+import covid.app.gui.bool.ship.login.*;
+import covid.app.gui.bool.ship.menus.NursingHomeMenu;
+import covid.app.gui.bool.ship.registrationForms.RegistrationFormL;
+import covid.app.gui.bool.ship.registrationForms.RegistrationFormNh;
+import covid.app.gui.bool.ship.registrationForms.RegistrationFormS;
+import covid.app.gui.bool.ship.registrationForms.RegistrationFormU;
+import covid.app.gui.bool.ship.resources.piechart;
 import covid.app.main.app.boolship.Human;
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -187,7 +194,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == gmenu) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Surveillance login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOption("Log in as a Surveillance User");
+            alreadyUserOptionG("Log in as a Surveillance User");
         } else if (source == gmenu5) {
             GuiClass.exitMethod();
         } else if (source == lmenu1) {
@@ -195,7 +202,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == lmenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Labor user login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOption("Log in as a Labor User.");
+            alreadyUserOptionL("Log in as a Labor User.");
         } else if (source == lmenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Labor user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -211,7 +218,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == smenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the School login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOption("Log in as a School User.");
+            alreadyUserOptionS("Log in as a School User.");
         } else if (source == smenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the School user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -227,7 +234,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == umenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the University login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOption("Log in as a University User.");
+            alreadyUserOptionU("Log in as a University User.");
         } else if (source == umenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the University user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -243,7 +250,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nmenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOption("Log in as a Nursing Home User.");
+            alreadyUserOptionN("Log in as a Nursing Home User.");
         } else if (source == nmenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -290,7 +297,7 @@ public class GuiClass extends JFrame implements ActionListener {
     }
 
 
-    public static void alreadyUserOption(String anyString) {
+    public static void alreadyUserOptionG(String anyString) {
         LogOrg frame = new LogOrg();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
         frame.setVisible(true);
@@ -298,7 +305,38 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
-
+    public static void alreadyUserOptionN(String anyString) {
+        LogNursingHome frame = new LogNursingHome();
+        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setVisible(true);
+        frame.setBounds(620, 100, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(true);
+    }
+    public static void alreadyUserOptionS(String anyString) {
+        LogSchool frame = new LogSchool();
+        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setVisible(true);
+        frame.setBounds(620, 100, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(true);
+    }
+    public static void alreadyUserOptionU(String anyString) {
+        LogUniversity frame = new LogUniversity();
+        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setVisible(true);
+        frame.setBounds(620, 100, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(true);
+    }
+    public static void alreadyUserOptionL(String anyString) {
+        LogLabor frame = new LogLabor();
+        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setVisible(true);
+        frame.setBounds(620, 100, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(true);
+    }
     public static void sendingProblem() {
         String problemDescription = JOptionPane.showInputDialog("Please describe your problem in order to fix it");
         try {
@@ -366,7 +404,7 @@ public class GuiClass extends JFrame implements ActionListener {
         }
     }
 
-    public static void createHumans(String typeOfHuman, ArrayList<Human> allEmployees) {
+    public static void createHumans(String typeOfHuman, ArrayList<Human> allEmployees,String orgType,String role) {
         Human one;
 
         String ans_afm = JOptionPane.showInputDialog("Please write the " + typeOfHuman + "'s afm");
@@ -416,19 +454,19 @@ public class GuiClass extends JFrame implements ActionListener {
 
                 if (name.equals("") || surname.equals("") || email.equals("")) {
                     JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
-                    GuiClass.createHumans(typeOfHuman, allEmployees);
+                    GuiClass.createHumans(typeOfHuman, allEmployees,orgType,role);
                 } else {
                     if (!GuiClass.isValidEmail(email)) {
-                        GuiClass.createHumans(typeOfHuman, allEmployees);
+                        GuiClass.createHumans(typeOfHuman, allEmployees,orgType,role);
                     } else {
 
                         try {
                             if (male.isSelected()) {
-                                one = new Human(name, surname, ans_afm, email, "male", null);
+                                one = new Human(name, surname, ans_afm, email, "male", orgType,role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
                                 allEmployees.add(one);
                             } else if (female.isSelected()) {
-                                one = new Human(name, surname, ans_afm, email, "female", null);
+                                one = new Human(name, surname, ans_afm, email, "female", orgType,role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
                                 allEmployees.add(one);
                             }
@@ -441,7 +479,7 @@ public class GuiClass extends JFrame implements ActionListener {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "The afm already exists.Please Try again", "Already existed afm", JOptionPane.ERROR_MESSAGE);
-                GuiClass.createHumans(typeOfHuman, allEmployees);
+                GuiClass.createHumans(typeOfHuman, allEmployees,orgType,role);
             }
         }
     }

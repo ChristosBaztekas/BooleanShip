@@ -3,11 +3,11 @@ package covid.app.main.app.boolship;
 
 public interface caseManagmentAndHumanAddition {
 
-    public static void createOrg() {};//creates a new whole object of your class
-    public void declareCase(Human human);
-    public void declareCase();// implements the protocol of each class
-    public void printDetails();//prints the details of the object
-    public void monitoring();
-    public void autoMonitoring();
+    static void createOrg() {}
+     void declareCase(Human human);
+     void declareCase();
+     void printDetails();
+     void monitoring();
+     void autoMonitoring();
 }
 

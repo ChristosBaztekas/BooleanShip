@@ -443,8 +443,8 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-                        covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
-                        teachers.add(one);
+//                        covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                        teachers.add(one);
                         i++;
                     }
                     addPeople(i);
@@ -482,18 +482,18 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             } else {//from cunstractor
                 System.out.println("There are no professors filled, Please start with giving them");
                 int i = 0;
-                while (true) {
-                    System.out.printf("Creating the %d professor, 0 for exit", i+1);
-                    if (scanner.nextLine().equals("0")) {
-                        break;
-                    }
-                    covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
-                    if (one == null) {
-                        break;
-                    }
-                    teachers.add(one);
-                    i++;
-                }
+//                while (true) {
+//                    System.out.printf("Creating the %d professor, 0 for exit", i+1);
+//                    if (scanner.nextLine().equals("0")) {
+//                        break;
+//                    }
+//                    covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                    if (one == null) {
+//                        break;
+//                    }
+//                    teachers.add(one);
+//                    i++;
+//                }
                 break;
             }
         }
@@ -608,19 +608,19 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                 String ans = scanner.nextLine();
                 int i = 0;
                 if (ans.equals("1")) {
-                    while (true) {
-                        System.out.printf("Adding the %d person, for exit 0", i+1);
-                        if (scanner.nextLine().equals("0")) {
-                            break;
-                        }
-                        covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
-                        if (one == null) {
-                            break;
-                        }
-                        others.add(one);
-                        i++;
-                    }
-                    addPeople(i);
+//                    while (true) {
+//                        System.out.printf("Adding the %d person, for exit 0", i+1);
+//                        if (scanner.nextLine().equals("0")) {
+//                            break;
+//                        }
+//                        covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                        if (one == null) {
+//                            break;
+//                        }
+//                        others.add(one);
+//                        i++;
+//                    }
+//                    addPeople(i);
                     break;
                 }
                 System.out.printf("There are %d People, would you like to remove one?\n" +
@@ -649,7 +649,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                     }
                     break;
                 }
-            } else {//from constractor
+            } else {
                 System.out.println("There are no people filled, Please start with giving them");
                 int i = 0;
                 while (true) {
@@ -657,11 +657,11 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-                    covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
-                    if (one == null) {
-                        break;
-                    }
-                    others.add(one);
+//                    covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                    if (one == null) {
+//                        break;
+//                    }
+//                    others.add(one);
                     i++;
                 }
                 break;

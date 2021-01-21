@@ -1,4 +1,4 @@
-package covid.app.gui.bool.ship;
+package covid.app.gui.bool.ship.resources;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;

@@ -1,12 +1,7 @@
 package covid.app.main.app.boolship;
 
 
-import covid.app.data.dao.UserDaoImpl;
-import covid.app.data.model.User;
-import covid.app.gui.bool.ship.GuiClass;
-import covid.app.gui.bool.ship.piechart;
-import covid.app.manager.DBConnectionManager;
-import javafx.application.Application;
+import covid.app.gui.bool.ship.mainMenu.GuiClass;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -28,7 +23,7 @@ public class Main {
         wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        a = args;// we need this for the piechart
+      a = args;// we need this for the piechart
 
 
 

@@ -25,15 +25,15 @@ public class Classes {
             if (answr.equals("0")) {
                 break;
             }
-            while (true) {
-                Human human = Human.createHuman(organisation);
-                if (human != null) {
-                    members.add(human);
-                    metr++;
-                } else {
-                    return;
-                }
-            }
+//            while (true) {
+//                Human human = Human.createHuman(organisation);
+//                if (human != null) {
+//                    members.add(human);
+//                    metr++;
+//                } else {
+//                    return;
+//                }
+//            }
         }
     }
     public Classes(String idifier, int orgId, ArrayList<Human> humans) {
@@ -77,15 +77,15 @@ public class Classes {
                     break;
                 }
             }
-            if (answ.equals("a")) {
-                Human one = Human.createHuman(organisation);
-                if (one == null) {
-                    break;
-                } else {
-                    organisation.addPeople(1);
-                }
-                members.add(one);
-            }
+//            if (answ.equals("a")) {
+//                Human one = Human.createHuman(organisation);
+//                if (one == null) {
+//                    break;
+//                } else {
+//                    organisation.addPeople(1);
+//                }
+//                members.add(one);
+//            }
         }
     }
 

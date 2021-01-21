@@ -1,6 +1,11 @@
-package covid.app.gui.bool.ship;
+package covid.app.gui.bool.ship.login;
 
-
+import covid.app.data.dao.UserDaoImpl;
+import covid.app.gui.bool.ship.mainMenu.GuiClass;
+import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
+import covid.app.gui.bool.ship.menus.OrgMenu;
+import covid.app.gui.bool.ship.menus.SchoolMenu;
+import covid.app.manager.DBConnectionManager;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
@@ -8,8 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LogOrg extends JFrame implements ActionListener {
-    static Desktop d = Desktop.getDesktop();
+public class LogSchool extends JFrame implements ActionListener {
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -22,7 +26,7 @@ public class LogOrg extends JFrame implements ActionListener {
     JButton exit = new JButton("Exit Program");
 
 
-    public LogOrg() {
+    public LogSchool() {
         setLayout(new BorderLayout());
         JLabel background = new JLabel(new ImageIcon("D:\\CovidApp\\src\\CovidApp\\Gui\\BooleanShip\\log1.png"));
         container.add(background);
@@ -92,59 +96,21 @@ public class LogOrg extends JFrame implements ActionListener {
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            for (int i = 0; i < 10; i++) {
-
-                if (userText.equalsIgnoreCase("LeonidasDiamg") && pwdText.equalsIgnoreCase("fixBugs")) {
-                    JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Redirecting to the main government menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                    OrgMenu wsFrame = new OrgMenu();
-                    wsFrame.setBounds(400, 100, 900, 700);
-                    wsFrame.setTitle("Welcome to the main Government User Menu!");
-                    wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(3);
-                } else if (userText.equalsIgnoreCase("LeonidasDiams") && pwdText.equalsIgnoreCase("fixBugs")) {
-                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Redirecting to the main School menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                    SchoolMenu wsFrame = new SchoolMenu();
-                    wsFrame.setBounds(400, 100, 900, 700);
-                    wsFrame.setTitle("Welcome to the main School user menu!");
-                    wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(3);
-                } else if (userText.equalsIgnoreCase("LeonidasDiaml") && pwdText.equalsIgnoreCase("fixBugs")) {
-                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Redirecting to the main Labor menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                    LaborMenu wsFrame = new LaborMenu();
-                    wsFrame.setBounds(400, 100, 900, 700);
-                    wsFrame.setTitle("Welcome to the main Labor user menu!");
-                    wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(3);
-                } else if (userText.equalsIgnoreCase("LeonidasDiamn") && pwdText.equalsIgnoreCase("fixBugs")) {
-                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Redirecting to the main university menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                    UniversityMenu wsFrame = new UniversityMenu();
-                    wsFrame.setBounds(400, 100, 900, 700);
-                    wsFrame.setTitle("Welcome to the main University user menu!");
-                    wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(3);
-                } else if ((userText.equalsIgnoreCase(RegistrationFormNh.usernames.get(i)) && pwdText.equalsIgnoreCase(RegistrationFormNh.passwords.get(i)))) {
-
-                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
-                    NursingHomeMenu wsFrame = new NursingHomeMenu();
-                    wsFrame.setBounds(400, 100, 900, 700);
-                    wsFrame.setTitle("Welcome to the main nursing home user menu!");
-                    wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(3);
-                } else {
-                    JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
-                }
+            DBConnectionManager manager2 = new DBConnectionManager();
+            UserDaoImpl impl2 = new UserDaoImpl(manager2);
+            String userType = "School";
+            if(impl2.readUserById(userText,pwdText,userType)){
+                JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Redirecting to the main School menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                SchoolMenu wsFrame = new SchoolMenu();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setTitle("Welcome to the main School User Menu!");
+                wsFrame.setVisible(true);
+                wsFrame.setDefaultCloseOperation(3);
+            }else{
+                JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
             }
-
 
         }
         if (e.getSource() == forgotPassword) {

@@ -178,11 +178,11 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-                        Human one = Human.createHuman(this);
-                        if (one == null) {
-                            break;
-                        }
-                        teachers.add(one);
+//                        //Human one = Human.createHuman(this);
+//                        if (one == null) {
+//                            break;
+//                        }
+//                        teachers.add(one);
                         i++;
                     }
                     addPeople(i);
@@ -224,8 +224,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-                    Human one = Human.createHuman(this);
-                    teachers.add(one);
+                    //Human one = Human.createHuman(this);
+                    //teachers.add(one);
                     i++;
                 }
                 break;
@@ -394,11 +394,11 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-                        Human one = Human.createHuman(this);
-                        if (one == null) {
-                            break;
-                        }
-                        others.add(one);
+                       // Human one = Human.createHuman(this);
+//                        if (one == null) {
+//                            break;
+//                        }
+//                        others.add(one);
                         i++;
                     }
                     addPeople(i);
@@ -440,17 +440,17 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-                    Human one = Human.createHuman(this);
-                    if (one == null) {
-                        break;
-                    }
-                    others.add(one);
-                    i++;
-                }
+//                    Human one = Human.createHuman(this);
+//                    if (one == null) {
+//                        break;
+//                    }
+//                    others.add(one);
+//                    i++;
+//                }
                 break;
             }
         }
-    }
+    }}
     public void monitoring() {
         if (status) {
             System.out.println("Some changes have been ocured");

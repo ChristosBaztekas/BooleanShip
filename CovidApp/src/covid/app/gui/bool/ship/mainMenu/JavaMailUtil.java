@@ -1,4 +1,4 @@
-package covid.app.gui.bool.ship;
+package covid.app.gui.bool.ship.mainMenu;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

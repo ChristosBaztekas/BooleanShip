@@ -1,7 +1,8 @@
-package covid.app.gui.bool.ship;
+package covid.app.gui.bool.ship.menus;
 
 
 
+import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.main.app.boolship.Human;
 
 import javax.swing.*;
@@ -19,12 +20,10 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private final JMenuItem emailAd = new JMenuItem("Email address");
 
     private final JMenuItem i1 = new JMenuItem("Modify employees");
-    private final JMenuItem i2 = new JMenuItem("Modify the list of guests");
+    private final JMenuItem i2 = new JMenuItem("Modify the list of elder Residents");
     private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
     private final JMenuItem i4 = new JMenuItem("Status of your NursingHome");
-    //private JMenuItem i5 = new JMenuItem("Modify other connected with your org people");
-    // backend does not support i5 option
-    private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem i5 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
 
@@ -50,8 +49,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
         mainMenun.add(i2);
         mainMenun.add(i3);
         mainMenun.add(i4);
-        //mainMenun.add(i5);
-        mainMenun.add(i6);
+        mainMenun.add(i5);
 
         mainMenun.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -72,7 +70,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
         i3.addActionListener(this);
         i4.addActionListener(this);
         //i5.addActionListener(this);
-        i6.addActionListener(this);
+        i5.addActionListener(this);
         exit.addActionListener(this);
 
     }
@@ -80,14 +78,14 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == i1) {
-            GuiClass.createHumans("Employee",allNemployees);
+            GuiClass.createHumans("Employee",allNemployees,"Nursing Home","Employees");
         } else if (e.getSource() == i2) {
-
+            GuiClass.createHumans("Employee",allNemployees,"Nursing Home","Elder Resident");
         } else if (e.getSource() == i3) {
 
         } else if (e.getSource() == i4) {
 
-        } else if (e.getSource() == i6) {
+        } else if (e.getSource() == i5) {
 
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();

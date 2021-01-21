@@ -1,4 +1,7 @@
-package covid.app.gui.bool.ship;
+package covid.app.gui.bool.ship.menus;
+
+import covid.app.gui.bool.ship.mainMenu.GuiClass;
+import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
 
 import javax.mail.MessagingException;
 import javax.swing.*;

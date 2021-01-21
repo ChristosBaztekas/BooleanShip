@@ -6,6 +6,7 @@ import covid.app.manager.DBConnectionManager;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDaoImpl implements UserDao{
@@ -88,9 +89,24 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public User readUserById(long id) {
+    public Boolean readUserById(String username,String password,String user_type) {
+        String query = "select * from users where username=? and user_password=? and user_type=?";
 
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps =  con.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2,password);
+            ps.setString(3,user_type);
+            ResultSet i = ps.executeQuery();
+            if(i.next()) {
+                return true;
+            }
 
-        return null;
+        } catch (SQLException sqlException) {
+//            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    return false;
     }
 }
