@@ -39,13 +39,6 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    //    org_Id serial Primary Key not null,
-//    org_Type varchar not null,
-//    org_Name varchar unique not null,
-//    org_Location varchar not null,
-//    org_Num_Of_People int not null,
-//    org_username varchar not null,
-//    activity varchar null
     @Override
     public boolean insertOrganisation(String userid, String orgType, String orgName, String orgLocation, int orgNumOfPeople, String orgUsername, String activity) {
         String query = "insert into organisations(org_Type,org_Name,org_Location,org_Num_Of_People,username,activity) values('" + orgType + "','"
@@ -78,7 +71,45 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public void findHumanFromAfm(String afm, String orgName) {
+    public Boolean findHumanFromAfm(String afm) {
+        String query = "select * from humans where afm=?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, afm);
+            ResultSet i = ps.executeQuery();
+            if (i.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    public void declareContacts(Human hu,String afm){
+        String query = "insert into contacts(name,surname,gender,c_afm,email,afm) values ('" + hu.getName() + "','" + hu.getSurname() +"','"+ hu.getGender() +"','"+ hu.getAfm() +"','"+ hu.getEmail() +"','"+ afm+"')";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            int i = ps.executeUpdate();
+            if (i > 0) {
+
+            }
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }
+
+
+    public void findHumanFromAfmAndOrgToDeclareCase(String afm, String orgName) {
         String query = "select ename,surname,afm,email from humans where afm=? and org_name=?";
 
         Connection con = this.manager.getCon();
@@ -129,10 +160,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
-    public void updateUser(User user, int id) {
-
-    }
 
     @Override
     public void deleteUser(User user, int id) {
@@ -151,6 +178,26 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    public void sendMailToAllorganisations(String subject, String main) {
+        String query = "SELECT user_email FROM users";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet i = ps.executeQuery();
+            if (i.next()) {
+                try {
+                    JavaMailUtil.sendMail(i.getString("user_email"), subject, main);
+                } catch (MessagingException e) {
+                    JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+
     public String findOrgname(String username) {
         String query = "select org_name from organisations where username=?";
 
@@ -164,7 +211,7 @@ public class UserDaoImpl implements UserDao {
                 return i.getString("org_name");
             }
         } catch (SQLException sqlException) {
-//            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
 
         }
         return "this will not happen";
@@ -187,9 +234,9 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException sqlException) {
-//            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return false;
     }
+
 }

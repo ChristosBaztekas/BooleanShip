@@ -1,9 +1,9 @@
 package covid.app.gui.bool.ship.menus;
 
+import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
+import covid.app.manager.DBConnectionManager;
 
-import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -53,7 +53,6 @@ public class OrgMenu extends JFrame implements ActionListener {
         mainMenug.add(i7);
 
 
-
         mainMenug.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
@@ -93,27 +92,25 @@ public class OrgMenu extends JFrame implements ActionListener {
 
         } else if (e.getSource() == i6) {
 
-        }else if (e.getSource() == i7) {
-            String emailAddress = JOptionPane.showInputDialog("Input the recipient's email address");
+        } else if (e.getSource() == i7) {
+
             String subject = JOptionPane.showInputDialog("Input subject");
             String mainText = JOptionPane.showInputDialog("Input main text");
-            try {
-                JavaMailUtil.sendMail(emailAddress,subject,mainText);
-            } catch (MessagingException messagingException) {
-                JOptionPane.showMessageDialog(this,"An error occurred please ensure that your email address is right!");
-            }
+            DBConnectionManager manager = new DBConnectionManager();
+            UserDaoImpl impl = new UserDaoImpl(manager);
+            impl.sendMailToAllorganisations(subject, mainText);
 
-        }  else if (e.getSource() == exit) {
+        } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {
             GuiClass.exitMethod();
-        }else if (e.getSource() == phone) {
+        } else if (e.getSource() == phone) {
             JOptionPane.showMessageDialog(null, "Only in case of emergency feel free to contact us any time in 6983461347!");
-        }else if (e.getSource() == helpUsBecomeBetter) {
+        } else if (e.getSource() == helpUsBecomeBetter) {
             GuiClass.managingWebsitesByUrl("https://www.surveymonkey.com/r/P27WNXW?fbclid=IwAR2_xQOVHzHm2XBVTwzjiAq7AXpHp8vQqSd7c9kNEEmp8G7k5YIzgB5On_c");
-        }else if (e.getSource() == emailAd) {
+        } else if (e.getSource() == emailAd) {
             GuiClass.contactUs();
-        }else if(e.getSource() == Problems){
+        } else if (e.getSource() == Problems) {
             GuiClass.sendingProblem();
         }
 

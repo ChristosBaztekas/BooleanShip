@@ -2,12 +2,10 @@ package covid.app.gui.bool.ship.mainMenu;
 
 import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.login.*;
-import covid.app.gui.bool.ship.menus.NursingHomeMenu;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormL;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormNh;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormS;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormU;
-import covid.app.gui.bool.ship.resources.piechart;
 import covid.app.main.app.boolship.Human;
 import covid.app.manager.DBConnectionManager;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -20,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 
 public class GuiClass extends JFrame implements ActionListener {
@@ -283,7 +280,7 @@ public class GuiClass extends JFrame implements ActionListener {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
             //create piechart
-           // piechart pie = new piechart();
+            // piechart pie = new piechart();
             //pie.launch(covid.app.main.app.boolship.Main.a);
             GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
         }
@@ -307,6 +304,7 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
+
     public static void alreadyUserOptionN(String anyString) {
         LogNursingHome frame = new LogNursingHome();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
@@ -315,6 +313,7 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
+
     public static void alreadyUserOptionS(String anyString) {
         LogSchool frame = new LogSchool();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
@@ -323,6 +322,7 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
+
     public static void alreadyUserOptionU(String anyString) {
         LogUniversity frame = new LogUniversity();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
@@ -331,6 +331,7 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
+
     public static void alreadyUserOptionL(String anyString) {
         LogLabor frame = new LogLabor();
         frame.setTitle(anyString);//this is how we will give different Titles for each occasion
@@ -339,6 +340,7 @@ public class GuiClass extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
+
     public static void sendingProblem() {
         String problemDescription = JOptionPane.showInputDialog("Please describe your problem in order to fix it");
         try {
@@ -404,14 +406,90 @@ public class GuiClass extends JFrame implements ActionListener {
             return false;
         }
     }
-    public static void declareCase(){
-        String ans_afm = JOptionPane.showInputDialog("Please write the afm of the person found positive");
-        if(GuiClass.isValidAfm(ans_afm)){
+
+    public static void createContact(String afm) {
+        if (JOptionPane.showConfirmDialog(null, "Do you have contacts of the case declared?", "Contacts", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            String ans_afm = JOptionPane.showInputDialog("Please write the contact's afm");
+            if (GuiClass.isValidAfm(ans_afm)) {
+                String name, surname, email;
+                JPanel panel = new JPanel(new GridLayout(4, 1));
+                JLabel lname = new JLabel("Name");
+                lname.setFont(new Font("Arial", Font.BOLD, 18));
+                JLabel lsurname = new JLabel("Surname");
+                lsurname.setFont(new Font("Arial", Font.BOLD, 18));
+
+                JLabel lemail = new JLabel("Email");
+                lemail.setFont(new Font("Arial", Font.BOLD, 18));
+
+                JTextField tname = new JTextField();
+
+                JTextField tsurname = new JTextField();
+
+
+                JRadioButton male = new JRadioButton("male");
+                JRadioButton female = new JRadioButton("female");
+
+
+                JTextField temail = new JTextField();
+                temail.setSize(0, 0);
+                tname.setSize(0, 0);
+                tsurname.setSize(0, 0);
+                panel.add(lname);
+                panel.add(tname);
+                panel.add(lsurname);
+                panel.add(tsurname);
+
+                panel.add(lemail);
+                panel.add(temail);
+                panel.add(male);
+                panel.add(female);
+
+
+                JOptionPane.showMessageDialog(null, panel, "Contact's" + " additional info", JOptionPane.PLAIN_MESSAGE);
+                name = tname.getText();
+                surname = tsurname.getText();
+                email = temail.getText();
+                if (email != null) {
+                    GuiClass.isValidEmail(email);
+                }
+                if (male.isSelected()) {
+                    try {
+                        Human one = new Human(name, surname, ans_afm, email, "male", "Contact", "Contact");
+                        DBConnectionManager manager = new DBConnectionManager();
+                        UserDaoImpl impl = new UserDaoImpl(manager);
+                        impl.declareContacts(one,afm);
+                        try {
+                            JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
+                        } catch (MessagingException e) {
+                            JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (IllegalAccessException e) {
+                        JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else if (female.isSelected()) {
+                    try {
+                        Human one = new Human(name, surname, ans_afm, email, "female", "Contact", "Contact");
+                        DBConnectionManager manager = new DBConnectionManager();
+                        UserDaoImpl impl = new UserDaoImpl(manager);
+                        impl.declareContacts(one,afm);
+                        try {
+                            JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
+                        } catch (MessagingException e) {
+                            JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (IllegalAccessException e) {
+                        JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Please find contacts immediately and add them via the menu option");
+            }
 
         }
     }
 
-    public static void createHumans(String typeOfHuman,String orgType,String role,String orgUsername) {
+    public static void createHumans(String typeOfHuman, String orgType, String role, String orgUsername) {
         Human one;
 
         String ans_afm = JOptionPane.showInputDialog("Please write the " + typeOfHuman + "'s afm");
@@ -439,9 +517,9 @@ public class GuiClass extends JFrame implements ActionListener {
 
 
                 JTextField temail = new JTextField();
-                temail.setSize(0,0);
-                tname.setSize(0,0);
-                tsurname.setSize(0,0);
+                temail.setSize(0, 0);
+                tname.setSize(0, 0);
+                tsurname.setSize(0, 0);
                 panel.add(lname);
                 panel.add(tname);
                 panel.add(lsurname);
@@ -461,25 +539,25 @@ public class GuiClass extends JFrame implements ActionListener {
 
                 if (name.equals("") || surname.equals("") || email.equals("")) {
                     JOptionPane.showMessageDialog(null, "All sections should Contain something process failed.Please Try again", "Content Missing", JOptionPane.ERROR_MESSAGE);
-                    GuiClass.createHumans(typeOfHuman,orgType,role,orgUsername);
+                    GuiClass.createHumans(typeOfHuman, orgType, role, orgUsername);
                 } else {
                     if (!GuiClass.isValidEmail(email)) {
-                        GuiClass.createHumans(typeOfHuman,orgType,role,orgUsername);
+                        GuiClass.createHumans(typeOfHuman, orgType, role, orgUsername);
                     } else {
 
                         try {
                             if (male.isSelected()) {
-                                one = new Human(name, surname, ans_afm, email, "male", orgType,role);
+                                one = new Human(name, surname, ans_afm, email, "male", orgType, role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
                                 DBConnectionManager manager = new DBConnectionManager();
                                 UserDaoImpl impl = new UserDaoImpl(manager);
-                                impl.insertHuman(one,orgUsername);
+                                impl.insertHuman(one, orgUsername);
                             } else if (female.isSelected()) {
-                                one = new Human(name, surname, ans_afm, email, "female", orgType,role);
+                                one = new Human(name, surname, ans_afm, email, "female", orgType, role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
                                 DBConnectionManager manager = new DBConnectionManager();
                                 UserDaoImpl impl = new UserDaoImpl(manager);
-                                impl.insertHuman(one,orgUsername);
+                                impl.insertHuman(one, orgUsername);
 
                             }
 
@@ -491,7 +569,7 @@ public class GuiClass extends JFrame implements ActionListener {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "The afm already exists.Please Try again", "Already existed afm", JOptionPane.ERROR_MESSAGE);
-                GuiClass.createHumans(typeOfHuman,orgType,role,orgUsername);
+                GuiClass.createHumans(typeOfHuman, orgType, role, orgUsername);
             }
         }
     }

@@ -14,14 +14,14 @@ import java.awt.event.ActionListener;
 
 public class NursingHomeMenu extends JFrame implements ActionListener {
 
-    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
 
     private final JMenuItem i1 = new JMenuItem("Modify employees");
     private final JMenuItem i2 = new JMenuItem("Modify the list of elder Residents");
     private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
-    private final JMenuItem i4 = new JMenuItem("Status of your NursingHome");
+    private final JMenuItem i4 = new JMenuItem("Declare contacts");
     private final JMenuItem i5 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
@@ -84,10 +84,16 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
             String ans_afm = JOptionPane.showInputDialog("Please write the afm of the covid case");
 
             if (GuiClass.isValidAfm(ans_afm)) {
-            DBConnectionManager manager = new DBConnectionManager();
-            UserDaoImpl impl = new UserDaoImpl(manager);
-            impl.findHumanFromAfm(ans_afm,LogNursingHome.getOrgname());
+                DBConnectionManager manager = new DBConnectionManager();
+                UserDaoImpl impl2 = new UserDaoImpl(manager);
+                if(impl2.findHumanFromAfm(ans_afm)){
+                    DBConnectionManager manager2 = new DBConnectionManager();
+            UserDaoImpl impl = new UserDaoImpl(manager2);
+            impl.findHumanFromAfmAndOrgToDeclareCase(ans_afm,LogNursingHome.getOrgname());
+            GuiClass.createContact(ans_afm);
+                }
             }
+
 
         } else if (e.getSource() == i4) {
 

@@ -3,7 +3,6 @@ package covid.app.gui.bool.ship.menus;
 import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.login.LogLabor;
 import covid.app.gui.bool.ship.login.LogNursingHome;
-import covid.app.gui.bool.ship.login.LogSchool;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
 
@@ -84,8 +83,13 @@ public class LaborMenu extends JFrame implements ActionListener {
 
            if (GuiClass.isValidAfm(ans_afm)) {
                DBConnectionManager manager = new DBConnectionManager();
-               UserDaoImpl impl = new UserDaoImpl(manager);
-               impl.findHumanFromAfm(ans_afm, LogLabor.getOrgname());
+               UserDaoImpl impl2 = new UserDaoImpl(manager);
+               if(impl2.findHumanFromAfm(ans_afm)){
+                   DBConnectionManager manager2 = new DBConnectionManager();
+                   UserDaoImpl impl = new UserDaoImpl(manager2);
+                   impl.findHumanFromAfmAndOrgToDeclareCase(ans_afm, LogLabor.getOrgname());
+                   GuiClass.createContact(ans_afm);
+               }
            }
         } else if (e.getSource() == i3) {
 

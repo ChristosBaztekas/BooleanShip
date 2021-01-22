@@ -1,9 +1,7 @@
 package covid.app.main.app.boolship;
 
 
-import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ public class Main {
 
     public static String[] a;// we need this for the piechart
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         //this is how the create user will work
 //        User leonidas =  new User("","123467","leonidasdiam2001@gmail.com","Leonidas Diamantopoulos");
 
@@ -28,7 +26,7 @@ public class Main {
         //launch(args);
 
 
-       GuiClass wsFrame = new GuiClass();
+        GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");

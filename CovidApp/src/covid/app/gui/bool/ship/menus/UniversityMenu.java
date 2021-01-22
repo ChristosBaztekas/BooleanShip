@@ -85,8 +85,13 @@ public class UniversityMenu extends JFrame implements ActionListener {
 
             if (GuiClass.isValidAfm(ans_afm)) {
                 DBConnectionManager manager = new DBConnectionManager();
-                UserDaoImpl impl = new UserDaoImpl(manager);
-                impl.findHumanFromAfm(ans_afm, LogUniversity.getOrgname());
+                UserDaoImpl impl2 = new UserDaoImpl(manager);
+                if(impl2.findHumanFromAfm(ans_afm)){
+                    DBConnectionManager manager2 = new DBConnectionManager();
+                    UserDaoImpl impl = new UserDaoImpl(manager2);
+                    impl.findHumanFromAfmAndOrgToDeclareCase(ans_afm, LogUniversity.getOrgname());
+                    GuiClass.createContact(ans_afm);
+                }
             }
         } else if (e.getSource() == i4) {
 
