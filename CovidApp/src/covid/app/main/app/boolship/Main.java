@@ -25,6 +25,7 @@ public class Main {
 //        } catch (IllegalAccessException e) {
 //            e.printStackTrace();
 //        }
+        launch(args);
 
 
         GuiClass wsFrame = new GuiClass();
@@ -36,4 +37,23 @@ public class Main {
 
 
     }
+      @Override public void start(Stage stage) {
+            Scene scene = new Scene(new Group());
+            stage.setTitle("Statistical Analysis");
+            stage.setWidth(500);
+            stage.setHeight(500);
+     
+            ObservableList<PieChart.Data> pieChartData =
+                    FXCollections.observableArrayList(
+                    		new PieChart.Data("Nursing Home",10),
+                    		new PieChart.Data("University", 25),
+                            new PieChart.Data("Labor", 30),
+                            new PieChart.Data("School", 35));
+            final PieChart chart = new PieChart(pieChartData);
+            chart.setTitle("Covid-19 Cases per Organization");
+            //if (covid.app.gui.bool.ship.GuiClass.b == 0) 
+            ((Group) scene.getRoot()).getChildren().add(chart);
+            	stage.setScene(scene);
+                stage.show();
+        }
 }
