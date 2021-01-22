@@ -2,8 +2,11 @@ package covid.app.gui.bool.ship.menus;
 
 
 
+import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
+import covid.app.manager.DBConnectionManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -78,6 +81,13 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
         } else if (e.getSource() == i2) {
             GuiClass.createHumans("Elder Resident","Nursing Home","Elder Resident",LogNursingHome.getOrgname());
         } else if (e.getSource() == i3) {
+            String ans_afm = JOptionPane.showInputDialog("Please write the afm of the covid case");
+
+            if (GuiClass.isValidAfm(ans_afm)) {
+            DBConnectionManager manager = new DBConnectionManager();
+            UserDaoImpl impl = new UserDaoImpl(manager);
+            impl.findHumanFromAfm(ans_afm,LogNursingHome.getOrgname());
+            }
 
         } else if (e.getSource() == i4) {
 

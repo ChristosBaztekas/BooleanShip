@@ -1,7 +1,11 @@
 package covid.app.gui.bool.ship.menus;
 
+import covid.app.data.dao.UserDaoImpl;
+import covid.app.gui.bool.ship.login.LogLabor;
+import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.login.LogSchool;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
+import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,9 +78,15 @@ public class LaborMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
        if (e.getSource() == i1) {
-           GuiClass.createHumans("Employee","Labor","Employee", LogSchool.getOrgname());
+           GuiClass.createHumans("Employee","Labor","Employee", LogLabor.getOrgname());
         } else if (e.getSource() == i2) {
+           String ans_afm = JOptionPane.showInputDialog("Please write the afm of the covid case");
 
+           if (GuiClass.isValidAfm(ans_afm)) {
+               DBConnectionManager manager = new DBConnectionManager();
+               UserDaoImpl impl = new UserDaoImpl(manager);
+               impl.findHumanFromAfm(ans_afm, LogLabor.getOrgname());
+           }
         } else if (e.getSource() == i3) {
 
         }  else if (e.getSource() == i4) {

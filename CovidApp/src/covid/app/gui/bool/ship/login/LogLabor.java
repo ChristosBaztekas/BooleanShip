@@ -128,12 +128,12 @@ public class LogLabor extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        //Coding Part of RESET button
+
         if (e.getSource() == resetButton) {
             userTextField.setText("");
             passwordField.setText("");
         }
-        //Coding Part of showPassword JCheckBox
+
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);

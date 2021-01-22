@@ -204,7 +204,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == lmenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Labor user login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOptionL("Log in as a Labor User.");
+            alreadyUserOptionL("Log in as a Labor User");
         } else if (source == lmenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Labor user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -220,7 +220,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == smenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the School login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOptionS("Log in as a School User.");
+            alreadyUserOptionS("Log in as a School User");
         } else if (source == smenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the School user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -252,7 +252,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nmenu2) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home login form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-            alreadyUserOptionN("Log in as a Nursing Home User.");
+            alreadyUserOptionN("Log in as a Nursing Home User");
         } else if (source == nmenu3) {
             dispose();
             JOptionPane.showMessageDialog(this, "Redirecting to the Nursing Home user registration form", "Redirection", JOptionPane.INFORMATION_MESSAGE);
@@ -283,8 +283,8 @@ public class GuiClass extends JFrame implements ActionListener {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
             //create piechart
-            piechart pie = new piechart();
-            pie.launch(covid.app.main.app.boolship.Main.a);
+           // piechart pie = new piechart();
+            //pie.launch(covid.app.main.app.boolship.Main.a);
             GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
         }
 
@@ -374,7 +374,7 @@ public class GuiClass extends JFrame implements ActionListener {
         System.exit(0);
     }
 
-    //the afm validation will happen from here
+
     public static Boolean isValidAfm(String afm) {
 
         int len = afm.length();
@@ -383,8 +383,7 @@ public class GuiClass extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "The afm should contain 9 characters.Please try again.", "Invalid number of characters", JOptionPane.ERROR_MESSAGE);
 
             return false;
-            // afm = JOptionPane.showInputDialog(null, "Hi");
-            //isValidAfm(afm);
+
         } else {
             for (int i = 0; i < 9; i++) {
                 if (afm.charAt(i) < '0' || afm.charAt(i) > '9') {
@@ -403,6 +402,12 @@ public class GuiClass extends JFrame implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "The email is not right.Please try again", "Invalid input", JOptionPane.ERROR_MESSAGE);
             return false;
+        }
+    }
+    public static void declareCase(){
+        String ans_afm = JOptionPane.showInputDialog("Please write the afm of the person found positive");
+        if(GuiClass.isValidAfm(ans_afm)){
+
         }
     }
 
