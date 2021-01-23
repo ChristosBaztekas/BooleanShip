@@ -1,10 +1,9 @@
 package covid.app.gui.bool.ship.login;
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
 import covid.app.gui.bool.ship.menus.LaborMenu;
-import covid.app.gui.bool.ship.menus.OrgMenu;
 import covid.app.manager.DBConnectionManager;
 
 import javax.mail.MessagingException;
@@ -97,14 +96,14 @@ public class LogLabor extends JFrame implements ActionListener{
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             DBConnectionManager manager2 = new DBConnectionManager();
-            UserDaoImpl impl2 = new UserDaoImpl(manager2);
+            DaoImpl impl2 = new DaoImpl(manager2);
             String userType = "Labor";
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Redirecting to the main Labor menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
                 String orgUsername = userText;
                 DBConnectionManager manager = new DBConnectionManager();
-                UserDaoImpl impl = new UserDaoImpl(manager);
+                DaoImpl impl = new DaoImpl(manager);
                 orgname = impl.findOrgname(orgUsername);
                 dispose();
                 LaborMenu wsFrame = new LaborMenu();

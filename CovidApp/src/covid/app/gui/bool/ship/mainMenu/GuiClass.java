@@ -1,6 +1,6 @@
 package covid.app.gui.bool.ship.mainMenu;
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.login.*;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormL;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormNh;
@@ -279,9 +279,7 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == nhs) {
             GuiClass.managingWebsitesByUrl("https://www.bhamcommunity.nhs.uk/");
         } else if (source == cStats) {
-            //create piechart
-            // piechart pie = new piechart();
-            //pie.launch(covid.app.main.app.boolship.Main.a);
+
             GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
         }
 
@@ -456,7 +454,7 @@ public class GuiClass extends JFrame implements ActionListener {
                     try {
                         Human one = new Human(name, surname, ans_afm, email, "male", "Contact", "Contact");
                         DBConnectionManager manager = new DBConnectionManager();
-                        UserDaoImpl impl = new UserDaoImpl(manager);
+                        DaoImpl impl = new DaoImpl(manager);
                         impl.declareContacts(one,afm);
                         try {
                             JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
@@ -472,7 +470,7 @@ public class GuiClass extends JFrame implements ActionListener {
                     try {
                         Human one = new Human(name, surname, ans_afm, email, "female", "Contact", "Contact");
                         DBConnectionManager manager = new DBConnectionManager();
-                        UserDaoImpl impl = new UserDaoImpl(manager);
+                        DaoImpl impl = new DaoImpl(manager);
                         impl.declareContacts(one,afm);
                         try {
                             JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
@@ -552,13 +550,13 @@ public class GuiClass extends JFrame implements ActionListener {
                                 one = new Human(name, surname, ans_afm, email, "male", orgType, role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
                                 DBConnectionManager manager = new DBConnectionManager();
-                                UserDaoImpl impl = new UserDaoImpl(manager);
+                                DaoImpl impl = new DaoImpl(manager);
                                 impl.insertHuman(one, orgUsername);
                             } else if (female.isSelected()) {
                                 one = new Human(name, surname, ans_afm, email, "female", orgType, role);
                                 GuiClass.registrationEmployeeAutomatedMail(email);
                                 DBConnectionManager manager = new DBConnectionManager();
-                                UserDaoImpl impl = new UserDaoImpl(manager);
+                                DaoImpl impl = new DaoImpl(manager);
                                 impl.insertHuman(one, orgUsername);
 
                             }
@@ -596,7 +594,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
         if (GuiClass.isValidAfm(ans_afm)) {
             DBConnectionManager manager = new DBConnectionManager();
-            UserDaoImpl impl2 = new UserDaoImpl(manager);
+            DaoImpl impl2 = new DaoImpl(manager);
             if(impl2.findHumanFromAfm(ans_afm)){
                 GuiClass.createContact(ans_afm);
             }
@@ -604,7 +602,7 @@ public class GuiClass extends JFrame implements ActionListener {
     }
     public static void orgStatus(String orgName){
         DBConnectionManager manager = new DBConnectionManager();
-        UserDaoImpl impl = new UserDaoImpl(manager);
+        DaoImpl impl = new DaoImpl(manager);
         JPanel panel = new JPanel(new GridLayout(4, 2));
         JLabel cases = new JLabel("Cases: "+impl.countCases(orgName));
         cases.setFont(new Font("Arial", Font.BOLD, 20));

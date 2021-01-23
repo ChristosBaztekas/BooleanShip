@@ -1,6 +1,6 @@
 package covid.app.gui.bool.ship.menus;
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
 
@@ -12,17 +12,15 @@ import java.awt.event.ActionListener;
 public class OrgMenu extends JFrame implements ActionListener {
 
     private final JMenuItem phone = new JMenuItem("Phone number for emergency");
-    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
 
     private final JMenuItem i1 = new JMenuItem("All registered organizations");
-    private final JMenuItem i2 = new JMenuItem("Latest statistics on the pandemic");
-    private final JMenuItem i3 = new JMenuItem("All recorded case");
-    private final JMenuItem i4 = new JMenuItem("All Contacts recorder");
-    private final JMenuItem i5 = new JMenuItem("All test Results");
-    private final JMenuItem i6 = new JMenuItem("Cases by regions");
-    private final JMenuItem i7 = new JMenuItem("Send email to all registered Organisations");
+    private final JMenuItem i2 = new JMenuItem("All recorded cases");
+    private final JMenuItem i3 = new JMenuItem("All Contacts recorded");
+    private final JMenuItem i4 = new JMenuItem("Send email to all registered Organisations");
+    private final JMenuItem i5 = new JMenuItem("Statistics of registered organisations");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
 
@@ -46,11 +44,11 @@ public class OrgMenu extends JFrame implements ActionListener {
         exitm.add(close);
         mainMenug.add(i1);
         mainMenug.add(i2);
+        mainMenug.add(i2);
         mainMenug.add(i3);
         mainMenug.add(i4);
         mainMenug.add(i5);
-        mainMenug.add(i6);
-        mainMenug.add(i7);
+
 
 
         mainMenug.add(exit);
@@ -70,36 +68,39 @@ public class OrgMenu extends JFrame implements ActionListener {
         close.addActionListener(this);
         i1.addActionListener(this);
         i2.addActionListener(this);
+        i2.addActionListener(this);
         i3.addActionListener(this);
         i4.addActionListener(this);
         i5.addActionListener(this);
-        i6.addActionListener(this);
-        i7.addActionListener(this);
         exit.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == i1) {
-
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
+            impl.getAllOrgs();
         } else if (e.getSource() == i2) {
-
-        } else if (e.getSource() == i3) {
-
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
+            impl.getAllcases();
+        }  else if (e.getSource() == i3) {
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
+            impl.getAllcontacts();
         } else if (e.getSource() == i4) {
-
-        } else if (e.getSource() == i5) {
-
-        } else if (e.getSource() == i6) {
-
-        } else if (e.getSource() == i7) {
 
             String subject = JOptionPane.showInputDialog("Input subject");
             String mainText = JOptionPane.showInputDialog("Input main text");
             DBConnectionManager manager = new DBConnectionManager();
-            UserDaoImpl impl = new UserDaoImpl(manager);
+            DaoImpl impl = new DaoImpl(manager);
             impl.sendMailToAllorganisations(subject, mainText);
 
+        }else if (e.getSource() == i5) {
+            //create piechart
+            // piechart pie = new piechart();
+            //pie.launch(covid.app.main.app.boolship.Main.a);
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

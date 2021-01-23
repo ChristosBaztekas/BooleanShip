@@ -7,19 +7,20 @@ import covid.app.manager.DBConnectionManager;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDaoImpl implements UserDao {
+public class DaoImpl implements UserDao {
 
     private final DBConnectionManager manager;
 
-    public UserDaoImpl(DBConnectionManager manager) {
+    public DaoImpl(DBConnectionManager manager) {
         this.manager = manager;
     }
-
+    private JTextArea allOrgs = new JTextArea(20, 40);
 
     @Override
     public boolean insertUser(User user) {
@@ -213,6 +214,81 @@ public class UserDaoImpl implements UserDao {
 
         }
         return 0;
+    }
+    public void getAllcases() {
+        String query = " SELECT h.afm as afm,h.org_name as org_name,h.org_type as org_type  from cases ca inner join humans h on h.afm = ca.afm ";
+        Connection con = this.manager.getCon();
+        allOrgs.setText("List of Cases\n");
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet i = ps.executeQuery();
+            int count = 0;
+            while(i.next()){
+                ++count;
+                String info = count +")Afm:" + i.getString("afm") + " and Organisation name:" + i.getString("org_name")+" and Organisation Type:" + i.getString("org_type")+"\n";
+                allOrgs.append(info);
+
+            }
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null,allOrgs,"All Cases", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }
+    public void getAllcontacts() {
+        String query = "SELECT h.afm as afm,ca.email as email  from contacts ca inner join humans h on h.afm = ca.afm ";
+        Connection con = this.manager.getCon();
+        allOrgs.setText("List of Contacts\n");
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet i = ps.executeQuery();
+            int count = 0;
+            while(i.next()){
+                ++count;
+                String info = count +")Afm:" + i.getString("afm") + " and Contact's email:" + i.getString("email")+"\n";
+                allOrgs.append(info);
+
+            }
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null,allOrgs,"All Cases", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }
+    public void getAllOrgs() {
+        String query = "SELECT org_name,org_type FROM organisations WHERE org_name <> 'Eody'";
+        Connection con = this.manager.getCon();
+        allOrgs.setText("List of Organisations\n");
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet i = ps.executeQuery();
+            int count = 0;
+            while(i.next()){
+                ++count;
+             String info = count +") Organisation name: " + i.getString("org_name") + " and Organisation Type: " + i.getString("org_type")+"\n";
+                allOrgs.append(info);
+
+            }
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null,allOrgs,"All organisations", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
     }
     public int countMembers(String orgName) {
         String query = "SELECT *  from organisations o inner join humans h on h.org_name = o.org_name Where o.org_name =?";

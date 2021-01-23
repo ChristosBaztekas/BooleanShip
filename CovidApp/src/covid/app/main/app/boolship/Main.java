@@ -1,7 +1,7 @@
 package covid.app.main.app.boolship;
 
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
 
@@ -20,7 +20,7 @@ public class Main {
 //        try {
 //            Human leonidas = new Human("Leonidas","Diamantopoulos","154267985","leodiam@gmail.com","male","University","Student");
 //            DBConnectionManager manager = new DBConnectionManager();
-//        UserDaoImpl impl = new UserDaoImpl(manager);
+//        DaoImpl impl = new DaoImpl(manager);
 //        impl.insertHuman(leonidas,"AUEB");
 //        } catch (IllegalAccessException e) {
 //            e.printStackTrace();
@@ -29,12 +29,12 @@ public class Main {
 
 
 
-       GuiClass wsFrame = new GuiClass();
-        wsFrame.setBounds(400, 100, 900, 700);
-        wsFrame.setVisible(true);
-        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
-        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        a = args;// we need this for the piechart
+//       GuiClass wsFrame = new GuiClass();
+//        wsFrame.setBounds(400, 100, 900, 700);
+//        wsFrame.setVisible(true);
+//        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+//        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        a = args;// we need this for the piechart
 
 
     }

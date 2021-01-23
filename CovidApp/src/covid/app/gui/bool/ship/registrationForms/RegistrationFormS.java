@@ -1,7 +1,7 @@
 package covid.app.gui.bool.ship.registrationForms;
 
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.main.app.boolship.Universities;
@@ -257,10 +257,10 @@ public class RegistrationFormS
                 Universities u = new Universities(orgName,orgArea,(numTe+numSt),orgMail);
                 User leonidas = new User("", password, orgMail, username, "School");
                 DBConnectionManager manager = new DBConnectionManager();
-                UserDaoImpl impl = new UserDaoImpl(manager);
+                DaoImpl impl = new DaoImpl(manager);
                 impl.insertUser(leonidas);
                 DBConnectionManager manager2 = new DBConnectionManager();
-                UserDaoImpl impl2 = new UserDaoImpl(manager2);
+                DaoImpl impl2 = new DaoImpl(manager2);
                 impl2.insertOrganisation("", "School", orgName, orgArea, (numTe+numSt), username, activity);
                 JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);

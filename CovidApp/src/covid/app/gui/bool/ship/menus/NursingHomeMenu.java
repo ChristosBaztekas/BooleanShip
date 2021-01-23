@@ -2,7 +2,7 @@ package covid.app.gui.bool.ship.menus;
 
 
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
@@ -87,10 +87,10 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
 
             if (GuiClass.isValidAfm(ans_afm)) {
                 DBConnectionManager manager = new DBConnectionManager();
-                UserDaoImpl impl2 = new UserDaoImpl(manager);
+                DaoImpl impl2 = new DaoImpl(manager);
                 if(impl2.findHumanFromAfm(ans_afm)){
                     DBConnectionManager manager2 = new DBConnectionManager();
-            UserDaoImpl impl = new UserDaoImpl(manager2);
+            DaoImpl impl = new DaoImpl(manager2);
             impl.findHumanFromAfmAndOrgToDeclareCase(ans_afm,LogNursingHome.getOrgname());
             GuiClass.createContact(ans_afm);
                 }
@@ -105,7 +105,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
             String subject = JOptionPane.showInputDialog("Please write the Subject");
             String mainText = JOptionPane.showInputDialog("Please write the main Text");
             DBConnectionManager manager = new DBConnectionManager();
-            UserDaoImpl impl = new UserDaoImpl(manager);
+            DaoImpl impl = new DaoImpl(manager);
             impl.sendMailToAllMembersofYourOrg(subject,mainText,LogNursingHome.getOrgname());
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();

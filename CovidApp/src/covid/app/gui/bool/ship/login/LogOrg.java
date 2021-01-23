@@ -2,7 +2,7 @@ package covid.app.gui.bool.ship.login;
 
 
 
-import covid.app.data.dao.UserDaoImpl;
+import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
 import covid.app.gui.bool.ship.menus.OrgMenu;
@@ -98,7 +98,7 @@ public class LogOrg extends JFrame implements ActionListener {
             userText = userTextField.getText();
             pwdText = passwordField.getText();
             DBConnectionManager manager2 = new DBConnectionManager();
-            UserDaoImpl impl2 = new UserDaoImpl(manager2);
+            DaoImpl impl2 = new DaoImpl(manager2);
             String userType = "Government";
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
