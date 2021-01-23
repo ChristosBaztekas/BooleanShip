@@ -1,16 +1,19 @@
-package covid.app.main.app.boolship;
+package covid.app.data.model;
 
+
+import covid.app.additionalMethods.Classes;
+import covid.app.additionalMethods.caseManagmentAndHumanAddition;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Labors extends Organisations implements caseManagmentAndHumanAddition{
+public class Labors extends Organisations implements caseManagmentAndHumanAddition {
     private final int id;
     private static int count = 0;
     protected ArrayList<Classes> department = new ArrayList<Classes>();
     private static ArrayList<Labors> allLabors = new ArrayList<Labors>();//see if we needs
-    private ArrayList<covid.app.main.app.boolship.Human> changes = new ArrayList<covid.app.main.app.boolship.Human>();
+    private ArrayList<Human> changes = new ArrayList<Human>();
     private boolean status = false;//eody changes something
     private boolean lockdown = false;
     private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
@@ -25,7 +28,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
         super(n, a, aa, z, e);
         id = count ++;
     }
-    public void declareCase(covid.app.main.app.boolship.Human human) {
+    public void declareCase(Human human) {
         if (status) {
             changes.add(human);
         } else {
@@ -61,7 +64,7 @@ public class Labors extends Organisations implements caseManagmentAndHumanAdditi
         System.out.println("Give the ssn of the person that is positive");
         String input = scanner.nextLine();
         for (var c : department) {
-            covid.app.main.app.boolship.Human one = c.isSame(input);
+            Human one = c.isSame(input);
             if (one != null) {
                 System.out.printf("Want to report positive of employee: %s, 0 exit", one.toString());
                 String input1 = scanner.nextLine();

@@ -1,5 +1,8 @@
-package covid.app.main.app.boolship;
+package covid.app.additionalMethods;
 
+
+import covid.app.data.model.Human;
+import covid.app.data.model.Organisations;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class Classes {
         return idifier;
     }
 
-    protected void modify() {
+    public void modify() {
         //asks for deleting or adding a Human
         for (;;) {
             System.out.println("Add or Delete a Person?");
@@ -89,7 +92,7 @@ public class Classes {
         }
     }
 
-    protected void affected() {
+    public void affected() {
         int choice;
         while (true) {
             System.out.println("Give the number for each member");
@@ -131,10 +134,10 @@ public class Classes {
         }
         return null;
     }
-    protected int size() {
+    public int size() {
         return members.size();
     }
-    protected int covidCases() {
+    public int covidCases() {
         int count = 0;
         for (int i = 0; i < members.size(); i++) {
             if (members.get(i).seeStatus().equals("CONFIRMED")) {//check if it works

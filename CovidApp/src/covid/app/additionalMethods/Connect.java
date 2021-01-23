@@ -1,4 +1,6 @@
-package covid.app.main.app.boolship;
+package covid.app.additionalMethods;
+
+import covid.app.data.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;

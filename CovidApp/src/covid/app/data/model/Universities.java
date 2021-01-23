@@ -1,17 +1,20 @@
-package covid.app.main.app.boolship;
+package covid.app.data.model;
 
+
+import covid.app.additionalMethods.Classes;
+import covid.app.additionalMethods.caseManagmentAndHumanAddition;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Universities extends Organisations implements caseManagmentAndHumanAddition{
+public class Universities extends Organisations implements caseManagmentAndHumanAddition {
     private final ArrayList<Classes> department = new ArrayList<Classes>();
     private final ArrayList<Classes> secretariat = new ArrayList<Classes>();
-    private final ArrayList<covid.app.main.app.boolship.Human> teachers = new ArrayList<covid.app.main.app.boolship.Human>();
-    private final ArrayList<covid.app.main.app.boolship.Human> others = new ArrayList<covid.app.main.app.boolship.Human>();
+    private final ArrayList<Human> teachers = new ArrayList<Human>();
+    private final ArrayList<Human> others = new ArrayList<Human>();
     private boolean status = false;//eody have smth changed
-    private ArrayList<covid.app.main.app.boolship.Human> changes = new ArrayList<covid.app.main.app.boolship.Human>();
+    private ArrayList<Human> changes = new ArrayList<Human>();
     private static final Scanner scanner = new Scanner(System.in);
     private int number_others_positive = 0;
     private int number_teachers_positive = 0;
@@ -264,7 +267,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             lockdown = true;
         }
     }
-    public void findWhereBelongs(covid.app.main.app.boolship.Human human) {
+    public void findWhereBelongs(Human human) {
         String look_for = human.getAfm();
         for (var c : teachers) {
             if (c.getAfm().equals(look_for)) {
@@ -279,7 +282,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             }
         }
         for (int i = 0; i < department.size(); i++) {
-            covid.app.main.app.boolship.Human one;
+            Human one;
             one = department.get(i).isSame(look_for);
             if (one != null) {
                 number_department_positive.set(i,number_department_positive.get(i) + 1);
@@ -287,7 +290,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             }
         }
         for (int i = 0; i < secretariat.size(); i++) {
-            covid.app.main.app.boolship.Human one;
+            Human one;
             one = department.get(i).isSame(look_for);
             if (one != null) {
                 number_secreterariat_positive.set(i, number_secreterariat_positive.get(i) + 1);
@@ -296,7 +299,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         }
         autoMonitoring();
     }
-    public void declareCase(covid.app.main.app.boolship.Human human) { //called by eody
+    public void declareCase(Human human) { //called by eody
         if (status) {
             changes.add(human);
 
@@ -319,7 +322,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 		System.out.println("We dont have a member with");
 		}*/
         for (var c : department) {
-            covid.app.main.app.boolship.Human oneHuman = c.isSame(input);
+            Human oneHuman = c.isSame(input);
             if (oneHuman != null) {
                 System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
                 String input1 = scanner.nextLine();
@@ -333,7 +336,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             }
         }
         for (var c : secretariat) {
-            covid.app.main.app.boolship.Human oneHuman = c.isSame(input);
+            Human oneHuman = c.isSame(input);
             if (oneHuman != null) {
                 System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
                 String ans = scanner.nextLine();
@@ -443,7 +446,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-//                        covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                        covid.app.data.model.Human one = covid.app.data.model.Human.createHuman(this);
 //                        teachers.add(one);
                         i++;
                     }
@@ -487,7 +490,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 //                    if (scanner.nextLine().equals("0")) {
 //                        break;
 //                    }
-//                    covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                    covid.app.data.model.Human one = covid.app.data.model.Human.createHuman(this);
 //                    if (one == null) {
 //                        break;
 //                    }
@@ -613,7 +616,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
 //                        if (scanner.nextLine().equals("0")) {
 //                            break;
 //                        }
-//                        covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                        covid.app.data.model.Human one = covid.app.data.model.Human.createHuman(this);
 //                        if (one == null) {
 //                            break;
 //                        }
@@ -657,7 +660,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-//                    covid.app.main.app.boolship.Human one = covid.app.main.app.boolship.Human.createHuman(this);
+//                    covid.app.data.model.Human one = covid.app.data.model.Human.createHuman(this);
 //                    if (one == null) {
 //                        break;
 //                    }

@@ -1,10 +1,12 @@
-package covid.app.main.app.boolship;
+package covid.app.data.model;
 
+
+import covid.app.additionalMethods.caseManagmentAndHumanAddition;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition{
+public class NursingHomes extends Organisations implements caseManagmentAndHumanAddition {
     private String status_descr;
     private ArrayList<Human> employees = new ArrayList<>();
     private ArrayList<Human> carenPeople = new ArrayList<>();

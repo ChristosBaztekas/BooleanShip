@@ -1,5 +1,7 @@
-package covid.app.main.app.boolship;
+package covid.app.additionalMethods;
 
+
+import covid.app.data.model.Human;
 
 public interface caseManagmentAndHumanAddition {
 

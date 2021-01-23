@@ -1,11 +1,7 @@
-package covid.app.main.app.boolship;
+package covid.app.data.model;
 
 
 
-import covid.app.gui.bool.ship.mainMenu.GuiClass;
-
-import javax.swing.*;
-import java.awt.*;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -80,18 +76,18 @@ public final class Human {
     }
 
     //helps for sort
-    private static class SortByAfm implements Comparator<Human> {
+    public static class SortByAfm implements Comparator<Human> {
         public int compare(Human a, Human b) {
             return a.afm.compareTo(b.afm);
         }
     }
     //it sorts with unicode form, that means the number not gonna be
     //in arithmetic series, but id doesnt mind,search gonna work the same
-    private static void sort() {//it is called in constructor
+    public static void sort() {//it is called in constructor
         allHuman.sort(sortItem);
     }
 
-    private static boolean isValidAfm(String afm) {
+    public static boolean isValidAfm(String afm) {
         int len = afm.length();
         if (len != 9) {
             return false;
@@ -172,14 +168,14 @@ public final class Human {
         }
         return null;
     }
-    protected void haveToBeTested() {
+    public void haveToBeTested() {
         status = Status.PRESUMPTIVE;
         waitTest.add(this);
     }
-    protected void bePositive() {
+    public void bePositive() {
         status = Status.CONFIRMED;
     }
-    protected void removeFromOrg(Organisations org) {
+    public void removeFromOrg(Organisations org) {
         for (int i = 0; i < belongs.size(); i++) {
             if (belongs.get(i) == org) {
                 belongs.remove(i);
@@ -188,7 +184,7 @@ public final class Human {
         }
     }
 
-    protected static void quarantineMode( Human human) {
+    public static void quarantineMode( Human human) {
         System.out.println(human.toString() + "has been found with covid");
         human.status = Status.CONFIRMED;
         while (true) {
@@ -379,7 +375,7 @@ public final class Human {
 
         //return null;
 
-    private static Human createHuman(String ssn) {
+    public static Human createHuman(String ssn) {
         Human one = null;
         String name ,surname, gender, email;
         for(;;){

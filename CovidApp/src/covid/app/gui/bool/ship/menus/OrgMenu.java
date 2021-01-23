@@ -100,7 +100,7 @@ public class OrgMenu extends JFrame implements ActionListener {
         }else if (e.getSource() == i5) {
             //create piechart
             // piechart pie = new piechart();
-            //pie.launch(covid.app.main.app.boolship.Main.a);
+            //pie.launch(covid.app.gui.bool.ship.mainMenu.Main.a);
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

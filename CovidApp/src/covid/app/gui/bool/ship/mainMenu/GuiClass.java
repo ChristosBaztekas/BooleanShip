@@ -6,7 +6,7 @@ import covid.app.gui.bool.ship.registrationForms.RegistrationFormL;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormNh;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormS;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormU;
-import covid.app.main.app.boolship.Human;
+import covid.app.data.model.Human;
 import covid.app.manager.DBConnectionManager;
 import org.apache.commons.validator.routines.EmailValidator;
 

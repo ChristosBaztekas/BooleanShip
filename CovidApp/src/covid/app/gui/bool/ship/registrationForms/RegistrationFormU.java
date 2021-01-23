@@ -5,7 +5,7 @@ package covid.app.gui.bool.ship.registrationForms;
 import covid.app.data.dao.DaoImpl;
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.main.app.boolship.Universities;
+import covid.app.data.model.Universities;
 import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;

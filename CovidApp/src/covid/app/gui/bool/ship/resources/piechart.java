@@ -35,7 +35,7 @@ public class piechart  {//extends Application
 //        ((Group) scene.getRoot()).getChildren().add(chart);
 //        stage.setScene(scene);
 //        stage.show();
-//        //launch(covid.app.main.app.boolship.Main.a);
+//        //launch(covid.app.gui.bool.ship.mainMenu.Main.a);
 //    }
  
 }

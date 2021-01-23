@@ -4,7 +4,7 @@ package covid.app.gui.bool.ship.registrationForms;
 import covid.app.data.dao.DaoImpl;
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.main.app.boolship.NursingHomes;
+import covid.app.data.model.NursingHomes;
 import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;

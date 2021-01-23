@@ -1,5 +1,7 @@
-package covid.app.main.app.boolship;
+package covid.app.data.model;
 
+
+import covid.app.additionalMethods.Classes;
 
 import java.util.Scanner;
 import java.util.ArrayList;

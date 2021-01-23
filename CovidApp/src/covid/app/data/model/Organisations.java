@@ -1,4 +1,4 @@
-package covid.app.main.app.boolship;
+package covid.app.data.model;
 
 
 import java.util.ArrayList;

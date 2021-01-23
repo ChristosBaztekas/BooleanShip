@@ -2,7 +2,7 @@ package covid.app.data.dao;
 
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
-import covid.app.main.app.boolship.Human;
+import covid.app.data.model.Human;
 import covid.app.manager.DBConnectionManager;
 
 import javax.mail.MessagingException;
