@@ -231,6 +231,7 @@ public class RegistrationFormU
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
+            GuiClass verification = new GuiClass();
             boolean ok = false;
             String orgName = tname.getText();
             String orgMail = tmail.getText();
@@ -259,6 +260,14 @@ public class RegistrationFormU
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             }else if(!GuiClass.isValidEmail(orgMail)){
                 tmail.setText("");
+            }else if (!verification.registrationCode(orgMail)) {
+                dispose();
+                GuiClass wsFrame = new GuiClass();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setVisible(true);
+                wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             } else {
                 String activity = "Universities are using distance education";
                 Universities u = new Universities(orgName,orgArea,(numPr+numSt),orgMail);

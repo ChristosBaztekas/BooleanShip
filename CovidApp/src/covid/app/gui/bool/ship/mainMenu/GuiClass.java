@@ -1,12 +1,12 @@
 package covid.app.gui.bool.ship.mainMenu;
 
 import covid.app.data.dao.DaoImpl;
+import covid.app.data.model.Human;
 import covid.app.gui.bool.ship.login.*;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormL;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormNh;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormS;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormU;
-import covid.app.data.model.Human;
 import covid.app.manager.DBConnectionManager;
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Random;
 
 
 public class GuiClass extends JFrame implements ActionListener {
@@ -455,10 +456,10 @@ public class GuiClass extends JFrame implements ActionListener {
                         Human one = new Human(name, surname, ans_afm, email, "male", "Contact", "Contact");
                         DBConnectionManager manager = new DBConnectionManager();
                         DaoImpl impl = new DaoImpl(manager);
-                        impl.declareContacts(one,afm);
+                        impl.declareContacts(one, afm);
                         try {
                             JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
-                            JOptionPane.showMessageDialog(null,"The contact was successfully added","Completed",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "The contact was successfully added", "Completed", JOptionPane.INFORMATION_MESSAGE);
                         } catch (MessagingException e) {
                             JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -471,10 +472,10 @@ public class GuiClass extends JFrame implements ActionListener {
                         Human one = new Human(name, surname, ans_afm, email, "female", "Contact", "Contact");
                         DBConnectionManager manager = new DBConnectionManager();
                         DaoImpl impl = new DaoImpl(manager);
-                        impl.declareContacts(one,afm);
+                        impl.declareContacts(one, afm);
                         try {
                             JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
-                            JOptionPane.showMessageDialog(null,"The contact was successfully added","Completed",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "The contact was successfully added", "Completed", JOptionPane.INFORMATION_MESSAGE);
                         } catch (MessagingException e) {
                             JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -589,24 +590,26 @@ public class GuiClass extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public static void inputAdditionalContacts(){
+
+    public static void inputAdditionalContacts() {
         String ans_afm = JOptionPane.showInputDialog("Please write the afm of the case that the contact you want to declare is related");
 
         if (GuiClass.isValidAfm(ans_afm)) {
             DBConnectionManager manager = new DBConnectionManager();
             DaoImpl impl2 = new DaoImpl(manager);
-            if(impl2.findHumanFromAfm(ans_afm)){
+            if (impl2.findHumanFromAfm(ans_afm)) {
                 GuiClass.createContact(ans_afm);
             }
         }
     }
-    public static void orgStatus(String orgName){
+
+    public static void orgStatus(String orgName) {
         DBConnectionManager manager = new DBConnectionManager();
         DaoImpl impl = new DaoImpl(manager);
         JPanel panel = new JPanel(new GridLayout(4, 2));
-        JLabel cases = new JLabel("Cases: "+impl.countCases(orgName));
+        JLabel cases = new JLabel("Cases: " + impl.countCases(orgName));
         cases.setFont(new Font("Arial", Font.BOLD, 20));
-        JLabel members = new JLabel("Members of your org: "+impl.countMembers(orgName));
+        JLabel members = new JLabel("Members of your org: " + impl.countMembers(orgName));
         members.setFont(new Font("Arial", Font.BOLD, 20));
 
         JLabel quarantine = new JLabel("Would you like to set quarantine mode?");
@@ -615,7 +618,7 @@ public class GuiClass extends JFrame implements ActionListener {
         quarantine.setFont(new Font("Arial", Font.BOLD, 20));
         JRadioButton yes = new JRadioButton("Yes");
         JRadioButton no = new JRadioButton("No");
-        if((double)(impl.countMembers(orgName)*0.1) < impl.countCases(orgName)){
+        if ((double) (impl.countMembers(orgName) * 0.1) < impl.countCases(orgName)) {
             JOptionPane.showMessageDialog(null, "Cases are more than the 10% of your total member we suggest you to select quarantine mode and conduct as many activities as possible online.", "Quarantine alert", JOptionPane.PLAIN_MESSAGE);
         }
 
@@ -626,9 +629,42 @@ public class GuiClass extends JFrame implements ActionListener {
         panel.add(yes);
         panel.add(no);
         JOptionPane.showMessageDialog(null, panel, "Status of your organisation", JOptionPane.PLAIN_MESSAGE);
-        if(yes.isSelected()){
+        if (yes.isSelected()) {
             JOptionPane.showMessageDialog(null, "Quarantine mode activated.Please inform via the massive email option the new regulations you are going to set ", "Quarantine mode", JOptionPane.PLAIN_MESSAGE);
         }
+    }
+
+    public static String getRandomNumberString() {
+
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+
+
+        return String.format("%06d", number);
+    }
+
+    public Boolean registrationCode(String mail) {
+        DBConnectionManager manager = new DBConnectionManager();
+        DaoImpl impl = new DaoImpl(manager);
+        String sixdig = impl.createAuthCode(mail, true);
+        try {
+            JavaMailUtil.sendMail(mail, "Registration code", "Your registration code is: " + sixdig + " If you did not register in our app ignore this mail");
+            String usersSixDigit = JOptionPane.showInputDialog("Check your mail!Write as the six digits code in order to finish your registration");
+
+            if (sixdig.equals(usersSixDigit)) {
+                JOptionPane.showMessageDialog(null, "You verified your mail successfully");
+                impl.disactivateAuthCode(mail, false);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "The code you inserted is false...You will be redirected to the main menu.");
+                impl.disactivateAuthCode(mail, false);
+                return false;
+            }
+        } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+        }
+        JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+        return false;
     }
 }
 

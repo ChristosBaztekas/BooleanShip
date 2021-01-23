@@ -229,7 +229,7 @@ public class RegistrationFormL
             String orgName = tname.getText();
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
-            //int numDepartment = (int) numberOfDepartments.getValue();
+            GuiClass verification = new GuiClass();
             int numEmployees = (int) numOfPeople.getValue();
             String username = tusername.getText();
             String password = tpassword.getText();
@@ -253,6 +253,14 @@ public class RegistrationFormL
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
+            }else if (!verification.registrationCode(orgMail)) {
+                dispose();
+                GuiClass wsFrame = new GuiClass();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setVisible(true);
+                wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             } else {
 
                 String activity = "The situation for labors is unstable";

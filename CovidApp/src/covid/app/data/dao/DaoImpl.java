@@ -1,6 +1,7 @@
 package covid.app.data.dao;
 
 import covid.app.data.model.User;
+import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
 import covid.app.data.model.Human;
 import covid.app.manager.DBConnectionManager;
@@ -20,7 +21,7 @@ public class DaoImpl implements UserDao {
     public DaoImpl(DBConnectionManager manager) {
         this.manager = manager;
     }
-    private JTextArea allOrgs = new JTextArea(20, 40);
+    private final JTextArea allOrgs = new JTextArea(20, 40);
 
     @Override
     public boolean insertUser(User user) {
@@ -31,6 +32,38 @@ public class DaoImpl implements UserDao {
         Connection con = this.manager.getCon();
         try {
             PreparedStatement ps = con.prepareStatement(query);
+            int i = ps.executeUpdate();
+            return i > 0;
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+    }
+
+    public String createAuthCode(String regEmail,Boolean condition) {
+        String sixDigits = GuiClass.getRandomNumberString();
+        String query = "insert into auth(mail, sixdigits, active) values('"+regEmail+"','"+sixDigits+"','"+condition+ "')";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            int i = ps.executeUpdate();
+            return sixDigits;
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return "";
+        }
+
+    }
+    public boolean disactivateAuthCode(String regEmail,Boolean condition) {
+        String query = "UPDATE auth SET active =?WHERE mail =?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(2, regEmail);
+            ps.setBoolean(1, condition);
             int i = ps.executeUpdate();
             return i > 0;
         } catch (SQLException sqlException) {
@@ -80,11 +113,7 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, afm);
             ResultSet i = ps.executeQuery();
-            if (i.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return i.next();
 
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);

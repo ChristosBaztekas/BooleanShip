@@ -2,9 +2,9 @@ package covid.app.gui.bool.ship.registrationForms;
 
 
 import covid.app.data.dao.DaoImpl;
+import covid.app.data.model.NursingHomes;
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.data.model.NursingHomes;
 import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;
@@ -57,7 +57,6 @@ public class RegistrationFormNh
     private final JCheckBox enclosed;
     private final JButton submit;
     private final JButton reset;
-
 
 
     public RegistrationFormNh() {
@@ -243,7 +242,7 @@ public class RegistrationFormNh
             String orgName = tname.getText();
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
-
+            GuiClass verification = new GuiClass();
 
             int numEmployees = (int) numOfEPeople.getValue();
             int numElderly = (int) numOfPeople.getValue();
@@ -269,9 +268,16 @@ public class RegistrationFormNh
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
+            } else if (!verification.registrationCode(orgMail)) {
+                dispose();
+                GuiClass wsFrame = new GuiClass();
+                wsFrame.setBounds(400, 100, 900, 700);
+                wsFrame.setVisible(true);
+                wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             } else {
                 String activity = "Open for guests";
-                // passwords.add(password); usernames.add(username);
                 if (enclosedN) {
                     activity = "Closed for guests";
                 }
