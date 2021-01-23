@@ -2,7 +2,6 @@ package covid.app.gui.bool.ship.menus;
 
 import covid.app.data.dao.UserDaoImpl;
 import covid.app.gui.bool.ship.login.LogLabor;
-import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
 
@@ -20,10 +19,10 @@ public class LaborMenu extends JFrame implements ActionListener {
 
     private final JMenuItem i1 = new JMenuItem("Modify employees");
     private final JMenuItem i2 = new JMenuItem("Declare a Case of Covid-19");
-    private final JMenuItem i3 = new JMenuItem("Status of your Labor");
+    private final JMenuItem i3 = new JMenuItem("Input additional contacts");
+    private final JMenuItem i4 = new JMenuItem("Status of your Labor");
 
-
-    private final JMenuItem i4 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem i5 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
     public LaborMenu(){
@@ -48,8 +47,8 @@ public class LaborMenu extends JFrame implements ActionListener {
         mainMenul.add(i1);
         mainMenul.add(i2);
         mainMenul.add(i3);
-
         mainMenul.add(i4);
+        mainMenul.add(i5);
 
         mainMenul.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -69,8 +68,8 @@ public class LaborMenu extends JFrame implements ActionListener {
         i1.addActionListener(this);
         i2.addActionListener(this);
         i3.addActionListener(this);
-
         i4.addActionListener(this);
+        i5.addActionListener(this);
         exit.addActionListener(this);
 
     }
@@ -92,9 +91,16 @@ public class LaborMenu extends JFrame implements ActionListener {
                }
            }
         } else if (e.getSource() == i3) {
+           GuiClass.inputAdditionalContacts();
 
-        }  else if (e.getSource() == i4) {
-
+        }else if (e.getSource() == i4) {
+           GuiClass.orgStatus(LogLabor.getOrgname());
+       }  else if (e.getSource() == i5) {
+           String subject = JOptionPane.showInputDialog("Please write the Subject");
+           String mainText = JOptionPane.showInputDialog("Please write the main Text");
+           DBConnectionManager manager = new DBConnectionManager();
+           UserDaoImpl impl = new UserDaoImpl(manager);
+           impl.sendMailToAllMembersofYourOrg(subject,mainText, LogLabor.getOrgname());
         }  else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

@@ -21,8 +21,9 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
     private final JMenuItem i1 = new JMenuItem("Modify employees");
     private final JMenuItem i2 = new JMenuItem("Modify the list of elder Residents");
     private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
-    private final JMenuItem i4 = new JMenuItem("Declare contacts");
-    private final JMenuItem i5 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem i4 = new JMenuItem("Input additional contacts");
+    private final JMenuItem i5 = new JMenuItem("Status of your Nursing Home");
+    private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
 
@@ -49,6 +50,7 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
         mainMenun.add(i3);
         mainMenun.add(i4);
         mainMenun.add(i5);
+        mainMenun.add(i6);
 
         mainMenun.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -68,8 +70,8 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
         i2.addActionListener(this);
         i3.addActionListener(this);
         i4.addActionListener(this);
-        //i5.addActionListener(this);
         i5.addActionListener(this);
+        i6.addActionListener(this);
         exit.addActionListener(this);
 
     }
@@ -96,9 +98,15 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
 
 
         } else if (e.getSource() == i4) {
-
-        } else if (e.getSource() == i5) {
-
+       GuiClass.inputAdditionalContacts();
+        }else if (e.getSource() == i5) {
+       GuiClass.orgStatus(LogNursingHome.getOrgname());
+        } else if (e.getSource() == i6) {
+            String subject = JOptionPane.showInputDialog("Please write the Subject");
+            String mainText = JOptionPane.showInputDialog("Please write the main Text");
+            DBConnectionManager manager = new DBConnectionManager();
+            UserDaoImpl impl = new UserDaoImpl(manager);
+            impl.sendMailToAllMembersofYourOrg(subject,mainText,LogNursingHome.getOrgname());
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

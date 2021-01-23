@@ -177,6 +177,63 @@ public class UserDaoImpl implements UserDao {
 
         }
     }
+    public void sendMailToAllMembersofYourOrg(String subject, String mainSub,String orgName) {
+        String query = "SELECT h.email as email From organisations o inner join humans h on o.org_name = h.org_name WHERE h.org_name =?";
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, orgName);
+            ResultSet i = ps.executeQuery();
+            if (i.next()) {
+                try {
+                    JavaMailUtil.sendMail(i.getString("email"), subject, mainSub);
+                } catch (MessagingException e) {
+                    JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+    public int countCases(String orgName) {
+        String query = "Select * from cases c inner join humans h on h.afm = c.afm inner join organisations o on o.org_name = h.org_name WHERE h.org_name =?";
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, orgName);
+            ResultSet i = ps.executeQuery();
+            int count = 0;
+            while(i.next()){
+                count++;
+            }
+            return count;
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+        return 0;
+    }
+    public int countMembers(String orgName) {
+        String query = "SELECT *  from organisations o inner join humans h on h.org_name = o.org_name Where o.org_name =?";
+        Connection con = this.manager.getCon();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, orgName);
+            ResultSet i = ps.executeQuery();
+            int count = 0;
+           while(i.next()){
+               count++;
+           }
+            return count;
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
+        }
+        return 123;
+    }
+
 
     public void sendMailToAllorganisations(String subject, String main) {
         String query = "SELECT user_email FROM users";

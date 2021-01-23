@@ -2,7 +2,6 @@ package covid.app.gui.bool.ship.menus;
 
 
 import covid.app.data.dao.UserDaoImpl;
-import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.login.LogUniversity;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
@@ -14,16 +13,18 @@ import java.awt.event.ActionListener;
 
 public class UniversityMenu extends JFrame implements ActionListener {
 
-    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
 
     private final JMenuItem i1 = new JMenuItem("Modify Students");
     private final JMenuItem i2 = new JMenuItem("Modify Professors");
     private final JMenuItem i3 = new JMenuItem("Declare a Case of Covid-19");
-    private final JMenuItem i4 = new JMenuItem("Status of your University");
+    private final JMenuItem i4 = new JMenuItem("Input additional contacts");
+    private final JMenuItem i5 = new JMenuItem("Status of your University");
 
-    private final JMenuItem i5 = new JMenuItem("Send email to all registered people of your organisation");
+
+    private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
     public UniversityMenu(){
@@ -48,8 +49,8 @@ public class UniversityMenu extends JFrame implements ActionListener {
         mainMenuu.add(i2);
         mainMenuu.add(i3);
         mainMenuu.add(i4);
-
         mainMenuu.add(i5);
+        mainMenuu.add(i6);
 
         mainMenuu.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -69,8 +70,8 @@ public class UniversityMenu extends JFrame implements ActionListener {
         i2.addActionListener(this);
         i3.addActionListener(this);
         i4.addActionListener(this);
-
         i5.addActionListener(this);
+        i6.addActionListener(this);
         exit.addActionListener(this);
 
     }
@@ -94,9 +95,16 @@ public class UniversityMenu extends JFrame implements ActionListener {
                 }
             }
         } else if (e.getSource() == i4) {
+            GuiClass.inputAdditionalContacts();
 
         }  else if (e.getSource() == i5) {
-
+            GuiClass.orgStatus(LogUniversity.getOrgname());
+        }else if (e.getSource() == i6) {
+            String subject = JOptionPane.showInputDialog("Please write the Subject");
+            String mainText = JOptionPane.showInputDialog("Please write the main Text");
+            DBConnectionManager manager = new DBConnectionManager();
+            UserDaoImpl impl = new UserDaoImpl(manager);
+            impl.sendMailToAllMembersofYourOrg(subject,mainText, LogUniversity.getOrgname());
         }  else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

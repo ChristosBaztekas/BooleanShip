@@ -460,6 +460,7 @@ public class GuiClass extends JFrame implements ActionListener {
                         impl.declareContacts(one,afm);
                         try {
                             JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
+                            JOptionPane.showMessageDialog(null,"The contact was successfully added","Completed",JOptionPane.INFORMATION_MESSAGE);
                         } catch (MessagingException e) {
                             JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -475,6 +476,7 @@ public class GuiClass extends JFrame implements ActionListener {
                         impl.declareContacts(one,afm);
                         try {
                             JavaMailUtil.sendMail(email, "Contact", "You have come in contact with a covid case please speak with your doctor and do not meet other people until you ensure that you do not have covid.Stay Safe!");
+                            JOptionPane.showMessageDialog(null,"The contact was successfully added","Completed",JOptionPane.INFORMATION_MESSAGE);
                         } catch (MessagingException e) {
                             JOptionPane.showMessageDialog(null, "Something unexpected happened.Please Try again", "Unexpected Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -587,6 +589,47 @@ public class GuiClass extends JFrame implements ActionListener {
             JavaMailUtil.sendMail(mail, "Welcome", "We will like to inform you that the organisation you belong just registered you as a member.We will help you if you encounter any covid related problem.If you have any problem feel free to contact us. ");
         } catch (MessagingException messagingException) {
             JOptionPane.showMessageDialog(null, "An error occurred please check if your connection is good and if your email is right.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public static void inputAdditionalContacts(){
+        String ans_afm = JOptionPane.showInputDialog("Please write the afm of the case that the contact you want to declare is related");
+
+        if (GuiClass.isValidAfm(ans_afm)) {
+            DBConnectionManager manager = new DBConnectionManager();
+            UserDaoImpl impl2 = new UserDaoImpl(manager);
+            if(impl2.findHumanFromAfm(ans_afm)){
+                GuiClass.createContact(ans_afm);
+            }
+        }
+    }
+    public static void orgStatus(String orgName){
+        DBConnectionManager manager = new DBConnectionManager();
+        UserDaoImpl impl = new UserDaoImpl(manager);
+        JPanel panel = new JPanel(new GridLayout(4, 2));
+        JLabel cases = new JLabel("Cases: "+impl.countCases(orgName));
+        cases.setFont(new Font("Arial", Font.BOLD, 20));
+        JLabel members = new JLabel("Members of your org: "+impl.countMembers(orgName));
+        members.setFont(new Font("Arial", Font.BOLD, 20));
+
+        JLabel quarantine = new JLabel("Would you like to set quarantine mode?");
+        quarantine.setFont(new Font("Arial", Font.BOLD, 20));
+        JLabel empty = new JLabel("");
+        quarantine.setFont(new Font("Arial", Font.BOLD, 20));
+        JRadioButton yes = new JRadioButton("Yes");
+        JRadioButton no = new JRadioButton("No");
+        if((double)(impl.countMembers(orgName)*0.1) < impl.countCases(orgName)){
+            JOptionPane.showMessageDialog(null, "Cases are more than the 10% of your total member we suggest you to select quarantine mode and conduct as many activities as possible online.", "Quarantine alert", JOptionPane.PLAIN_MESSAGE);
+        }
+
+        panel.add(cases);
+        panel.add(members);
+        panel.add(quarantine);
+        panel.add(empty);
+        panel.add(yes);
+        panel.add(no);
+        JOptionPane.showMessageDialog(null, panel, "Status of your organisation", JOptionPane.PLAIN_MESSAGE);
+        if(yes.isSelected()){
+            JOptionPane.showMessageDialog(null, "Quarantine mode activated.Please inform via the massive email option the new regulations you are going to set ", "Quarantine mode", JOptionPane.PLAIN_MESSAGE);
         }
     }
 }
