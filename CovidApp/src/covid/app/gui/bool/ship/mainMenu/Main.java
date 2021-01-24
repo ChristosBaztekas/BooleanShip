@@ -29,7 +29,6 @@ public class Main {
 //        }
         //launch(args);
 
-
      GuiClass wsFrame = new GuiClass();
         wsFrame.setBounds(400, 100, 900, 700);
         wsFrame.setVisible(true);

@@ -223,6 +223,8 @@ public class RegistrationFormS
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
             GuiClass verification = new GuiClass();
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
             boolean ok = false;
             String orgName = tname.getText();
             String orgMail = tmail.getText();
@@ -251,6 +253,10 @@ public class RegistrationFormS
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             }else if(!GuiClass.isValidEmail(orgMail)){
                 tmail.setText("");
+            }else if (impl.usernameExists(username)) {
+                JOptionPane.showMessageDialog(null, "Username already exists.Please choose another username", "Username exists", JOptionPane.ERROR_MESSAGE);
+            }else if(impl.emailExists(orgMail)){
+                JOptionPane.showMessageDialog(null, "Already an account with this email exists.If you forgot your password choose the current option from the user form.", "Email exists", JOptionPane.ERROR_MESSAGE);
             }else if (!verification.registrationCode(orgMail)) {
                 dispose();
                 GuiClass wsFrame = new GuiClass();
@@ -263,8 +269,6 @@ public class RegistrationFormS
                 String activity = "Schools situation is unstable";
                 Universities u = new Universities(orgName,orgArea,(numTe+numSt),orgMail);
                 User leonidas = new User("", password, orgMail, username, "School");
-                DBConnectionManager manager = new DBConnectionManager();
-                DaoImpl impl = new DaoImpl(manager);
                 impl.insertUser(leonidas);
                 DBConnectionManager manager2 = new DBConnectionManager();
                 DaoImpl impl2 = new DaoImpl(manager2);

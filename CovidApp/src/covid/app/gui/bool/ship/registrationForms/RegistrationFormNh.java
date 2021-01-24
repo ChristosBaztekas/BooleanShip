@@ -243,7 +243,8 @@ public class RegistrationFormNh
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
             GuiClass verification = new GuiClass();
-
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
             int numEmployees = (int) numOfEPeople.getValue();
             int numElderly = (int) numOfPeople.getValue();
             String username = tusername.getText();
@@ -268,7 +269,11 @@ public class RegistrationFormNh
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
-            } else if (!verification.registrationCode(orgMail)) {
+            }else if (impl.usernameExists(username)) {
+                JOptionPane.showMessageDialog(null, "Username already exists.Please choose another username", "Username exists", JOptionPane.ERROR_MESSAGE);
+            }else if(impl.emailExists(orgMail)){
+                JOptionPane.showMessageDialog(null, "Already an account with this email exists.If you forgot your password choose the current option from the user form.", "Email exists", JOptionPane.ERROR_MESSAGE);
+            }else if (!verification.registrationCode(orgMail)) {
                 dispose();
                 GuiClass wsFrame = new GuiClass();
                 wsFrame.setBounds(400, 100, 900, 700);
@@ -276,15 +281,14 @@ public class RegistrationFormNh
                 wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
                 wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            } else {
+            }else
+             {
                 String activity = "Open for guests";
                 if (enclosedN) {
                     activity = "Closed for guests";
                 }
                 NursingHomes newOne = new NursingHomes(orgName, orgArea, (numElderly + numEmployees), orgMail, enclosedN);
                 User leonidas = new User("", password, orgMail, username, "NursingHome");
-                DBConnectionManager manager = new DBConnectionManager();
-                DaoImpl impl = new DaoImpl(manager);
                 impl.insertUser(leonidas);
                 DBConnectionManager manager2 = new DBConnectionManager();
                 DaoImpl impl2 = new DaoImpl(manager2);

@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.*;
 import java.util.Random;
 
 
@@ -73,7 +74,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
         JMenuBar mainApp = new JMenuBar();
         setJMenuBar(mainApp);
-        mainApp.setBackground(Color.ORANGE);
+        mainApp.setBackground(Color.WHITE);
         JMenu allmenus = new JMenu("All Menus Available");
         mainApp.add(allmenus);
         JMenu useFullWebsitesAboutCovid = new JMenu("Useful Websites about covid");
@@ -666,6 +667,7 @@ public class GuiClass extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
+
 }
 
 

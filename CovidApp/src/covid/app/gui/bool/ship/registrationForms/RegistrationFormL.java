@@ -230,6 +230,8 @@ public class RegistrationFormL
             String orgMail = tmail.getText();
             String orgArea = tarea.getText();
             GuiClass verification = new GuiClass();
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
             int numEmployees = (int) numOfPeople.getValue();
             String username = tusername.getText();
             String password = tpassword.getText();
@@ -253,6 +255,10 @@ public class RegistrationFormL
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
             } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
+            }else if (impl.usernameExists(username)) {
+                JOptionPane.showMessageDialog(null, "Username already exists.Please choose another username", "Username exists", JOptionPane.ERROR_MESSAGE);
+            }else if(impl.emailExists(orgMail)){
+                JOptionPane.showMessageDialog(null, "Already an account with this email exists.If you forgot your password choose the current option from the user form.", "Email exists", JOptionPane.ERROR_MESSAGE);
             }else if (!verification.registrationCode(orgMail)) {
                 dispose();
                 GuiClass wsFrame = new GuiClass();
@@ -266,8 +272,6 @@ public class RegistrationFormL
                 String activity = "The situation for labors is unstable";
                 Labors newOne = new Labors(orgName, orgArea, numEmployees, orgMail);
                 User leonidas = new User("", password, orgMail, username, "Labor");
-                DBConnectionManager manager = new DBConnectionManager();
-                DaoImpl impl = new DaoImpl(manager);
                 impl.insertUser(leonidas);
                 DBConnectionManager manager2 = new DBConnectionManager();
                 DaoImpl impl2 = new DaoImpl(manager2);

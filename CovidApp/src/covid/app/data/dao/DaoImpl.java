@@ -9,10 +9,7 @@ import covid.app.manager.DBConnectionManager;
 import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DaoImpl implements UserDao {
 
@@ -55,6 +52,44 @@ public class DaoImpl implements UserDao {
             return "";
         }
 
+    }
+    public boolean usernameExists(String username) {
+
+        String query = "SELECT username FROM organisations WHERE username =?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            ResultSet i = ps.executeQuery();
+            while (i.next()) {
+                return true;
+            }
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return false;
+    }
+    public boolean emailExists(String email) {
+
+        String query = "SELECT * FROM organisations o inner join users u on o.username = u.username WHERE u.user_email =?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            ResultSet i = ps.executeQuery();
+            while (i.next()) {
+                return true;
+            }
+
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return false;
     }
     public boolean disactivateAuthCode(String regEmail,Boolean condition) {
         String query = "UPDATE auth SET active =?WHERE mail =?";
