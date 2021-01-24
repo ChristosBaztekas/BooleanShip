@@ -33,7 +33,7 @@ public class OrgMenu extends JFrame implements ActionListener {
         JMenuBar controlGovMenu = new JMenuBar();
         setJMenuBar(controlGovMenu);
         controlGovMenu.setBackground(Color.ORANGE);
-        JMenu mainMenug = new JMenu("User Surveillance Menu.");
+        JMenu mainMenug = new JMenu("User Surveillance Menu");
         controlGovMenu.add(mainMenug);
         JMenu help = new JMenu("Help");
         controlGovMenu.add(help);

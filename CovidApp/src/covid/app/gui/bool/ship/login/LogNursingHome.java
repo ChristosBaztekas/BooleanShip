@@ -48,13 +48,13 @@ public class LogNursingHome extends JFrame implements ActionListener {
         exit.setFont(new Font("Serif", Font.BOLD, 14));
         loginButton.setOpaque(false);
         loginButton.setContentAreaFilled(false);
-        //loginButton.setBorderPainted(false);
+
         resetButton.setOpaque(false);
         resetButton.setContentAreaFilled(false);
-        //resetButton.setBorderPainted(false);
+
         exit.setOpaque(false);
         exit.setContentAreaFilled(false);
-        //exit.setBorderPainted(false);
+
 
         background.add(userLabel);
         background.add(passwordLabel);

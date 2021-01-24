@@ -43,7 +43,7 @@ public class Main {
         wsFrame.setVisible(true);
         wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        //a = args;// we need this for the piechart
+        //a = args;// we need this for the piechart
 
 
 

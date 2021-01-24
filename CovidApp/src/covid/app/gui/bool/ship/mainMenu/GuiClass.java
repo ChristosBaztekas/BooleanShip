@@ -18,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.*;
 import java.util.Random;
 
 
@@ -619,7 +618,7 @@ public class GuiClass extends JFrame implements ActionListener {
         quarantine.setFont(new Font("Arial", Font.BOLD, 20));
         JRadioButton yes = new JRadioButton("Yes");
         JRadioButton no = new JRadioButton("No");
-        if ((double) (impl.countMembers(orgName) * 0.1) < impl.countCases(orgName)) {
+        if ((impl.countMembers(orgName) * 0.1) < impl.countCases(orgName)) {
             JOptionPane.showMessageDialog(null, "Cases are more than the 10% of your total member we suggest you to select quarantine mode and conduct as many activities as possible online.", "Quarantine alert", JOptionPane.PLAIN_MESSAGE);
         }
 
