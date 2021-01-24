@@ -139,7 +139,57 @@ public class DaoImpl implements UserDao {
             return false;
         }
     }
+    public String findHumanEmailFromAfm(String afm) {
+        String query = " SELECT email FROM humans WHERE afm =?";
 
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, afm);
+            ResultSet i = ps.executeQuery();
+            if(i.next()) {
+                return i.getString("email");
+            }
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return "false";
+        }
+    return "";
+    }
+    public String findHumanOrgNameFromAfm(String afm) {
+        String query = " SELECT org_name FROM humans WHERE afm =?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, afm);
+            ResultSet i = ps.executeQuery();
+            if(i.next()) {
+                return i.getString("org_name");
+            }
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return "false";
+        }
+        return "";
+    }
+    public String findOrgEmailfromOrgName(String org_name) {
+        String query = " SELECT user_email FROM organisations o inner join users u on u.username = o.username WHERE o.org_name =?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, org_name);
+            ResultSet i = ps.executeQuery();
+            if(i.next()) {
+                return i.getString("user_email");
+            }
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return "false";
+        }
+        return "";
+    }
     public Boolean findHumanFromAfm(String afm) {
         String query = "select * from humans where afm=?";
 

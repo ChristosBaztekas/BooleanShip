@@ -88,6 +88,8 @@ public class LaborMenu extends JFrame implements ActionListener {
                    DaoImpl impl = new DaoImpl(manager2);
                    impl.findHumanFromAfmAndOrgToDeclareCase(ans_afm, LogLabor.getOrgname());
                    GuiClass.createContact(ans_afm);
+               }else{
+                   JOptionPane.showMessageDialog(null, "This Person is not registered.","Person not found",JOptionPane.ERROR_MESSAGE);
                }
            }
         } else if (e.getSource() == i3) {

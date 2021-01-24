@@ -307,7 +307,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
     public static void alreadyUserOptionN(String anyString) {
         LogNursingHome frame = new LogNursingHome();
-        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setTitle(anyString);
         frame.setVisible(true);
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -316,7 +316,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
     public static void alreadyUserOptionS(String anyString) {
         LogSchool frame = new LogSchool();
-        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setTitle(anyString);
         frame.setVisible(true);
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -325,7 +325,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
     public static void alreadyUserOptionU(String anyString) {
         LogUniversity frame = new LogUniversity();
-        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setTitle(anyString);
         frame.setVisible(true);
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -334,7 +334,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
     public static void alreadyUserOptionL(String anyString) {
         LogLabor frame = new LogLabor();
-        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setTitle(anyString);
         frame.setVisible(true);
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -93,6 +93,8 @@ public class NursingHomeMenu extends JFrame implements ActionListener {
             DaoImpl impl = new DaoImpl(manager2);
             impl.findHumanFromAfmAndOrgToDeclareCase(ans_afm,LogNursingHome.getOrgname());
             GuiClass.createContact(ans_afm);
+                }else{
+                    JOptionPane.showMessageDialog(null, "This Person is not registered.","Person not found",JOptionPane.ERROR_MESSAGE);
                 }
             }
 

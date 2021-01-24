@@ -2,8 +2,10 @@ package covid.app.gui.bool.ship.menus;
 
 import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
+import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
 import covid.app.manager.DBConnectionManager;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +22,7 @@ public class OrgMenu extends JFrame implements ActionListener {
     private final JMenuItem i2 = new JMenuItem("All recorded cases");
     private final JMenuItem i3 = new JMenuItem("All Contacts recorded");
     private final JMenuItem i4 = new JMenuItem("Send email to all registered Organisations");
-    private final JMenuItem i5 = new JMenuItem("Statistics of registered organisations");
+    private final JMenuItem i5 = new JMenuItem("Declare a tested positive person");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
 
@@ -48,7 +50,6 @@ public class OrgMenu extends JFrame implements ActionListener {
         mainMenug.add(i3);
         mainMenug.add(i4);
         mainMenug.add(i5);
-
 
 
         mainMenug.add(exit);
@@ -85,7 +86,7 @@ public class OrgMenu extends JFrame implements ActionListener {
             DBConnectionManager manager = new DBConnectionManager();
             DaoImpl impl = new DaoImpl(manager);
             impl.getAllcases();
-        }  else if (e.getSource() == i3) {
+        } else if (e.getSource() == i3) {
             DBConnectionManager manager = new DBConnectionManager();
             DaoImpl impl = new DaoImpl(manager);
             impl.getAllcontacts();
@@ -97,10 +98,34 @@ public class OrgMenu extends JFrame implements ActionListener {
             DaoImpl impl = new DaoImpl(manager);
             impl.sendMailToAllorganisations(subject, mainText);
 
-        }else if (e.getSource() == i5) {
-            //create piechart
-            // piechart pie = new piechart();
-            //pie.launch(covid.app.gui.bool.ship.mainMenu.Main.a);
+        } else if (e.getSource() == i5) {
+            String ans_afm = JOptionPane.showInputDialog("Please write the afm of the person tested positive");
+
+            if (GuiClass.isValidAfm(ans_afm)) {
+                DBConnectionManager manager = new DBConnectionManager();
+                DaoImpl impl2 = new DaoImpl(manager);
+                if (impl2.findHumanFromAfm(ans_afm)) {
+                    DBConnectionManager manager2 = new DBConnectionManager();
+                    DaoImpl impl = new DaoImpl(manager2);
+                    impl.declareCase(ans_afm, "Positive");
+
+                    try {
+                        JavaMailUtil.sendMail(impl.findHumanEmailFromAfm(ans_afm), "Covid case", "Hello you were declared as a covid case please stay home.");
+                        JavaMailUtil.sendMail(impl.findOrgEmailfromOrgName(impl.findHumanOrgNameFromAfm(ans_afm)), "Member found positive", "We inform you that the member of your organisation with afm:" + ans_afm + " was found positive.Please inform as via the suitable form of the application about his contacts and implement the actions demanded by the protocols.");
+
+                    } catch (MessagingException messagingException) {
+                        JOptionPane.showMessageDialog(null, "Something unexpected happened.Please check your internet connection.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+
+                    GuiClass.createContact(ans_afm);
+                } else {
+                    JOptionPane.showMessageDialog(null, "This Person is not registered.", "Person not found", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+//             covid.app.gui.bool.ship.resources.piechart pie = new piechart();
+//            pie.launch(covid.app.gui.bool.ship.mainMenu.Main.a);
+
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {
