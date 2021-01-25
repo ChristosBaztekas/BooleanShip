@@ -8,3 +8,6 @@ https://www.surveymonkey.com/r/KGCTRHJ?fbclid=IwAR1om5VRdF8iv5B8y5BE2OuQkdUc2_SV
 
 
 Authors: BooleanShip Team
+For a most realistic experience using this application and due to security reasons , in order to use the government menu you will have to user the following account:
+email:governmentuseremail@gmail.com
+password:noBugsNow1
