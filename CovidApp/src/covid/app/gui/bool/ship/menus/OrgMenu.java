@@ -1,6 +1,8 @@
 package covid.app.gui.bool.ship.menus;
 
 import covid.app.data.dao.DaoImpl;
+import covid.app.gui.bool.ship.login.LogLabor;
+import covid.app.gui.bool.ship.login.LogOrg;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
 import covid.app.manager.DBConnectionManager;
@@ -23,6 +25,7 @@ public class OrgMenu extends JFrame implements ActionListener {
     private final JMenuItem i3 = new JMenuItem("All Contacts recorded");
     private final JMenuItem i4 = new JMenuItem("Send email to all registered Organisations");
     private final JMenuItem i5 = new JMenuItem("Declare a tested positive person");
+    private final JMenuItem i6 = new JMenuItem("Change password");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
 
@@ -50,6 +53,7 @@ public class OrgMenu extends JFrame implements ActionListener {
         mainMenug.add(i3);
         mainMenug.add(i4);
         mainMenug.add(i5);
+        mainMenug.add(i6);
 
 
         mainMenug.add(exit);
@@ -73,6 +77,7 @@ public class OrgMenu extends JFrame implements ActionListener {
         i3.addActionListener(this);
         i4.addActionListener(this);
         i5.addActionListener(this);
+        i6.addActionListener(this);
         exit.addActionListener(this);
     }
 
@@ -126,6 +131,16 @@ public class OrgMenu extends JFrame implements ActionListener {
 //             covid.app.gui.bool.ship.resources.piechart pie = new piechart();
 //            pie.launch(covid.app.gui.bool.ship.mainMenu.Main.a);
 
+        }else if (e.getSource() == i6) {
+            GuiClass verification = new GuiClass();
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
+            if(verification.registrationCode(impl.findOrgEmailfromOrgName(LogOrg.getOrgname()))) {
+                String newPas = JOptionPane.showInputDialog("Please write as the new password");
+                impl.changePassword(newPas, LogOrg.getOrgUsername());
+            }else{
+                JOptionPane.showMessageDialog(null, "Try again.If you lost access to your mail contact as.","Error",JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

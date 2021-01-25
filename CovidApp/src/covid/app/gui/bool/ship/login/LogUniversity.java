@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class LogUniversity extends JFrame implements ActionListener {
     static String orgname = null;
+    static String orgUsername = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -48,13 +49,11 @@ public class LogUniversity extends JFrame implements ActionListener {
         exit.setFont(new Font("Serif", Font.BOLD, 14));
         loginButton.setOpaque(false);
         loginButton.setContentAreaFilled(false);
-        //loginButton.setBorderPainted(false);
         resetButton.setOpaque(false);
         resetButton.setContentAreaFilled(false);
-        //resetButton.setBorderPainted(false);
         exit.setOpaque(false);
         exit.setContentAreaFilled(false);
-        //exit.setBorderPainted(false);
+
 
         background.add(userLabel);
         background.add(passwordLabel);
@@ -89,8 +88,6 @@ public class LogUniversity extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Coding
-        // Part of LOGIN button
         if (e.getSource() == loginButton) {
             String userText;
             String pwdText;
@@ -129,12 +126,12 @@ public class LogUniversity extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        //Coding Part of RESET button
+
         if (e.getSource() == resetButton) {
             userTextField.setText("");
             passwordField.setText("");
         }
-        //Coding Part of showPassword JCheckBox
+
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
@@ -153,7 +150,7 @@ public class LogUniversity extends JFrame implements ActionListener {
         return orgname;
     }
 
-    public static void setOrgname(String orgname) {
-        LogUniversity.orgname = orgname;
+    public static String getOrgUsername() {
+        return orgUsername;
     }
 }

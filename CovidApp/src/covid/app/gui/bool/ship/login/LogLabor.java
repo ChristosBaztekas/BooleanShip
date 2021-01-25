@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class LogLabor extends JFrame implements ActionListener{
     static String orgname = null;
+    static String orgUsername = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -48,13 +49,11 @@ public class LogLabor extends JFrame implements ActionListener{
         exit.setFont(new Font("Serif", Font.BOLD, 14));
         loginButton.setOpaque(false);
         loginButton.setContentAreaFilled(false);
-        //loginButton.setBorderPainted(false);
         resetButton.setOpaque(false);
         resetButton.setContentAreaFilled(false);
-        //resetButton.setBorderPainted(false);
         exit.setOpaque(false);
         exit.setContentAreaFilled(false);
-        //exit.setBorderPainted(false);
+
 
         background.add(userLabel);
         background.add(passwordLabel);
@@ -101,10 +100,11 @@ public class LogLabor extends JFrame implements ActionListener{
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Redirecting to the main Labor menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                String orgUsername = userText;
+                orgUsername = userText;
                 DBConnectionManager manager = new DBConnectionManager();
                 DaoImpl impl = new DaoImpl(manager);
                 orgname = impl.findOrgname(orgUsername);
+
                 dispose();
                 LaborMenu wsFrame = new LaborMenu();
                 wsFrame.setBounds(400, 100, 900, 700);
@@ -151,7 +151,8 @@ public class LogLabor extends JFrame implements ActionListener{
         return orgname;
     }
 
-    public static void setOrgname(String orgname) {
-        LogLabor.orgname = orgname;
+    public static String getOrgUsername() {
+        return orgUsername;
     }
+
 }

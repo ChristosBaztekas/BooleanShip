@@ -1,6 +1,7 @@
 package covid.app.gui.bool.ship.menus;
 
 import covid.app.data.dao.DaoImpl;
+import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.login.LogSchool;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
@@ -21,6 +22,7 @@ public class SchoolMenu extends JFrame implements ActionListener {
     private final JMenuItem i4 = new JMenuItem("Input additional contacts");
     private final JMenuItem i5 = new JMenuItem("Status of your school");
     private final JMenuItem i6 = new JMenuItem("Send email to all registered people of your organisation");
+    private final JMenuItem i7 = new JMenuItem("Change password");
     private final JMenuItem exit = new JMenuItem("Exit");
     private final JMenuItem close = new JMenuItem("Exit");
     public SchoolMenu(){
@@ -47,6 +49,7 @@ public class SchoolMenu extends JFrame implements ActionListener {
         mainMenus.add(i4);
         mainMenus.add(i5);
         mainMenus.add(i6);
+        mainMenus.add(i7);
 
         mainMenus.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -68,6 +71,7 @@ public class SchoolMenu extends JFrame implements ActionListener {
         i4.addActionListener(this);
         i5.addActionListener(this);
         i6.addActionListener(this);
+        i7.addActionListener(this);
         exit.addActionListener(this);
 
     }
@@ -103,6 +107,17 @@ public class SchoolMenu extends JFrame implements ActionListener {
             DBConnectionManager manager = new DBConnectionManager();
             DaoImpl impl = new DaoImpl(manager);
             impl.sendMailToAllMembersofYourOrg(subject,mainText, LogSchool.getOrgname());
+        }else if (e.getSource() == i7) {
+            GuiClass verification = new GuiClass();
+            DBConnectionManager manager = new DBConnectionManager();
+            DaoImpl impl = new DaoImpl(manager);
+            if(verification.registrationCode(impl.findOrgEmailfromOrgName(LogSchool.getOrgname()))) {
+                String newPas = JOptionPane.showInputDialog("Please write as the new password");
+                impl.changePassword(newPas, LogSchool.getOrgUsername());
+            }else{
+                JOptionPane.showMessageDialog(null, "Try again.If you lost access to your mail contact as.","Error",JOptionPane.ERROR_MESSAGE);
+            }
+
         }  else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {

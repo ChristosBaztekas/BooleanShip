@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LogOrg extends JFrame implements ActionListener {
+    static String orgname = null;
+    static String orgUsername = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -49,13 +51,10 @@ public class LogOrg extends JFrame implements ActionListener {
         exit.setFont(new Font("Serif", Font.BOLD, 14));
         loginButton.setOpaque(false);
         loginButton.setContentAreaFilled(false);
-        //loginButton.setBorderPainted(false);
         resetButton.setOpaque(false);
         resetButton.setContentAreaFilled(false);
-        //resetButton.setBorderPainted(false);
         exit.setOpaque(false);
         exit.setContentAreaFilled(false);
-        //exit.setBorderPainted(false);
 
         background.add(userLabel);
         background.add(passwordLabel);
@@ -90,8 +89,6 @@ public class LogOrg extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Coding
-        // Part of LOGIN button
         if (e.getSource() == loginButton) {
             String userText;
             String pwdText;
@@ -103,6 +100,10 @@ public class LogOrg extends JFrame implements ActionListener {
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                     JOptionPane.showMessageDialog(this, "Redirecting to the main government menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                    orgUsername = userText;
+                DBConnectionManager manager = new DBConnectionManager();
+                DaoImpl impl = new DaoImpl(manager);
+                orgname = impl.findOrgname(orgUsername);
                     dispose();
                     OrgMenu wsFrame = new OrgMenu();
                     wsFrame.setBounds(400, 100, 900, 700);
@@ -112,59 +113,6 @@ public class LogOrg extends JFrame implements ActionListener {
             }else{
                 JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
             }
-//            for (int i = 0; i < 10; i++) {
-//
-//                if (userText.equalsIgnoreCase("LeonidasDiamg") && pwdText.equalsIgnoreCase("fixBugs")) {
-//                    JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(this, "Redirecting to the main government menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-//                    dispose();
-//                    OrgMenu wsFrame = new OrgMenu();
-//                    wsFrame.setBounds(400, 100, 900, 700);
-//                    wsFrame.setTitle("Welcome to the main Government User Menu!");
-//                    wsFrame.setVisible(true);
-//                    wsFrame.setDefaultCloseOperation(3);
-//                } else if (userText.equalsIgnoreCase("LeonidasDiams") && pwdText.equalsIgnoreCase("fixBugs")) {
-//                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(this, "Redirecting to the main School menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-//                    dispose();
-//                    SchoolMenu wsFrame = new SchoolMenu();
-//                    wsFrame.setBounds(400, 100, 900, 700);
-//                    wsFrame.setTitle("Welcome to the main School user menu!");
-//                    wsFrame.setVisible(true);
-//                    wsFrame.setDefaultCloseOperation(3);
-//                } else if (userText.equalsIgnoreCase("LeonidasDiaml") && pwdText.equalsIgnoreCase("fixBugs")) {
-//                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(this, "Redirecting to the main Labor menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-//                    dispose();
-//                    LaborMenu wsFrame = new LaborMenu();
-//                    wsFrame.setBounds(400, 100, 900, 700);
-//                    wsFrame.setTitle("Welcome to the main Labor user menu!");
-//                    wsFrame.setVisible(true);
-//                    wsFrame.setDefaultCloseOperation(3);
-//                } else if (userText.equalsIgnoreCase("LeonidasDiamn") && pwdText.equalsIgnoreCase("fixBugs")) {
-//                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(this, "Redirecting to the main university menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-//                    dispose();
-//                    UniversityMenu wsFrame = new UniversityMenu();
-//                    wsFrame.setBounds(400, 100, 900, 700);
-//                    wsFrame.setTitle("Welcome to the main University user menu!");
-//                    wsFrame.setVisible(true);
-//                    wsFrame.setDefaultCloseOperation(3);
-//                } else if ((userText.equalsIgnoreCase(RegistrationFormNh.usernames.get(i)) && pwdText.equalsIgnoreCase(RegistrationFormNh.passwords.get(i)))) {
-//
-//                    JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-//                    dispose();
-//                    NursingHomeMenu wsFrame = new NursingHomeMenu();
-//                    wsFrame.setBounds(400, 100, 900, 700);
-//                    wsFrame.setTitle("Welcome to the main nursing home user menu!");
-//                    wsFrame.setVisible(true);
-//                    wsFrame.setDefaultCloseOperation(3);
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-
 
         }
         if (e.getSource() == forgotPassword) {
@@ -178,12 +126,12 @@ public class LogOrg extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        //Coding Part of RESET button
+
         if (e.getSource() == resetButton) {
             userTextField.setText("");
             passwordField.setText("");
         }
-        //Coding Part of showPassword JCheckBox
+
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
@@ -197,5 +145,11 @@ public class LogOrg extends JFrame implements ActionListener {
 
 
     }
+    public static String getOrgname() {
+        return orgname;
+    }
 
+    public static String getOrgUsername() {
+        return orgUsername;
+    }
 }

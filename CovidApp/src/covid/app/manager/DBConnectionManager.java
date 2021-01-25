@@ -2,7 +2,7 @@ package covid.app.manager;
 
 
 
-import utils.DbConnectionUtils;
+import covid.app.utils.DbConnectionUtils;
 
 import java.sql.Connection;
 

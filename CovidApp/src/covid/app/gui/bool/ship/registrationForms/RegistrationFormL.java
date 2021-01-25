@@ -30,8 +30,7 @@ public class RegistrationFormL
             Integer.valueOf(400), // max
             Integer.valueOf(1) // step
     );
-    public static ArrayList<String> usernames = new ArrayList<>();
-    public static ArrayList<String> passwords = new ArrayList<>();
+
 
 
     private final JTextField tname;

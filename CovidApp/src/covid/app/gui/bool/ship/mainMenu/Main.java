@@ -3,6 +3,7 @@ package covid.app.gui.bool.ship.mainMenu;
 
 import covid.app.data.dao.DaoImpl;
 import covid.app.data.model.Human;
+import covid.app.gui.bool.ship.login.LogLabor;
 import covid.app.gui.bool.ship.menus.OrgMenu;
 import covid.app.gui.bool.ship.registrationForms.RegistrationFormNh;
 import covid.app.manager.DBConnectionManager;

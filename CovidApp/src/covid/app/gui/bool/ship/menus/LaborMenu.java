@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class LaborMenu extends JFrame implements ActionListener {
 
-    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");//Dont forget to create a new surveyMonkey
+    private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
 
@@ -21,6 +21,8 @@ public class LaborMenu extends JFrame implements ActionListener {
     private final JMenuItem i2 = new JMenuItem("Declare a Case of Covid-19");
     private final JMenuItem i3 = new JMenuItem("Input additional contacts");
     private final JMenuItem i4 = new JMenuItem("Status of your Labor");
+    private final JMenuItem i6 = new JMenuItem("Change password");
+
 
     private final JMenuItem i5 = new JMenuItem("Send email to all registered people of your organisation");
     private final JMenuItem exit = new JMenuItem("Exit");
@@ -49,6 +51,7 @@ public class LaborMenu extends JFrame implements ActionListener {
         mainMenul.add(i3);
         mainMenul.add(i4);
         mainMenul.add(i5);
+        mainMenul.add(i6);
 
         mainMenul.add(exit);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
@@ -70,6 +73,7 @@ public class LaborMenu extends JFrame implements ActionListener {
         i3.addActionListener(this);
         i4.addActionListener(this);
         i5.addActionListener(this);
+        i6.addActionListener(this);
         exit.addActionListener(this);
 
     }
@@ -103,7 +107,17 @@ public class LaborMenu extends JFrame implements ActionListener {
            DBConnectionManager manager = new DBConnectionManager();
            DaoImpl impl = new DaoImpl(manager);
            impl.sendMailToAllMembersofYourOrg(subject,mainText, LogLabor.getOrgname());
-        }  else if (e.getSource() == exit) {
+        }else if (e.getSource() == i6) {
+           GuiClass verification = new GuiClass();
+           DBConnectionManager manager = new DBConnectionManager();
+           DaoImpl impl = new DaoImpl(manager);
+           if(verification.registrationCode(impl.findOrgEmailfromOrgName(LogLabor.getOrgname()))) {
+               String newPas = JOptionPane.showInputDialog("Please write as the new password");
+               impl.changePassword(newPas, LogLabor.getOrgUsername());
+           }else{
+               JOptionPane.showMessageDialog(null, "Try again.If you lost access to your mail contact as.","Error",JOptionPane.ERROR_MESSAGE);
+           }
+       }  else if (e.getSource() == exit) {
             GuiClass.exitMethod();
         } else if (e.getSource() == close) {
             GuiClass.exitMethod();

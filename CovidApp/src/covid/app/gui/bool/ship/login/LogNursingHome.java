@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class LogNursingHome extends JFrame implements ActionListener {
     static String orgname = null;
+    static String orgUsername = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -150,7 +151,7 @@ public class LogNursingHome extends JFrame implements ActionListener {
         return orgname;
     }
 
-    public static void setOrgname(String orgname) {
-        LogNursingHome.orgname = orgname;
+    public static String getOrgUsername() {
+        return orgUsername;
     }
 }

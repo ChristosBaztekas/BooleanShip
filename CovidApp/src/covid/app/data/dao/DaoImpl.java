@@ -1,15 +1,18 @@
 package covid.app.data.dao;
 
+import covid.app.data.model.Human;
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
-import covid.app.data.model.Human;
 import covid.app.manager.DBConnectionManager;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DaoImpl implements UserDao {
 
@@ -18,6 +21,7 @@ public class DaoImpl implements UserDao {
     public DaoImpl(DBConnectionManager manager) {
         this.manager = manager;
     }
+
     private final JTextArea allOrgs = new JTextArea(20, 40);
 
     @Override
@@ -38,9 +42,36 @@ public class DaoImpl implements UserDao {
 
     }
 
-    public String createAuthCode(String regEmail,Boolean condition) {
+    public boolean changePassword(String newPassword, String orgUsername) {
+        String query = "Update users SET user_password =? WHERE username =?";
+
+        Connection con = this.manager.getCon();
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, newPassword);
+            ps.setString(2, orgUsername);
+            int i = ps.executeUpdate();
+            while (i > 0) {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure you want to change your password to " + newPassword + "?", "New password", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    JOptionPane.showMessageDialog(null, "You changed password successfully to " + newPassword + ".", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Password did not changed.", "Password remained the same", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+
+
+            }
+        } catch (SQLException sqlException) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return false;
+    }
+
+    public String createAuthCode(String regEmail, Boolean condition) {
         String sixDigits = GuiClass.getRandomNumberString();
-        String query = "insert into auth(mail, sixdigits, active) values('"+regEmail+"','"+sixDigits+"','"+condition+ "')";
+        String query = "insert into auth(mail, sixdigits, active) values('" + regEmail + "','" + sixDigits + "','" + condition + "')";
 
         Connection con = this.manager.getCon();
         try {
@@ -53,6 +84,7 @@ public class DaoImpl implements UserDao {
         }
 
     }
+
     public boolean usernameExists(String username) {
 
         String query = "SELECT username FROM organisations WHERE username =?";
@@ -72,6 +104,7 @@ public class DaoImpl implements UserDao {
         }
         return false;
     }
+
     public boolean emailExists(String email) {
 
         String query = "SELECT * FROM organisations o inner join users u on o.username = u.username WHERE u.user_email =?";
@@ -91,7 +124,8 @@ public class DaoImpl implements UserDao {
         }
         return false;
     }
-    public boolean disactivateAuthCode(String regEmail,Boolean condition) {
+
+    public boolean disactivateAuthCode(String regEmail, Boolean condition) {
         String query = "UPDATE auth SET active =?WHERE mail =?";
 
         Connection con = this.manager.getCon();
@@ -139,6 +173,7 @@ public class DaoImpl implements UserDao {
             return false;
         }
     }
+
     public String findHumanEmailFromAfm(String afm) {
         String query = " SELECT email FROM humans WHERE afm =?";
 
@@ -147,15 +182,16 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, afm);
             ResultSet i = ps.executeQuery();
-            if(i.next()) {
+            if (i.next()) {
                 return i.getString("email");
             }
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again because it seems like this afm does not belong to your organisation.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
             return "false";
         }
-    return "";
+        return "";
     }
+
     public String findHumanOrgNameFromAfm(String afm) {
         String query = " SELECT org_name FROM humans WHERE afm =?";
 
@@ -164,7 +200,7 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, afm);
             ResultSet i = ps.executeQuery();
-            if(i.next()) {
+            if (i.next()) {
                 return i.getString("org_name");
             }
         } catch (SQLException sqlException) {
@@ -173,6 +209,7 @@ public class DaoImpl implements UserDao {
         }
         return "";
     }
+
     public String findOrgEmailfromOrgName(String org_name) {
         String query = " SELECT user_email FROM organisations o inner join users u on u.username = o.username WHERE o.org_name =?";
 
@@ -181,7 +218,7 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, org_name);
             ResultSet i = ps.executeQuery();
-            if(i.next()) {
+            if (i.next()) {
                 return i.getString("user_email");
             }
         } catch (SQLException sqlException) {
@@ -190,6 +227,7 @@ public class DaoImpl implements UserDao {
         }
         return "";
     }
+
     public Boolean findHumanFromAfm(String afm) {
         String query = "select * from humans where afm=?";
 
@@ -205,8 +243,9 @@ public class DaoImpl implements UserDao {
             return false;
         }
     }
-    public void declareContacts(Human hu,String afm){
-        String query = "insert into contacts(name,surname,gender,c_afm,email,afm) values ('" + hu.getName() + "','" + hu.getSurname() +"','"+ hu.getGender() +"','"+ hu.getAfm() +"','"+ hu.getEmail() +"','"+ afm+"')";
+
+    public void declareContacts(Human hu, String afm) {
+        String query = "insert into contacts(name,surname,gender,c_afm,email,afm) values ('" + hu.getName() + "','" + hu.getSurname() + "','" + hu.getGender() + "','" + hu.getAfm() + "','" + hu.getEmail() + "','" + afm + "')";
 
         Connection con = this.manager.getCon();
         try {
@@ -292,7 +331,8 @@ public class DaoImpl implements UserDao {
 
         }
     }
-    public void sendMailToAllMembersofYourOrg(String subject, String mainSub,String orgName) {
+
+    public void sendMailToAllMembersofYourOrg(String subject, String mainSub, String orgName) {
         String query = "SELECT h.email as email From organisations o inner join humans h on o.org_name = h.org_name WHERE h.org_name =?";
         Connection con = this.manager.getCon();
         try {
@@ -311,6 +351,7 @@ public class DaoImpl implements UserDao {
 
         }
     }
+
     public int countCases(String orgName) {
         String query = "Select * from cases c inner join humans h on h.afm = c.afm inner join organisations o on o.org_name = h.org_name WHERE h.org_name =?";
         Connection con = this.manager.getCon();
@@ -319,7 +360,7 @@ public class DaoImpl implements UserDao {
             ps.setString(1, orgName);
             ResultSet i = ps.executeQuery();
             int count = 0;
-            while(i.next()){
+            while (i.next()) {
                 count++;
             }
             return count;
@@ -329,6 +370,7 @@ public class DaoImpl implements UserDao {
         }
         return 0;
     }
+
     public void getAllcases() {
         String query = " SELECT h.afm as afm,h.org_name as org_name,h.org_type as org_type  from cases ca inner join humans h on h.afm = ca.afm ";
         Connection con = this.manager.getCon();
@@ -337,16 +379,16 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet i = ps.executeQuery();
             int count = 0;
-            while(i.next()){
+            while (i.next()) {
                 ++count;
-                String info = count +")Afm:" + i.getString("afm") + " and Organisation name:" + i.getString("org_name")+" and Organisation Type:" + i.getString("org_type")+"\n";
+                String info = count + ")Afm:" + i.getString("afm") + " and Organisation name:" + i.getString("org_name") + " and Organisation Type:" + i.getString("org_type") + "\n";
                 allOrgs.append(info);
 
             }
             allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
             allOrgs.setEditable(false);
             allOrgs.setBackground(Color.CYAN);
-            JOptionPane.showMessageDialog(null,allOrgs,"All Cases", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, allOrgs, "All Cases", JOptionPane.PLAIN_MESSAGE);
 
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
@@ -354,6 +396,7 @@ public class DaoImpl implements UserDao {
         }
 
     }
+
     public void getAllcontacts() {
         String query = "SELECT h.afm as afm,ca.email as email  from contacts ca inner join humans h on h.afm = ca.afm ";
         Connection con = this.manager.getCon();
@@ -362,16 +405,16 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet i = ps.executeQuery();
             int count = 0;
-            while(i.next()){
+            while (i.next()) {
                 ++count;
-                String info = count +")Afm:" + i.getString("afm") + " and Contact's email:" + i.getString("email")+"\n";
+                String info = count + ")Afm:" + i.getString("afm") + " and Contact's email:" + i.getString("email") + "\n";
                 allOrgs.append(info);
 
             }
             allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
             allOrgs.setEditable(false);
             allOrgs.setBackground(Color.CYAN);
-            JOptionPane.showMessageDialog(null,allOrgs,"All Cases", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, allOrgs, "All Cases", JOptionPane.PLAIN_MESSAGE);
 
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
@@ -379,6 +422,7 @@ public class DaoImpl implements UserDao {
         }
 
     }
+
     public void getAllOrgs() {
         String query = "SELECT org_name,org_type FROM organisations WHERE org_name <> 'Eody'";
         Connection con = this.manager.getCon();
@@ -387,16 +431,16 @@ public class DaoImpl implements UserDao {
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet i = ps.executeQuery();
             int count = 0;
-            while(i.next()){
+            while (i.next()) {
                 ++count;
-             String info = count +") Organisation name: " + i.getString("org_name") + " and Organisation Type: " + i.getString("org_type")+"\n";
+                String info = count + ") Organisation name: " + i.getString("org_name") + " and Organisation Type: " + i.getString("org_type") + "\n";
                 allOrgs.append(info);
 
             }
             allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
             allOrgs.setEditable(false);
             allOrgs.setBackground(Color.CYAN);
-            JOptionPane.showMessageDialog(null,allOrgs,"All organisations", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, allOrgs, "All organisations", JOptionPane.PLAIN_MESSAGE);
 
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
@@ -404,6 +448,7 @@ public class DaoImpl implements UserDao {
         }
 
     }
+
     public int countMembers(String orgName) {
         String query = "SELECT *  from organisations o inner join humans h on h.org_name = o.org_name Where o.org_name =?";
         Connection con = this.manager.getCon();
@@ -413,9 +458,9 @@ public class DaoImpl implements UserDao {
             ps.setString(1, orgName);
             ResultSet i = ps.executeQuery();
             int count = 0;
-           while(i.next()){
-               count++;
-           }
+            while (i.next()) {
+                count++;
+            }
             return count;
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);

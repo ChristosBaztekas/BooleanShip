@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class LogSchool extends JFrame implements ActionListener {
     static String orgname = null;
+    static String orgUsername = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -89,8 +90,7 @@ public class LogSchool extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Coding
-        // Part of LOGIN button
+
         if (e.getSource() == loginButton) {
             String userText;
             String pwdText;
@@ -128,12 +128,12 @@ public class LogSchool extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        //Coding Part of RESET button
+
         if (e.getSource() == resetButton) {
             userTextField.setText("");
             passwordField.setText("");
         }
-        //Coding Part of showPassword JCheckBox
+
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
@@ -151,8 +151,9 @@ public class LogSchool extends JFrame implements ActionListener {
     public static String getOrgname() {
         return orgname;
     }
-
-    public static void setOrgname(String orgname) {
-        LogSchool.orgname = orgname;
+    public static String getOrgUsername() {
+        return orgUsername;
     }
+
+
 }

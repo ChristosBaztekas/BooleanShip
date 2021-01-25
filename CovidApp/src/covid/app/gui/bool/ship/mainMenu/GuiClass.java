@@ -656,7 +656,7 @@ public class GuiClass extends JFrame implements ActionListener {
                 impl.disactivateAuthCode(mail, false);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "The code you inserted is false...You will be redirected to the main menu.");
+                JOptionPane.showMessageDialog(null, "The code you inserted is false...You may be redirected to the main menu.");
                 impl.disactivateAuthCode(mail, false);
                 return false;
             }
