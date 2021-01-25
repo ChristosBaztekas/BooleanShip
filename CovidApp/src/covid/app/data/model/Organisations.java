@@ -3,10 +3,10 @@ package covid.app.data.model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class Organisations {
-    private String name, area;
+    private String name;
+    private String area;
     private String email;
     private int numbersOfPeople;
     static Scanner sc = new Scanner(System.in);
@@ -29,9 +29,7 @@ public class Organisations {
     public String getName() {
         return name;
     }
-    public String getArea() {
-        return area;
-    }
+
     public void setNumbersOfPeople(int numbers) {
         numbersOfPeople = numbers;
     }
@@ -47,7 +45,7 @@ public class Organisations {
         String name;
         String area;
         int numbersOfpeople;
-        while (true) {
+        do {
             System.out.println("What is the name of your Organisation?/n Write the name without spaces!");
             name = sc.next();
             System.out.println("In which area is your organisation located?/n Write the name without spaces!");
@@ -56,10 +54,7 @@ public class Organisations {
             sc.nextLine();
             numbersOfpeople = sc.nextInt();
             System.out.printf("Name Organisation: %s, Area: %s, Total People: %d. Is that correct? 1 for yes", name, area, numbersOfpeople);
-            if (sc.nextLine().equals("1")) {
-                break;
-            }
-        }
+        } while (!sc.nextLine().equals("1"));
         new Organisations(name, area, numbersOfpeople);
     }
 

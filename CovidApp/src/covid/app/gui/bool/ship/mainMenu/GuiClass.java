@@ -666,6 +666,29 @@ public class GuiClass extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
+    public Boolean validation(String mail) {
+        DBConnectionManager manager = new DBConnectionManager();
+        DaoImpl impl = new DaoImpl(manager);
+        String sixdig = impl.createAuthCode(mail, true);
+        try {
+            JavaMailUtil.sendMail(mail, "Validation code", "Your validation code is: " + sixdig + " If you did not asked to change password inform as immediately");
+            String usersSixDigit = JOptionPane.showInputDialog("Check your mail!Write as the six digits code in order to finish the validation");
+
+            if (sixdig.equals(usersSixDigit)) {
+                JOptionPane.showMessageDialog(null, "You validated successfully");
+                impl.disactivateAuthCode(mail, false);
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "The code you inserted is false.If you have lost access of your mail contact as.");
+                impl.disactivateAuthCode(mail, false);
+                return false;
+            }
+        } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+        }
+        JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
 
 }
 

@@ -25,7 +25,7 @@ public class DaoImpl implements UserDao {
     private final JTextArea allOrgs = new JTextArea(20, 40);
 
     @Override
-    public boolean insertUser(User user) {
+    public void insertUser(User user) {
         String query = "insert into users(user_Type,username,user_password,user_email) values('" + user.getUserType() + "','"
                 + user.getUsername() + "','"
                 + user.getPassword() + "','" + user.getEmail() + "')";
@@ -34,10 +34,8 @@ public class DaoImpl implements UserDao {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             int i = ps.executeUpdate();
-            return i > 0;
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
-            return false;
         }
 
     }
@@ -51,7 +49,7 @@ public class DaoImpl implements UserDao {
             ps.setString(1, newPassword);
             ps.setString(2, orgUsername);
             int i = ps.executeUpdate();
-            while (i > 0) {
+            if (i > 0) {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure you want to change your password to " + newPassword + "?", "New password", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     JOptionPane.showMessageDialog(null, "You changed password successfully to " + newPassword + ".", "Success", JOptionPane.INFORMATION_MESSAGE);
                     return true;
@@ -71,7 +69,8 @@ public class DaoImpl implements UserDao {
 
     public String createAuthCode(String regEmail, Boolean condition) {
         String sixDigits = GuiClass.getRandomNumberString();
-        String query = "insert into auth(mail, sixdigits, active) values('" + regEmail + "','" + sixDigits + "','" + condition + "')";
+        String query = "insert into auth(mail, sixdigits, active) values('" + regEmail + "','" + sixDigits + "' ||\n" +
+                "                                                                '','" + condition + "')";
 
         Connection con = this.manager.getCon();
         try {
@@ -143,7 +142,7 @@ public class DaoImpl implements UserDao {
     }
 
     @Override
-    public boolean insertOrganisation(String userid, String orgType, String orgName, String orgLocation, int orgNumOfPeople, String orgUsername, String activity) {
+    public void insertOrganisation(String userid, String orgType, String orgName, String orgLocation, int orgNumOfPeople, String orgUsername, String activity) {
         String query = "insert into organisations(org_Type,org_Name,org_Location,org_Num_Of_People,username,activity) values('" + orgType + "','"
                 + orgName + "','"
                 + orgLocation + "','" + orgNumOfPeople + "','" + orgUsername + "','" + activity + "')";
@@ -152,10 +151,8 @@ public class DaoImpl implements UserDao {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             int i = ps.executeUpdate();
-            return i > 0;
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
-            return false;
         }
 
     }
@@ -314,23 +311,6 @@ public class DaoImpl implements UserDao {
         }
     }
 
-
-    @Override
-    public void deleteUser(User user, int id) {
-        String query = "DELETE FROM users WHERE user_id = " + id;
-
-        System.out.println(query);
-        Connection con = this.manager.getCon();
-        try {
-            PreparedStatement ps = con.prepareStatement(query);
-            int i = ps.executeUpdate();
-
-        } catch (SQLException sqlException) {
-            JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
-            sqlException.printStackTrace();
-
-        }
-    }
 
     public void sendMailToAllMembersofYourOrg(String subject, String mainSub, String orgName) {
         String query = "SELECT h.email as email From organisations o inner join humans h on o.org_name = h.org_name WHERE h.org_name =?";

@@ -1,7 +1,6 @@
 package covid.app.gui.bool.ship.menus;
 
 import covid.app.data.dao.DaoImpl;
-import covid.app.gui.bool.ship.login.LogLabor;
 import covid.app.gui.bool.ship.login.LogOrg;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
@@ -128,14 +127,13 @@ public class OrgMenu extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "This Person is not registered.", "Person not found", JOptionPane.ERROR_MESSAGE);
                 }
             }
-//             covid.app.gui.bool.ship.resources.piechart pie = new piechart();
-//            pie.launch(covid.app.gui.bool.ship.mainMenu.Main.a);
+
 
         }else if (e.getSource() == i6) {
             GuiClass verification = new GuiClass();
             DBConnectionManager manager = new DBConnectionManager();
             DaoImpl impl = new DaoImpl(manager);
-            if(verification.registrationCode(impl.findOrgEmailfromOrgName(LogOrg.getOrgname()))) {
+            if(verification.validation(impl.findOrgEmailfromOrgName(LogOrg.getOrgname()))) {
                 String newPas = JOptionPane.showInputDialog("Please write as the new password");
                 impl.changePassword(newPas, LogOrg.getOrgUsername());
             }else{

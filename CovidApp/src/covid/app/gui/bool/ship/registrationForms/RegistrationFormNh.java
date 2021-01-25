@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class RegistrationFormNh
         extends JFrame
@@ -30,8 +30,7 @@ public class RegistrationFormNh
             Integer.valueOf(400), // max
             Integer.valueOf(1) // step
     );
-    public static ArrayList<String> usernames = new ArrayList<>();
-    public static ArrayList<String> passwords = new ArrayList<>();
+
 
 
     private final JTextField tname;

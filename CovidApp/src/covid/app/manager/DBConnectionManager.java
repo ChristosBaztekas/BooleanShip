@@ -7,7 +7,7 @@ import covid.app.utils.DbConnectionUtils;
 import java.sql.Connection;
 
 public class DBConnectionManager {
-    private Connection con;
+    private final Connection con;
 
 
     public DBConnectionManager() {

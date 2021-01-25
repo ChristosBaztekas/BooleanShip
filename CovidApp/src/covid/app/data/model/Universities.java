@@ -2,17 +2,17 @@ package covid.app.data.model;
 
 
 import covid.app.additionalMethods.Classes;
-import covid.app.additionalMethods.caseManagmentAndHumanAddition;
+import covid.app.additionalMethods.caseManagementAndHumanAddition;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Universities extends Organisations implements caseManagmentAndHumanAddition {
+public class Universities extends Organisations implements caseManagementAndHumanAddition {
     private final ArrayList<Classes> department = new ArrayList<>();
     private final ArrayList<Classes> secretariat = new ArrayList<>();
     private final ArrayList<Human> teachers = new ArrayList<>();
     private final ArrayList<Human> others = new ArrayList<>();
-    private boolean status = false;//eody have smth changed
+    private boolean status = false;
     private final ArrayList<Human> changes = new ArrayList<>();
     private static final Scanner scanner = new Scanner(System.in);
     private int number_others_positive = 0;
@@ -42,16 +42,7 @@ public class Universities extends Organisations implements caseManagmentAndHuman
         count += others.size();
         setNumbersOfPeople(count);
     }
-    public void printDetails() {
-        System.out.println("Welcome.The" + getName() +
-                "University of" + getArea() +
-                "will take drastic measures to stop spread of covid-19 in our University.Please stay safe and we will call you soon." +
-                "Always our first priority was the safety of our students!Thanks for understanding in these difficult times.");
-        //this method is used in displayUMenu
-        //prints all details of the specific Uni(FE name,region)
-        //with the code that takes,the code is similar the the check method ahead
-        //look caseManagmentAndHumanAddition
-    }
+
     public void monitoring() {
         if (status) {
             System.out.println("Some changes have been ocured");
@@ -234,69 +225,6 @@ public class Universities extends Organisations implements caseManagmentAndHuman
             }
         }
         autoMonitoring();
-    }
-    public void declareCase(Human human) { //called by eody
-        if (!status) {
-            changes.clear();
-            status = true;
-        }
-        changes.add(human);
-        findWhereBelongs(human);
-    }
-    public void declareCase() {//from user
-        if (status) {
-            System.out.println("New cases in your university have been occured\nGoing to monitoring menu");
-            monitoring();
-        }
-        System.out.println("Give the ssn of the person that is positive");
-        String input = scanner.nextLine();
-        for (var c : department) {
-            Human oneHuman = c.isSame(input);
-            if (oneHuman != null) {
-                System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
-                String input1 = scanner.nextLine();
-                if (!input1.equals("0")) {
-                    oneHuman.bePositive();
-                    findWhereBelongs(oneHuman);
-                }
-                return;
-            }
-        }
-        for (var c : secretariat) {
-            Human oneHuman = c.isSame(input);
-            if (oneHuman != null) {
-                System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", oneHuman.toString());
-                String ans = scanner.nextLine();
-                if (!ans.equals("0")) {
-                    oneHuman.bePositive();
-                    findWhereBelongs(oneHuman);
-                }
-                return;
-            }
-        }
-        for (var c : others) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Want to report of a member of secretary: %s, 0 for exit\n", c.toString());
-                String ans = scanner.nextLine();
-                if (!ans.equals("0")) {
-                    c.bePositive();
-                    findWhereBelongs(c);
-                }
-                return;
-            }
-        }
-        for (var c : teachers) {
-            if (c.getAfm().equals(input)) {
-                System.out.printf("Want to report of a member of professors: %s, 0 for exit\n", c.toString());
-                String ans = scanner.nextLine();
-                if (!ans.equals("0")) {
-                    c.bePositive();
-                    findWhereBelongs(c);
-                }
-                return;
-            }
-        }
-        System.out.println("Cant find a member with ssn:" + input);
     }
 
 

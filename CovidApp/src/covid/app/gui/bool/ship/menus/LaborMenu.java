@@ -111,7 +111,7 @@ public class LaborMenu extends JFrame implements ActionListener {
            GuiClass verification = new GuiClass();
            DBConnectionManager manager = new DBConnectionManager();
            DaoImpl impl = new DaoImpl(manager);
-           if(verification.registrationCode(impl.findOrgEmailfromOrgName(LogLabor.getOrgname()))) {
+           if(verification.validation(impl.findOrgEmailfromOrgName(LogLabor.getOrgname()))) {
                String newPas = JOptionPane.showInputDialog("Please write as the new password");
                impl.changePassword(newPas, LogLabor.getOrgUsername());
            }else{

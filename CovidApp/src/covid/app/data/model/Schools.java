@@ -2,32 +2,31 @@ package covid.app.data.model;
 
 
 import covid.app.additionalMethods.Classes;
-import covid.app.additionalMethods.caseManagmentAndHumanAddition;
+import covid.app.additionalMethods.caseManagementAndHumanAddition;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-public class Schools extends Organisations implements caseManagmentAndHumanAddition {
-    private static Scanner scanner = new Scanner(System.in);
-    private ArrayList<Human> teachers = new ArrayList<>();
-    private ArrayList<Classes> departments = new ArrayList<>();
-    private ArrayList<Human> others = new ArrayList<>();
+public class Schools extends Organisations implements caseManagementAndHumanAddition {
+    private static final Scanner scanner = new Scanner(System.in);
+    private final ArrayList<Human> teachers = new ArrayList<>();
+    private final ArrayList<Classes> departments = new ArrayList<>();
+    private final ArrayList<Human> others = new ArrayList<>();
     private int number_of_students_positive;
     private int number_of_teachers_positive;
     private int number_of_others_positive;
-    private ArrayList<Integer> number_department_positive = new ArrayList<>();
-    private ArrayList<Boolean> lockdown_department = new ArrayList<>();
+    private final ArrayList<Integer> number_department_positive = new ArrayList<>();
+    private final ArrayList<Boolean> lockdown_department = new ArrayList<>();
     private boolean lockdown = false;
-    private static final int limit = 5;//auto limit for concentrated positive covid
+    private static final int limit = 5;
     private static final int limitteachers = 2;
     private static final int limitothers = 3;
     private static final int limitstudents = 4;
     private static final int limitdecision = 1;
     private static final int limitdepartment = 1;
-    private boolean status = false;//eody have something changed
-    private ArrayList<Human> changes = new ArrayList<>();
+    private boolean status = false;
+    private final ArrayList<Human> changes = new ArrayList<>();
     public Schools(String name, String area, int numbersOfPeople) {
-        //see if the arguments will be taken outside of the constructor or inside
         super(name, area, numbersOfPeople);
         modifyTeachers();
         modifyOthers();
@@ -110,12 +109,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         }
     }
 
-    public void printDetails() {
-        System.out.println("Welcome.The" + getName() +
-                "School of" + getArea() +
-                "will take drastic measures to stop spread of covid-19 in our school.Please stay safe and we will call you soon." +
-                "Always our first priority was the safety of our children!Thanks for understanding in these difficult times.");
-    }
     protected void modifyTeachers() {
         while (true){
             if(teachers.size() != 0) {
@@ -176,50 +169,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
             }
         }
     }
-    //from user
-    public void declareCase() {
-        if (status) {
-            System.out.println("New cases in the school, going to monitoring menu");
-            monitoring();
-        }
-        System.out.println("Give the ssn of the person that is positive");
-        String input = scanner.nextLine();
-        for (Classes department : departments) {
-            Human oneHuman = department.isSame(input);
-            if (oneHuman != null) {
-                System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
-                String input1 = scanner.nextLine();
-                if (!input1.equals("0")) {
-                    oneHuman.bePositive();
-                    findPerson(oneHuman);
-                }
-                return;
-            }
-        }
-        for (Human teacher : teachers) {
-            if (teacher.toString().equals(input)) {
-                System.out.printf("Want to report of a member of teachers: %s, 0 for exit\n", teacher.toString());
-                String ans = scanner.nextLine();
-                if (!ans.equals("0")) {
-                    teacher.bePositive();
-                    findPerson(teacher);
-                }
-                return;
-            }
-        }
-        for (Human other : others) {
-            if (other.toString().equals(input)) {
-                System.out.printf("Want to report of a member of other people: %s, 0 for exit\n", other.toString());
-                String ans = scanner.nextLine();
-                if (!ans.equals("0")) {
-                    other.bePositive();
-                    findPerson(other);
-                }
-                return;
-            }
-        }
-        System.out.println("Cannot find school member with ssn: " + input);
-    }
+
     protected void findPerson(Human human) {
         String look = human.getAfm();
         for (Human teacher : teachers) {
@@ -244,18 +194,10 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         }
         autoMonitoring();
     }
-    public void declareCase(Human human) {
-        if (!status) {
-            status = true;
-            changes.clear();
-        }
-        changes.add(human);
-        findPerson(human);
-    }
+
     public void modifyDepartments() {
         while (true){
             if (departments.size() == 0) {
-                //crete departments
                 int count = 0;
                 while (true) {
                     System.out.printf("Creating the %d department,for exit 0", count + 1);

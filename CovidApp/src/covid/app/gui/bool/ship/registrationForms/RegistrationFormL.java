@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class RegistrationFormL
         extends JFrame
@@ -19,16 +19,16 @@ public class RegistrationFormL
 
 
     SpinnerNumberModel numberEmployees = new SpinnerNumberModel(
-            Integer.valueOf(1), // value
-            Integer.valueOf(1), // min
-            Integer.valueOf(400), // max
-            Integer.valueOf(1) // step
+            Integer.valueOf(1),
+            Integer.valueOf(1),
+            Integer.valueOf(400),
+            Integer.valueOf(1)
     );
     SpinnerNumberModel numberOfDepartments = new SpinnerNumberModel(
-            Integer.valueOf(1), // value
-            Integer.valueOf(1), // min
-            Integer.valueOf(400), // max
-            Integer.valueOf(1) // step
+            Integer.valueOf(1),
+            Integer.valueOf(1),
+            Integer.valueOf(400),
+            Integer.valueOf(1)
     );
 
 
@@ -93,7 +93,7 @@ public class RegistrationFormL
         background.add(tnumOfD);
 
 
-        JLabel mail = new JLabel("Organisations Email");//have to include the email validation
+        JLabel mail = new JLabel("Organisations Email");
         mail.setFont(new Font("Arial", Font.BOLD, 20));
         mail.setSize(350, 20);
         mail.setLocation(5, 150);

@@ -11,26 +11,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class RegistrationFormS
         extends JFrame
         implements ActionListener {
 
     SpinnerNumberModel numberT = new SpinnerNumberModel(
-            Integer.valueOf(1), // value
-            Integer.valueOf(1), // min
-            Integer.valueOf(400), // max
-            Integer.valueOf(1) // step
+            Integer.valueOf(1),
+            Integer.valueOf(1),
+            Integer.valueOf(400),
+            Integer.valueOf(1)
     );
     SpinnerNumberModel numberS = new SpinnerNumberModel(
-            Integer.valueOf(1), // value
-            Integer.valueOf(1), // min
-            Integer.valueOf(400), // max
-            Integer.valueOf(1) // step
+            Integer.valueOf(1),
+            Integer.valueOf(1),
+            Integer.valueOf(400),
+            Integer.valueOf(1)
     );
-    public static ArrayList<String> usernames = new ArrayList<>();
-    public static ArrayList<String> passwords = new ArrayList<>();
 
 
     private final JTextField tname;

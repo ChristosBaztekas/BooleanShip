@@ -104,19 +104,31 @@ public class LogOrg extends JFrame implements ActionListener {
                 DBConnectionManager manager = new DBConnectionManager();
                 DaoImpl impl = new DaoImpl(manager);
                 orgname = impl.findOrgname(orgUsername);
+
+                GuiClass verification = new GuiClass();
+                JOptionPane.showMessageDialog(this, "For safety reasons and for the protection of our users data we need to verify that it you are the authorized for surveillance user.", "Data security", JOptionPane.INFORMATION_MESSAGE);
+                if(verification.validation(impl.findOrgEmailfromOrgName(orgname))){
                     dispose();
                     OrgMenu wsFrame = new OrgMenu();
                     wsFrame.setBounds(400, 100, 900, 700);
                     wsFrame.setTitle("Welcome to the main Government User Menu!");
                     wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(3);
+                    wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                }else{
+                    dispose();
+                    GuiClass wsFrame = new GuiClass();
+                    wsFrame.setBounds(400, 100, 900, 700);
+                    wsFrame.setVisible(true);
+                    wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                    wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                }
             }else{
                 JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
             }
 
         }
         if (e.getSource() == forgotPassword) {
-            String emailF = (String) JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
+            String emailF = JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
             forgotPassword.setSelected(false);
             try {
 

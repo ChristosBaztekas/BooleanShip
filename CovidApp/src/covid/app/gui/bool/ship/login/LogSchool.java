@@ -102,23 +102,22 @@ public class LogSchool extends JFrame implements ActionListener {
             if(impl2.readUserById(userText,pwdText,userType)){
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Redirecting to the main School menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                String orgUsername = userText;
                 DBConnectionManager manager = new DBConnectionManager();
                 DaoImpl impl = new DaoImpl(manager);
-                orgname = impl.findOrgname(orgUsername);
+                orgname = impl.findOrgname(userText);
                 dispose();
                 SchoolMenu wsFrame = new SchoolMenu();
                 wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main School User Menu!");
                 wsFrame.setVisible(true);
-                wsFrame.setDefaultCloseOperation(3);
+                wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             }else{
                 JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
             }
 
         }
         if (e.getSource() == forgotPassword) {
-            String emailF = (String) JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
+            String emailF = JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
             forgotPassword.setSelected(false);
             try {
 

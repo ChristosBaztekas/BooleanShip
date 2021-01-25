@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class DbConnectionUtils {
 
 
-    private static String url = "jdbc:postgresql://localhost:5432/booleanship";
-    private static String user = "postgres";
-    private static String pass = "2109885125";
+    private static final String url = "jdbc:postgresql://localhost:5432/booleanship";
+    private static final String user = "postgres";
+    private static final String pass = "2109885125";
     private static  Connection dbcon;
 
     public static Connection initConnection(){

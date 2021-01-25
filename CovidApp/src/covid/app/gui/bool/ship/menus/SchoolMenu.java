@@ -1,7 +1,6 @@
 package covid.app.gui.bool.ship.menus;
 
 import covid.app.data.dao.DaoImpl;
-import covid.app.gui.bool.ship.login.LogNursingHome;
 import covid.app.gui.bool.ship.login.LogSchool;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.manager.DBConnectionManager;
@@ -111,7 +110,7 @@ public class SchoolMenu extends JFrame implements ActionListener {
             GuiClass verification = new GuiClass();
             DBConnectionManager manager = new DBConnectionManager();
             DaoImpl impl = new DaoImpl(manager);
-            if(verification.registrationCode(impl.findOrgEmailfromOrgName(LogSchool.getOrgname()))) {
+            if(verification.validation(impl.findOrgEmailfromOrgName(LogSchool.getOrgname()))) {
                 String newPas = JOptionPane.showInputDialog("Please write as the new password");
                 impl.changePassword(newPas, LogSchool.getOrgUsername());
             }else{

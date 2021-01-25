@@ -98,26 +98,25 @@ public class LogNursingHome extends JFrame implements ActionListener {
             DBConnectionManager manager2 = new DBConnectionManager();
             DaoImpl impl2 = new DaoImpl(manager2);
             String userType = "NursingHome";
-            if(impl2.readUserById(userText,pwdText,userType)){
+            if (impl2.readUserById(userText, pwdText, userType)) {
                 JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                String orgUsername = userText;
                 DBConnectionManager manager = new DBConnectionManager();
                 DaoImpl impl = new DaoImpl(manager);
-                 orgname = impl.findOrgname(orgUsername);
+                orgname = impl.findOrgname(userText);
                 dispose();
                 NursingHomeMenu wsFrame = new NursingHomeMenu();
                 wsFrame.setBounds(400, 100, 900, 700);
                 wsFrame.setTitle("Welcome to the main Nursing Home User Menu!");
                 wsFrame.setVisible(true);
-                wsFrame.setDefaultCloseOperation(3);
-            }else{
+                wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            } else {
                 JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
             }
 
         }
         if (e.getSource() == forgotPassword) {
-            String emailF = (String) JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
+            String emailF = JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
             forgotPassword.setSelected(false);
             try {
 
@@ -127,12 +126,12 @@ public class LogNursingHome extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "An error occurred.Check if the email address is right.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        //Coding Part of RESET button
+
         if (e.getSource() == resetButton) {
             userTextField.setText("");
             passwordField.setText("");
         }
-        //Coding Part of showPassword JCheckBox
+
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
