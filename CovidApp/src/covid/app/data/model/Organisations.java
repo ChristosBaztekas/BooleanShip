@@ -7,31 +7,10 @@ import java.util.TreeMap;
 
 public class Organisations {
     private String name, area;
-    private int id;
     private String email;
-    private static int count = 0;
     private int numbersOfPeople;
-    private static final String EodyPassword = "78892GG";
-    private ArrayList<String> contactsNames;//extra info for people
     static Scanner sc = new Scanner(System.in);
-    static ArrayList<Organisations> allOrgs = new ArrayList<Organisations>();
-    private String password;
-    private String username;
-    private Organisations subclass;//see if it doesnt need
-    private static TreeMap<String, String> fields = new TreeMap<String, String>();
-    private static TreeMap<String, Organisations> codes = new TreeMap<String, Organisations>();
-    public Organisations(String name, String area, int numbersOfPeople, String username, String password) {//for creating automatically
-        this.name = name;
-        this.area = area;
-        this.numbersOfPeople = numbersOfPeople;
-        fields.put(username, password);
-        codes.put(username,this);
-    }
-
-    public static void print() {
-        System.out.println("Username:  password ");
-        System.out.println(fields);
-    }
+    static ArrayList<Organisations> allOrgs = new ArrayList<>();
     public Organisations(String name, String area, String email) {
         this.name = name;
         this.area = area;
@@ -41,70 +20,12 @@ public class Organisations {
         this.name = name;
         this.area = area;
         this.numbersOfPeople = numbersOfPeople;
-        count++;
-        this.id = count++;
         allOrgs.add(this);//to be removed
-    }
-    public void example() {
-        Organisations org = new Organisations("Veria", "Veria", 20);
-        org.subclass = this;
-        org.fields.put("leon", "leon");
-        org.codes.put("leon", this);//under consideration
-        //System.out.printf("The username is %s, password is %s",org.fields.get("leon"), org.codes.);
-
-    }
-    private void register() {
-        while (true) {
-            System.out.println("Give a username: ");
-            String input = sc.nextLine();
-            if (fields.containsKey(input)) {
-                System.out.println("Unfortunately this username is already used! Please try another one");
-                continue;
-            }
-            while (true) {
-                System.out.println("Give password: ");
-                String pass1 = sc.nextLine();
-                System.out.println("Give again password: ");
-                String pass2 = sc.nextLine();
-                if (pass1.equals(pass2)) {
-                    fields.put(input, pass1);
-                    username = input;
-                    password = pass1;
-                    break;
-
-                } else {
-                    System.out.println("Does not match");
-                    continue;
-                }
-            }
-            break;
-        }
-    }
-    protected void add(Organisations org) {
-        subclass = org;
-    }
-    public static Organisations giveAccess() {
-        while (true) {
-            System.out.println("Give your username: ");
-            String name = sc.nextLine();
-            System.out.println("Give your password: ");
-            String pass = sc.nextLine();
-            if (fields.get(name).equals(pass)) {
-                System.out.print("The authication has procced");
-                return codes.get(name).subclass;//see if doesnot need subclass
-            } else {
-                System.out.print("Wrong!!!Try again!");
-                return null;
-            }
-        }
     }
     public Organisations() {
         insertAnewOrganisation();
     }
 
-    public int getId() {
-        return id;
-    }
     public String getName() {
         return name;
     }
@@ -121,9 +42,6 @@ public class Organisations {
         numbersOfPeople += numbers;
     }
 
-    public int getNumbersOfPeople() {
-        return numbersOfPeople;
-    }
 
     public static void insertAnewOrganisation() {
         String name;
@@ -145,63 +63,10 @@ public class Organisations {
         new Organisations(name, area, numbersOfpeople);
     }
 
-    public void notifyContacts(Human anyH) {//maybe changes to be done
-        System.out.println(anyH + "was found with covid...Please write down his contacts!");
-        for (;;) {
-            System.out.println("Do you have available contacts of " + anyH);
-            System.out.println("Answer Y for yes and N for no!");
-            String answer = sc.next();
-            switch (answer) {
-                case "Y":
-                    int i = 0;
-                    for (;;) {
-                        System.out.printf("If %s has no other contacts type E for Exit else type C. ", anyH);
-                        String startInsert = sc.next();
-                        switch (startInsert) {
-                            case "C":
-                                System.out.println("Insert contact number " + (i++) + " name and surname : ");
-                                String nameSur = sc.nextLine();
-                                System.out.println("Is contacts name and surname : " + nameSur);
-                                answer = sc.next();
-                                if (answer == "Y") {
-                                    contactsNames.add(nameSur);
-                                } else if (answer == "N") {
-                                    break;
-                                } else {
-                                    System.out.println("Not an available option try again!");
-                                    break;
-                                }
-                                break;
-                            case "E":
-                                System.out.println("Try to inform the contacts , or tell " + anyH
-                                        + " to do so.We will also do our best.Be safe!");
-                                return;
-                            default:
-                                System.out.println("Not an available option!Try again!");
-                                break;
-                        }
-                        sc.nextLine(); //empty buffer
-                    }
-
-                case "N":
-                    System.out.println(anyH + " has to stay home and inform as for his contacts immediately.");
-                    return;
-                default:
-                    System.out.println("The available options are Y and N!Please choose one of those.");
-                    continue;
-            }
-
-        }
-
-    }
     @Override
     public String toString() {
         return "Name of organisation is: " + name + "\n Organisation Area is: " + area + "\n Number of employees: " + numbersOfPeople;
     }
-    public static void printAllOrganisations() {
-        for (int i = 0; i < allOrgs.size(); i++) {
-            System.out.println(allOrgs.get(i).toString());
-        }
-    }
+
 
 }

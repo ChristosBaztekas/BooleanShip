@@ -8,44 +8,28 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Classes {
-    private static Scanner scanner = new Scanner(System.in);
-    private String idifier;
+    private static final Scanner scanner = new Scanner(System.in);
+    private final String identifier;
 
-    private Organisations organisation;
-    private int orgId ;
-    private ArrayList<Human> members = new ArrayList<Human>();
-    private static int count = 0;
+    private final Organisations organisation;
+    private final ArrayList<Human> members = new ArrayList<>();
 
     public Classes(Organisations org) {
         //Here we create a class for schools, unis and labors
         organisation = org;
         System.out.println("Please give the name of the department ");
-        this.idifier = scanner.nextLine();
-        int metr = 1;
+        this.identifier = scanner.nextLine();
+        int meter = 1;
         for (; ; ) {
-            System.out.printf("Adding the %d member,0 for exit", metr);
-            String answr = scanner.nextLine();
-            if (answr.equals("0")) {
+            System.out.printf("Adding the %d member,0 for exit", meter);
+            String answer = scanner.nextLine();
+            if (answer.equals("0")) {
                 break;
             }
-//            while (true) {
-//                Human human = Human.createHuman(organisation);
-//                if (human != null) {
-//                    members.add(human);
-//                    metr++;
-//                } else {
-//                    return;
-//                }
-//            }
         }
     }
-    public Classes(String idifier, int orgId, ArrayList<Human> humans) {
-        this.idifier = idifier;
-        this.orgId = orgId;
-        members = humans;
-    }
-    public String getIdifier() {
-        return idifier;
+    public String getIdentifier() {
+        return identifier;
     }
 
     public void modify() {
@@ -53,11 +37,11 @@ public class Classes {
         for (;;) {
             System.out.println("Add or Delete a Person?");
             System.out.println("Give (a) for add, (d) for delete, or (0) for exit");
-            String answ = scanner.nextLine();
-            if (answ.equals("0")) {
+            String answer = scanner.nextLine();
+            if (answer.equals("0")) {
                 break;
             }
-            if (answ.equals("d")) {
+            if (answer.equals("d")) {
                 System.out.println("Please give afm of the person");
                 String checkAfm = scanner.nextLine();
                 boolean flag = true;
@@ -70,7 +54,7 @@ public class Classes {
                     }
                 }
                 if (flag) {
-                    System.out.printf("Could not find member with afm:% s", answ);
+                    System.out.printf("Could not find member with afm:%s", answer);
                 } else {
                     organisation.reducePeople(1);
                 }
@@ -80,15 +64,6 @@ public class Classes {
                     break;
                 }
             }
-//            if (answ.equals("a")) {
-//                Human one = Human.createHuman(organisation);
-//                if (one == null) {
-//                    break;
-//                } else {
-//                    organisation.addPeople(1);
-//                }
-//                members.add(one);
-//            }
         }
     }
 
@@ -104,7 +79,6 @@ public class Classes {
                 String ans = scanner.nextLine();
                 System.out.printf(
                         " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", members.size());
-                continue;
             } else {
                 choice = scanner.nextInt();
                 scanner.nextLine();
@@ -115,36 +89,25 @@ public class Classes {
                 break;
             }
         }
-        if (choice == 0) {
-            return;
-        } else if (choice <= members.size()) {
+        if (choice != 0) {
             members.get(choice - 1).haveToBeTested();
         }
     }
     public void printStatus() {
-        for (int i = 0; i < members.size(); i++) {
-            System.out.printf("%s has status:%s", members.get(i).toString(), members.get(i).seeStatus());
+        for (Human member : members) {
+            System.out.printf("%s has status:%s", member.toString(), member.seeStatus());
         }
     }
     public Human isSame(String ssn) {
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getAfm().equals(ssn)) {
-                return members.get(i);
+        for (Human member : members) {
+            if (member.getAfm().equals(ssn)) {
+                return member;
             }
         }
         return null;
     }
     public int size() {
         return members.size();
-    }
-    public int covidCases() {
-        int count = 0;
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).seeStatus().equals("CONFIRMED")) {//check if it works
-                count += 1;
-            }
-        }
-        return count;
     }
 
 }

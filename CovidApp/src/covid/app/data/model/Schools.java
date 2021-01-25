@@ -9,16 +9,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 public class Schools extends Organisations implements caseManagmentAndHumanAddition {
     private static Scanner scanner = new Scanner(System.in);
-    private static int count = 0; //use for our personal separation of the objects
-    private int id ;//personal id of each object
-    private ArrayList<Human> teachers = new ArrayList<Human>();
-    private ArrayList<Classes> departments = new ArrayList<Classes>();
-    private ArrayList<Human> others = new ArrayList<Human>();
+    private ArrayList<Human> teachers = new ArrayList<>();
+    private ArrayList<Classes> departments = new ArrayList<>();
+    private ArrayList<Human> others = new ArrayList<>();
     private int number_of_students_positive;
     private int number_of_teachers_positive;
     private int number_of_others_positive;
-    private ArrayList<Integer> number_department_positive = new ArrayList<Integer>();
-    private ArrayList<Boolean> lockdown_department = new ArrayList<Boolean>();
+    private ArrayList<Integer> number_department_positive = new ArrayList<>();
+    private ArrayList<Boolean> lockdown_department = new ArrayList<>();
     private boolean lockdown = false;
     private static final int limit = 5;//auto limit for concentrated positive covid
     private static final int limitteachers = 2;
@@ -27,15 +25,13 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
     private static final int limitdecision = 1;
     private static final int limitdepartment = 1;
     private boolean status = false;//eody have something changed
-    private ArrayList<Human> changes = new ArrayList<Human>();
+    private ArrayList<Human> changes = new ArrayList<>();
     public Schools(String name, String area, int numbersOfPeople) {
         //see if the arguments will be taken outside of the constructor or inside
         super(name, area, numbersOfPeople);
-        add(this);
         modifyTeachers();
         modifyOthers();
         modifyDepartments();
-        id = count++;
     }
 
     public Schools(String name, String area, String email,
@@ -47,29 +43,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         this.number_of_students_positive = number_of_students_positive;
         this.lockdown = lockdown;
         this.status = status;
-    }
-    public void setTeachers(ArrayList<Human> humans) {
-        teachers = humans;
-    }
-    public void setOthers(ArrayList<Human> humans) {
-        others = humans;
-    }
-    public void setChanges(ArrayList<Human> humans) {
-        changes = humans;
-    }
-    public void setDepartments(ArrayList<Classes> classes) {
-        departments = classes;
-    }
-    public static void createS() {
-        for (int i = 0; i < 10; i++) { //create 10
-            String user_pass = "S" + String.valueOf(i);
-            Schools n = new Schools(i, user_pass);
-        }
-    }
-    public Schools(int i, String a) {
-        super("name", "area", 20, a, a);
-        id = count ++;
-        add(this);
     }
     public void autoMonitoring() {
         int n = number_of_others_positive + number_of_teachers_positive + number_of_students_positive;
@@ -107,24 +80,24 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         }
         for (int i = 0; i < departments.size(); i++) {
             if (lockdown_department.get(i)) {
-                System.out.printf("Department %s is closed",departments.get(i).getIdifier());
+                System.out.printf("Department %s is closed",departments.get(i).getIdentifier());
             }
         }
         System.out.printf("Students with Covid: %d", number_of_students_positive);
         System.out.printf("Teachers with Covid: %d", number_of_teachers_positive);
         System.out.printf("Others with Covid: %d", number_of_others_positive);
         System.out.println("Status of teachers");
-        for (int i = 0; i < teachers.size(); i++) {
-            System.out.printf("%s has status:%s", teachers.get(i).toString(), teachers.get(i).seeStatus());
+        for (Human teacher : teachers) {
+            System.out.printf("%s has status:%s", teacher.toString(), teacher.seeStatus());
         }
         System.out.println("Status of the department");
-        for (int i = 0; i < departments.size(); i++) {
-            System.out.printf("    Status secretariat:%s", departments.get(i).getIdifier());
-            departments.get(i).printStatus();
+        for (Classes department : departments) {
+            System.out.printf("    Status secretariat:%s", department.getIdentifier());
+            department.printStatus();
         }
         System.out.println("Status of other employee");
-        for (int i = 0; i < others.size(); i++) {
-            System.out.printf("%s has status:%s", others.get(i).toString(), others.get(i).seeStatus());
+        for (Human other : others) {
+            System.out.printf("%s has status:%s", other.toString(), other.seeStatus());
         }
 
         int total = number_of_others_positive + number_of_students_positive + number_of_teachers_positive;
@@ -135,31 +108,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                 declareLockdown();
             }
         }
-    }
-    public static void createOrg() {
-        String name;
-        String area;
-        int teachers;
-        int students;
-        while(true) {
-            System.out.println("What is the name of the school?\nWrite the name without spaces!");
-            name = scanner.next();
-            System.out.println("In which area is your organization located?\nWrite the are without spaces!");
-            area = scanner.next();
-            System.out.println("How many teachers does your organization have?");
-            teachers = scanner.nextInt();
-            System.out.println("How many students does your organization have?");
-            students = scanner.nextInt();
-            System.out.printf("Name School: %s, Area: %s, Total People(Teachers plus Students): %d." +
-                    "Is that correct? 1for yes",name,area,teachers+students);
-            if (scanner.hasNext()) {
-                scanner.nextLine();
-            }
-            if (scanner.nextLine().equals("1")) {
-                break;
-            }
-        }
-        Schools newOn = new Schools(name,area,teachers+students);
     }
 
     public void printDetails() {
@@ -181,11 +129,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-//                        //Human one = Human.createHuman(this);
-//                        if (one == null) {
-//                            break;
-//                        }
-//                        teachers.add(one);
                         i++;
                     }
                     addPeople(i);
@@ -207,7 +150,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                             }
                         }
                         if (flag) {
-                            System.out.printf("Could not find teacher with afm:% s", afm);
+                            System.out.printf("Could not find teacher with afm:%s", afm);
                         } else {
                             reducePeople(1);
                         }
@@ -227,8 +170,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-                    //Human one = Human.createHuman(this);
-                    //teachers.add(one);
                     i++;
                 }
                 break;
@@ -243,62 +184,52 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         }
         System.out.println("Give the ssn of the person that is positive");
         String input = scanner.nextLine();
-		/*Human human = Human.checkIfCovid(input, this);
-		if (human == null) {
-		System.out.println("We dont have a member with");
-		}*/
-        for (int i = 0; i < departments.size(); i++) {
-            Human oneHuman = departments.get(i).isSame(input);
+        for (Classes department : departments) {
+            Human oneHuman = department.isSame(input);
             if (oneHuman != null) {
                 System.out.printf("Want to report of student: %s, 0 for exit\n", oneHuman.toString());
                 String input1 = scanner.nextLine();
-                if (input1.equals("0")) {
-                    return;
-                } else {
+                if (!input1.equals("0")) {
                     oneHuman.bePositive();
                     findPerson(oneHuman);
-                    return;
                 }
+                return;
             }
         }
-        for (int i = 0; i < teachers.size(); i ++) {
-            if (teachers.get(i).toString().equals(input)) {
-                System.out.printf("Want to report of a member of teachers: %s, 0 for exit\n", teachers.get(i).toString());
+        for (Human teacher : teachers) {
+            if (teacher.toString().equals(input)) {
+                System.out.printf("Want to report of a member of teachers: %s, 0 for exit\n", teacher.toString());
                 String ans = scanner.nextLine();
-                if (ans.equals("0")) {
-                    return;
-                } else {
-                    teachers.get(i).bePositive();
-                    findPerson(teachers.get(i));
-                    return;
+                if (!ans.equals("0")) {
+                    teacher.bePositive();
+                    findPerson(teacher);
                 }
+                return;
             }
         }
-        for (int i = 0; i < others.size(); i ++) {
-            if (others.get(i).toString().equals(input)) {
-                System.out.printf("Want to report of a member of other people: %s, 0 for exit\n", others.get(i).toString());
+        for (Human other : others) {
+            if (other.toString().equals(input)) {
+                System.out.printf("Want to report of a member of other people: %s, 0 for exit\n", other.toString());
                 String ans = scanner.nextLine();
-                if (ans.equals("0")) {
-                    return;
-                } else {
-                    others.get(i).bePositive();
-                    findPerson(others.get(i));
-                    return;
+                if (!ans.equals("0")) {
+                    other.bePositive();
+                    findPerson(other);
                 }
+                return;
             }
         }
         System.out.println("Cannot find school member with ssn: " + input);
     }
     protected void findPerson(Human human) {
         String look = human.getAfm();
-        for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getAfm().equals(look)) {
+        for (Human teacher : teachers) {
+            if (teacher.getAfm().equals(look)) {
                 number_of_teachers_positive += 1;
                 break;
             }
         }
-        for (int i = 0; i < others.size(); i++) {
-            if (others.get(i).getAfm().equals(look)) {
+        for (Human other : others) {
+            if (other.getAfm().equals(look)) {
                 number_of_others_positive += 1;
                 break;
             }
@@ -317,10 +248,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
         if (!status) {
             status = true;
             changes.clear();
-            changes.add(human);
-        } else {
-            changes.add(human);
         }
+        changes.add(human);
         findPerson(human);
     }
     public void modifyDepartments() {
@@ -342,7 +271,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                     lockdown_department.add(false);
                     departments.add(one);
                 }
-                break;
             } else {
                 while (true) {
                     int ans = 0;
@@ -351,8 +279,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         System.out.println("Press 0 to create a new one");
                         System.out.println("Press -1 to exit");
                         int num = 1;
-                        for (int i = 0; i < departments.size(); i++) {
-                            System.out.printf("%d for : %s", num, departments.get(i).getIdifier());
+                        for (Classes department : departments) {
+                            System.out.printf("%d for : %s", num, department.getIdentifier());
                             num++;
                         }
                         System.out.println("Press a number");
@@ -367,7 +295,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                             departments.add(one);
                             return;
                         }
-                        if (ans < 1 && ans > departments.size()) {
+                        if (ans < 1 || ans > departments.size()) {
                             System.out.println("Invalid number, try again");
                             continue;
                         }
@@ -380,8 +308,8 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                     departments.get(ans  - 1).modify();
                     break;
                 }
-                break;
             }
+            break;
         }
     }
     protected void modifyOthers() {
@@ -397,11 +325,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                         if (scanner.nextLine().equals("0")) {
                             break;
                         }
-                       // Human one = Human.createHuman(this);
-//                        if (one == null) {
-//                            break;
-//                        }
-//                        others.add(one);
                         i++;
                     }
                     addPeople(i);
@@ -423,7 +346,7 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                             }
                         }
                         if (flag) {
-                            System.out.printf("Could not find person with afm:% s", afm);
+                            System.out.printf("Could not find person with afm:%s", afm);
                         } else {
                             reducePeople(1);
                         }
@@ -443,13 +366,6 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
                     if (scanner.nextLine().equals("0")) {
                         break;
                     }
-//                    Human one = Human.createHuman(this);
-//                    if (one == null) {
-//                        break;
-//                    }
-//                    others.add(one);
-//                    i++;
-//                }
                 break;
             }
         }
@@ -459,103 +375,104 @@ public class Schools extends Organisations implements caseManagmentAndHumanAddit
             System.out.println("Some changes have been ocured");
             status = false;
             System.out.println("Positive have been found: ");
-            for (int i = 0; i < changes.size(); i++) {
-                System.out.printf("    The person: %s", changes.get(i).toString());
+            for (Human change : changes) {
+                System.out.printf("    The person: %s", change.toString());
             }
             System.out.println("Please say us who have to tested");
             for (int i = 0; i < changes.size(); i++) {
                 int choice;
+                label:
                 while (true) {
                     System.out.println("Contacts of the" + changes.get(i).toString());
                     System.out.println("0 for exit, 1 for teachers, 2 for departments, 3 other people related");
                     String input = scanner.nextLine();
-                    if (input.equals("0")) {
-                        break;
-                    } else if (input.equals("1")) {
-                        while (true) {
-                            System.out.println("Give the number for each profesor");
-                            System.out.println("0: Exit");
-                            for (int j = 0; i < teachers.size(); j++) {
-                                System.out.printf("%d: %s\n", i + 1, teachers.get(j).toString());
-                            }
-                            if (!sc.hasNextInt()) {
-                                String ans = sc.nextLine();
-                                System.out.printf(
-                                        " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", teachers.size());
-                                continue;
-                            } else {
-                                choice = sc.nextInt();
-                                sc.nextLine();
-                                if (choice > teachers.size()  || choice < 0) {
-                                    System.out.println("Wrong number!Place a number between 0 and "+ teachers.size());
-                                    continue;
+                    switch (input) {
+                        case "0":
+                            break label;
+                        case "1":
+                            while (true) {
+                                System.out.println("Give the number for each profesor");
+                                System.out.println("0: Exit");
+                                for (int j = 0; i < teachers.size(); j++) {
+                                    System.out.printf("%d: %s\n", i + 1, teachers.get(j).toString());
                                 }
-                                break;
-                            }
-                        }
-                        if (choice == 0) {
-                            continue;
-                        } else if (choice <= teachers.size()) {
-                            teachers.get(choice - 1).haveToBeTested();
-                        } else {
-                            continue;
-                        }
-                    } else  if (input.equals("2")) {
-                        while (true) {
-                            System.out.println("Select one by one in which departent should students be tested");
-                            System.out.println("0: Exit");
-                            for(int j = 0; i < departments.size(); j++) {
-                                System.out.printf("%d: %s", i + 1, departments.get(j).getIdifier());
-                            }
-                            if (!sc.hasNextInt()) {
-                                String ans = sc.nextLine();
-                                System.out.printf(
-                                        " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", departments.size());
-                                continue;
-                            } else {
-                                choice = sc.nextInt();
-                                sc.nextLine();
-                                if (choice > departments.size()  || choice < 0) {
-                                    System.out.println("Wrong number!Place a number between 0 and "+ departments.size());
-                                    continue;
+                                if (!sc.hasNextInt()) {
+                                    String ans = sc.nextLine();
+                                    System.out.printf(
+                                            " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", teachers.size());
+                                } else {
+                                    choice = sc.nextInt();
+                                    sc.nextLine();
+                                    if (choice > teachers.size() || choice < 0) {
+                                        System.out.println("Wrong number!Place a number between 0 and " + teachers.size());
+                                    }
+                                    break;
                                 }
-                                break;
                             }
-                        }
-                        if (choice == 0) {
-                            continue;
-                        } else if (choice <= departments.size()) {
-                            departments.get(choice - 1).affected();
-                        }
-                    } else if (input.equals("3")) {
-                        while (true) {
-                            System.out.println("Give the number for each other employee");
-                            System.out.println("0: Exit");
-                            for (int j = 0; i < others.size(); j++) {
-                                System.out.printf("%d: %s\n", i + 1, others.get(j).toString());
-                            }
-                            if (!sc.hasNextInt()) {
-                                String ans = sc.nextLine();
-                                System.out.printf(
-                                        " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", others.size());
+                            if (choice == 0) {
                                 continue;
+                            } else if (choice <= teachers.size()) {
+                                teachers.get(choice - 1).haveToBeTested();
                             } else {
-                                choice = sc.nextInt();
-                                sc.nextLine();
-                                if (choice > others.size()  || choice < 0) {
-                                    System.out.println("Wrong number!Place a number between 0 and "+ others.size());
-                                    continue;
-                                }
-                                break;
+                                continue;
                             }
-                        }
-                        if (choice == 0) {
-                            continue;
-                        } else if (choice <= others.size()) {
-                            others.get(choice - 1).haveToBeTested();
-                        }
-                    } else {
-                        System.out.println("Not valid option");
+                            break;
+                        case "2":
+                            while (true) {
+                                System.out.println("Select one by one in which departent should students be tested");
+                                System.out.println("0: Exit");
+                                for (int j = 0; i < departments.size(); j++) {
+                                    System.out.printf("%d: %s", i + 1, departments.get(j).getIdentifier());
+                                }
+                                if (!sc.hasNextInt()) {
+                                    String ans = sc.nextLine();
+                                    System.out.printf(
+                                            " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", departments.size());
+                                } else {
+                                    choice = sc.nextInt();
+                                    sc.nextLine();
+                                    if (choice > departments.size() || choice < 0) {
+                                        System.out.println("Wrong number!Place a number between 0 and " + departments.size());
+                                    }
+                                    break;
+                                }
+                            }
+                            if (choice == 0) {
+                                continue;
+                            } else if (choice <= departments.size()) {
+                                departments.get(choice - 1).affected();
+                            }
+                            break;
+                        case "3":
+                            while (true) {
+                                System.out.println("Give the number for each other employee");
+                                System.out.println("0: Exit");
+                                for (int j = 0; i < others.size(); j++) {
+                                    System.out.printf("%d: %s\n", i + 1, others.get(j).toString());
+                                }
+                                if (!sc.hasNextInt()) {
+                                    String ans = sc.nextLine();
+                                    System.out.printf(
+                                            " Your import(" + ans + ")it's not number.Please choose a number between 0 and %d.\n", others.size());
+                                } else {
+                                    choice = sc.nextInt();
+                                    sc.nextLine();
+                                    if (choice > others.size() || choice < 0) {
+                                        System.out.println("Wrong number!Place a number between 0 and " + others.size());
+                                        continue;
+                                    }
+                                    break;
+                                }
+                            }
+                            if (choice == 0) {
+                                continue;
+                            } else if (choice <= others.size()) {
+                                others.get(choice - 1).haveToBeTested();
+                            }
+                            break;
+                        default:
+                            System.out.println("Not valid option");
+                            break;
                     }
                 }
             }
