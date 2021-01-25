@@ -137,7 +137,7 @@ public class OrgMenu extends JFrame implements ActionListener {
                 String newPas = JOptionPane.showInputDialog("Please write as the new password");
                 impl.changePassword(newPas, LogOrg.getOrgUsername());
             }else{
-                JOptionPane.showMessageDialog(null, "Try again.If you lost access to your mail contact as.","Error",JOptionPane.ERROR_MESSAGE);
+
             }
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
