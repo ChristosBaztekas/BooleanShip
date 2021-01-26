@@ -18,6 +18,7 @@ public class LogOrg extends JFrame implements ActionListener {
     static String orgUsername = null;
     static String possibleOrgUsername = null;
     static int chance = 0;
+    static int wrongPassword = 0;
     static String possibleOrgname = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
@@ -129,7 +130,18 @@ public class LogOrg extends JFrame implements ActionListener {
                         wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
+                    if (wrongPassword == 1) {
+                        JOptionPane.showMessageDialog(null, "This password is not the correct for this menu.\nIf you forgot your password contact as at 6983461347.\nRedirection to main menu.", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                        GuiClass wsFrame = new GuiClass();
+                        wsFrame.setBounds(400, 100, 900, 700);
+                        wsFrame.setVisible(true);
+                        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "The password is incorrect.\nIf you forgot your password select this option!\nIf you fail again you will be redirected", "Wrong Password", JOptionPane.ERROR_MESSAGE);
+                        ++wrongPassword;
+                    }
                 }
             } else {
                 if (chance == 1) {
@@ -140,10 +152,11 @@ public class LogOrg extends JFrame implements ActionListener {
                     wsFrame.setVisible(true);
                     wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
                     wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                }else{
-                ++chance;
-                JOptionPane.showMessageDialog(null, "This username is not the correct for this menu.\nIf you forgot your username contact as at 6983461347.\nYou have one more chance or you will be redirected to main menu.", "Error", JOptionPane.ERROR_MESSAGE);
-            }}
+                } else {
+                    ++chance;
+                    JOptionPane.showMessageDialog(null, "This username is not the correct for this menu.\nIf you forgot your username contact as at 6983461347.\nYou have one more chance or you will be redirected to main menu.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
         if (e.getSource() == forgotPassword) {
             String emailF = JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
