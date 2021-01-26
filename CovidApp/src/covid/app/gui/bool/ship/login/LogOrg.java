@@ -1,7 +1,6 @@
 package covid.app.gui.bool.ship.login;
 
 
-
 import covid.app.data.dao.DaoImpl;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
 import covid.app.gui.bool.ship.mainMenu.JavaMailUtil;
@@ -17,6 +16,9 @@ import java.awt.event.ActionListener;
 public class LogOrg extends JFrame implements ActionListener {
     static String orgname = null;
     static String orgUsername = null;
+    static String possibleOrgUsername = null;
+    static int chance = 0;
+    static String possibleOrgname = null;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -97,35 +99,51 @@ public class LogOrg extends JFrame implements ActionListener {
             DBConnectionManager manager2 = new DBConnectionManager();
             DaoImpl impl2 = new DaoImpl(manager2);
             String userType = "Government";
-            if(impl2.readUserById(userText,pwdText,userType)){
-                JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    JOptionPane.showMessageDialog(this, "Redirecting to the main government menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                    orgUsername = userText;
-                DBConnectionManager manager = new DBConnectionManager();
-                DaoImpl impl = new DaoImpl(manager);
-                orgname = impl.findOrgname(orgUsername);
+            possibleOrgUsername = userText;
+            possibleOrgname = impl2.findOrgname(possibleOrgUsername);
+            if (!possibleOrgname.equals("") && !possibleOrgUsername.equals("")) {
+                if (impl2.readUserById(userText, pwdText, userType)) {
+                    JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                GuiClass verification = new GuiClass();
-                JOptionPane.showMessageDialog(this, "For safety reasons and for the protection of our users data we need to verify that it you are the authorized for surveillance user.", "Data security", JOptionPane.INFORMATION_MESSAGE);
-                if(verification.validation(impl.findOrgEmailfromOrgName(orgname))){
-                    dispose();
-                    OrgMenu wsFrame = new OrgMenu();
-                    wsFrame.setBounds(400, 100, 900, 700);
-                    wsFrame.setTitle("Welcome to the main Government User Menu!");
-                    wsFrame.setVisible(true);
-                    wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                }else{
+                    orgUsername = userText;
+                    DBConnectionManager manager = new DBConnectionManager();
+                    DaoImpl impl = new DaoImpl(manager);
+                    orgname = impl.findOrgname(orgUsername);
+
+                    GuiClass verification = new GuiClass();
+                    JOptionPane.showMessageDialog(this, "For safety reasons and for the protection of our users data we need to verify that it you are the authorized for surveillance user.", "Data security", JOptionPane.INFORMATION_MESSAGE);
+                    if (verification.validation(impl.findOrgEmailfromOrgName(orgname))) {
+                        JOptionPane.showMessageDialog(this, "Redirecting to the main government menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                        OrgMenu wsFrame = new OrgMenu();
+                        wsFrame.setBounds(400, 100, 900, 700);
+                        wsFrame.setTitle("Welcome to the main Government User Menu!");
+                        wsFrame.setVisible(true);
+                        wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    } else {
+                        dispose();
+                        GuiClass wsFrame = new GuiClass();
+                        wsFrame.setBounds(400, 100, 900, 700);
+                        wsFrame.setVisible(true);
+                        wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                        wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                if (chance == 1) {
+                    JOptionPane.showMessageDialog(null, "This username is not the correct for this menu.\nIf you forgot your username contact as at 6983461347.\nRedirection to main menu.", "Redirection", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     GuiClass wsFrame = new GuiClass();
                     wsFrame.setBounds(400, 100, 900, 700);
                     wsFrame.setVisible(true);
                     wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
                     wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
-            }
-
+                }else{
+                ++chance;
+                JOptionPane.showMessageDialog(null, "This username is not the correct for this menu.\nIf you forgot your username contact as at 6983461347.\nYou have one more chance or you will be redirected to main menu.", "Error", JOptionPane.ERROR_MESSAGE);
+            }}
         }
         if (e.getSource() == forgotPassword) {
             String emailF = JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
@@ -157,6 +175,7 @@ public class LogOrg extends JFrame implements ActionListener {
 
 
     }
+
     public static String getOrgname() {
         return orgname;
     }

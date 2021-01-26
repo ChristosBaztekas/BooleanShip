@@ -484,9 +484,9 @@ public class DaoImpl implements UserDao {
             }
         } catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
-
+           return "";
         }
-        return "this will not happen";
+        return "";
     }
 
 

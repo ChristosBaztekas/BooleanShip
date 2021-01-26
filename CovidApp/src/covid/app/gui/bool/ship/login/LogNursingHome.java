@@ -15,6 +15,9 @@ import java.awt.event.ActionListener;
 public class LogNursingHome extends JFrame implements ActionListener {
     static String orgname = null;
     static String orgUsername = null;
+    static String possibleOrgUsername = null;
+    static String possibleOrgname = null;
+    static int wrongPassword = 0;
     Container container = getContentPane();
     JLabel userLabel = new JLabel("USERNAME");
     JLabel passwordLabel = new JLabel("PASSWORD");
@@ -98,23 +101,46 @@ public class LogNursingHome extends JFrame implements ActionListener {
             DBConnectionManager manager2 = new DBConnectionManager();
             DaoImpl impl2 = new DaoImpl(manager2);
             String userType = "NursingHome";
-            if (impl2.readUserById(userText, pwdText, userType)) {
-                JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
-                DBConnectionManager manager = new DBConnectionManager();
-                DaoImpl impl = new DaoImpl(manager);
-                orgname = impl.findOrgname(userText);
-                dispose();
-                NursingHomeMenu wsFrame = new NursingHomeMenu();
-                wsFrame.setBounds(400, 100, 900, 700);
-                wsFrame.setTitle("Welcome to the main Nursing Home User Menu!");
-                wsFrame.setVisible(true);
-                wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            } else {
-                JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option!", "Wrong Password", JOptionPane.ERROR_MESSAGE);
-            }
+            possibleOrgUsername = userText;
+            possibleOrgname = impl2.findOrgname(possibleOrgUsername);
+            if (!possibleOrgname.equals("") && !possibleOrgUsername.equals("")) {
+                if (impl2.readUserById(userText, pwdText, userType)) {
+                    JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Redirecting to the main Nursing Home menu", "Redirection", JOptionPane.INFORMATION_MESSAGE);
+                    DBConnectionManager manager = new DBConnectionManager();
+                    DaoImpl impl = new DaoImpl(manager);
+                    orgname = impl.findOrgname(userText);
+                    dispose();
+                    NursingHomeMenu wsFrame = new NursingHomeMenu();
+                    wsFrame.setBounds(400, 100, 900, 700);
+                    wsFrame.setTitle("Welcome to the main Nursing Home User Menu!");
+                    wsFrame.setVisible(true);
+                    wsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                } else {
+                    GuiClass ver = new GuiClass();
+                    ++wrongPassword;
+                    JOptionPane.showMessageDialog(this, "The password is incorrect.If you forgot your password select this option.\nBe careful if you fail three times you will need to verify.", "Wrong Password", JOptionPane.ERROR_MESSAGE);
+                    if (wrongPassword == 3) {
+                        JOptionPane.showMessageDialog(null, "You inserted wrong password many times.\nPlease verify that it is you to continue.\nIf you forgot your password choose the forgot password option.\nIf validation fails you will be redirected to main menu.", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        DBConnectionManager manager = new DBConnectionManager();
+                        DaoImpl impl = new DaoImpl(manager);
+                        if (!ver.validation(impl.findOrgEmailfromOrgName(possibleOrgname))) {
 
+                            dispose();
+                            GuiClass wsFrame = new GuiClass();
+                            wsFrame.setBounds(400, 100, 900, 700);
+                            wsFrame.setVisible(true);
+                            wsFrame.setTitle("Welcome to the app of case detection and contact detection!");
+                            wsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "This username does not exists.\nPlease insert the right username or sign up.\nIf you forgot your username contact us.", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+            }
         }
+
         if (e.getSource() == forgotPassword) {
             String emailF = JOptionPane.showInputDialog("Input your mail and you will get a mail immediately with more info.");
             forgotPassword.setSelected(false);

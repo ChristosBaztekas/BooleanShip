@@ -37,7 +37,14 @@ public class GuiClass extends JFrame implements ActionListener {
     private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
 
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
-
+    private final JMenuItem freq1 = new JMenuItem("Who could use this application?");
+    private final JMenuItem freq2 = new JMenuItem("Why is this application created? ");
+    private final JMenuItem freq3 = new JMenuItem("Is it possible to notify citizen through the app?");
+    private final JMenuItem freq4 = new JMenuItem("Is it possible to notify close contacts that a Covid-19 case had?");
+    private final JMenuItem freq5 = new JMenuItem("Why can’t I sign in at Government’s menu?");
+    private final JMenuItem freq6 = new JMenuItem("Can individual organizations use the app");
+    private final JMenuItem freq7 = new JMenuItem("Can individual citizens use out app?");
+    private final JMenuItem freq8 = new JMenuItem("More questions");
 
     private final JMenuItem Exit = new JMenuItem("Close Program");
     private final JMenuItem justExit = new JMenuItem("Exit");
@@ -64,6 +71,7 @@ public class GuiClass extends JFrame implements ActionListener {
     private final JMenuItem lmenu2 = new JMenuItem("User menu");
     private final JMenuItem lmenu3 = new JMenuItem("Sign up");
     private final JMenuItem lmenu4 = new JMenuItem("Exit");
+    private final JTextArea allOrgs = new JTextArea(20, 40);
 
 
     public GuiClass() {
@@ -184,6 +192,22 @@ public class GuiClass extends JFrame implements ActionListener {
         nmenu2.addActionListener(this);
         nmenu3.addActionListener(this);
         nmenu4.addActionListener(this);
+        frequentlyAskedQuestions.add(freq1);
+        frequentlyAskedQuestions.add(freq2);
+        frequentlyAskedQuestions.add(freq3);
+        frequentlyAskedQuestions.add(freq4);
+        frequentlyAskedQuestions.add(freq5);
+        frequentlyAskedQuestions.add(freq6);
+        frequentlyAskedQuestions.add(freq7);
+        frequentlyAskedQuestions.add(freq8);
+        freq1.addActionListener(this);
+        freq2.addActionListener(this);
+        freq3.addActionListener(this);
+        freq4.addActionListener(this);
+        freq5.addActionListener(this);
+        freq6.addActionListener(this);
+        freq7.addActionListener(this);
+        freq8.addActionListener(this);
     }
 
     public void setSize(int width, int height) {
@@ -289,6 +313,61 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == terms) {
             GuiClass.managingWebsitesByUrl("https://github.com/ChristosBaztekas/BooleanShip/blob/main/Terms%20and%20Conditions.docx");
 
+        } else if (source == freq1) {
+            allOrgs.append("This application is mainly created to provide \nhelp to governments and companies, managing the spread of the new Sars-Cov-2(Covid-19).\n To succeed that, BooleanShip’s app offers\n 4 menus (School Menu, University Menu, Labor Menu and Nursing Home Menu) that helps those organizations to \nmanage their COVID-19 cases and eliminate the spread by recording cases,\n informing their contacts immediately, sending massive emails to inform\n their members about the current status and getting advice about the policy they should follow.\nIn addition government (Government Menu) track potential Covid-19 cases on every organization via the COVID-19 tests \nthat conducts and informs the humans that were found positive and their organization to follow the protocols in order to eliminate the spread.\n To sum app this app is useful for all kind of organizations that have employees and need to <stay alive> during the pandemic and to all nations government that want to stop the spread of COVID-19.");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+
+        } else if (source == freq2) {
+            allOrgs.append("Due to Covid-19 and it’s geometrically spread BooleanShip team thought a way to help governments minimize spread and companies to keep conducting their activities safely. ");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+
+        } else if (source == freq3) {
+            allOrgs.append("Yes, in government’s menu there is an option that can send emails to all organization and inform the about a potential case.\nIn addition every organization can inform all their members via massive email.\nFinally every case and their contacts are informed automatically by the app. ");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+
+        } else if (source == freq4) {
+            allOrgs.append("Definitely close contacts are being notified automatically through the app.");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+
+        } else if (source == freq5) {
+            allOrgs.append("Government’s Menu is provided only for the nations Government.\n Thus because of the existence of sensitive information the access is forbidden to individuals.");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+
+        } else if (source == freq6) {
+            allOrgs.append("Of course, organizations can be registered through our sign-up form. \nIn the form it will be asked to fill information about: \nOrganization’s name, email, number of employees, \nusername and password that Organizations use when sign in.");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+        } else if (source == freq7) {
+            allOrgs.append("Certainly, through our app everyone can be informed about Covid-19 spread.\n At the option “Useful Websites about Covid” exists information about Eody, Worldwide cases, instructions from National Institutions of Health and more.\nThere is not a special menu for citizens yet.");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+        } else if (source == freq8) {
+            allOrgs.append("If you still have questions please read the manual or  contact us at our email: booleanship@gmail.com .");
+            allOrgs.setFont(new Font("Arial", Font.BOLD, 14));
+            allOrgs.setEditable(false);
+            allOrgs.setBackground(Color.CYAN);
+            JOptionPane.showMessageDialog(null, allOrgs, "Answer", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Opening the manual", "Manual", JOptionPane.PLAIN_MESSAGE);
+            GuiClass.managingWebsitesByUrl("https://github.com/ChristosBaztekas/BooleanShip");
         }
 
     }
@@ -687,7 +766,7 @@ public class GuiClass extends JFrame implements ActionListener {
                 impl.disactivateAuthCode(mail, false);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "The code you inserted is false.If you have lost access of your mail contact as.");
+                JOptionPane.showMessageDialog(null, "The code you inserted is false.If you have lost access of your mail contact as.You may be redirected.");
                 impl.disactivateAuthCode(mail, false);
                 return false;
             }
