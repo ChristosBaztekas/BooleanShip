@@ -25,6 +25,7 @@ public class GuiClass extends JFrame implements ActionListener {
     static Desktop d = Desktop.getDesktop();
     private final JMenuItem eodyWebpage = new JMenuItem("Eody webpage");
     private final JMenuItem whoWebpage = new JMenuItem("World Health Organisation webpage");
+    private final JMenuItem terms = new JMenuItem("Terms and Conditions");
     private final JMenuItem covidC = new JMenuItem("(COVID-19) Cases, Data, and Surveillance");
     private final JMenuItem nih = new JMenuItem("National Institutes of Health");
     private final JMenuItem nhs = new JMenuItem("Covid advices from NHS");
@@ -112,6 +113,8 @@ public class GuiClass extends JFrame implements ActionListener {
         rateUs.add(helpUsBecomeBetter);
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
+
+        help.add(terms);
         menu2.add(lmenu1);
         menu2.add(lmenu2);
         menu2.add(lmenu3);
@@ -144,6 +147,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
 
         menu6.add(justExit);
+        terms.addActionListener(this);
         Exit.addActionListener(this);
         helpUsBecomeBetter.addActionListener(this);
         nih.addActionListener(this);
@@ -282,6 +286,9 @@ public class GuiClass extends JFrame implements ActionListener {
         } else if (source == cStats) {
 
             GuiClass.managingWebsitesByUrl("https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6");
+        } else if (source == terms) {
+            GuiClass.managingWebsitesByUrl("https://github.com/ChristosBaztekas/BooleanShip/blob/main/Terms%20and%20Conditions.docx");
+
         }
 
     }
@@ -297,7 +304,7 @@ public class GuiClass extends JFrame implements ActionListener {
 
     public static void alreadyUserOptionG(String anyString) {
         LogOrg frame = new LogOrg();
-        frame.setTitle(anyString);//this is how we will give different Titles for each occasion
+        frame.setTitle(anyString);
         frame.setVisible(true);
         frame.setBounds(620, 100, 370, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -666,6 +673,7 @@ public class GuiClass extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null, "Something unexpected occurred.Try again or contact us by the suitable menu option.", "Unexpected error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
+
     public Boolean validation(String mail) {
         DBConnectionManager manager = new DBConnectionManager();
         DaoImpl impl = new DaoImpl(manager);

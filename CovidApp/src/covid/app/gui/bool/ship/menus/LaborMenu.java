@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LaborMenu extends JFrame implements ActionListener {
-
+    private final JMenuItem terms = new JMenuItem("Terms and Conditions");
     private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
@@ -75,6 +75,8 @@ public class LaborMenu extends JFrame implements ActionListener {
         i5.addActionListener(this);
         i6.addActionListener(this);
         exit.addActionListener(this);
+        help.add(terms);
+        terms.addActionListener(this);
 
     }
     @Override
@@ -127,7 +129,10 @@ public class LaborMenu extends JFrame implements ActionListener {
             GuiClass.contactUs();
         }else if(e.getSource() == Problems){
           GuiClass.sendingProblem();
-        }
+        }else if (e.getSource() == terms) {
+           GuiClass.managingWebsitesByUrl("https://github.com/ChristosBaztekas/BooleanShip/blob/main/Terms%20and%20Conditions.docx");
+
+       }
     }
 }
 

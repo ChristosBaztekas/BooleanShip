@@ -18,7 +18,7 @@ public class OrgMenu extends JFrame implements ActionListener {
     private final JMenuItem Problems = new JMenuItem("Please describe if you encountered any problem");
     private final JMenuItem helpUsBecomeBetter = new JMenuItem("Help us become better");
     private final JMenuItem emailAd = new JMenuItem("Email address");
-
+    private final JMenuItem terms = new JMenuItem("Terms and Conditions");
     private final JMenuItem i1 = new JMenuItem("All registered organizations");
     private final JMenuItem i2 = new JMenuItem("All recorded cases");
     private final JMenuItem i3 = new JMenuItem("All Contacts recorded");
@@ -59,6 +59,8 @@ public class OrgMenu extends JFrame implements ActionListener {
         JMenu frequentlyAskedQuestions = new JMenu("Frequently asked questions");
         help.add(frequentlyAskedQuestions);
         help.add(Problems);
+        help.add(terms);
+        terms.addActionListener(this);
         rateUs.add(helpUsBecomeBetter);
         contactUs.add(emailAd);
         JMenu emergencyContact = new JMenu("Emergency contact");
@@ -136,8 +138,6 @@ public class OrgMenu extends JFrame implements ActionListener {
             if(verification.validation(impl.findOrgEmailfromOrgName(LogOrg.getOrgname()))) {
                 String newPas = JOptionPane.showInputDialog("Please write as the new password");
                 impl.changePassword(newPas, LogOrg.getOrgUsername());
-            }else{
-
             }
         } else if (e.getSource() == exit) {
             GuiClass.exitMethod();
@@ -151,6 +151,9 @@ public class OrgMenu extends JFrame implements ActionListener {
             GuiClass.contactUs();
         } else if (e.getSource() == Problems) {
             GuiClass.sendingProblem();
+        }else if (e.getSource() == terms) {
+            GuiClass.managingWebsitesByUrl("https://github.com/ChristosBaztekas/BooleanShip/blob/main/Terms%20and%20Conditions.docx");
+
         }
 
     }
