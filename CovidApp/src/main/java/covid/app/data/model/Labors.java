@@ -26,11 +26,11 @@ public class Labors extends Organisations implements caseManagementAndHumanAddit
             status = false;
             System.out.println("Some changes have been ocurred");
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
+            for (Human c : changes) {
                 System.out.printf("    The person: %s", c.toString());
             }
             System.out.println("Please tell who is likely to be positive too");
-            for (var ignored :changes) {
+            for (Human ignored :changes) {
                 int choice;
                 while (true) {
                     System.out.println("Give the number for each department of your Labor");

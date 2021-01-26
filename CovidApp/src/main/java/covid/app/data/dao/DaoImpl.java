@@ -14,7 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DaoImpl implements UserDao {
+public class DaoImpl  {
 
     private final DBConnectionManager manager;
 
@@ -24,7 +24,7 @@ public class DaoImpl implements UserDao {
 
     private final JTextArea allOrgs = new JTextArea(20, 40);
 
-    @Override
+
     public void insertUser(User user) {
         String query = "insert into users(user_Type,username,user_password,user_email) values('" + user.getUserType() + "','"
                 + user.getUsername() + "','"
@@ -141,7 +141,7 @@ public class DaoImpl implements UserDao {
 
     }
 
-    @Override
+
     public void insertOrganisation(String userid, String orgType, String orgName, String orgLocation, int orgNumOfPeople, String orgUsername, String activity) {
         String query = "insert into organisations(org_Type,org_Name,org_Location,org_Num_Of_People,username,activity) values('" + orgType + "','"
                 + orgName + "','"
@@ -490,7 +490,7 @@ public class DaoImpl implements UserDao {
     }
 
 
-    @Override
+
     public Boolean readUserById(String username, String password, String user_type) {
         String query = "select * from users where username=? and user_password=? and user_type=?";
 

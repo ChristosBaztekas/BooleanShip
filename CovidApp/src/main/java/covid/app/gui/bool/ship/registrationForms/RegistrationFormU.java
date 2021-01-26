@@ -1,18 +1,16 @@
 package covid.app.gui.bool.ship.registrationForms;
 
 
-
 import covid.app.data.dao.DaoImpl;
+import covid.app.data.model.Universities;
 import covid.app.data.model.User;
 import covid.app.gui.bool.ship.mainMenu.GuiClass;
-import covid.app.data.model.Universities;
 import covid.app.manager.DBConnectionManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class RegistrationFormU
         extends JFrame
@@ -31,7 +29,6 @@ public class RegistrationFormU
             Integer.valueOf(400), // max
             Integer.valueOf(1) // step
     );
-
 
 
     private final JTextField tname;
@@ -259,13 +256,13 @@ public class RegistrationFormU
                 JOptionPane.showMessageDialog(null, "This section can not be empty", "Organisation Username", JOptionPane.ERROR_MESSAGE);
             } else if (rpassword.length() < 6) {
                 JOptionPane.showMessageDialog(null, "Password should contain more than 6 characters", "Weak Password", JOptionPane.ERROR_MESSAGE);
-            }else if(!GuiClass.isValidEmail(orgMail)){
+            } else if (!GuiClass.isValidEmail(orgMail)) {
                 tmail.setText("");
-            }else if (impl.usernameExists(username)) {
+            } else if (impl.usernameExists(username)) {
                 JOptionPane.showMessageDialog(null, "Username already exists.Please choose another username", "Username exists", JOptionPane.ERROR_MESSAGE);
-            }else if(impl.emailExists(orgMail)){
+            } else if (impl.emailExists(orgMail)) {
                 JOptionPane.showMessageDialog(null, "Already an account with this email exists.If you forgot your password choose the current option from the user form.", "Email exists", JOptionPane.ERROR_MESSAGE);
-            }else if (!verification.registrationCode(orgMail)) {
+            } else if (!verification.registrationCode(orgMail)) {
                 dispose();
                 GuiClass wsFrame = new GuiClass();
                 wsFrame.setBounds(400, 100, 900, 700);
@@ -275,18 +272,18 @@ public class RegistrationFormU
 
             } else {
                 String activity = "Universities are using distance education";
-                Universities u = new Universities(orgName,orgArea,(numPr+numSt),orgMail);
+                Universities u = new Universities(orgName, orgArea, (numPr + numSt), orgMail);
                 User leonidas = new User("", password, orgMail, username, "University");
                 impl.insertUser(leonidas);
                 DBConnectionManager manager2 = new DBConnectionManager();
                 DaoImpl impl2 = new DaoImpl(manager2);
-                impl2.insertOrganisation("", "University", orgName, orgArea, (numPr+numSt), username, activity);
+                impl2.insertOrganisation("", "University", orgName, orgArea, (numPr + numSt), username, activity);
 
                 JOptionPane.showMessageDialog(this, "Thank you for registering", "Account created", JOptionPane.INFORMATION_MESSAGE);
                 GuiClass.registrationAutomatedMail(orgMail);
                 ok = true;
             }
-            if(ok) {
+            if (ok) {
                 dispose();
                 GuiClass.alreadyUserOptionU("University menu log form");
             }

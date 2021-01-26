@@ -32,10 +32,10 @@ public class Universities extends Organisations implements caseManagementAndHuma
 
     protected void setSize() {
         int count = 0;
-        for (var c : department) {
+        for (Classes c : department) {
             count += c.size();
         }
-        for (var c : secretariat) {
+        for (Classes c : secretariat) {
             count += c.size();
         }
         count += teachers.size();
@@ -48,11 +48,11 @@ public class Universities extends Organisations implements caseManagementAndHuma
             System.out.println("Some changes have been ocured");
             status = false;
             System.out.println("Positive have been found: ");
-            for (var c : changes) {
+            for (Human c : changes) {
                 System.out.printf("    The person: %s", c.toString());
             }
             System.out.println("Please say us who have to tested");
-            for (var c : changes) {
+            for (Human c : changes) {
                 int choice;
                 label:
                 while (true) {
@@ -196,13 +196,13 @@ public class Universities extends Organisations implements caseManagementAndHuma
     }
     public void findWhereBelongs(Human human) {
         String look_for = human.getAfm();
-        for (var c : teachers) {
+        for (Human c : teachers) {
             if (c.getAfm().equals(look_for)) {
                 number_teachers_positive += 1;
                 break;
             }
         }
-        for (var c : others) {
+        for (Human c : others) {
             if (c.getAfm().equals(look_for)) {
                 number_others_positive += 1;
                 break;
