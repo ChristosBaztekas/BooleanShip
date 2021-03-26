@@ -6,6 +6,8 @@ Please give us your feedback by rating our app: https://www.surveymonkey.com/r/K
 
 Authors: BooleanShip Team
 
+Available video presenting the app functionality: https://youtu.be/_1843TvfN6k with greek description.
+
 For a most realistic experience using this application and due to security reasons , in order to use the government menu you will have to user the following account: 
 email:governmentuseremail@gmail.com
 password:noBugsNow1
